@@ -1,0 +1,9 @@
+#pragma once
+
+enum EPostFilterDofBlurType
+{
+    DOF_BLUR_TYPE_FASTEST = 0x0,
+    DOF_BLUR_TYPE_LENS_BLUR = 0x1,
+    DOF_BLUR_TYPE_LENS_BLUR_SOFT = 0x2,
+    DOF_BLUR_TYPE_LENS_BLUR_HIGHREZ = 0x3
+};

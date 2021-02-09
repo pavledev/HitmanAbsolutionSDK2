@@ -1,0 +1,9 @@
+#pragma once
+
+enum EWaveBankMemoryLoadRTType : __int32
+{
+    WAVEBANKRT_RAM = 0x0,
+    WAVEBANKRT_COMPRESSEDRAM = 0x1,
+    WAVEBANKRT_STREAM = 0x2,
+    WAVEBANKRT_STREAMFROMMEMORY = 0x3
+};

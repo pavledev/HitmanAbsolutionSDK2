@@ -1,0 +1,11 @@
+#pragma once
+
+enum ESustainPointState : __int32
+{
+    SUSTAIN_POINT_MANUAL = 0x0,
+    SUSTAIN_POINT_READYTOSTART = 0x1,
+    SUSTAIN_POINT_BEFORE = 0x2,
+    SUSTAIN_POINT_AT = 0x3,
+    SUSTAIN_POINT_AFTER = 0x4,
+    SUSTAIN_POINT_ENDREACHED = 0x5
+};

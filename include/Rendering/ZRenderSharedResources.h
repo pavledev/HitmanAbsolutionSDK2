@@ -1,0 +1,140 @@
+#pragma once
+
+#include "SMatrix.h"
+#include "ZRenderDevice.h"
+#include "ZRenderRainPuddleSimulator.h"
+#include "SRenderShadowMapInfo.h"
+#include "ZLightPropagationVolume.h"
+#include "SRenderShadowMap.h"
+#include "IRenderPrimitiveMesh.h"
+#include "SEffectParametersInternal.h"
+#include "SEffectParametersSimple.h"
+#include "SEffectParametersDeferred.h"
+#include "SEffectParametersRain.h"
+#include "SEffectParametersSkin.h"
+#include "SEffectParametersGlow.h"
+#include "SEffectParametersPostfilter.h"
+#include "SEffectParametersMsaaEdgeDetect.h"
+#include "SEffectParametersGlobalIllumination.h"
+#include "SEffectParametersDepthOfFieldCS.h"
+#include "SEffectParametersBokehCS.h"
+#include "SEffectParametersBokehPS.h"
+#include "SEffectParametersImageProcessing.h"
+#include "SEffectParametersStandardVS.h"
+#include "SEffectParametersStandardDecalVS.h"
+#include "SEffectParametersStandardScatterVS.h"
+#include "SEffectParametersBinkVideo.h"
+#include "SEffectParametersFXAA.h"
+
+class alignas(16) ZRenderSharedResources
+{
+public:
+    SMatrix m_mRainShadowMapWorldToRain;
+    SMatrix m_mRainShadowMapProjection;
+    ZRenderDevice* m_pRenderDevice;
+    ZRenderRainPuddleSimulator* m_pRainPuddleSimulator[2];
+    ZRenderTexture2D* m_pWhiteTexture;
+    ZRenderShaderResourceView* m_pWhiteSRV;
+    ZRenderTexture2D* m_pWhiteZeroAlphaTexture;
+    ZRenderShaderResourceView* m_pWhiteZeroAlphaSRV;
+    ZRenderTexture2D* m_pWhiteCubeTexture;
+    ZRenderShaderResourceView* m_pWhiteCubeSRV;
+    ZRenderTexture3D* m_pWhiteVolumeTexture;
+    ZRenderShaderResourceView* m_pWhiteVolumeSRV;
+    ZRenderTexture2D* m_pBlackTexture;
+    ZRenderShaderResourceView* m_pBlackSRV;
+    ZRenderTexture2D* m_pNormalTexture;
+    ZRenderShaderResourceView* m_pNormalSRV;
+    ZRenderTexture3D* m_pDitherMaskTexture;
+    ZRenderShaderResourceView* m_pDitherMaskSRV;
+    ZRenderTexture3D* m_pNoise32Texture;
+    ZRenderShaderResourceView* m_pNoise32SRV;
+    ZRenderTexture3D* m_pNoise8Texture;
+    ZRenderShaderResourceView* m_pNoise8SRV;
+    ZRenderTexture2D* m_pNoiseNormalTexture;
+    ZRenderShaderResourceView* m_pNoiseNormalSRV;
+    unsigned int m_nDitherMaskWidth;
+    unsigned int m_nDitherMaskHeight;
+    int SHADOW_MAP_RESOLUTION;
+    int LOW_RES_SHADOW_MAP_RESOLUTION;
+    unsigned int m_nMaxNumShadowMapsPerFrame;
+    TArray<SRenderShadowMapInfo> m_aShadowMapInfo;
+    ZRenderTexture2D* m_pShadowDepthTexture;
+    ZRenderDepthStencilView* m_pShadowDepthDSV;
+    ZRenderTexture2D* m_pShadowsTexture[4];
+    ZRenderTargetView* m_pShadowsRTV[4];
+    ZRenderShaderResourceView* m_pShadowsSRV[4];
+    ZRenderShaderResourceView* m_pShadowDepthSRV;
+    ZRenderTexture2D* m_pRSMNormalTexture[4];
+    ZRenderTargetView* m_pRSMNormalRTV[4];
+    ZRenderShaderResourceView* m_pRSMNormalSRV[4];
+    ZRenderTexture2D* m_pRSMSmallNormalTexture[4];
+    ZRenderTargetView* m_pRSMSmallNormalRTV[4];
+    ZRenderShaderResourceView* m_pRSMSmallNormalSRV[4];
+    ZRenderTexture2D* m_pRSMDiffuseTexture[4];
+    ZRenderTargetView* m_pRSMDiffuseRTV[4];
+    ZRenderShaderResourceView* m_pRSMDiffuseSRV[4];
+    ZRenderTexture2D* m_pRSMSmallDiffuseTexture[4];
+    ZRenderTargetView* m_pRSMSmallDiffuseRTV[4];
+    ZRenderShaderResourceView* m_pRSMSmallDiffuseSRV[4];
+    ZLightPropagationVolume* m_pLightPropagationVolume;
+    bool m_bInitializedRSM;
+    SRenderShadowMap m_pShadowMap;
+    SRenderTexture2DAccess m_ShadowDSTailTexture[5];
+    SRenderTexture2DAccess m_ShadowDSTailTextureTempFix[5];
+    ZRenderTexture2D* m_pShadowDSTailTextureDepth;
+    ZRenderDepthStencilView* m_pShadowDSTailTextureDSV;
+    SRenderTexture2DAccess m_ShadowDSTailTextureCPU[3][2];
+    ZRenderTexture2D* m_pLowResShadowDepthTexture;
+    ZRenderDepthStencilView* m_pLowResShadowDepthDSV;
+    SRenderShadowMap m_pShadowMapsCSM[3];
+    ZRenderTexture2D* m_pRainShadowTexture;
+    ZRenderTargetView* m_pRainShadowRTV;
+    ZRenderShaderResourceView* m_pRainShadowSRV;
+    SRenderShadowMap m_RainShadowMap;
+    ZRenderTexture2D* m_pProjectorMapRoundTexture[16];
+    ZRenderShaderResourceView* m_pProjectorMapRoundSRV[16];
+    ZRenderTexture2D* m_pProjectorMapSquareTexture[16];
+    ZRenderShaderResourceView* m_pProjectorMapSquareSRV[16];
+    ZRenderTexture2D* m_pLightingModelTexture;
+    ZRenderShaderResourceView* m_pLightingModelSRV;
+    IRenderPrimitiveMesh* m_pPrimitiveSimpleBox;
+    IRenderPrimitiveMesh* m_pPrimitiveSimplePyramid;
+    IRenderPrimitiveMesh* m_pPrimitiveSimpleIcosahedron;
+    IRenderPrimitiveMesh* m_pPrimitiveSimpleCone;
+    IRenderPrimitiveMesh* m_pPrimitiveSimpleCylinder;
+    IRenderPrimitiveMesh* m_pPrimitiveShadowMapCircleOuter;
+    IRenderPrimitiveMesh* m_pPrimitiveShadowMapCircleInner;
+    IRenderPrimitiveMesh* m_pPrimitiveCappedPyramid;
+    IRenderPrimitive* m_pRainSpriteMesh;
+    SEffectParametersInternal m_EffectParametersInternal;
+    SEffectParametersSimple m_EffectParametersSimple;
+    SEffectParametersDeferred m_EffectParametersDeferred;
+    SEffectParametersRain m_EffectParametersRain;
+    SEffectParametersSkin m_EffectParametersSkin;
+    SEffectParametersGlow m_EffectParametersGlow;
+    SEffectParametersPostfilter m_EffectParametersPostfilter;
+    SEffectParametersMsaaEdgeDetect m_EffectParametersMsaaEdgeDetect2;
+    SEffectParametersMsaaEdgeDetect m_EffectParametersMsaaEdgeDetect4;
+    SEffectParametersMsaaEdgeDetect m_EffectParametersMsaaEdgeDetect8;
+    SEffectParametersPostfilter m_EffectParametersPostfilterMsaa2;
+    SEffectParametersPostfilter m_EffectParametersPostfilterMsaa4;
+    SEffectParametersPostfilter m_EffectParametersPostfilterMsaa8;
+    SEffectParametersDeferred m_EffectParametersDeferredMsaa2;
+    SEffectParametersDeferred m_EffectParametersDeferredMsaa4;
+    SEffectParametersDeferred m_EffectParametersDeferredMsaa8;
+    SEffectParametersDeferred m_EffectParametersDeferredMsaa2_1;
+    SEffectParametersDeferred m_EffectParametersDeferredMsaa4_1;
+    SEffectParametersDeferred m_EffectParametersDeferredMsaa8_1;
+    SEffectParametersGlobalIllumination m_EffectParametersGlobalIllumination;
+    SEffectParametersDepthOfFieldCS m_EffectParametersDepthOfFieldCS;
+    SEffectParametersBokehCS m_EffectParametersBokehCS;
+    SEffectParametersBokehPS m_EffectParametersBokehPS;
+    SEffectParametersImageProcessing m_EffectParametersImageProcessing;
+    SEffectParametersStandardVS m_EffectParametersStandardVS;
+    SEffectParametersStandardDecalVS m_EffectParametersStandardDecalVS;
+    SEffectParametersStandardScatterVS m_EffectParametersStandardScatterVS;
+    SEffectParametersBinkVideo m_EffectParametersBinkVideo;
+    SEffectParametersFXAA m_EffectParametersFXAA;
+    ZResourcePtr m_pPoissonVectorNoise;
+};

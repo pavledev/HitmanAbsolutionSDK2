@@ -1,0 +1,14 @@
+#pragma once
+
+enum ECrossHairType : __int32
+{
+    CROSSHAIR_NONE = 0x0,
+    CROSSHAIR_PISTOL = 0x1,
+    CROSSHAIR_REVOLVER = 0x2,
+    CROSSHAIR_SMG = 0x3,
+    CROSSHAIR_RIFLE = 0x4,
+    CROSSHAIR_SHOTGUN = 0x5,
+    CROSSHAIR_SNIPER = 0x6,
+    CROSSHAIR_HARDBALLER = 0x7,
+    CROSSHAIR_UNAIMED = 0x8
+};

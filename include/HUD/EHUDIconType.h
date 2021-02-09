@@ -1,0 +1,13 @@
+#pragma once
+
+enum EHUDIconType : __int32
+{
+    HUD_ICON_NONE = 0x0,
+    HUD_ICON_ALARM_TIMER = 0x1,
+    HUD_ICON_CLOSECOMBAT = 0x2,
+    HUD_ICON_BREADCRUMB = 0x3,
+    HUD_ICON_EXIT = 0x4,
+    HUD_ICON_OBJECTIVE = 0x5,
+    HUD_ICON_TARGET = 0x6,
+    HUD_ICON_TUTORIAL_ARROW = 0x7
+};

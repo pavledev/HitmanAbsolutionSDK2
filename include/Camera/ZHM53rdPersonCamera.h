@@ -1,0 +1,91 @@
+#pragma once
+
+#include "ZHM5CameraBaseFunc.h"
+#include "ZHM5Spring.h"
+#include "SCameraCollisionVariable.h"
+#include "ZMapPieceWiseLinear.h"
+#include "SHM5GameCamAngles.h"
+#include "SHM5GameCamAngleLimits.h"
+#include "SHM5GameCamControls.h"
+#include "SCameraPOI.h"
+#include "SSoftCollisionCache.h"
+#include "ECameraOffset.h"
+#include "SCameraUpdateEvent.h"
+
+class alignas(16) ZHM53rdPersonCamera : public ZHM5CameraBaseFunc
+{
+public:
+    bool m_bActivateCamera;
+    ZHM5Spring m_CamSpring;
+    ZHM5Spring m_PitchSpring;
+    SCameraCollisionVariable m_CameraDistance;
+    float m_fPullInFraction;
+    ZMapPieceWiseLinear m_MapPLHor;
+    ZMapPieceWiseLinear m_MapPLVer;
+    ECameraState m_eCameraState;
+    bool m_bInterpolateWhileMoving;
+    bool m_bInterpolateSideWhileMoving;
+    float m_fYawBuffer;
+    float m_fPitchBuffer;
+    ZGameTime m_LastCamVertMoveTime;
+    ZGameTime m_LastHeroStandTime;
+    ZGameTime m_LastHeroAimTime;
+    ZMapPoly m_MapPoly;
+    SMatrix m_mCameraGround;
+    float m_fSideStart;
+    float m_fSideBlendTime;
+    float m_fSideBlendDuration;
+    float m_fSideBlendFraction;
+    float m_fSide;
+    bool m_bRightSide;
+    float m_fZoomStart;
+    float m_fZoomBlendTime;
+    float m_fZoom;
+    bool m_bZoom;
+    ECameraOffset m_eCameraOffset;
+    float m_fOffsetStart;
+    float m_fOffset;
+    float m_fOffsetBlendTime;
+    bool m_bAlignYawPitch;
+    bool m_bAlignYaw;
+    bool m_bAlignPitch;
+    float m_fAngleBlendTime;
+    float m_fAngleBlendDuration;
+    float m_fYawBase;
+    SHM5GameCamAngles m_EndAngles;
+    SHM5GameCamAngles m_StartAngles;
+    SHM5GameCamAngleLimits m_AngleLimitsBlended;
+    SHM5GameCamAngleLimits m_AngleLimitsStart;
+    SHM5GameCamAngleLimits m_AngleLimitsEnd;
+    bool m_bMinigameAngleLimits;
+    float m_fMinigameAngleLimitYawBase;
+    SHM5GameCamAngleLimits m_MinigameAngleLimits;
+    TEntityRef<ZSpatialEntity> m_rMinigameLookat;
+    bool m_bSetResetOnActivation;
+    float m_fBlendFraction;
+    float m_fBlendTime;
+    float m_fBlendDuration;
+    SHM5GameCamParams m_GameCamParamsStart;
+    SHM5GameCamParams m_GameCamParamsEnd;
+    SHM5GameCamParams m_GameCamParamsBlended;
+    float m_userInputWeight;
+    SVector3 m_cameraDirectionHint;
+    float m_fCameraHintWeight;
+    SHM5GameCamControls m_GameCamControls;
+    bool m_bPOIActive;
+    SCameraPOI m_POIParams;
+    float4 m_vPOIPos;
+    float m_fPOITime;
+    float m_fStickAtExtremeBlendInTime;
+    float m_fStickAtExtremeDelay;
+    SSoftCollisionCache m_SoftCollisionCache;
+    SSoftCollisionCache m_SoftCollisionCacheObstacle;
+    float m_fObstacleCollideTime;
+    SVector3 m_vCameraGlobalOffsetStart;
+    SVector3 m_vCameraGlobalOffsetEnd;
+    SVector3 m_vCameraGlobalOffsetBlended;
+    SCameraUpdateEvent m_CameraUpdateEvent;
+    SVector2 m_vRelativeTurn;
+    bool m_bCutToEndParams;
+    bool m_bFirstCutsequenceInterpolationUpdate;
+};

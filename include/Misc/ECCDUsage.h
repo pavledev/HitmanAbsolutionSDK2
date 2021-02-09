@@ -1,0 +1,8 @@
+#pragma once
+
+enum ECCDUsage : __int32
+{
+    ECCDUSAGE_DISABLED = 0x0,
+    ECCDUSAGE_AGAINST_STATIC = 0x1,
+    ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 0x2
+};

@@ -1,0 +1,24 @@
+#pragma once
+
+#include "ZHM5VictimBaseMovement.h"
+#include "ZHM5GuideWindow.h"
+#include "ZHM5CoverPlane.h"
+
+class ZHM5MovementPushVictim : public ZHM5VictimBaseMovement
+{
+public:
+    bool m_bWantsControl;
+    bool m_bGrabEventSent;
+    ZHM5GuideWindow* m_pWindow;
+    ZHM5CoverPlane* m_pRail;
+    SMatrix m_aBlendMats[4];
+    HM5Utils::SAnimBlend m_aAnimBlends[4];
+    bool m_bCameraInitialized;
+    float m_fDesiredStickLength;
+    float m_fCurCamStickLength;
+    float m_fDesiredHeight;
+    float m_fCurCamHeight;
+    float4 m_vDesiredGround;
+    float4 m_vCurrentFocusPoint;
+    SMatrix m_CameraGround;
+};

@@ -1,0 +1,8 @@
+#pragma once
+
+enum ERenderQueryType : __int32
+{
+    RENDER_QUERY_TYPE_OCCLUSION = 0x1,
+    RENDER_QUERY_TYPE_TIMESTAMP = 0x2,
+    RENDER_QUERY_TYPE_TIMESTAMPFREQ = 0x3
+};

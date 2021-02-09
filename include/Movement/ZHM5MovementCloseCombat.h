@@ -1,0 +1,135 @@
+#pragma once
+
+#include "ZHM5BaseMovement.h"
+#include "ZHM5CCAnimDatabase.h"
+#include "ZHM5CCAnimController.h"
+#include "ECCLeeState.h"
+#include "sAutopilotTakedownMarker.h"
+#include "ZMapStep.h"
+#include "EAISharedEventType.h"
+#include "ZHM5CoverPlane.h"
+
+class alignas(16) ZHM5MovementCloseCombat : public ZHM5BaseMovement
+{
+    ZHM5CCAnimDatabase* m_pAnimDatabase;
+    ZHM5CCAnimController* m_pAnimController;
+    ZHM5CCTargetController* m_pTargetController;
+    SHM5CCTarget* m_pTarget;
+    SHM5CCTarget* m_pNextTarget;
+    int m_ePreTargetState;
+    int m_eNextTargetState;
+    TEntityRef<ZActor> m_rPreTarget;
+    bool m_bTransitionToLocomotionCam;
+    bool m_bSetForcedPos;
+    ECCLeeState m_eCCLeeState;
+    bool m_bAttackAvailable;
+    bool m_bUpdateAttackTime;
+    bool m_bAttackExecuted;
+    bool m_bMissed;
+    bool m_bForceCounter;
+    bool m_bForceMovement;
+    bool m_bSpecialHitAllowed;
+    float m_fSpecialTime;
+    float m_fHitmanReactTime;
+    bool m_bTakeDown;
+    bool m_bTakeDownExecuted;
+    bool m_bTakeDownMissed;
+    bool m_bCounterNPC;
+    bool m_bStairsLastReactMove;
+    bool m_bHitmanKnockOut;
+    float m_fCounterTime;
+    float m_fAttackTime;
+    float m_fCloseCombatCoolDown;
+    float m_fTimeInCurrentState;
+    const SAnimNodeHitman* m_pCurrentNode;
+    float m_fSoundFractionPlayer;
+    float m_fSoundFractionPlayerSent;
+    alignas(8) ZPF5Location m_CCLocation;
+    bool m_bEscape;
+    bool m_bTakeDownOverride;
+    ECCNodeType m_ePendingTransit;
+    unsigned int m_nPendingNodeNum;
+    bool m_bNodeTransitted;
+    bool m_bAutopilotTakedown;
+    sAutopilotTakedownMarker m_AutopilotTakedownMarkerLocations[2];
+    ZGameTime m_AutopilotTakedownStartTime;
+    bool m_bAutopilotTakedownSuccess;
+    unsigned int m_nAutopilotAttack;
+    bool m_bNPCFiring;
+    int m_nMashNum;
+    float m_fDecayTime;
+    float m_fDecayFraction;
+    float m_fChokeFraction;
+    ZGameTime m_ChokeRumbleStart;
+    unsigned int m_iImpactNum;
+    bool m_bInSlowdownWindow;
+    bool m_bAllowHitmanMoveFromStand;
+    bool m_bAllowHitmanMoveFromCrouch;
+    bool m_bAttackButtonActivated;
+    bool m_bSnapNeckButtonActivated;
+    bool m_bButtonPromptsOnScreen;
+    bool m_bTakeDownWindowActive;
+    int m_eCCButtonActivated;
+    int m_eCCChoiceActive;
+    bool m_bCCShowChoice;
+    bool m_bCCShowIcons;
+    bool m_bCCShowFlashingIcons;
+    bool m_bCCChoiceSuccess;
+    bool m_bCCChoiceFail;
+    bool m_bCCContinueAttack;
+    bool m_bCCPerfectChain;
+    bool m_bUseMirroredAnims;
+    bool m_bWasInCover;
+    bool m_bFailedAttackChain;
+    bool m_bCCAttackHit;
+    bool m_bCCAllowInterupt;
+    bool m_bInAttackWindow;
+    bool m_bIsAttacking;
+    float m_fReactCountdown;
+    float m_fCurTimeMultiplier;
+    int m_iNumButtonPushes;
+    int m_iNumSanchezLoops;
+    bool m_bGrabHumanShield;
+    bool m_bSilentStrangle;
+    int m_nImpactCounter;
+    float m_afTakeDownWindow[8];
+    float m_fTakeDownWindowDuration;
+    float m_fTakeDownWindowScale;
+    ZMapStep m_MapRumbleRight;
+    ZMapStep m_MapRumbleLeft;
+    ZMapPoly m_MapRumbleFrequency;
+    bool m_bRumbleRightHigh;
+    bool m_bRumbleLeftHigh;
+    float m_fRightRumble;
+    float m_fLeftRumble;
+    bool m_bCameraInitialized;
+    float4 m_vCurrentFocusPoint;
+    float4 m_vDesiredFocusPoint;
+    float m_fDesiredHeight;
+    SMatrix m_CameraGround;
+    float m_fCurCamStickLength;
+    float m_fCurCamHeight;
+    float m_fCameraBlendInTime;
+    float m_fCameraHeightFraction;
+    bool m_bAutofail;
+    bool m_bSuperEliteFinish;
+    ZMapPoly m_PistolFinisherCamHeight;
+    bool m_bCCScaleUpActor;
+    float m_fCCScaleBlendCur;
+    float m_fCCScaleBlendTarget;
+    int m_iCCScaleBlendTime;
+    float m_fAlignYawAngle;
+    bool m_bAlignYawAngle;
+    EActorDeathType m_eActorDeathType;
+    EAISharedEventType m_eAIEvent;
+    TArray<TEntityRef<ZActor> > m_IgnoreTargets;
+    TEntityRef<ZActor> m_rHumanShieldTarget;
+    SMatrix m_mvCoverCameraGround;
+    ZHM5CoverPlane* m_pCoverPlane;
+    float4 m_vForceAlign;
+    bool m_bCoverTakeDown;
+    bool m_bForceAlign;
+    bool m_bBlendCameraGround;
+    bool m_bBossDeathSequence;
+    unsigned int m_nCameraAnim;
+};

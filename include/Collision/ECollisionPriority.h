@@ -1,0 +1,9 @@
+#pragma once
+
+enum ECollisionPriority : __int32
+{
+    ECOLLISIONPRIORITY_LOW = 0x0,
+    ECOLLISIONPRIORITY_NORMAL = 0x1,
+    ECOLLISIONPRIORITY_HIGH = 0x2,
+    ECOLLISIONPRIORITY_CRITICAL = 0x3
+};

@@ -1,0 +1,84 @@
+#pragma once
+
+#include "ZGameTime.h"
+
+class alignas(8) SGameStatsData
+{
+public:
+    unsigned int m_ContractsCompleted;
+    unsigned int m_ContractsCreated;
+    int m_TotalMoneyEarned;
+    int m_TotalMoneySpent;
+    ZGameTime m_TimeSpentInFirefights;
+    float m_DamageTaken;
+    float m_HealthReplenished;
+    float m_HitRatio;
+    float m_HitRatioPistol;
+    float m_HitRatioSniper;
+    float m_HitRatioSMG;
+    float m_HitRatioShotgun;
+    float m_HitRatioAssault;
+    float m_HitRatioRevolver;
+    unsigned int m_BodiesHidden;
+    unsigned int m_DisguisesPickedUp;
+    unsigned int m_ContainersEntered;
+    unsigned int m_FuseBoxesDisabled;
+    unsigned int m_SuccessfulBlendIns;
+    unsigned int m_CaughtDraggingBody;
+    unsigned int m_CaughtTrespassing;
+    unsigned int m_DisguisesBlown;
+    unsigned int m_KnockoutByHand;
+    unsigned int m_KnockoutsByProp;
+    unsigned int m_NPCsKilled;
+    unsigned int m_Headshots;
+    unsigned int m_Fiberwires;
+    unsigned int m_DeadlyThrows;
+    unsigned int m_PropKills;
+    unsigned int m_PullOfLedges;
+    unsigned int m_PushOverRailings;
+    unsigned int m_ShootingBalletKills;
+    unsigned int m_KillshotsFromCover;
+    unsigned int m_ActionKillsTriggered;
+    unsigned int m_KillShotsPistol;
+    unsigned int m_KillShotsSniper;
+    unsigned int m_KillShotsSMG;
+    unsigned int m_KillShotsShotgun;
+    unsigned int m_KillShotsAssault;
+    unsigned int m_KillShotsRevolver;
+    unsigned int m_CiviliansKilled;
+    unsigned int m_CopsKilled;
+    unsigned int m_PigsBlownUp;
+    unsigned int m_PigeonsKilled;
+    ZGameTime m_TimePlayed;
+    ZGameTime m_TimeSpentInInstinctMode;
+    ZGameTime m_TimeSpentInCover;
+    unsigned int m_LedgesUsed;
+    float m_MilesDraggingBodies;
+    float m_MilesRunned;
+    float m_MilesWalked;
+    unsigned int m_WindowsEntered;
+    float m_MilesStealthed;
+    unsigned int m_RemotelyDetonations;
+    unsigned int m_BarrelsBlownUp;
+    unsigned int m_CarsBlownUp;
+    unsigned int m_PetrolCansBlownUp;
+    unsigned int m_GasCanistersBlownUp;
+    unsigned int m_GasTanksBlownUp;
+    unsigned int m_LandminesBlownUp;
+    unsigned int m_FireworksBoxesBlownUp;
+    int m_nTotalKills;
+    unsigned int m_nTotalShotsFired;
+    unsigned int m_nShotsThatHit;
+    unsigned int m_nShotsFiredPistol;
+    unsigned int m_nShotsFiredSniper;
+    unsigned int m_nShotsFiredSMG;
+    unsigned int m_nShotsFiredShotgun;
+    unsigned int m_nShotsFiredAssault;
+    unsigned int m_nShotsFiredRevolver;
+    unsigned int m_nShotsThatHitPistol;
+    unsigned int m_nShotsThatHitSniper;
+    unsigned int m_nShotsThatHitSMG;
+    unsigned int m_nShotsThatHitShotgun;
+    unsigned int m_nShotsThatHitAssault;
+    unsigned int m_nShotsThatHitRevolver;
+};

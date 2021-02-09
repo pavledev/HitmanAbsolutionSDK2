@@ -1,0 +1,8 @@
+#pragma once
+
+enum EWaveBankRTFormat : __int32
+{
+    WAVEBANKRT_FORMAT_DEFAULT = 0x0,
+    WAVEBANKRT_FORMAT_PCM = 0x1,
+    WAVEBANKRT_FORMAT_COMPRESSED = 0x2
+};

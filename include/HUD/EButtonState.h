@@ -1,0 +1,10 @@
+#pragma once
+
+enum EButtonState : unsigned __int32
+{
+    BUTTON_STATE_DISABLED = 0xFFFFFFFF,
+    BUTTON_STATE_NONE = 0x0,
+    BUTTON_STATE_ENABLED = 0x1,
+    BUTTON_STATE_PRESSED = 0x2,
+    BUTTON_STATE_BLINKING = 0x3
+};
