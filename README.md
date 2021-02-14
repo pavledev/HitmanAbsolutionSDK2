@@ -1,4 +1,4 @@
-# HitmanAbsolutionSDK
+# Hitman Absolution SDK
 
 **Mods**
 - F4 - Gravity Gun - move actors while aiming at them (moving items isn't currently supported)\
