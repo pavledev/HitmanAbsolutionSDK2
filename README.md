@@ -7,9 +7,9 @@ While aiming use . and , keys to move actor back and forth\
 - F6 - Display Nearby Actors Info - displays actor's name and type\
 - F9 - Menu
   - Debug Console
-  - Actors Info (change actors positions, kill actors, teleport to player, ...)
+  - Actors Info (Change actors positions, kill actors, teleport to player, ...)
   - Player Info (Modify health, modify ammo, change outfit, teleport, ...)
   - HUD Info (Modify weapons ammo, create text)
-  - Game Stats Info (kill count, ...)
-  - Cheats (infinite health, infinite ammo, invisibility, refill instinct bar)
-  - UI Options (change graphics settings)
+  - Game Stats Info (Kill count, ...)
+  - Cheats (Infinite health, infinite ammo, invisibility, refill instinct bar)
+  - UI Options (Change graphics settings)
