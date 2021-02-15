@@ -1,8 +1,9 @@
 #pragma once
 
 #include "imgui.h"
-#include "ZUIOptions.h"
+#include "ZLevelManager.h"
 #include "Globals.h"
+#include "BaseAddresses.h"
 
 struct Cheats
 {
