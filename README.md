@@ -7,7 +7,7 @@
  4. Run engine.exe
 
 ## Mods
-- F4 - Gravity Gun - move actors, items and props while aiming at them\
+- F4 - Gravity Gun - move actors, items and props while aiming at them (they can be launched with arbitrary force and direction)\
 While aiming use . and , keys to move actor back and forth
 - F5 - Kill Nearby Actors - kill actors by walking near them
 - F6 - Display Nearby Actors Info - displays actor's name and type
