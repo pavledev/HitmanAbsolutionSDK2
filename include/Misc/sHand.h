@@ -2,8 +2,11 @@
 
 #include "sAttacherBoneElement.h"
 
-class alignas(4) sHand : public sAttacherBoneElement
+struct sHand : sAttacherBoneElement
 {
-public:
-    bool bRightHand;
+	bool bRightHand;
+
+	sHand() = default;
+	sHand(bool bRightH);
+	~sHand() = default;
 };

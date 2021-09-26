@@ -2,9 +2,11 @@
 
 #include "SQV.h"
 
-class sHeadInfo
+struct sHeadInfo
 {
-public:
-    bool m_bUpdated;
-    SQV m_qvHead;
+	bool m_bUpdated;
+	SQV m_qvHead;
+
+	sHeadInfo() = default;
+	~sHeadInfo() = default;
 };

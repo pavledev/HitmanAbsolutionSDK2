@@ -1,12 +1,12 @@
 #pragma once
 
-enum ESBCinematicState : __int32
+enum ESBCinematicState
 {
-    eSBCinematicState_None = 0x0,
-    eSBCinematicState_Animation = 0x1,
-    eSBCinematicState_Shot = 0x2,
-    eSBCinematicState_Zoom = 0x3,
-    eSBCinematicState_BulletImpact = 0x4,
-    eSBCinematicState_BulletImpactPre = 0x5,
-    eSBCinematicState_HitmanView = 0x6
+	eSBCinematicState_None = 0,
+	eSBCinematicState_Animation = 1,
+	eSBCinematicState_Shot = 2,
+	eSBCinematicState_Zoom = 3,
+	eSBCinematicState_BulletImpact = 4,
+	eSBCinematicState_BulletImpactPre = 5,
+	eSBCinematicState_HitmanView = 6
 };

@@ -3,11 +3,13 @@
 #include "EHM5GameInputFlag.h"
 #include "InputControlNamesp.h"
 
-class SGameplayInputControlBind
+struct SGameplayInputControlBind
 {
-public:
-    EHM5GameInputFlag m_eGameInputAction;
-    InputControlNamesp::eHM5InputActionID m_eControlID;
-    InputControlNamesp::eHM5InputActionType m_eControlType;
-    InputControlNamesp::eHM5InputAction m_eControlAction;
+	EHM5GameInputFlag m_eGameInputAction;
+	InputControlNamesp::eHM5InputActionID m_eControlID;
+	InputControlNamesp::eHM5InputActionType m_eControlType;
+	InputControlNamesp::eHM5InputAction m_eControlAction;
+
+	SGameplayInputControlBind() = default;
+	~SGameplayInputControlBind() = default;
 };

@@ -4,6 +4,9 @@
 
 struct SSettingsParamMultiplier
 {
-    ESettingsParam m_eSettingsParam;
-    float m_fMultiplier;
+	ESettingsParam m_eSettingsParam;
+	float m_fMultiplier;
+
+	SSettingsParamMultiplier() = default;
+	~SSettingsParamMultiplier() = default;
 };

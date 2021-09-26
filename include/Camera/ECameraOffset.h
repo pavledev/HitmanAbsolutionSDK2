@@ -1,8 +1,8 @@
 #pragma once
 
-enum ECameraOffset : __int32
+enum ECameraOffset
 {
-    eCameraOffset_Center = 0x0,
-    eCameraOffset_Left = 0x1,
-    eCameraOffset_Right = 0x2
+	eCameraOffset_Center = 0,
+	eCameraOffset_Left = 1,
+	eCameraOffset_Right = 2
 };

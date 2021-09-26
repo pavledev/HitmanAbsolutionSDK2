@@ -6,10 +6,14 @@
 class ZRenderEffectVariableD3D11
 {
 public:
-    ZString m_sName;
-    ZRenderEffect* m_pEffect;
-    ID3DX11EffectVariable* m_pVariable;
+	ZString m_sName;
+	ZRenderEffect* m_pEffect;
+	ID3DX11EffectVariable* m_pVariable;
 
-    virtual ~ZRenderEffectVariableD3D11();
-    virtual ZString* GetName();
+	virtual ~ZRenderEffectVariableD3D11() = default;
+	virtual const ZString& GetName() const;
+
+	ZRenderEffectVariableD3D11() = default;
+	ZRenderEffectVariableD3D11(const ZString& sName, ZRenderEffect* pEffect, ID3DX11EffectVariable* pVariable);
+	ID3DX11EffectVariable* GetVariable() const;
 };

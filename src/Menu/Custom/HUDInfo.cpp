@@ -1,6 +1,6 @@
-#include "HUDInfo.h"
+#pragma warning(disable : 26812)
 
-static ImVector<__int16> textIDList;
+#include "HUDInfo.h"
 
 void HUDInfo::DrawWindow(bool* showHUDInfo)
 {
@@ -12,7 +12,7 @@ void HUDInfo::DrawWindow(bool* showHUDInfo)
 		return;
 	}
 
-	ZHUDManager* hudManager = reinterpret_cast<ZHUDManager*>(Globals::g_pHUDManagerSingleton);
+	ZHUDManager* hudManager = Singletons::GetHUDManager();
 
 	if (hudManager)
 	{
@@ -120,7 +120,7 @@ void HUDInfo::DrawWindow(bool* showHUDInfo)
 
 		ImGui::Separator();
 
-		static bool showCrossHair;
+		static bool showCrossHair = false;
 
 		if (ImGui::Checkbox("Show CrossHair", &showCrossHair))
 		{
@@ -134,14 +134,14 @@ void HUDInfo::DrawWindow(bool* showHUDInfo)
 			}
 		}
 
-		static bool showTrespassingIcon;
+		static bool showTrespassingIcon = false;
 
 		if (ImGui::Checkbox("Show Trespassing Icon", &showTrespassingIcon))
 		{
 			hudManager->ShowTrespassingIcon(showTrespassingIcon);
 		}
 
-		static bool showThreatRadar;
+		static bool showThreatRadar = false;
 
 		if (ImGui::Checkbox("Show Threat Radar", &showThreatRadar))
 		{
@@ -162,7 +162,7 @@ void HUDInfo::DrawWindow(bool* showHUDInfo)
 			ImGui::Text("Hitman Exists: No");
 		}
 
-		static bool setDialogActive;
+		static bool setDialogActive = false;
 
 		if (ImGui::Checkbox("Set Dialog Active", &setDialogActive))
 		{
@@ -203,7 +203,7 @@ void HUDInfo::DisplayText(ZHUDManager* hudManager)
 	ImGui::Text("");
 
 	static const char* currentScreenAnchorItem{};
-	const char* screenAnchorItems[] = { "Top Left", "Top Center", "Top Right", "Middle Left", "Middle Center", "Middle Right", "Bottom Left",
+	static const char* screenAnchorItems[] = { "Top Left", "Top Center", "Top Right", "Middle Left", "Middle Center", "Middle Right", "Bottom Left",
 		"Bottom Center", "Bottom Right" };
 	static EScreenAnchor screenAnchor;
 
@@ -288,7 +288,7 @@ void HUDInfo::DisplayText(ZHUDManager* hudManager)
 	ImGui::Text("");
 
 	static const char* currentTextAlignmentItem{};
-	const char* textAlignmentItems[] = { "Left", "Center", "Right" };
+	static const char* textAlignmentItems[] = { "Left", "Center", "Right" };
 	static ETextAlignment textAlignment;
 
 	ImGui::Text("Text Alignment:");
@@ -334,7 +334,7 @@ void HUDInfo::DisplayText(ZHUDManager* hudManager)
 	ImGui::PopItemWidth();
 	ImGui::Text("");
 
-	static __int16 textID = -1;
+	static short textID = -1;
 
 	if (ImGui::Button("Display Text"))
 	{
@@ -344,7 +344,7 @@ void HUDInfo::DisplayText(ZHUDManager* hudManager)
 
 		ImU32 color2 = ImGui::ColorConvertFloat4ToU32(color);
 
-		textID = hudManager->AddText(&text, offsetX, offsetY, screenAnchor, size, color2, textAlignment, 0, false);
+		textID = hudManager->AddText(text, offsetX, offsetY, screenAnchor, size, color2, textAlignment, 0, false);
 		textIDList.push_back(textID);
 	}
 
@@ -352,9 +352,9 @@ void HUDInfo::DisplayText(ZHUDManager* hudManager)
 	{
 		if (ImGui::Button("Remove Text"))
 		{
-			__int16 id = textIDList.back();
-			hudManager->RemoveText(id);
+			short id = textIDList.back();
 
+			hudManager->RemoveText(id);
 			textIDList.pop_back();
 		}
 	}
@@ -714,7 +714,7 @@ const char* HUDInfo::GetOperationMode(EOperationMode operationMode)
 	return type;
 }
 
-void HUDInfo::AddWeaponStatusInfo(SWeaponStatus* weaponStatus, int index)
+void HUDInfo::AddWeaponStatusInfo(ZHUDManager::SWeaponStatus* weaponStatus, int index)
 {
 	eItemType rightHandItemType = weaponStatus->eRightHandItemType;
 

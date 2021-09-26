@@ -1,19 +1,26 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "TEntityRef.h"
-#include "IHM5Outfit.h"
-#include "ZRuntimeResourceID.h"
-#include "SMatrix43.h"
-#include "ZHM5ClothBundleEntity.h"
+#include "ZEntityRef.h"
+#include "ZResourcePtr.h"
 
-class IHM5ClothBundlePool : public IComponentInterface
+class IHM5Outfit;
+class ZHM5ClothBundleEntity;
+class ZRuntimeResourceID;
+struct SMatrix43;
+template <class T> class TEntityRef;
+
+class __declspec(novtable) IHM5ClothBundlePool : public IComponentInterface
 {
 public:
-    virtual void PlaceClothBundle(const TEntityRef<IHM5Outfit>, const ZRuntimeResourceID*, const SMatrix43*, bool, TEntityRef<ZHM5ClothBundleEntity>);
-    virtual void RemoveBundle(const ZEntityRef*);
-    virtual bool GetClothBundle(const ZEntityRef*, ZRuntimeResourceID*);
-    virtual bool GetClothBundle(const ZEntityRef*, TEntityRef<IHM5Outfit>*, ZRuntimeResourceID*);
-    virtual ZResourcePtr* GetDisguiseMovie(ZResourcePtr* result, const ZEntityRef*);
-    virtual void ReleasePool();
+	~IHM5ClothBundlePool() override = default;
+	virtual void PlaceClothBundle(const TEntityRef<IHM5Outfit> entityRef, const ZRuntimeResourceID& runtimeResourceID, const SMatrix43& matrix43, bool param4, TEntityRef<ZHM5ClothBundleEntity> entityRef5) = 0;
+	virtual void RemoveBundle(const ZEntityRef& entityRef) = 0;
+	virtual bool GetClothBundle(const ZEntityRef& entityRef, ZRuntimeResourceID& runtimeResourceID) = 0;
+	virtual bool GetClothBundle(const ZEntityRef& entityRef, TEntityRef<IHM5Outfit>& entityRef2, ZRuntimeResourceID& runtimeResourceID) = 0;
+	virtual ZResourcePtr GetDisguiseMovie(const ZEntityRef& entityRef) = 0;
+	virtual void ReleasePool() = 0;
+
+	static void RegisterType();
+	IHM5ClothBundlePool() = default;
 };

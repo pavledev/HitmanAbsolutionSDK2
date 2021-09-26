@@ -1,12 +1,14 @@
 #pragma once
 
-class SActorCounts
+struct SActorCounts
 {
-public:
-    int nAlerted;
-    int nAlertedArmed;
-    int nEngaged;
-    int nInCombat;
-    int nAlertableActorOnScreen;
-    int nAlertableGuardOnScreen;
+	int nAlerted;
+	int nAlertedArmed;
+	int nEngaged;
+	int nInCombat;
+	int nAlertableActorOnScreen;
+	int nAlertableGuardOnScreen;
+
+	SActorCounts() = default;
+	~SActorCounts() = default;
 };

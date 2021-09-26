@@ -1,10 +1,10 @@
 #pragma once
 
-enum ESBWeaponType : __int32
+enum ESBWeaponType
 {
-    eSBWeaponType_DualHardBallers = 0x0,
-    eSBWeaponType_Rifle = 0x1,
-    eSBWeaponType_OneHandedPistol = 0x2,
-    eSBWeaponType_ShotGun = 0x3,
-    eSBWeaponType_Num = 0x4
+	eSBWeaponType_DualHardBallers = 0,
+	eSBWeaponType_Rifle = 1,
+	eSBWeaponType_OneHandedPistol = 2,
+	eSBWeaponType_ShotGun = 3,
+	eSBWeaponType_Num = 4
 };

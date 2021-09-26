@@ -3,8 +3,14 @@
 #include "TEntityRef.h"
 #include "ZSoundBlendItem.h"
 
-class SItemPair
+struct SItemPair
 {
-public:
-    TEntityRef<ZSoundBlendItem> m_Item[2];
+	TEntityRef<ZSoundBlendItem> m_Item[2];
+
+	SItemPair(const SItemPair& other);
+	SItemPair() = default;
+	bool Contains(TEntityRef<ZSoundBlendItem> item) const;
+	bool IsEmpty() const;
+	~SItemPair() = default;
+	SItemPair& operator=(const SItemPair& __that);
 };

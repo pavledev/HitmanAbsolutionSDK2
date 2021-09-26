@@ -1,8 +1,11 @@
 #pragma once
 
-class SHM5GameCamAngles
+struct SHM5GameCamAngles
 {
-public:
-    float m_fPitchAngle;
-    float m_fYawAngle;
+	float m_fPitchAngle;
+	float m_fYawAngle;
+
+	SHM5GameCamAngles() = default;
+	~SHM5GameCamAngles() = default;
+	SHM5GameCamAngles Blend(const SHM5GameCamAngles& sSource, float fFraction) const;
 };

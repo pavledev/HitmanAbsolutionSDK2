@@ -2,11 +2,16 @@
 
 #include "SQV.h"
 
-class alignas(16) SCamAlignData
+struct SCamAlignData
 {
-public:
-    SQV mObjectToWorld;
-    SQV mViewToWorld;
-    unsigned __int8 numBones;
-    unsigned __int8* pBonesStart;
+	SQV mObjectToWorld;
+	SQV mViewToWorld;
+	unsigned char numBones;
+	unsigned char* pBonesStart;
+
+	int GetSize() const;
+	static int GetSize(const int numBonesInput);
+	static int GetBonesOffset();
+	SCamAlignData() = default;
+	~SCamAlignData() = default;
 };

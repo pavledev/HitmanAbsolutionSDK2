@@ -2,5 +2,7 @@
 
 class ZRenderDebugRenderBuffer
 {
-
+public:
+	ZRenderDebugRenderBuffer() = default;
+	~ZRenderDebugRenderBuffer() = default;
 };

@@ -3,8 +3,11 @@
 #include "IRenderRefCount.h"
 #include "ERenderResourceType.h"
 
-class IRenderResource : public IRenderRefCount
+class __declspec(novtable) IRenderResource : public IRenderRefCount
 {
 public:
-    virtual ERenderResourceType GetResourceType();
+	~IRenderResource() override = default;
+	virtual ERenderResourceType GetResourceType() const = 0;
+
+	IRenderResource() = default;
 };

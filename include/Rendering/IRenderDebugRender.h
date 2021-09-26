@@ -1,49 +1,56 @@
 #pragma once
 
-#include "SDebugRenderViewport.h"
-#include "SMatrix43.h"
-#include "SMatrix.h"
-#include "SDebugVertex.h"
-#include "SMatrix44.h"
-#include "TResourcePtr.h"
-#include "IRenderTextureResource.h"
-#include "SDebugTextBox.h"
+class IRenderTextureResource;
+struct SDebugRenderViewport;
+struct SDebugTextBox;
+struct SDebugVertex;
+struct SMatrix43;
+struct SMatrix44;
+struct SMatrix;
+template <class T> class TResourcePtr;
 
-class IRenderDebugRender
+class __declspec(novtable) IRenderDebugRender
 {
 public:
-    enum UnkEnum : __int32
-    {
-        DEBUG_FONT_SIZE_X = 0x8,
-        DEBUG_FONT_SIZE_Y = 0x9
-    };
+	enum
+	{
+		DEBUG_FONT_SIZE_X = 8,
+		DEBUG_FONT_SIZE_Y = 9
+	};
 
-    enum TEXTURETYPE : unsigned __int32
-    {
-        TEXTURE_NONE = 0x0,
-        TEXTURE_FONT = 0x80000000,
-        TEXTURE_MOUSE = 0x80000001,
-        TEXTURE_YELLOWWARNING = 0x80000002,
-        TEXTURE_REDWARNING = 0x80000003,
-        TEXTURE_CRYING = 0x80000004
-    };
+	enum TEXTURETYPE
+	{
+		TEXTURE_NONE = 0,
+		TEXTURE_FONT = 2147483648,
+		TEXTURE_MOUSE = 2147483649,
+		TEXTURE_YELLOWWARNING = 2147483650,
+		TEXTURE_REDWARNING = 2147483651,
+		TEXTURE_CRYING = 2147483652
+	};
 
-    enum PRIMTYPE : __int32
-    {
-        PT_LINES = 0x0,
-        PT_TRIANGLES = 0x1,
-        MAX_NUM_PRIMTYPES = 0x2
-    };
+	enum PRIMTYPE
+	{
+		PT_LINES = 0,
+		PT_TRIANGLES = 1,
+		MAX_NUM_PRIMTYPES = 2
+	};
 
-    virtual ~IRenderDebugRender();
-    virtual void Begin(const SDebugRenderViewport*, const SMatrix43*, const SMatrix*);
-    virtual void End();
-    virtual void Flush(IRenderDebugRender*);
-    virtual void DrawLines(const SDebugVertex*, const SMatrix44*, unsigned int, unsigned int, bool);
-    virtual void DrawTriangles(const SDebugVertex*, const SMatrix44*, unsigned int, unsigned int, bool);
-    virtual void SetDrawMode(unsigned int);
-    virtual void SetTexture(unsigned int);
-    virtual void SetTexture(void*);
-    virtual void AddDebugImage(float, float, float, float, const TResourcePtr<IRenderTextureResource>*);
-    virtual void DrawTextBox(const SDebugTextBox*, const char*, unsigned int);
+	enum
+	{
+		MAX_NUM_VERTICES = 512
+	};
+
+	virtual ~IRenderDebugRender() = default;
+	virtual void Begin(const SDebugRenderViewport& debugRenderViewport, const SMatrix43& matrix43, const SMatrix& matrix) = 0;
+	virtual void End() = 0;
+	virtual void Flush(IRenderDebugRender* renderDebugRender) = 0;
+	virtual void DrawLines(const SDebugVertex* debugVertex, const SMatrix44* matrix44, unsigned int param3, unsigned int param4, bool param5) = 0;
+	virtual void DrawTriangles(const SDebugVertex* debugVertex, const SMatrix44* matrix44, unsigned int param3, unsigned int param4, bool param5) = 0;
+	virtual void SetDrawMode(unsigned int param1) = 0;
+	virtual void SetTexture(unsigned int param1) = 0;
+	virtual void SetTexture(void* param1) = 0;
+	virtual void AddDebugImage(float param1, float param2, float param3, float param4, const TResourcePtr<IRenderTextureResource>& resourcePtr) = 0;
+	virtual void DrawTextBox(const SDebugTextBox& debugTextBox, const char* param2, unsigned int param3) = 0;
+
+	IRenderDebugRender() = default;
 };

@@ -3,9 +3,13 @@
 #include "STokenID.h"
 #include "SOutfitKitState.h"
 
-class SOutfitKitSaveData
+struct SOutfitKitSaveData
 {
-public:
-    STokenID m_ID;
-    SOutfitKitState m_State;
+	STokenID m_ID;
+	SOutfitKitState m_State;
+
+	SOutfitKitSaveData(const SOutfitKitSaveData& __that);
+	SOutfitKitSaveData() = default;
+	~SOutfitKitSaveData() = default;
+	SOutfitKitSaveData& operator=(const SOutfitKitSaveData& __that);
 };

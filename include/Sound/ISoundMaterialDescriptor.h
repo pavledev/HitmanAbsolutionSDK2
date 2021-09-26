@@ -2,13 +2,17 @@
 
 #include "ZString.h"
 #include "TEntityRef.h"
-#include "ZSoundBlendContainerPhysics.h"
+#include "ESoundCollisionType.h"
 
-class ISoundMaterialDescriptor
+class ZSoundBlendContainerPhysics;
+
+class __declspec(novtable) ISoundMaterialDescriptor
 {
 public:
-    virtual ~ISoundMaterialDescriptor();
-    virtual int GetSoundMaterialType();
-    virtual ZString* GetSoundMaterialName(ZString* result);
-    virtual TEntityRef<ZSoundBlendContainerPhysics>* GetPhysicsBlendContainer(TEntityRef<ZSoundBlendContainerPhysics>* result, ESoundCollisionType);
+	virtual ~ISoundMaterialDescriptor() = default;
+	virtual int GetSoundMaterialType() const = 0;
+	virtual ZString GetSoundMaterialName() const = 0;
+	virtual TEntityRef<ZSoundBlendContainerPhysics> GetPhysicsBlendContainer(ESoundCollisionType soundCollisionType) const = 0;
+
+	ISoundMaterialDescriptor() = default;
 };

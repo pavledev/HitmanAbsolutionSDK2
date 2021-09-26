@@ -6,7 +6,12 @@
 #include "ZInventorySlot.h"
 #include "SNearEnemyCheckReq.h"
 #include "ZLevelManager.h"
-#include "Globals.h"
+#include "Singletons.h"
+#include "eWeaponType.h"
+#include "EWeaponAnimationCategory.h"
+#include "eItemSize.h"
+#include "eItemHands.h"
+#include "eItemType.h"
 
 using namespace std;
 
@@ -24,7 +29,7 @@ struct NearestActorsInfo
 	void AddNearestCrowdActorInfo(TEntityRef<ZCrowdActor>* entityRef, ImGuiInputTextFlags& flags, ImVec4& color, int crowdActorIndex);
 	void AddCrowdEntityInfo(ZCrowdEntity* crowdEntity, int crowdActorIndex);
 	void AddIHM5ItemInfo(IHM5Item* item);
-	void AddActorInvetoryInfo(TArray<TEntityRef<IHM5Item>> m_inventory);
+	void AddActorInvetoryInfo(TArray<TEntityRef<IHM5Item>> inventory);
 	void AddInvetorySlotInfo(ZInventorySlot* inventorySlot);
 	void AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, ImVec4& color, int actorIndex);
 
@@ -39,7 +44,7 @@ struct NearestActorsInfo
 	const char* GetItemHandsCoverAnimLayer(eItemHands itemHands);
 	const char* GetItemType(eItemType itemType);
 
-	const char* GetInventorySlotType(EInventorySlotType m_eSlotType);
+	const char* GetInventorySlotType(ZInventorySlot::EInventorySlotType m_eSlotType);
 
 	const char* GetWeaponType(eWeaponType weaponType);
 	const char* GetWeaponAnimationCategory(EWeaponAnimationCategory weaponAnimationCategory);

@@ -2,10 +2,14 @@
 
 class ZMorphemeNetworkInstance;
 
-class ZChildNetworkEntry
+struct ZChildNetworkEntry
 {
-public:
-    ZMorphemeNetworkInstance* m_pNetworkInstance;
-    unsigned int m_nNodeID;
-    int m_nNetworkId;
+	ZMorphemeNetworkInstance* m_pNetworkInstance;
+	unsigned int m_nNodeID;
+	int m_nNetworkId;
+
+	ZChildNetworkEntry(unsigned int nNodeID);
+	ZChildNetworkEntry() = default;
+	~ZChildNetworkEntry() = default;
+	bool IsOwner() const;
 };

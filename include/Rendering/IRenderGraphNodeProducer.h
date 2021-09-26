@@ -1,10 +1,15 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ZRenderGraphNode.h"
 
-class IRenderGraphNodeProducer : public IComponentInterface
+class ZRenderGraphNode;
+
+class __declspec(novtable) IRenderGraphNodeProducer : public IComponentInterface
 {
 public:
-    virtual ZRenderGraphNode* CreateRenderGraphNode();
+	~IRenderGraphNodeProducer() override = default;
+	virtual ZRenderGraphNode* CreateRenderGraphNode() = 0;
+
+	static void RegisterType();
+	IRenderGraphNodeProducer() = default;
 };

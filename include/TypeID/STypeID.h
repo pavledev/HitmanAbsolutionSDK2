@@ -1,11 +1,14 @@
 #pragma once
 
-#include "IType.h"
+class IType;
 
 struct STypeID
 {
-    unsigned __int16 flags;
-    unsigned __int16 typeNum;
-    IType* pTypeInfo;
-    STypeID* pSourceType;
+	unsigned short flags;
+	unsigned short typeNum;
+	const IType* pTypeInfo;
+	STypeID* pSourceType;
+
+	STypeID() = default;
+	~STypeID() = default;
 };

@@ -1,12 +1,18 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ISoundPlayerChannel.h"
-#include "ISoundPlayable.h"
+#include "TEntityRef.h"
 
-class ISoundDefinition : public IComponentInterface
+class ISoundPlayable;
+class ISoundPlayerChannel;
+
+class __declspec(novtable) ISoundDefinition : public IComponentInterface
 {
 public:
-    virtual ISoundPlayerChannel* PlayDefinition(int, void*);
-    virtual TEntityRef<ISoundPlayable>* GetEmitter(TEntityRef<ISoundPlayable>* result);
+	~ISoundDefinition() override = default;
+	virtual ISoundPlayerChannel* PlayDefinition(int param1, void* param2) = 0;
+	virtual TEntityRef<ISoundPlayable> GetEmitter() const = 0;
+
+	static void RegisterType();
+	ISoundDefinition() = default;
 };

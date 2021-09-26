@@ -1,8 +1,6 @@
 #pragma once
 
-#include "ZResourcePending.h"
-
-template<class T>
+template <class T>
 struct TBlockArrayInfo
 {
     unsigned int m_nOffset;
@@ -10,4 +8,7 @@ struct TBlockArrayInfo
     unsigned int m_nBlockCount;
     unsigned int m_nBlockSize;
     T** m_pBlockMap;
+
+    TBlockArrayInfo() = default;
+    ~TBlockArrayInfo() = default;
 };

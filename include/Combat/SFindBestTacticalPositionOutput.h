@@ -2,10 +2,14 @@
 
 #include "ZGridNodeRef.h"
 
-class alignas(4) SFindBestTacticalPositionOutput
+struct SFindBestTacticalPositionOutput
 {
-public:
-    ZGridNodeRef m_node;
-    float m_fRating;
-    bool m_bValid;
+	ZGridNodeRef m_node;
+	float m_fRating;
+	bool m_bValid;
+
+	SFindBestTacticalPositionOutput(const SFindBestTacticalPositionOutput& __that);
+	SFindBestTacticalPositionOutput() = default;
+	~SFindBestTacticalPositionOutput() = default;
+	SFindBestTacticalPositionOutput& operator=(const SFindBestTacticalPositionOutput& __that);
 };

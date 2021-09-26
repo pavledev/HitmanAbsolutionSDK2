@@ -1,17 +1,25 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "SCameraState.h"
+#include "SMatrix.h"
 
-class IFutureCameraState : public IComponentInterface
+class __declspec(novtable) IFutureCameraState : public IComponentInterface
 {
 public:
-    virtual SCameraState* GetFutureCameraState(SCameraState* result);
-    virtual SCameraState* GetCurrentCameraState(SCameraState* result);
-    virtual void DisableCameraControl();
-    virtual void EnableCameraControl();
+	struct SCameraState
+	{
+		SMatrix transform;
+		float fov;
 
-    IFutureCameraState();
-    IFutureCameraState(IFutureCameraState const&);
-    IFutureCameraState* operator=(IFutureCameraState const&);
+		SCameraState() = default;
+	};
+
+	~IFutureCameraState() override = default;
+	virtual SCameraState GetFutureCameraState() = 0;
+	virtual SCameraState GetCurrentCameraState() = 0;
+	virtual void DisableCameraControl() = 0;
+	virtual void EnableCameraControl() = 0;
+
+	static void RegisterType();
+	IFutureCameraState() = default;
 };

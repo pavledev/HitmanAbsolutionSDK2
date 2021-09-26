@@ -1,12 +1,18 @@
 #pragma once
 
-#include "ZHM5CoverPlane.h"
 #include "ZGameTime.h"
 
-class alignas(8) SCoverTimestamp
+class ZHM5CoverPlane;
+
+struct SCoverTimestamp
 {
-public:
-    ZHM5CoverPlane* pPlane;
-    ZGameTime tLastUpdate;
-    bool bHasLOF;
+	ZHM5CoverPlane* pPlane;
+	ZGameTime tLastUpdate;
+	bool bHasLOF;
+
+	bool operator<(const SCoverTimestamp& s0);
+	SCoverTimestamp(const SCoverTimestamp& __that);
+	SCoverTimestamp() = default;
+	~SCoverTimestamp() = default;
+	SCoverTimestamp& operator=(const SCoverTimestamp& __that);
 };

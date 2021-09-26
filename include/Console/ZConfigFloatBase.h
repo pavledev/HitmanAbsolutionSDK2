@@ -5,5 +5,9 @@
 class ZConfigFloatBase : public ZConfigCommand
 {
 public:
-    float m_Value;
+	float m_Value;
+
+	ZConfigFloatBase() = default;
+	~ZConfigFloatBase() = default;
+	ZConfigFloatBase(const char* pszName, float DefaultValue);
 };

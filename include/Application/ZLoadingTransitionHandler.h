@@ -2,23 +2,34 @@
 
 #include "SSceneInitParameters.h"
 #include "ZEvent.h"
-#include "ZEventNull.h"
 #include "ZThreadEvent.h"
 #include "ZThread.h"
 
-class ZLoadingTransitionHandler
+class ZEventNull;
+
+class __declspec(novtable) ZLoadingTransitionHandler
 {
 public:
-    alignas(8) SSceneInitParameters SceneInitParameters;
-    ZEvent<ZEventNull, ZEventNull, ZEventNull, ZEventNull, ZEventNull> TransitionUpdateEvent;
-    ZThreadEvent m_sceneBeingDestroyedEvent;
-    alignas(8) ZThread m_transitionThread;
-    bool m_bHasStarted;
-    bool m_bInterrupted;
+	SSceneInitParameters SceneInitParameters;
+	ZEvent<ZEventNull, ZEventNull, ZEventNull, ZEventNull, ZEventNull> TransitionUpdateEvent;
+	ZThreadEvent m_sceneBeingDestroyedEvent;
+	ZThread m_transitionThread;
+	bool m_bHasStarted;
+	bool m_bInterrupted;
 
-    virtual ~ZLoadingTransitionHandler();
-    virtual void TransitionStart();
-    virtual bool TransitionUpdate();
-    virtual void TransitionFinish();
-    virtual void OnSceneLoaded();
+	virtual ~ZLoadingTransitionHandler() = default;
+	virtual void TransitionStart() = 0;
+	virtual bool TransitionUpdate() = 0;
+	virtual void TransitionFinish() = 0;
+	virtual void OnSceneLoaded() = 0;
+
+	ZLoadingTransitionHandler() = default;
+	ZLoadingTransitionHandler(SSceneInitParameters* pSceneParam);
+	void StartThread();
+	bool HasStarted();
+	void Interrupt();
+	void NotifySceneDestroyed();
+	void NotifySceneLoaded();
+	void WaitForCompletion();
+	unsigned int TransitionThread(void* transition);
 };

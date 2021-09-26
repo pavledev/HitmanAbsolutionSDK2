@@ -1,7 +1,9 @@
 #pragma once
 
-class SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersBase
 {
-public:
-    bool m_bEnabled;
+	bool m_bEnabled;
+
+	SRenderPostfilterParametersBase() = default;
+	~SRenderPostfilterParametersBase() = default;
 };

@@ -3,24 +3,27 @@
 class GFxFileConstants
 {
 public:
-    enum FileFormatType : __int32
-    {
-        File_Unopened = 0x0,
-        File_Unknown = 0x1,
-        File_SWF = 0x2,
-        File_GFX = 0x3,
-        File_JPEG = 0xA,
-        File_PNG = 0xB,
-        File_GIF = 0xC,
-        File_TGA = 0xD,
-        File_DDS = 0xE,
-        File_HDR = 0xF,
-        File_BMP = 0x10,
-        File_DIB = 0x11,
-        File_PFM = 0x12,
-        File_TIFF = 0x13,
-        File_WAVE = 0x14,
-        File_NextAvail = 0x15,
-        File_Original = 0xFFFF
-    };
+	enum FileFormatType
+	{
+		File_Unopened = 0,
+		File_Unknown = 1,
+		File_SWF = 2,
+		File_GFX = 3,
+		File_JPEG = 10,
+		File_PNG = 11,
+		File_GIF = 12,
+		File_TGA = 13,
+		File_DDS = 14,
+		File_HDR = 15,
+		File_BMP = 16,
+		File_DIB = 17,
+		File_PFM = 18,
+		File_TIFF = 19,
+		File_WAVE = 20,
+		File_NextAvail = 21,
+		File_Original = 65535
+	};
+
+	GFxFileConstants() = default;
+	~GFxFileConstants() = default;
 };

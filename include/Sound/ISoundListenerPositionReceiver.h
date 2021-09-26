@@ -2,9 +2,12 @@
 
 #include "SMatrix.h"
 
-class ISoundListenerPositionReceiver
+class __declspec(novtable) ISoundListenerPositionReceiver
 {
 public:
-	virtual void OnListenerPositionUpdated(SMatrix*);
-	virtual ~ISoundListenerPositionReceiver();
+	virtual void OnListenerPositionUpdated(const SMatrix& matrix) = 0;
+	virtual ~ISoundListenerPositionReceiver() = default;
+
+	static void RegisterType();
+	ISoundListenerPositionReceiver() = default;
 };

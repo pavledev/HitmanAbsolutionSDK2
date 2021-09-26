@@ -4,5 +4,6 @@
 
 struct SVertexShaderOverrideBlock
 {
-    ZRenderShader* m_VS[3];
+	SVertexShaderOverrideBlock() = default;
+	~SVertexShaderOverrideBlock() = default;
 };

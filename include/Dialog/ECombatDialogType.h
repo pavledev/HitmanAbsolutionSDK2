@@ -1,9 +1,9 @@
 #pragma once
 
-enum ECombatDialogType : __int32
+enum ECombatDialogType
 {
-    ECDT_Banter = 0x0,
-    ECDT_Reaction = 0x1,
-    ECDT_Directed = 0x2,
-    ECDT_Max = 0x3
+	ECDT_Banter = 0,
+	ECDT_Reaction = 1,
+	ECDT_Directed = 2,
+	ECDT_Max = 3
 };

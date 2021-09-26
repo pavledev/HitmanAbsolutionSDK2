@@ -1,10 +1,10 @@
 #pragma once
 
-enum EAttachLocation : __int32
+enum EAttachLocation
 {
-    eALRightHand = 0x0,
-    eALLeftHand = 0x1,
-    eALFreeBone = 0x2,
-    eALAttachCount = 0x3,
-    eALUndefined = 0x4
+	eALRightHand = 0,
+	eALLeftHand = 1,
+	eALFreeBone = 2,
+	eALAttachCount = 3,
+	eALUndefined = 4
 };

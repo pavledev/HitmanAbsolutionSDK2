@@ -2,7 +2,8 @@
 
 #include "SVertexGenericBase.h"
 
-class SVertexGeneric : public SVertexGenericBase
+struct SVertexGeneric : SVertexGenericBase
 {
-
+	SVertexGeneric() = default;
+	~SVertexGeneric() = default;
 };

@@ -1,8 +1,12 @@
 #pragma once
 
-class alignas(2) ZCrowdGridPoint
+class ZCrowdGridPoint
 {
 public:
-    __int16 m_nHeightOffset;
-    unsigned __int8 m_nOnNavGrid;
+	short m_nHeightOffset;
+	unsigned char m_nOnNavGrid;
+
+	static void RegisterType();
+	ZCrowdGridPoint() = default;
+	~ZCrowdGridPoint() = default;
 };

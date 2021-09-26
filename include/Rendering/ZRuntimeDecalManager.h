@@ -1,45 +1,82 @@
 #pragma once
 
-#include "SDecalInfo.h"
 #include "ZBitAlloc.h"
+
+class IRenderPrimitiveMesh;
+class ZDecalControllerEntity;
+class ZRenderGraphNodePrimitiveContainer;
+class ZRenderIndexBuffer;
+class ZRenderPrimitiveInstance;
+class ZRenderVertexBuffer;
+struct SDecalInfo;
+struct SRenderPrimitiveMeshDesc;
+struct SRenderPrimitiveMeshInit;
+struct float4;
 
 class ZRuntimeDecalManager
 {
-    unsigned __int16 m_nDecalFree;
-    unsigned __int16 m_nKillListHead;
-    SDecalInfo* m_aObjects;
+public:
+	struct SDecalList
+	{
+		unsigned short nHead;
+		unsigned short nNumDecals;
+		unsigned int nNumTriangles;
+		unsigned int nBytesUsed;
 
-    class SDecalList
-    {
-    public:
-        unsigned __int16 nHead;
-        unsigned __int16 nNumDecals;
-        unsigned int nNumTriangles;
-        unsigned int nBytesUsed;
-    } m_aList[2];
+		SDecalList() = default;
+	};
 
-    class SDecalListGeomBuffer
-    {
-    public:
-        ZRenderIndexBuffer* m_pIdxBuffer;
-        ZRenderVertexBuffer* m_pVtxBuffer;
-        ZBitAlloc m_IdxBufferAlloc;
-        ZBitAlloc m_VtxBufferAlloc;
-    } m_GeomBuffer;
+	struct SDecalListGeomBuffer
+	{
+		ZRenderIndexBuffer* m_pIdxBuffer;
+		ZRenderVertexBuffer* m_pVtxBuffer;
+		ZBitAlloc m_IdxBufferAlloc;
+		ZBitAlloc m_VtxBufferAlloc;
 
-    unsigned __int16 m_nNumNewDecals;
+		SDecalListGeomBuffer() = default;
+		~SDecalListGeomBuffer() = default;
+	};
 
-    struct SDecalConstruction
-    {
-        unsigned __int16 nSlot;
-        unsigned __int16 nList;
-        unsigned int nConsOffsIdx;
-        unsigned int nConsOffsVtx;
-        unsigned int nVtxInstallOffset;
-        unsigned int nVtxSize;
-    } m_aDecalCons[64];
+	struct SDecalConstruction
+	{
+		unsigned short nSlot;
+		unsigned short nList;
+		unsigned int nConsOffsIdx;
+		unsigned int nConsOffsVtx;
+		unsigned int nVtxInstallOffset;
+		unsigned int nVtxSize;
+	};
 
-    char* m_pDecalConstruction;
-    unsigned int m_nConstructionOffs;
-    unsigned __int64 m_aActiveTexScaling[2];
+	unsigned short m_nDecalFree;
+	unsigned short m_nKillListHead;
+	SDecalInfo* m_aObjects;
+	SDecalList m_aList[2];
+	SDecalListGeomBuffer m_GeomBuffer;
+	unsigned short m_nNumNewDecals;
+	SDecalConstruction m_aDecalCons[64];
+	unsigned char* m_pDecalConstruction;
+	unsigned int m_nConstructionOffs;
+	unsigned long long m_aActiveTexScaling[2];
+
+	ZRuntimeDecalManager() = default;
+	~ZRuntimeDecalManager() = default;
+	void AllocateBuffers();
+	unsigned short AllocateSlot(ZDecalControllerEntity* pDecalController, IRenderPrimitiveMesh* pRenderPrimitiveAttachTo, const float4& vBaseColor, unsigned short nSlot, unsigned short* pnNewHandle);
+	unsigned short GetPrimInstance(unsigned short nSlot, ZRenderPrimitiveInstance** ppDecalPrimInstance);
+	void GetDrawData(unsigned short nSlot, ZRenderIndexBuffer** ppIdxBuffer, ZRenderVertexBuffer** ppVtxBuffer, unsigned int* pnIdxOffset, unsigned int* pnVtxOffset, unsigned int* pnNumIndices);
+	void RemoveDecalsFromController(ZDecalControllerEntity* pDecalController);
+	void RemoveDecalsFromContainer(unsigned short nSlot);
+	void RemoveDecalsFromRGN(unsigned short nSlot);
+	unsigned short OnReflect(ZRenderGraphNodePrimitiveContainer* pRGN, unsigned short nCurrentDecals, unsigned short nNewDecals);
+	void Update();
+	bool AllocateGeometryForDecal(unsigned short nSlot, unsigned short** pDecalIndices, unsigned char** pDecalVertices, unsigned int nNumDecalIndices, unsigned int nVtxSize, unsigned int nStride);
+	void InitDecal(SRenderPrimitiveMeshDesc* pMeshDesc, SRenderPrimitiveMeshInit* pMeshInit, unsigned short nSlot);
+	void UpdateDecalBuffers();
+	void FreeGeometryForSlot(unsigned short nSlot);
+	void SatisfyConstraints(unsigned int nList);
+	void HandleFading(unsigned int nList);
+	void HandleTexScale();
+	unsigned short Free(unsigned short nSlot);
+	void SetTexScale(unsigned short nSlot);
+	void ClearTexScale(unsigned short nSlot);
 };

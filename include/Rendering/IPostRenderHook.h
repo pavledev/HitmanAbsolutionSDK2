@@ -1,10 +1,12 @@
 #pragma once
 
-#include "ZRenderDevice.h"
+class ZRenderDevice;
 
-class IPostRenderHook
+class __declspec(novtable) IPostRenderHook
 {
 public:
-	virtual void OnPostRender(ZRenderDevice*);
-	virtual ~IPostRenderHook();
+	virtual void OnPostRender(ZRenderDevice* renderDevice) = 0;
+	virtual ~IPostRenderHook() = default;
+
+	IPostRenderHook() = default;
 };

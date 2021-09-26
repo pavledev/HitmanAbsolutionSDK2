@@ -3,8 +3,13 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector2.h"
 
-class SRenderPostfilterParametersDistortionBarrel : public SRenderPostfilterParametersBase
+struct float4;
+
+struct SRenderPostfilterParametersDistortionBarrel : SRenderPostfilterParametersBase
 {
-public:
-    SVector2 m_vBarrel;
+	SVector2 m_vBarrel;
+
+	SRenderPostfilterParametersDistortionBarrel() = default;
+	~SRenderPostfilterParametersDistortionBarrel() = default;
+	void Lerp(const SRenderPostfilterParametersDistortionBarrel& source, const SRenderPostfilterParametersDistortionBarrel& target, const float4& vLerp, unsigned int nLerpState);
 };

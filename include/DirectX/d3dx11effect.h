@@ -10,8 +10,8 @@
 #ifndef __D3DX11EFFECT_H__
 #define __D3DX11EFFECT_H__
 
-#include "d3d11.h" 
-#include "d3d11shader.h"
+#include <d3d11.h> 
+#include <d3d11shader.h>
 
 //////////////////////////////////////////////////////////////////////////////
 // File contents:

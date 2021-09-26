@@ -1,8 +1,10 @@
 #pragma once
 
-class SSBCamTargetProfile
+struct SSBCamTargetProfile
 {
-public:
-    float m_fStickLength;
-    float m_fRoll;
+	float m_fStickLength;
+	float m_fRoll;
+
+	SSBCamTargetProfile() = default;
+	~SSBCamTargetProfile() = default;
 };

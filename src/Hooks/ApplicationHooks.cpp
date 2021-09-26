@@ -1,5 +1,6 @@
 #include "ApplicationHooks.h"
 #include "HM5DebugConsole.h"
+#include "MinHookMessage.h"
 
 namespace ApplicationHooks
 {
@@ -17,15 +18,19 @@ namespace ApplicationHooks
     {
         CreateMainWindow pCreateMainWindow = reinterpret_cast<CreateMainWindow>(BaseAddresses::engine + 0x3CB0);
 
-        if (MH_CreateHook(reinterpret_cast<LPVOID>(pCreateMainWindow), reinterpret_cast<LPVOID>(CreateMainWindowHook), 
-            reinterpret_cast<LPVOID*>(&pOriginalCreateMainWindow)) != MH_OK)
+        MH_STATUS createStatus = MH_CreateHook(reinterpret_cast<LPVOID>(pCreateMainWindow), reinterpret_cast<LPVOID>(CreateMainWindowHook),
+            reinterpret_cast<LPVOID*>(&pOriginalCreateMainWindow));
+
+        if (createStatus != MH_OK)
         {
-            HM5_LOG("Failed to create CreateMainWindow hook.\n");
+            HM5_LOG("Failed to create CreateMainWindow hook. %s\n", MinHookMessage::GetMessageFromStatus(createStatus).c_str());
         }
 
-        if (MH_EnableHook(reinterpret_cast<LPVOID>(pCreateMainWindow)) != MH_OK)
+        MH_STATUS enableStatus = MH_EnableHook(reinterpret_cast<LPVOID>(pCreateMainWindow));
+
+        if (enableStatus != MH_OK)
         {
-            HM5_LOG("Failed to enable CreateMainWindow hook.\n");
+            HM5_LOG("Failed to enable CreateMainWindow hook. %s\n", MinHookMessage::GetMessageFromStatus(enableStatus).c_str());
         }
     }
 }

@@ -4,6 +4,9 @@
 
 struct STypeIDData
 {
-    STypeID id;
-    const char* (__cdecl* pFunc)(STypeID*);
+	STypeID id;
+	const char* (*pFunc)(STypeID* typeID);
+
+	STypeIDData() = default;
+	~STypeIDData() = default;
 };

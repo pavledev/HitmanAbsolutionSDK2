@@ -2,11 +2,14 @@
 
 struct SRenderPostfilterGlareDefinition
 {
-    float fGlareLuminance;
-    float fBloomLuminance;
-    float fGhostLuminance;
-    float fGhostDistortion;
-    float fStarLuminance;
-    float fStarInclination;
-    float fChromaticAberration;
+	float fGlareLuminance;
+	float fBloomLuminance;
+	float fGhostLuminance;
+	float fGhostDistortion;
+	float fStarLuminance;
+	float fStarInclination;
+	float fChromaticAberration;
+
+	SRenderPostfilterGlareDefinition() = default;
+	~SRenderPostfilterGlareDefinition() = default;
 };

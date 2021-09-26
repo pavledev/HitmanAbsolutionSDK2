@@ -6,14 +6,23 @@
 #include "ZActor.h"
 #include "ZCrowdActor.h"
 
-class alignas(16) SNearEnemyCheckReq
+struct SNearEnemyCheckReq
 {
-public:
-    ZRayQueryInput m_NECInputs[3];
-    ZRayQueryOutput m_NECOutputs[3];
-    IAsyncRayHandle* m_pHandles[3];
-    TEntityRef<ZActor> m_pActor;
-    TEntityRef<ZCrowdActor> m_pCrowdActor;
-    unsigned __int8 m_nNumCasts;
-    unsigned __int8 m_nIsReadyBits;
+	ZRayQueryInput m_NECInputs[3];
+	ZRayQueryOutput m_NECOutputs[3];
+	IAsyncRayHandle* m_pHandles[3];
+	TEntityRef<ZActor> m_pActor;
+	TEntityRef<ZCrowdActor> m_pCrowdActor;
+	unsigned char m_nNumCasts;
+	unsigned char m_nIsReadyBits;
+
+	SNearEnemyCheckReq(const SNearEnemyCheckReq& __that);
+	SNearEnemyCheckReq() = default;
+	void ReleaseRaycastHandles();
+	void ColiFetchedForRequest();
+	bool AreAllReady() const;
+	bool HasHit(unsigned int iIndex) const;
+	void SetReady(unsigned int iIndex);
+	void ResetReady(unsigned int iIndex);
+	~SNearEnemyCheckReq() = default;
 };

@@ -1,15 +1,24 @@
 #pragma once
 
-#include "ZRenderVertexBuffer.h"
+class ZRenderVertexBuffer;
 
 class ZRenderResourceAsyncUpdateVertexBuffer
 {
 public:
-    alignas(8) ZRenderVertexBuffer* m_pVertexBuffer;
-    unsigned __int64 m_nBookmark;
-    unsigned int m_nOffset;
-    unsigned int m_nSize;
-    char* m_pData;
+	ZRenderVertexBuffer* m_pVertexBuffer;
+	unsigned long long m_nBookmark;
+	unsigned int m_nOffset;
+	unsigned int m_nSize;
+	char* m_pData;
 
-    virtual ~ZRenderResourceAsyncUpdateVertexBuffer();
+	virtual ~ZRenderResourceAsyncUpdateVertexBuffer() = default;
+
+	ZRenderResourceAsyncUpdateVertexBuffer() = default;
+	ZRenderResourceAsyncUpdateVertexBuffer(ZRenderVertexBuffer* pVertexBuffer);
+	void Apply();
+	void Map(unsigned int nOffset, unsigned int nSize, void** ppData);
+	void Unmap(unsigned long long bookmark);
+	unsigned int GetOffset() const;
+	unsigned int GetSize() const;
+	const char* GetData() const;
 };

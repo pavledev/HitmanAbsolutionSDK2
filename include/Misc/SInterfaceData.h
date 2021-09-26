@@ -1,10 +1,12 @@
 #pragma once
 
-#include "STypeID.h"
+struct STypeID;
 
 struct SInterfaceData
 {
-public:
-    STypeID* m_Type;
-    int m_nInterfaceOffset;
+	STypeID* m_Type;
+	int m_nInterfaceOffset;
+
+	SInterfaceData() = default;
+	~SInterfaceData() = default;
 };

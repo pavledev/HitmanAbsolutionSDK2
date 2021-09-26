@@ -6,5 +6,7 @@
 template <class A, int B>
 class TMaxArray : public TMaxArrayBase<A, ZMaxArrayData<A, B>>
 {
-
+public:
+	TMaxArray() = default;
+	~TMaxArray() = default;
 };

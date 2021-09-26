@@ -1,11 +1,15 @@
 #pragma once
 
-#include <fmod.hpp>
+namespace FMOD {
+class DSP;
+}  // namespace FMOD
 
-class ISoundEffectAttachable
+class __declspec(novtable) ISoundEffectAttachable
 {
 public:
-    virtual ~ISoundEffectAttachable();
-    virtual void AttachEffectInstance(FMOD::DSP*, void*);
-    virtual bool IsSilent();
+	virtual ~ISoundEffectAttachable() = default;
+	virtual void AttachEffectInstance(FMOD::DSP* dsp, void* param2) = 0;
+	virtual bool IsSilent() const = 0;
+
+	ISoundEffectAttachable() = default;
 };

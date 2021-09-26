@@ -1,7 +1,15 @@
 #pragma once
 
-template<class T>
+template <class T>
 class TSharedPointer
 {
-    T* m_pObject;
+public:
+	struct ZNull
+	{
+	};
+
+	T* m_pObject;
+
+	TSharedPointer() = default;
+	~TSharedPointer() = default;
 };

@@ -2,8 +2,11 @@
 
 #include "SRenderPostfilterParametersBase.h"
 
-class SRenderPostfilterParametersMisc : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersMisc : SRenderPostfilterParametersBase
 {
-public:
-    float m_fSaturation;
+	float m_fSaturation;
+
+	SRenderPostfilterParametersMisc() = default;
+	~SRenderPostfilterParametersMisc() = default;
+	void Lerp(const SRenderPostfilterParametersMisc& src, const SRenderPostfilterParametersMisc& dst, float fLerp, unsigned int nLerpState);
 };

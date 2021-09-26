@@ -3,11 +3,14 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector2.h"
 
-class SRenderPostfilterParametersRadialBlur : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersRadialBlur : SRenderPostfilterParametersBase
 {
-public:
-    float m_fBlurriness;
-    SVector2 m_vRadialCenter;
-    float m_fRadialBlurStart;
-    float m_fRadialBlurFadeFactor;
+	float m_fBlurriness;
+	SVector2 m_vRadialCenter;
+	float m_fRadialBlurStart;
+	float m_fRadialBlurFadeFactor;
+
+	SRenderPostfilterParametersRadialBlur() = default;
+	~SRenderPostfilterParametersRadialBlur() = default;
+	void Lerp(const SRenderPostfilterParametersRadialBlur& source, const SRenderPostfilterParametersRadialBlur& target, float fLerp, unsigned int nLerpState);
 };

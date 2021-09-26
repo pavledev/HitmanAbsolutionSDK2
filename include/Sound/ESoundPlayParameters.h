@@ -1,8 +1,8 @@
 #pragma once
 
-enum ESoundPlayParameters : __int32
+enum ESoundPlayParameters
 {
-    SOUND_PLAY_SINGLE = 0x0,
-    SOUND_PLAY_RANDOM = 0x1,
-    SOUND_PLAY_SHUFFLE = 0x2
+	SOUND_PLAY_SINGLE = 0,
+	SOUND_PLAY_RANDOM = 1,
+	SOUND_PLAY_SHUFFLE = 2
 };

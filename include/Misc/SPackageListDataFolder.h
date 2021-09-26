@@ -2,11 +2,14 @@
 
 #include "ZString.h"
 #include "TArray.h"
-#include "SPackageListDataSection.h"
 
-class SPackageListDataFolder
+struct SPackageListDataSection;
+
+struct SPackageListDataFolder
 {
-public:
-    ZString name;
-    TArray<SPackageListDataSection> sections;
+	ZString name;
+	TArray<SPackageListDataSection> sections;
+
+	SPackageListDataFolder() = default;
+	~SPackageListDataFolder() = default;
 };

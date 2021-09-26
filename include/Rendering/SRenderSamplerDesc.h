@@ -2,10 +2,13 @@
 #pragma warning(disable : 4005)
 
 #include "SRenderConstDesc.h"
-#include <D3D11.h>
+#include "d3d11.h"
 
-class SRenderSamplerDesc: SRenderConstDesc
+struct SRenderSamplerDesc : SRenderConstDesc
 {
-public:
-    ID3D11SamplerState* pSamplerState;
+	ID3D11SamplerState* pSamplerState;
+
+	SRenderSamplerDesc(const SRenderSamplerDesc& __that);
+	SRenderSamplerDesc() = default;
+	~SRenderSamplerDesc() = default;
 };

@@ -3,9 +3,13 @@
 #include "SMatrix.h"
 #include "float4.h"
 
-class SBox
+struct SBox
 {
-public:
-    SMatrix m_mvCenterMatPos;
-    float4 m_vHalfSize;
+	SMatrix m_mvCenterMatPos;
+	float4 m_vHalfSize;
+
+	SBox(const SMatrix& mvCenterMatPos, const float4& vHalfSize);
+	SBox() = default;
+	~SBox() = default;
+	void SetOBB(const SMatrix& mvCenterMatPos, const float4& vHalfSize);
 };

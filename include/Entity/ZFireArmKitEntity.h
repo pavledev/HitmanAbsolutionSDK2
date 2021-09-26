@@ -1,16 +1,42 @@
 #pragma once
 
 #include "ZContentKitEntity.h"
-#include "ZHM5WeaponBasicConfigEntity.h"
+#include "SComponentMapEntry.h"
+#include "TEntityRef.h"
+#include "ZRuntimeResourceID.h"
+#include "ZVariantRef.h"
 
-class alignas(4) ZFireArmKitEntity : public ZContentKitEntity
+class ZComponentCreateInfo;
+class ZHM5WeaponBasicConfigEntity;
+struct STypeID;
+
+class ZFireArmKitEntity : public ZContentKitEntity
 {
 public:
-    TEntityRef<ZHM5WeaponBasicConfigEntity> m_BasicConfig;
-    ZRuntimeResourceID m_sHiResNotebookImage;
-    bool m_bIsNewPickup;
+	enum
+	{
+		COPYABLE = 0,
+		ASSIGNABLE = 0
+	};
 
-    virtual bool PickedUp(int, int);
-    virtual bool WasPickedUp(int, int);
-    virtual bool IsNewPickUp(int, int);
+	TEntityRef<ZHM5WeaponBasicConfigEntity> m_BasicConfig;
+	ZRuntimeResourceID m_sHiResNotebookImage;
+	bool m_bIsNewPickup;
+
+	static SComponentMapEntry s_componentMap[0];
+
+	~ZFireArmKitEntity() override = default;
+	ZVariantRef GetVariantRef() const override;
+	int AddRef() override;
+	int Release() override;
+	void* QueryInterface(STypeID* iid) override;
+	bool PickedUp(int lvl, int cp) override;
+	bool WasPickedUp(int lvl, int cp) override;
+	bool IsNewPickUp(int lvl, int cp) override;
+
+	ZFireArmKitEntity() = default;
+	static void RegisterType();
+	ZFireArmKitEntity(ZComponentCreateInfo& Info);
+	const TEntityRef<ZHM5WeaponBasicConfigEntity>& GetBasicConfigEntity() const;
+	ZRuntimeResourceID GetLargeIconRID() const;
 };

@@ -2,8 +2,11 @@
 
 #include "IRenderRefCount.h"
 
-class IRenderResourceAsyncUpdate : public IRenderRefCount
+class __declspec(novtable) IRenderResourceAsyncUpdate : public IRenderRefCount
 {
 public:
-    virtual void Apply();
+	~IRenderResourceAsyncUpdate() override = default;
+	virtual void Apply() = 0;
+
+	IRenderResourceAsyncUpdate() = default;
 };

@@ -1,15 +1,28 @@
 #pragma once
 
-class SRenderPrimitiveMeshDesc
+#include "ERenderPrimitiveType.h"
+#include "ERenderPrimitiveTopology.h"
+
+struct SRenderPrimitiveMeshDesc
 {
-public:
-    unsigned int nNumVertices;
-    unsigned int nNumIndices;
-    unsigned __int16 nColorDataSize;
-    __int32 ePrimitiveType : 8;
-    __int32 eRenderPrimitiveTopology : 8;
-    unsigned __int8 nFlags;
-    unsigned __int8 nColorOffset;
-    unsigned __int8 nNumStreams;
-    unsigned __int8 anStreamStride[3];
+	enum EDescMeshFlags
+	{
+		DESC_MESH_UNCOMPRESSED = 1,
+		DESC_MESH_PS3EDGE = 2,
+		DESC_MESH_COL1 = 4,
+		DESC_MESH_ISNOPHYSICSPROP = 8
+	};
+
+	unsigned int nNumVertices;
+	unsigned int nNumIndices;
+	unsigned short nColorDataSize;
+	ERenderPrimitiveType ePrimitiveType : 8;
+	ERenderPrimitiveTopology eRenderPrimitiveTopology : 8;
+	unsigned char nFlags;
+	unsigned char nColorOffset;
+	unsigned char nNumStreams;
+	unsigned char anStreamStride[3];
+
+	SRenderPrimitiveMeshDesc() = default;
+	~SRenderPrimitiveMeshDesc() = default;
 };

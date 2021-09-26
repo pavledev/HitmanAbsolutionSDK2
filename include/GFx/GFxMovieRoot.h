@@ -2,5 +2,7 @@
 
 class GFxMovieRoot
 {
-
+public:
+	GFxMovieRoot() = default;
+	~GFxMovieRoot() = default;
 };

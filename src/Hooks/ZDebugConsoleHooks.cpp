@@ -8,9 +8,9 @@ namespace ZDebugConsoleHooks
     void __cdecl AddLineHook(void* pThis, const char* Format, ...)
     {
         va_list args;
-        va_start(args, Format);
-
         char Message[256];
+
+        va_start(args, Format);
         vsprintf_s(Message, Format, args);
 
         Menu::console.AddLog(Message);

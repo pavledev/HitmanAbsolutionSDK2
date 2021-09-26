@@ -4,9 +4,12 @@
 
 struct SRenderBufferDescription
 {
-    unsigned int nSize;
-    unsigned int nBindingFlags;
-    ERenderResourceUsage eUsage;
-    unsigned int nCPUAccessFlags;
-    unsigned int nStride;
+	unsigned int nSize;
+	unsigned int nBindingFlags;
+	ERenderResourceUsage eUsage;
+	unsigned int nCPUAccessFlags;
+	unsigned int nStride;
+
+	SRenderBufferDescription() = default;
+	~SRenderBufferDescription() = default;
 };

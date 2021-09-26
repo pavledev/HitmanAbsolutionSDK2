@@ -1,8 +1,8 @@
 #pragma once
 
-enum eCornerSide : __int32
+enum eCornerSide
 {
-    NO_COVER_CORNER = 0x0,
-    RIGHT_COVER_CORNER = 0x1,
-    LEFT_COVER_CORNER = 0x2
+	NO_COVER_CORNER = 0,
+	RIGHT_COVER_CORNER = 1,
+	LEFT_COVER_CORNER = 2
 };

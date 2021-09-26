@@ -1,12 +1,13 @@
 #pragma once
 
-struct HandReTargetMode
+class HandReTargetMode
 {
-    enum eHandReTargetMode : __int32
-    {
-        eRetargetNone = 0x0,
-        eRetargetBoth = 0x1,
-        eRetargetLeftOnly = 0x2,
-        eRetargetRigthOnly = 0x3
-    };
+public:
+	enum eHandReTargetMode
+	{
+		eRetargetNone = 0,
+		eRetargetBoth = 1,
+		eRetargetLeftOnly = 2,
+		eRetargetRigthOnly = 3
+	};
 };

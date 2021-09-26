@@ -2,10 +2,13 @@
 
 struct GameOverlayActivated_t
 {
-    unsigned __int8 m_bActive;
+	enum
+	{
+		k_iCallback = 331
+	};
 
-    enum UnkEnum : __int32
-    {
-        k_iCallback = 0x14B
-    };
+	unsigned char m_bActive;
+
+	GameOverlayActivated_t() = default;
+	~GameOverlayActivated_t() = default;
 };

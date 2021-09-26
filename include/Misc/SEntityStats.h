@@ -1,10 +1,13 @@
 #pragma once
 
 #include "TMap.h"
-#include "STypeID.h"
 
-class SEntityStats
+struct STypeID;
+
+struct SEntityStats
 {
-public:
-    TMap<STypeID*, int> leafTypeMap;
+	TMap<STypeID*, int> leafTypeMap;
+
+	SEntityStats() = default;
+	~SEntityStats() = default;
 };

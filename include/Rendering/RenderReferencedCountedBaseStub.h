@@ -3,5 +3,7 @@
 class RenderReferencedCountedBaseStub
 {
 public:
-	virtual ~RenderReferencedCountedBaseStub();
+	virtual ~RenderReferencedCountedBaseStub() = default;
+
+	RenderReferencedCountedBaseStub() = default;
 };

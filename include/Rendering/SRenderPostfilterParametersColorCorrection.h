@@ -2,13 +2,20 @@
 
 #include "SRenderPostfilterParametersBase.h"
 
-class alignas(4) SRenderPostfilterParametersColorCorrection : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersColorCorrection : SRenderPostfilterParametersBase
 {
-public:
-    unsigned int m_Palette[7][256];
-    float m_fNearRange;
-    float m_fFarRange;
-    unsigned int m_nVersion;
-    bool m_bDepthRemapEnabled;
-    bool m_bColorCorrectFar;
+	unsigned int m_Palette[7][256];
+	float m_fNearRange;
+	float m_fFarRange;
+	unsigned int m_nVersion;
+	bool m_bDepthRemapEnabled;
+	bool m_bColorCorrectFar;
+
+	static unsigned int s_nGlobalColorCorrectionVersion;
+
+	SRenderPostfilterParametersColorCorrection() = default;
+	~SRenderPostfilterParametersColorCorrection() = default;
+	void Reset();
+	void UpdateVersion();
+	void Lerp(const SRenderPostfilterParametersColorCorrection& source, const SRenderPostfilterParametersColorCorrection& target, float fLerp, unsigned int nLerpState);
 };

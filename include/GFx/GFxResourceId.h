@@ -3,26 +3,33 @@
 class GFxResourceId
 {
 public:
-    unsigned int Id;
+	enum IdTypeConstants
+	{
+		IdType_Bit_IndexMask = 65535,
+		IdType_Bit_TypeMask = 268369920,
+		IdType_Bit_SWF = 0,
+		IdType_Bit_Static = 65536,
+		IdType_Bit_Export = 131072,
+		IdType_Bit_GenMask = 196608,
+		IdType_Bit_TypeShift = 18,
+		InvalidId = 262144
+	};
 
-    enum IdTypeConstants : __int32
-    {
-        IdType_Bit_IndexMask = 0xFFFF,
-        IdType_Bit_TypeMask = 0xFFF0000,
-        IdType_Bit_SWF = 0x0,
-        IdType_Bit_Static = 0x10000,
-        IdType_Bit_Export = 0x20000,
-        IdType_Bit_GenMask = 0x30000,
-        IdType_Bit_TypeShift = 0x12,
-        InvalidId = 0x40000
-    };
+	enum IdType
+	{
+		IdType_None = 0,
+		IdType_InternalConstant = 65536,
+		IdType_GradientImage = 327680,
+		IdType_DynFontImage = 589824,
+		IdType_FontImage = 393216
+	};
 
-    enum IdType : __int32
-    {
-        IdType_None = 0x0,
-        IdType_InternalConstant = 0x10000,
-        IdType_GradientImage = 0x50000,
-        IdType_DynFontImage = 0x90000,
-        IdType_FontImage = 0x60000
-    };
+	class HashOp
+	{
+	};
+
+	unsigned long Id;
+
+	GFxResourceId() = default;
+	~GFxResourceId() = default;
 };

@@ -1,15 +1,25 @@
 #pragma once
 
-#include "IPhysicsObject.h"
+class IPhysicsObject;
+template <class T> class TList;
 
 class ZPhysicsObjectProxy
 {
 public:
-    IPhysicsObject* m_pObj;
-    unsigned int m_nNumRefs;
+	enum
+	{
+		INITIAL_POOL_SIZE = 500
+	};
 
-    enum UnkEnum : __int32
-    {
-        INITIAL_POOL_SIZE = 0x1F4
-    };
+	IPhysicsObject* m_pObj;
+	unsigned int m_nNumRefs;
+
+	static TList<ZPhysicsObjectProxy*>* s_aPhysicsObjectProxyPool;
+
+	~ZPhysicsObjectProxy() = default;
+	ZPhysicsObjectProxy() = default;
+	void DetachObject();
+	static ZPhysicsObjectProxy* CreateProxy(const IPhysicsObject* pObj);
+	static void ReleaseProxy(ZPhysicsObjectProxy* pProxy);
+	static void Cleanup();
 };

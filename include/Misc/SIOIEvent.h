@@ -1,8 +1,10 @@
 #pragma once
 
-class SIOIEvent
+struct SIOIEvent
 {
-public:
-    float m_fTimeFraction;
-    unsigned int m_nEventUserData;
+	float m_fTimeFraction;
+	unsigned int m_nEventUserData;
+
+	SIOIEvent() = default;
+	~SIOIEvent() = default;
 };

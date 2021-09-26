@@ -1,9 +1,12 @@
 #pragma once
 
-#include "STypeID.h"
+struct STypeID;
 
 struct SComponentMapEntry
 {
-    STypeID* type;
-    int nOffset;
+	STypeID* type;
+	int nOffset;
+
+	SComponentMapEntry() = default;
+	~SComponentMapEntry() = default;
 };

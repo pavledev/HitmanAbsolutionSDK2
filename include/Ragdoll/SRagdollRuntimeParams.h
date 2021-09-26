@@ -3,11 +3,13 @@
 #include "ECCDUsage.h"
 #include "ECollisionPriority.h"
 
-class SRagdollRuntimeParams
+struct SRagdollRuntimeParams
 {
-public:
-    bool m_bCreateTargetDummies;
-    ECCDUsage m_eCCDUsage;
-    ECollisionPriority m_eSolverPriority;
-    float m_fRagdollScale;
+	bool m_bCreateTargetDummies;
+	ECCDUsage m_eCCDUsage;
+	ECollisionPriority m_eSolverPriority;
+	float m_fRagdollScale;
+
+	SRagdollRuntimeParams() = default;
+	~SRagdollRuntimeParams() = default;
 };

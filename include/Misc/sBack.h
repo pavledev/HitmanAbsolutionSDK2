@@ -2,7 +2,8 @@
 
 #include "sAttacherBoneElement.h"
 
-class sBack : public sAttacherBoneElement
+struct sBack : sAttacherBoneElement
 {
-
+	sBack() = default;
+	~sBack() = default;
 };

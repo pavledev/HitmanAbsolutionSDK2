@@ -1,21 +1,27 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "float4.h"
 #include "ParticleConstInfo.h"
 
 class ZParticleControllerEntity;
+struct float4;
 
-class IParticleEmitterEntity : public IComponentInterface
+class __declspec(novtable) IParticleEmitterEntity : public IComponentInterface
 {
 public:
-    virtual unsigned int GetEmissionCount(float, const float4*, float4*);
-    virtual bool UseEmitterSpaceParticles();
-    virtual int GetEmitterSpaceEntry();
-    virtual void SetEmitterSpaceEntry(int);
-    virtual unsigned int ConstSize();
-    virtual ParticleConstInfo* ConstPack(ParticleConstInfo* result, void*, const float4*);
-    virtual void ActivateEmitter();
-    virtual void DeactivateEmitter();
-    virtual void ParticleControlerDeleted(const ZParticleControllerEntity*);
+	~IParticleEmitterEntity() override = default;
+	virtual unsigned int GetEmissionCount(float param1, const float4& param2, float4* param3) = 0;
+	virtual bool UseEmitterSpaceParticles() const = 0;
+	virtual int GetEmitterSpaceEntry() const = 0;
+	virtual void SetEmitterSpaceEntry(int param1) = 0;
+	virtual unsigned int ConstSize() = 0;
+	virtual ParticleConstInfo ConstPack(void* param1, const float4& param2) = 0;
+	virtual void ActivateEmitter() = 0;
+	virtual void DeactivateEmitter() = 0;
+	virtual void ParticleControlerDeleted(const ZParticleControllerEntity* particleControllerEntity) = 0;
+
+	static void RegisterType();
+	IParticleEmitterEntity(const IParticleEmitterEntity& __that);
+	IParticleEmitterEntity() = default;
+	IParticleEmitterEntity& operator=(const IParticleEmitterEntity& __that);
 };

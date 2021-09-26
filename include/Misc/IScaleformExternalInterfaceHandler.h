@@ -3,5 +3,7 @@
 class IScaleformExternalInterfaceHandler
 {
 public:
-	virtual ~IScaleformExternalInterfaceHandler();
+	virtual ~IScaleformExternalInterfaceHandler() = default;
+
+	IScaleformExternalInterfaceHandler() = default;
 };

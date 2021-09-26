@@ -3,7 +3,13 @@
 #include "TEnumeratorBase.h"
 
 template<class A, class B>
-class TMapKeyEnumerator : TEnumeratorBase<A const>
+class TMapKeyEnumerator : public TEnumeratorBase<A const>
 {
+public:
+	class ZEnumeratorImpl
+	{
+	};
 
+	TMapKeyEnumerator() = default;
+	~TMapKeyEnumerator() = default;
 };

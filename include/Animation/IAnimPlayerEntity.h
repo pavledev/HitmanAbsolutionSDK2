@@ -1,16 +1,19 @@
 #pragma once
 
-#include "ZString.h"
+class ZString;
 
-class IAnimPlayerEntity
+class __declspec(novtable) IAnimPlayerEntity
 {
 public:
-    virtual bool ContainsAnimation(const ZString*);
-    virtual bool RequestAnimationByName(const ZString*);
-    virtual void SetIsPlaying(bool);
-    virtual void SetTrajectoryFlag(bool);
-    virtual void SetTime(float);
-    virtual float GetDuration();
-    virtual void ResetTime();
-    virtual ~IAnimPlayerEntity();
+	virtual bool ContainsAnimation(const ZString& string) = 0;
+	virtual bool RequestAnimationByName(const ZString& string) = 0;
+	virtual void SetIsPlaying(bool param1) = 0;
+	virtual void SetTrajectoryFlag(bool param1) = 0;
+	virtual void SetTime(float param1) = 0;
+	virtual float GetDuration() const = 0;
+	virtual void ResetTime() = 0;
+	virtual ~IAnimPlayerEntity() = default;
+
+	static void RegisterType();
+	IAnimPlayerEntity() = default;
 };

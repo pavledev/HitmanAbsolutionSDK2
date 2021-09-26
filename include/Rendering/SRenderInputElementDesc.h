@@ -1,12 +1,19 @@
 #pragma once
 
+#include "ERenderInputElement.h"
+#include "ERenderInputClassification.h"
+#include "ERenderFormat.h"
+
 struct SRenderInputElementDesc
 {
-    unsigned __int8 nOffset;
-    __int32 eFormat : 8;
-    __int32 eElement : 8;
-    unsigned __int8 nElementIndex;
-    unsigned __int8 nStreamIndex;
-    __int32 eClassification : 8;
-    unsigned __int16 nInstanceDataStepRate;
+	unsigned char nOffset;
+	ERenderFormat eFormat : 8;
+	ERenderInputElement eElement : 8;
+	unsigned char nElementIndex;
+	unsigned char nStreamIndex;
+	ERenderInputClassification eClassification : 8;
+	unsigned short nInstanceDataStepRate;
+
+	SRenderInputElementDesc() = default;
+	~SRenderInputElementDesc() = default;
 };

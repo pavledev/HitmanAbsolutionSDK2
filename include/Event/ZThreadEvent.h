@@ -1,10 +1,18 @@
 #pragma once
 
 #include "TSharedPointer.h"
-#include "ISharedPointerTarget.h"
+
+class ISharedPointerTarget;
 
 class ZThreadEvent
 {
 public:
-    TSharedPointer<ISharedPointerTarget> m_pImpl;
+	TSharedPointer<ISharedPointerTarget> m_pImpl;
+
+	ZThreadEvent() = default;
+	void WaitEvent();
+	static void SignalEvent(ZThreadEvent& event);
+	void SignalEvent();
+	static bool WaitForSingleEvent(ZThreadEvent& event, int nTimeOutMSecs);
+	~ZThreadEvent() = default;
 };

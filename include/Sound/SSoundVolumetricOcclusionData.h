@@ -3,9 +3,11 @@
 #include "TArray.h"
 #include "IAsyncRayHandle.h"
 
-class SSoundVolumetricOcclusionData
+struct SSoundVolumetricOcclusionData
 {
-public:
-    TArray<IAsyncRayHandle*> m_pRayQueryHandle;
-    TArray<ZRayQueryOutput> m_pRayQueryOutput;
+	TArray<IAsyncRayHandle*> m_pRayQueryHandle;
+	TArray<ZRayQueryOutput> m_pRayQueryOutput;
+
+	SSoundVolumetricOcclusionData() = default;
+	~SSoundVolumetricOcclusionData() = default;
 };

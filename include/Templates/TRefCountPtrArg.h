@@ -1,8 +1,15 @@
 #pragma once
 
-template<class T>
+template <class T>
 class TRefCountPtrArg
 {
 public:
-    T* m_pObject;
+	class ZNull
+	{
+	};
+
+	T* m_pObject;
+
+	TRefCountPtrArg() = default;
+	~TRefCountPtrArg() = default;
 };

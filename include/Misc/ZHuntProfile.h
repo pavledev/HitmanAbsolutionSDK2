@@ -2,5 +2,7 @@
 
 class ZHuntProfile
 {
-
+public:
+	ZHuntProfile() = default;
+	~ZHuntProfile() = default;
 };

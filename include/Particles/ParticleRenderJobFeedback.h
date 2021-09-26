@@ -5,13 +5,16 @@
 
 struct ParticleRenderJobFeedback
 {
-    SVector3 m_vBBMin;
-    unsigned int m_nNumParticles;
-    SVector3 m_vBBMax;
-    unsigned int m_nNumEmitterFeedbacks;
-    SVector3 m_vPosScale;
-    SVector3 m_vPosBias;
-    SVector4 m_vDirScaleBias;
-    SVector3 m_vVecScale;
-    SVector3 m_vVecBias;
+	SVector3 m_vBBMin;
+	unsigned int m_nNumParticles;
+	SVector3 m_vBBMax;
+	unsigned int m_nNumEmitterFeedbacks;
+	SVector3 m_vPosScale;
+	SVector3 m_vPosBias;
+	SVector4 m_vDirScaleBias;
+	SVector3 m_vVecScale;
+	SVector3 m_vVecBias;
+
+	ParticleRenderJobFeedback() = default;
+	~ParticleRenderJobFeedback() = default;
 };

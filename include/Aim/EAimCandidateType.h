@@ -1,8 +1,8 @@
 #pragma once
 
-enum EAimCandidateType : unsigned __int32
+enum EAimCandidateType
 {
-    eAimCandidateNone = 0xFFFFFFFF,
-    eAimCandidateActor = 0x0,
-    eAimCandidateProp = 0x1
+	eAimCandidateNone = -1,
+	eAimCandidateActor = 0,
+	eAimCandidateProp = 1
 };

@@ -4,8 +4,11 @@
 
 struct SDecalIntersectionInfo
 {
-    float4 m_vPosition;
-    float4 m_vNormal;
-    float4 m_vDirection;
-    float4 m_vSize;
+	float4 m_vPosition;
+	float4 m_vNormal;
+	float4 m_vDirection;
+	float4 m_vSize;
+
+	SDecalIntersectionInfo() = default;
+	~SDecalIntersectionInfo() = default;
 };

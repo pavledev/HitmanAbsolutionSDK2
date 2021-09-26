@@ -2,10 +2,13 @@
 
 #include "float4.h"
 
-class alignas(16) SCapsule
+struct SCapsule
 {
-public:
-    float4 m_vBottom;
-    float4 m_vTop;
-    float m_fRadius;
+	float4 m_vBottom;
+	float4 m_vTop;
+	float m_fRadius;
+
+	SCapsule(const float4& vBottom, const float4& vTop, const float fRadius);
+	SCapsule() = default;
+	~SCapsule() = default;
 };

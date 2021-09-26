@@ -3,14 +3,21 @@
 #include "EActorAnimationOrder.h"
 #include "ZPositionTarget.h"
 
-class alignas(4) SOrderParamsBase
+struct SOrderParamsBase
 {
-public:
-    EActorAnimationOrder m_type;
-    ZPositionTarget m_aimTarget;
-    ZPositionTarget m_lookTarget;
-    ZPositionTarget m_facingTarget;
-    bool m_bFastStart;
+	EActorAnimationOrder m_type;
+	ZPositionTarget m_aimTarget;
+	ZPositionTarget m_lookTarget;
+	ZPositionTarget m_facingTarget;
+	bool m_bFastStart;
 
-    virtual ~SOrderParamsBase();
+	virtual ~SOrderParamsBase() = default;
+
+	SOrderParamsBase() = default;
+	SOrderParamsBase(const SOrderParamsBase& __that);
+	SOrderParamsBase(EActorAnimationOrder type);
+	void SetAimTarget(const ZPositionTarget& aimTarget, bool bUpdateFacing);
+	void ClearAimTarget();
+	bool IsAimTargetSet() const;
+	SOrderParamsBase& operator=(const SOrderParamsBase& __that);
 };

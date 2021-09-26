@@ -1,15 +1,15 @@
 #pragma once
 
-enum EActorCCPreset : __int32
+enum EActorCCPreset
 {
-    ACCP_CivilianFemale = 0x0,
-    ACCP_CivilianeMale = 0x1,
-    ACCP_GuardMale = 0x2,
-    ACCP_GuardMaleElite = 0x3,
-    ACCP_GuardMaleSuperElite = 0x4,
-    ACCP_BossDexter = 0x5,
-    ACCP_BossSanchez = 0x6,
-    ACCP_BossLenny = 0x7,
-    ACCP_Ignore = 0x8,
-    ACCP_None = 0x9
+	ACCP_CivilianFemale = 0,
+	ACCP_CivilianeMale = 1,
+	ACCP_GuardMale = 2,
+	ACCP_GuardMaleElite = 3,
+	ACCP_GuardMaleSuperElite = 4,
+	ACCP_BossDexter = 5,
+	ACCP_BossSanchez = 6,
+	ACCP_BossLenny = 7,
+	ACCP_Ignore = 8,
+	ACCP_None = 9
 };

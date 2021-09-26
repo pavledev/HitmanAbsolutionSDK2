@@ -1,4 +1,7 @@
 #include "Cheats.h"
+#include "ZHitman5.h"
+#include "BaseAddresses.h"
+#include "ZHM5FocusController.h"
 
 void Cheats::DrawWindow(bool* showCheats)
 {
@@ -26,16 +29,15 @@ void Cheats::DrawWindow(bool* showCheats)
 
 	if (ImGui::Button("Refill Focus"))
 	{
-		static ZLevelManager* levelManager = reinterpret_cast<ZLevelManager*>(Globals::g_pLevelManagerSingleton);
+		static ZLevelManager* levelManager = Singletons::GetLevelManager();
 
 		if (levelManager)
 		{
-			static ZHitman5* player = levelManager->m_rHitman.m_pInterfaceRef;
+			static ZHitman5* player = levelManager->GetHitman().GetRawPointer();
 
 			if (player)
 			{
-				float* focus = player->m_pFocusController->m_pFocus;
-				*focus = 1.0f;
+				player->GetFocusController()->SetFocus(1.0f);
 			}
 		}
 	}

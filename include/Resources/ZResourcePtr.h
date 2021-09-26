@@ -1,51 +1,62 @@
 #pragma once
 
-#include "ZResourceStub.h"
 #include "EResourceStatus.h"
-#include "IResourceInstaller.h"
-#include "THashSet.h"
-#include "TDefaultHashSetPolicy.h"
-#include "ZDelegate.h"
+#include "ZRuntimeResourceID.h"
+
+class ZResourceStub;
+class IResourceInstaller;
+template <class A, class B> class THashSet;
+template <class T> class TDefaultHashSetPolicy;
+template <class T> class alignas(8) ZDelegate;
 
 class ZResourcePtr
 {
 public:
-    ZResourceStub* m_pResourceStub;
+	struct ZNull
+	{
+	};
 
-    EResourceStatus GetResourceStatus();
-    void ReleaseStub(ZResourceStub* pStub);
-    unsigned int GetHashCode();
-    bool AreAllReferencesLoaded();
-    ZResourcePtr(ZResourcePtr* rhs);
-    void SetResourceStatus(EResourceStatus eStatus);
-    bool Failed();
-    bool HasNewerVersion();
-    void* GetInstallingRawPointer();
-    ZResourcePtr();
-    IResourceInstaller* GetResourceInstaller();
-    bool Exists();
-    static bool IsLeakTrackingEnabled();
-    bool Rebind();
-    bool AreAllReferencesLoaded(THashSet<ZResourceStub*, TDefaultHashSetPolicy<ZResourceStub*> >* visitedStubs);
-    bool operator>(ZResourcePtr* rhs);
-    ZResourcePtr(ZResourceStub* pResourceHeader);
-    ZRuntimeResourceID* GetRuntimeResourceID(ZRuntimeResourceID* result);
-    void AddRefStub(ZResourceStub* pStub);
-    void RemoveStatusChangedListener(ZDelegate<void __cdecl(ZRuntimeResourceID&)>* d);
-    unsigned int GetResourceTag();
-    void SetResourceData(void* pResourceData);
-    bool IsReady();
-    ZResourcePtr(ZRuntimeResourceID* rid);
-    ~ZResourcePtr();
-    ZResourcePtr* GetNewestVersion(ZResourcePtr* result);
-    bool operator==(ZResourcePtr* rhs);
-    bool RebindEvenIfNotReady();
-    ZResourceStub* GetResourceStub();
-    ZResourcePtr* operator=(ZResourcePtr* rhs);
-    static void SetLeakTrackingEnabled(bool bEnabled);
-    void* GetRawPointer();
-    bool operator<(ZResourcePtr* rhs);
-    void Release();
-    bool operator!=(ZResourcePtr* rhs);
-    void AddStatusChangedListener(ZDelegate<void __cdecl(ZRuntimeResourceID&)>* d);
+	ZResourceStub* m_pResourceStub;
+
+	static bool m_bLeakTrackingEnabled;
+
+	ZResourcePtr(const ZRuntimeResourceID& rid);
+	ZResourcePtr(ZResourceStub* pResourceHeader);
+	ZResourcePtr(const ZResourcePtr& rhs);
+	ZResourcePtr() = default;
+	~ZResourcePtr() = default;
+	ZResourcePtr& operator=(ZNull* __formal);
+	ZResourcePtr& operator=(const ZResourcePtr& rhs);
+	bool operator==(const ZResourcePtr& rhs) const;
+	bool operator==(ZNull* __formal) const;
+	bool operator!=(const ZResourcePtr& rhs) const;
+	bool operator!=(ZNull* __formal) const;
+	void Release();
+	ZRuntimeResourceID GetRuntimeResourceID() const;
+	bool IsReady() const;
+	bool Exists() const;
+	bool Failed() const;
+	ZResourcePtr GetNewestVersion() const;
+	bool HasNewerVersion() const;
+	bool Rebind();
+	bool RebindEvenIfNotReady();
+	unsigned int GetResourceTag() const;
+	ZResourceStub* GetResourceStub() const;
+	void AddStatusChangedListener(const ZDelegate<void __cdecl(ZRuntimeResourceID const&)>& d);
+	void RemoveStatusChangedListener(const ZDelegate<void __cdecl(ZRuntimeResourceID const&)>& d);
+	void SetResourceStatus(EResourceStatus eStatus);
+	bool AreAllReferencesLoaded(THashSet<ZResourceStub const*, TDefaultHashSetPolicy<ZResourceStub const*>>& visitedStubs) const;
+	bool AreAllReferencesLoaded() const;
+	bool operator<(const ZResourcePtr& rhs) const;
+	bool operator>(const ZResourcePtr& rhs) const;
+	void SetResourceData(void* pResourceData);
+	void* GetRawPointer() const;
+	void* GetInstallingRawPointer() const;
+	unsigned int GetHashCode() const;
+	static bool IsLeakTrackingEnabled();
+	static void SetLeakTrackingEnabled(bool bEnabled);
+	void AddRefStub(ZResourceStub* pStub);
+	void ReleaseStub(ZResourceStub* pStub);
+	EResourceStatus GetResourceStatus() const;
+	IResourceInstaller* GetResourceInstaller() const;
 };

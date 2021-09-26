@@ -1,8 +1,20 @@
 #pragma once
 
-class alignas(4) STokenID
+class ZString;
+
+struct STokenID
 {
-public:
-    unsigned int m_iValue;
-    bool m_bValid;
+	unsigned int m_iValue;
+	bool m_bValid;
+
+	static STokenID InvalidToken;
+
+	STokenID(unsigned int iValue);
+	STokenID() = default;
+	~STokenID() = default;
+	bool operator==(const STokenID& a) const;
+	bool operator!=(const STokenID& a) const;
+	bool operator<(const STokenID& a) const;
+	ZString ToString() const;
+	unsigned int Get() const;
 };

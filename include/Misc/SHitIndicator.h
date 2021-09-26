@@ -2,9 +2,13 @@
 
 #include "SVector3.h"
 
-class SHitIndicator
+struct SHitIndicator
 {
-public:
-    SVector3 m_vProjectileStartPos;
-    float m_fTime;
+	SVector3 m_vProjectileStartPos;
+	float m_fTime;
+
+	SHitIndicator() = default;
+	~SHitIndicator() = default;
+	bool IsActive() const;
+	float GetFraction() const;
 };

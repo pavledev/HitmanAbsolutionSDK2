@@ -1,13 +1,18 @@
 #pragma once
 
 #include "ZHM5IndicatorManager.h"
-#include "EIndicatorType.h"
+#include "TEntityRef.h"
 
-class ShitmanSensorRadarBlip
+class ZActor;
+
+struct ShitmanSensorRadarBlip
 {
-public:
-    EIndicatorType m_eIndicator;
-    bool m_bHMInSight;
-    float m_fDistanceToHM;
-    TEntityRef<ZActor> m_rActor;
+	ZHM5IndicatorManager::EIndicatorType m_eIndicator;
+	bool m_bHMInSight;
+	float m_fDistanceToHM;
+	TEntityRef<ZActor> m_rActor;
+
+	ShitmanSensorRadarBlip(const ShitmanSensorRadarBlip& __that);
+	ShitmanSensorRadarBlip() = default;
+	~ShitmanSensorRadarBlip() = default;
 };

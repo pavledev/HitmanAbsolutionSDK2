@@ -3,12 +3,15 @@
 #include "SVector3.h"
 #include "SVector2.h"
 
-struct alignas(4) SOccluder
+struct SOccluder
 {
-    SVector3 vCenter;
-    SVector3 vUp;
-    SVector3 vNormal;
-    SVector2 vSize;
-    bool bOneSided;
-    bool bFlipNormal;
+	SVector3 vCenter;
+	SVector3 vUp;
+	SVector3 vNormal;
+	SVector2 vSize;
+	bool bOneSided;
+	bool bFlipNormal;
+
+	SOccluder() = default;
+	~SOccluder() = default;
 };

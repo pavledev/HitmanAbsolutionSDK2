@@ -1,8 +1,11 @@
 #pragma once
 
-struct alignas(4) SRecoilAnimInfo
+struct SRecoilAnimInfo
 {
-    unsigned int m_nAnimNode;
-    bool m_bTwoHanded;
-    bool m_bLeftHandRelativeAnimation;
+	unsigned int m_nAnimNode;
+	bool m_bTwoHanded;
+	bool m_bLeftHandRelativeAnimation;
+
+	SRecoilAnimInfo() = default;
+	~SRecoilAnimInfo() = default;
 };

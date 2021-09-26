@@ -1,8 +1,8 @@
 #pragma once
 
-enum TeleportActionType : __int32
+enum TeleportActionType
 {
-    STAY = 0x0,
-    TELEPORT = 0x1,
-    LEAVE_CROWD = 0x2
+	STAY = 0,
+	TELEPORT = 1,
+	LEAVE_CROWD = 2
 };

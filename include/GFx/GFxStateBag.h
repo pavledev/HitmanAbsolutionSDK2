@@ -1,15 +1,35 @@
 #pragma once
 
 #include "GFxFileConstants.h"
-#include "GFxState.h"
-#include "StateType.h"
+#include "GPtr.h"
+
+class GFxRenderConfig;
+class GFxLog;
+class GFxFSCommandHandler;
+class GFxExternalInterface;
+class GFxFileOpenerBase;
+class GFxImageCreator;
+class GFxFontCacheManager;
+class GFxFontLib;
+class GFxFontMap;
+class GFxTaskManager;
+class GFxPNGSupportBase;
 
 class GFxStateBag : public GFxFileConstants
 {
 public:
-    virtual GFxStateBag* GetStateBagImpl();
-    virtual ~GFxStateBag();
-    virtual void SetState(StateType, GFxState*);
-    virtual GFxState* GetStateAddRef(StateType);
-    virtual void GetStatesAddRef(GFxState**, const StateType*, unsigned int);
+	virtual ~GFxStateBag() = default;
+
+	void SetRenderConfig(GFxRenderConfig* pri);
+	void SetLog(GFxLog* plog);
+	void SetFSCommandHandler(GFxFSCommandHandler* ps);
+	void SetExternalInterface(GFxExternalInterface* p);
+	void SetFileOpener(GFxFileOpenerBase* ptr);
+	void SetImageCreator(GFxImageCreator* ptr);
+	GPtr<GFxFontCacheManager> GetFontCacheManager() const;
+	void SetFontLib(GFxFontLib* pri);
+	void SetFontMap(GFxFontMap* ptr);
+	void SetTaskManager(GFxTaskManager* ptr);
+	void SetPNGSupport(GFxPNGSupportBase* ptr);
+	GFxStateBag() = default;
 };

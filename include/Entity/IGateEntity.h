@@ -3,22 +3,28 @@
 #include "IComponentInterface.h"
 #include "SGateDesc.h"
 #include "float4.h"
-#include "TArray.h"
-#include "ZEntityRef.h"
-#include "SColorRGB.h"
 
-class IGateEntity : public IComponentInterface
+class ZEntityRef;
+struct SColorRGB;
+template <class T> class TArray;
+
+class __declspec(novtable) IGateEntity : public IComponentInterface
 {
 public:
-    SGateDesc m_Desc;
+	SGateDesc m_Desc;
 
-    virtual float4* GetPortalSize(float4* result);
-    virtual float4* GetConnectorOffset(float4* result);
-    virtual const TArray<ZEntityRef>* GetClientList();
-    virtual const ZEntityRef* GetRoomLeft();
-    virtual const ZEntityRef* GetRoomRight();
-    virtual bool IsReasoning();
-    virtual bool IsOpen();
-    virtual const SColorRGB* GetClosedColor();
-    virtual float GetClipDistance();
+	~IGateEntity() override = default;
+	virtual float4 GetPortalSize() const = 0;
+	virtual float4 GetConnectorOffset() const = 0;
+	virtual const TArray<ZEntityRef>& GetClientList() const = 0;
+	virtual const ZEntityRef& GetRoomLeft() const = 0;
+	virtual const ZEntityRef& GetRoomRight() const = 0;
+	virtual bool IsReasoning() const = 0;
+	virtual bool IsOpen() const = 0;
+	virtual const SColorRGB& GetClosedColor() const = 0;
+	virtual float GetClipDistance() const = 0;
+
+	static void RegisterType();
+	const SGateDesc& GetDesc() const;
+	IGateEntity() = default;
 };

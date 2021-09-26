@@ -15,7 +15,6 @@
 #include "ZActorManager.h"
 #include "ZKnowledge.h"
 #include "ZHUDManager.h"
-#include "SCameraState.h"
 #include "ZHitman5Module.h"
 #include "ZEntityManager.h"
 #include "ZHM5ActionClient.h"
@@ -24,17 +23,27 @@
 #include "EntityTypeHelper.h"
 #include "Globals.h"
 #include "NearestActorsInfo.h"
+#include "eWeaponType.h"
+#include "EWeaponAnimationCategory.h"
+#include "eItemSize.h"
+#include "eItemHands.h"
 
 using namespace std;
 
 struct PlayerInfo
 {
+	inline static ImVector<const char*> teleportLocations;
+	inline static map<const char*, STokenID> outfits;
+
+	inline static NearestActorsInfo nearestActorsInfo;
+	inline static bool showNearestActorsInfo = false;
+
 	void DrawWindow(bool* showPlayerInfo);
 
-	template<class T>
+	template <class T>
 	void AddLocalPositionInputs(T* interfaceRef, ImGuiInputTextFlags& flags, ImVec4& color);
 
-	template<class T>
+	template <class T>
 	void AddWorldPositionInputs(T* interfaceRef, ImGuiInputTextFlags& flags, ImVec4& color);
 
 	void AddGeneralInfo(ZHitman5* player);
@@ -62,7 +71,7 @@ struct PlayerInfo
 	const char* GetItemHandsCoverAnimLayer(eItemHands itemHands);
 	const char* GetItemType(eItemType itemType);
 
-	const char* GetInventorySlotType(EInventorySlotType m_eSlotType);
+	const char* GetInventorySlotType(ZInventorySlot::EInventorySlotType m_eSlotType);
 
 	const char* GetWeaponType(eWeaponType weaponType);
 	const char* GetWeaponAnimationCategory(EWeaponAnimationCategory weaponAnimationCategory);
@@ -71,11 +80,14 @@ struct PlayerInfo
 
 	void GetTeleportLocations();
 	void AddTeleportInfo(ZHitman5* player);
+	void TeleportAllActorsToPlayer();
+	void TeleportAllItemsToPlayer();
+	void TeleportAllPropsToPlayer();
 	void GetOutfits();
 	void AddOutfitInfo(ZHitman5* player);
 	TEntityRef<ZGlobalOutfitKit> GetGlobalOutfitKit(STokenID tokenID);
 
-	template<class T>
+	template <class T>
 	void AddBaseCharacterInfo(T* interfaceRef);
 
 	/*void AddBaseCharacterInfo(TEntityRef<ZHitman5> hitman);

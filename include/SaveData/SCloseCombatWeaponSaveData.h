@@ -2,9 +2,12 @@
 
 #include "STokenID.h"
 
-class SCloseCombatWeaponSaveData
+struct SCloseCombatWeaponSaveData
 {
-public:
-    STokenID m_ID;
-    int m_nImpactCount;
+	STokenID m_ID;
+	int m_nImpactCount;
+
+	SCloseCombatWeaponSaveData(const STokenID& id, int nImpactCount);
+	SCloseCombatWeaponSaveData() = default;
+	~SCloseCombatWeaponSaveData() = default;
 };

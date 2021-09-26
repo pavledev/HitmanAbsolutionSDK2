@@ -1,7 +1,7 @@
 #pragma once
 
-enum ERenderResourceType : __int32
+enum ERenderResourceType
 {
-    RENDER_RESOURCE_TYPE_TEXTURE2D = 0x1,
-    RENDER_RESOURCE_TYPE_TEXTURE3D = 0x2
+	RENDER_RESOURCE_TYPE_TEXTURE2D = 1,
+	RENDER_RESOURCE_TYPE_TEXTURE3D = 2
 };

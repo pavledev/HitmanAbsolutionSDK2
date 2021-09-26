@@ -3,9 +3,15 @@
 #include "SContentKitBaseState.h"
 #include "TArray.h"
 
-class SPropKitState : public SContentKitBaseState
+struct SPropKitState : SContentKitBaseState
 {
-public:
-    bool m_bUnlocked;
-    TArray<unsigned char> m_PickupState;
+	bool m_bUnlocked;
+	TArray<unsigned char> m_PickupState;
+
+	SPropKitState(const SPropKitState& __that);
+	SPropKitState() = default;
+	bool SetPickedUp(int lvl, int cp);
+	bool WasPickedUp(int lvl, int cp);
+	~SPropKitState() = default;
+	SPropKitState& operator=(const SPropKitState& __that);
 };

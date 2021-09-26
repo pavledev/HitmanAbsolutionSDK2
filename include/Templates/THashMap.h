@@ -3,13 +3,18 @@
 #include "SHashMapInfo.h"
 #include "THashMapIterator.h"
 
-template<class A, class B, class C>
+template <class A, class B> class TPair;
+
+template <class A, class B, class C>
 class THashMap
 {
 public:
     unsigned int m_nSize;
     int m_iFree;
     SHashMapInfo<A const, B> m_info;
+
+    THashMap() = default;
+    ~THashMap() = default;
 
     THashMapIterator<A, B> Begin()
     {

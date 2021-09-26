@@ -1,7 +1,7 @@
 #pragma once
 
-enum EParticleSpritePivotLocation : __int32
+enum EParticleSpritePivotLocation
 {
-    CENTER_PIVOT = 0x0,
-    BOTTOM_PIVOT = 0x1
+	CENTER_PIVOT = 0,
+	BOTTOM_PIVOT = 1
 };

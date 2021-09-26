@@ -1,9 +1,9 @@
 #pragma once
 
-enum EHandleClosetSpeechState : __int32
+enum EHandleClosetSpeechState
 {
-    HCSS_Initial = 0x0,
-    HCSS_Taunt = 0x1,
-    HCSS_Fire = 0x2,
-    HCSS_Done = 0x3
+	HCSS_Initial = 0,
+	HCSS_Taunt = 1,
+	HCSS_Fire = 2,
+	HCSS_Done = 3
 };

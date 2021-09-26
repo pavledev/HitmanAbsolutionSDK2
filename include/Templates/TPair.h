@@ -7,7 +7,10 @@ public:
 	A m_key;
 	B m_value;
 
-	TPair<A, B>(A key, B value) : m_key(key), m_value(value) 
+	TPair() = default;
+	~TPair() = default;
+
+	TPair(A key, B value) : m_key(key), m_value(value)
 	{
 
 	}

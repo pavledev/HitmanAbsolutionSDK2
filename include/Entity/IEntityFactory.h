@@ -1,23 +1,29 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ZEntityType.h"
-#include "IEntityBlueprintFactory.h"
 #include "TResourcePtr.h"
 
-class IEntityFactory : public IComponentInterface
+class IEntityBlueprintFactory;
+class ZEntityRef;
+class ZEntityType;
+template <class T> class TArray;
+
+class __declspec(novtable) IEntityFactory : public IComponentInterface
 {
 public:
-    virtual void GetMemoryRequirements(unsigned int*, unsigned int*, unsigned int*);
-    virtual ZEntityType* GetFactoryEntityType();
-    virtual ZEntityType** CreateEntity(unsigned __int8*, ZEntityType*);
-    virtual void ConfigureEntity(ZEntityType**);
-    virtual void InitializeEntity(ZEntityType**);
-    virtual void DestroyEntity(ZEntityType**);
-    virtual void DisableReloadOfConstAfterStartResources(ZEntityType**);
-    virtual bool AreAllResourcesReady(ZEntityType**);
-    virtual void Start(ZEntityType**);
-    virtual void CollectInternalEntities(ZEntityType**, TArray<ZEntityRef>*);
-    virtual IEntityBlueprintFactory* GetBlueprint();
-    virtual TResourcePtr<IEntityBlueprintFactory>* GetBlueprintResource(TResourcePtr<IEntityBlueprintFactory>* result);
+	~IEntityFactory() override = default;
+	virtual void GetMemoryRequirements(unsigned int* param1, unsigned int* param2, unsigned int* param3) const = 0;
+	virtual ZEntityType* GetFactoryEntityType() const = 0;
+	virtual ZEntityType** CreateEntity(unsigned char* param1, ZEntityType* entityType) = 0;
+	virtual void ConfigureEntity(ZEntityType** entityType) = 0;
+	virtual void InitializeEntity(ZEntityType** entityType) = 0;
+	virtual void DestroyEntity(ZEntityType** entityType) const = 0;
+	virtual void DisableReloadOfConstAfterStartResources(ZEntityType** entityType) const = 0;
+	virtual bool AreAllResourcesReady(ZEntityType** entityType) const = 0;
+	virtual void Start(ZEntityType** entityType) const = 0;
+	virtual void CollectInternalEntities(ZEntityType** entityType, TArray<ZEntityRef>& array) const = 0;
+	virtual IEntityBlueprintFactory* GetBlueprint() const = 0;
+	virtual TResourcePtr<IEntityBlueprintFactory> GetBlueprintResource() const = 0;
+
+	IEntityFactory() = default;
 };

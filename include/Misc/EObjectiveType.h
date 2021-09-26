@@ -1,0 +1,8 @@
+#pragma once
+
+enum EObjectiveType
+{
+	OBJECTIVE_PRIMARY = 0,
+	OBJECTIVE_SECONDARY = 1,
+	OBJECTIVE_TERTIARY = 2
+};

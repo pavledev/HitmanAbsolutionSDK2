@@ -1,18 +1,24 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ZSpatialEntity.h"
+#include "float4.h"
 
-class IHM5CoverPlane : public IComponentInterface
+class ZSpatialEntity;
+
+class __declspec(novtable) IHM5CoverPlane : public IComponentInterface
 {
 public:
-    virtual float GetCoverDepth();
-    virtual bool IsHighCover();
-    virtual bool IsMediumCover();
-    virtual bool IsLowCover();
-    virtual float GetCoverLength();
-    virtual ZSpatialEntity* GetNeighborCoverPlane(const float4*, float4*);
-    virtual float GetCoverHeight();
-    virtual float4* GetCoverDir(float4* result);
-    virtual bool IsWindowCover();
+	~IHM5CoverPlane() override = default;
+	virtual float GetCoverDepth() const = 0;
+	virtual bool IsHighCover() const = 0;
+	virtual bool IsMediumCover() const = 0;
+	virtual bool IsLowCover() const = 0;
+	virtual float GetCoverLength() const = 0;
+	virtual ZSpatialEntity* GetNeighborCoverPlane(const float4& param1, float4& param2) const = 0;
+	virtual float GetCoverHeight() const = 0;
+	virtual float4 GetCoverDir() const = 0;
+	virtual bool IsWindowCover() const = 0;
+
+	static void RegisterType();
+	IHM5CoverPlane() = default;
 };

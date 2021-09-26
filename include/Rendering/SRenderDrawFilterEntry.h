@@ -1,13 +1,16 @@
 #pragma once
 
-#include "ZRenderGraphNode.h"
-#include "ZRenderPrimitiveInstance.h"
+class ZRenderGraphNode;
+class ZRenderPrimitiveInstance;
 
-struct alignas(4) SRenderDrawFilterEntry
+struct SRenderDrawFilterEntry
 {
-    ZRenderGraphNode* m_pNode;
-    ZRenderPrimitiveInstance* m_pPrimitiveInstance;
-    char m_nLODFade;
-    __int8 m_bUseFade : 1;
-    __int8 m_bSimpleShader : 1;
+	ZRenderGraphNode* m_pNode;
+	ZRenderPrimitiveInstance* m_pPrimitiveInstance;
+	unsigned char m_nLODFade;
+	bool m_bUseFade : 1;
+	bool m_bSimpleShader : 1;
+
+	SRenderDrawFilterEntry() = default;
+	~SRenderDrawFilterEntry() = default;
 };

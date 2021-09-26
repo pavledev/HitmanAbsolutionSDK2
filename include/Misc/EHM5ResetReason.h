@@ -1,9 +1,9 @@
 #pragma once
 
-enum EHM5ResetReason : __int32
+enum EHM5ResetReason
 {
-    eHM5ResetReason_ResetHitman = 0x0,
-    eHM5ResetReason_DeactivateCheckPoint = 0x1,
-    eHM5ResetReason_Destroy = 0x2,
-    eHM5ResetReason_Internal = 0x3
+	eHM5ResetReason_ResetHitman = 0,
+	eHM5ResetReason_DeactivateCheckPoint = 1,
+	eHM5ResetReason_Destroy = 2,
+	eHM5ResetReason_Internal = 3
 };

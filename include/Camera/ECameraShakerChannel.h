@@ -1,11 +1,11 @@
 #pragma once
 
-enum ECameraShakerChannel : __int32
+enum ECameraShakerChannel
 {
-    eCameraShakerChannel_Default = 0x0,
-    eCameraShakerChannle_Locomotion = 0x1,
-    eCameraShakerChannel_Ambient = 0x2,
-    eCameraShakerChannel_Weapon = 0x3,
-    eCameraShakerChannel_CloseCombat = 0x4,
-    eCameraShakerChannel_Num = 0x5
+	eCameraShakerChannel_Default = 0,
+	eCameraShakerChannle_Locomotion = 1,
+	eCameraShakerChannel_Ambient = 2,
+	eCameraShakerChannel_Weapon = 3,
+	eCameraShakerChannel_CloseCombat = 4,
+	eCameraShakerChannel_Num = 5
 };

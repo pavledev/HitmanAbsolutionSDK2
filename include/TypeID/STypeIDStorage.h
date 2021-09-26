@@ -1,8 +1,12 @@
 #pragma once
 
-#include "STypeID.h"
+struct STypeID;
 
 struct STypeIDStorage
 {
-    STypeID* id;
+	STypeID* id;
+
+	STypeIDStorage() = default;
+	~STypeIDStorage() = default;
+	STypeID* operator&();
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-enum EAIActorRelationshipType : __int32
+enum EAIActorRelationshipType
 {
-    AIART_Boss = 0x0
+	AIART_Boss = 0
 };

@@ -1,11 +1,14 @@
 #pragma once
 
 #include "SGameEventArgs.h"
+#include "EGameEventArgType.h"
 
-class IGameStatsListener
+class __declspec(novtable) IGameStatsListener
 {
 public:
-    //virtual ~IGameStatsListener();
-    //virtual void ProcessGameEvent(const SGameEventArgs*) = 0;
-    //virtual EGameEventArgType GetArgType() = 0;
+	virtual ~IGameStatsListener() = default;
+	virtual void ProcessGameEvent(const SGameEventArgs& gameEventArgs) = 0;
+	virtual EGameEventArgType GetArgType() const = 0;
+
+	IGameStatsListener() = default;
 };

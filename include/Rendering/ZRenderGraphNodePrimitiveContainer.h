@@ -2,21 +2,55 @@
 
 #include "ZRenderGraphNode.h"
 #include "TArray.h"
-#include "ZRenderPrimitiveInstance.h"
+#include "TArrayRef.h"
 
-class alignas(16) ZRenderGraphNodePrimitiveContainer : public ZRenderGraphNode
+struct SRenderPrimitiveEntry;
+class IJobChain;
+class ZRenderGraphNodeMaterial;
+class ZRenderPrimitiveInstance;
+class ZRenderableEntity;
+
+class ZRenderGraphNodePrimitiveContainer : public ZRenderGraphNode
 {
 public:
-    unsigned __int16 m_nRuntimeDecal;
-    TArray<ZRenderPrimitiveInstance> m_PrimitiveInstances;
-    unsigned int m_nPrimitiveChangeCounter;
-    char m_nPrimitiveFlags;
-    char m_nMaxLODIndex;
-    char m_nGlowType;
-    char m_nGlowAmount;
-    float m_fLODScale;
-    float m_fLODOffset;
-    TArray<ZRenderGraphNodeMaterial*> m_pMaterialModifiers;
-    ZRenderGraphNodeMaterial* m_pOverrideMaterial;
-    ZRenderGraphNodePrimitiveContainer* m_pNextPendingUpdate;
+	enum
+	{
+		PRIMITIVE_FLAGS_UPDATE_PRIMS = 1,
+		PRIMITIVE_FLAGS_UPDATE_PENDING = 2,
+		PRIMITIVE_FLAGS_UPDATE_RUNTIME_DECALS_ONLY = 4
+	};
+
+	unsigned short m_nRuntimeDecal;
+	TArray<ZRenderPrimitiveInstance> m_PrimitiveInstances;
+	unsigned int m_nPrimitiveChangeCounter;
+	unsigned char m_nPrimitiveFlags;
+	unsigned char m_nMaxLODIndex;
+	unsigned char m_nGlowType;
+	unsigned char m_nGlowAmount;
+	float m_fLODScale;
+	float m_fLODOffset;
+	TArray<ZRenderGraphNodeMaterial*> m_pMaterialModifiers;
+	ZRenderGraphNodeMaterial* m_pOverrideMaterial;
+	ZRenderGraphNodePrimitiveContainer* m_pNextPendingUpdate;
+
+	static ZRenderGraphNodePrimitiveContainer* s_pPendingUpdatesHead;
+
+	~ZRenderGraphNodePrimitiveContainer() override = default;
+	void Reflect(ZRenderableEntity* pRenderableEntity, IJobChain* pJobChain) override;
+
+	ZRenderGraphNodePrimitiveContainer() = default;
+	ZRenderGraphNodePrimitiveContainer(ZRenderGraphNode::TYPE eType);
+	TArray<ZRenderPrimitiveInstance>& GetRenderPrimitiveInstances();
+	void GetRenderPrimitiveInstances(TArray<SRenderPrimitiveEntry>& Entries, unsigned int nLayerMask, unsigned char nLODMask, unsigned char nDrawDestination, unsigned int nTransparencyMask, unsigned int nExclusionMask);
+	TArrayRef<ZRenderGraphNodeMaterial*> GetMaterialModifiers();
+	void OnRenderPrimitiveChanged();
+	void AttachMaterialModifier(ZRenderGraphNodeMaterial* pMaterialModifier);
+	const float* GetLODScalePtr() const;
+	unsigned int GetMaxLODIndex() const;
+	unsigned char GetGlowType() const;
+	unsigned char GetGlowAmount() const;
+	void SetGlowAmount(const unsigned char nGlowAmount);
+	static void UpdatePending();
+	void UpdatePrimitiveInstances();
+	void PushUpdatePending();
 };

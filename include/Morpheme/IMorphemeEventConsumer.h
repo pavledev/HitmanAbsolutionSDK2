@@ -1,16 +1,18 @@
 #pragma once
 
-#include "TArrayRef.h"
 #include "MR.h"
+#include "ZEntityRef.h"
 
-class IMorphemeEventConsumer
+template <class T> class TArrayRef;
+
+class __declspec(novtable) IMorphemeEventConsumer
 {
 public:
-    virtual void HandleAnimationEvents(const TArrayRef<MR::TriggeredEvent*>*, ZEntityRef);
-    virtual const char* GetConsumerID();
-    virtual void StopAll();
-    virtual void Enable();
-    virtual void Disable();
-    virtual void CleanupCurrentEvents();
-    virtual ~IMorphemeEventConsumer();
+	virtual void HandleAnimationEvents(const TArrayRef<MR::TriggeredEvent*>& arrayRef, ZEntityRef entityRef) = 0;
+	virtual const char* GetConsumerID() const = 0;
+	virtual void StopAll() = 0;
+	virtual ~IMorphemeEventConsumer() = default;
+
+	static void RegisterType();
+	IMorphemeEventConsumer() = default;
 };

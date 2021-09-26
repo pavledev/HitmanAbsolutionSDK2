@@ -3,20 +3,20 @@
 class SActorHSState
 {
 public:
-    enum EHSEnterAnimation : __int32
+    enum EHSEnterAnimation
     {
-        eHSEnterAnimation_GrabShield = 0x0,
-        eHSEnterAnimation_DisarmRifle = 0x1,
-        eHSEnterAnimation_DisarmGun = 0x2
+        eHSEnterAnimation_GrabShield = 0,
+        eHSEnterAnimation_DisarmRifle = 1,
+        eHSEnterAnimation_DisarmGun = 2
     };
 
-    enum eActorHSState : __int32
+    enum eActorHSState
     {
-        eEnter = 0x0,
-        eStandIdle = 0x1,
-        eMove = 0x2,
-        eKillHS = 0x3,
-        eExitHS = 0x4,
-        eUnknown = 0x5
+        eEnter = 0,
+        eStandIdle = 1,
+        eMove = 2,
+        eKillHS = 3,
+        eExitHS = 4,
+        eUnknown = 5
     };
 };

@@ -1,10 +1,26 @@
 #pragma once
 
 #include "GRefCountBase.h"
-#include "Params.h"
 
-class GFxFunctionHandler : public GRefCountBase<GFxFunctionHandler, 2>
+class GFxMovieView;
+class GFxValue;
+
+class __declspec(novtable) GFxFunctionHandler : public GRefCountBase<GFxFunctionHandler, 2>
 {
 public:
-	virtual void Call(const Params*);
+	struct Params
+	{
+		GFxValue* pRetVal;
+		GFxMovieView* pMovie;
+		GFxValue* pThis;
+		GFxValue* pArgsWithThisRef;
+		GFxValue* pArgs;
+		unsigned int ArgCount;
+		void* pUserData;
+	};
+
+	~GFxFunctionHandler() override = default;
+	virtual void Call(const Params& params) = 0;
+
+	GFxFunctionHandler() = default;
 };

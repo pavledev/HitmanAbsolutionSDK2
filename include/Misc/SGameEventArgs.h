@@ -5,7 +5,11 @@
 class SGameEventArgs
 {
 public:
-    EGameEventArgType m_eType;
+	EGameEventArgType m_eType;
 
-    virtual ~SGameEventArgs();
+	virtual ~SGameEventArgs() = default;
+
+	SGameEventArgs() = default;
+	SGameEventArgs(const EGameEventArgType t);
+	EGameEventArgType GetType() const;
 };

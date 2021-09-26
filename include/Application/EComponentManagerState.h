@@ -1,9 +1,9 @@
 #pragma once
 
-enum EComponentManagerState : __int32
+enum EComponentManagerState
 {
-    CMS_UNINITIALIZED = 0x0,
-    CMS_RUNNING = 0x1,
-    CMS_CLOSING = 0x2,
-    CMS_DISPOSED = 0x3
+	CMS_UNINITIALIZED = 0,
+	CMS_RUNNING = 1,
+	CMS_CLOSING = 2,
+	CMS_DISPOSED = 3
 };

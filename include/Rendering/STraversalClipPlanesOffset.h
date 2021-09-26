@@ -2,6 +2,9 @@
 
 struct STraversalClipPlanesOffset
 {
-    unsigned __int16 nClipPlaneIndex;
-    unsigned __int16 nNumClipPlanes;
+	unsigned short nClipPlaneIndex;
+	unsigned short nNumClipPlanes;
+
+	STraversalClipPlanesOffset() = default;
+	~STraversalClipPlanesOffset() = default;
 };

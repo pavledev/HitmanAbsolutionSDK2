@@ -1,11 +1,11 @@
 #pragma once
 
-enum EActorInteractionFlag : __int32
+enum EActorInteractionFlag
 {
-    eAIF_ContainerDump = 0x1,
-    eAIF_CloseCombat = 0x2,
-    eAIF_FiberWire = 0x4,
-    eAIF_BodyDrag = 0x8,
-    eAIF_ReactToSilly = 0x10,
-    eAIF_FallScreamSoundEvent = 0x20
+	eAIF_ContainerDump = 1,
+	eAIF_CloseCombat = 2,
+	eAIF_FiberWire = 4,
+	eAIF_BodyDrag = 8,
+	eAIF_ReactToSilly = 16,
+	eAIF_FallScreamSoundEvent = 32
 };

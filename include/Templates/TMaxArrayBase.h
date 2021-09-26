@@ -8,6 +8,9 @@ class TMaxArrayBase : public B
 public:
     unsigned int m_nSize;
 
+    TMaxArrayBase() = default;
+    ~TMaxArrayBase() = default;
+
     TArrayIterator<A> Begin()
     {
         TArrayIterator<A> arrayIterator;
@@ -33,5 +36,4 @@ public:
     {
         return (A*)((char*)this + sizeof(A) * nIndex);
     }
-
 };

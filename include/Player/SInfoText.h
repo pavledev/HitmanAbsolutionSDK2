@@ -2,14 +2,16 @@
 
 #include "ZString.h"
 
-class SInfoText
+struct SInfoText
 {
-public:
-    __int16 nHUDIDGame;
-    __int16 nHUDIDMenu;
-    int nAnchor;
-    int nAlign;
-    int nXOffset;
-    int nYOffset;
-    ZString m_sText;
+	short nHUDIDGame;
+	short nHUDIDMenu;
+	int nAnchor;
+	int nAlign;
+	int nXOffset;
+	int nYOffset;
+	ZString m_sText;
+
+	SInfoText() = default;
+	~SInfoText() = default;
 };

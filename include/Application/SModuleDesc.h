@@ -1,11 +1,14 @@
 #pragma once
 
 #include "ZString.h"
-#include "IModule.h"
 
-class SModuleDesc
+class IModule;
+
+struct SModuleDesc
 {
-public:
-    ZString m_pszName;
-    IModule* m_pModule;
+	ZString m_pszName;
+	IModule* m_pModule;
+
+	SModuleDesc() = default;
+	~SModuleDesc() = default;
 };

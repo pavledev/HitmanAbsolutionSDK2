@@ -2,7 +2,7 @@
 
 #include "SHashSetInfo.h"
 
-template<class A, class B>
+template <class A, class B>
 class THashSet
 {
 public:
@@ -10,4 +10,7 @@ public:
     unsigned int m_nSize;
     int m_iFree;
     SHashSetInfo<A const> m_info;
+
+    THashSet() = default;
+    ~THashSet() = default;
 };

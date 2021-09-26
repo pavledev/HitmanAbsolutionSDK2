@@ -1,19 +1,19 @@
 #pragma once
 
-enum eOnLedgeMoveType : __int32
+enum eOnLedgeMoveType
 {
-    eMoveOnLedge = 0x0,
-    eMoveJumpToRightNeighbour = 0x1,
-    eMoveJumpToLeftNeighbour = 0x2,
-    eMoveJumpToUpwardNeighbour = 0x3,
-    eMoveJumpToDownwardNeighbour = 0x4,
-    eMoveDismount = 0x5,
-    eMoveMount = 0x6,
-    eMoveDismountMount = 0x7,
-    eMoveClimbWindowLeft = 0x8,
-    eMoveClimbWindowRight = 0x9,
-    eMoveSneakPastWindowToRight = 0xA,
-    eMoveSneakPastWindowToLeft = 0xB,
-    eMovePullVictimFromLedge = 0xC,
-    eMoveUnknown = 0xD
+	eMoveOnLedge = 0,
+	eMoveJumpToRightNeighbour = 1,
+	eMoveJumpToLeftNeighbour = 2,
+	eMoveJumpToUpwardNeighbour = 3,
+	eMoveJumpToDownwardNeighbour = 4,
+	eMoveDismount = 5,
+	eMoveMount = 6,
+	eMoveDismountMount = 7,
+	eMoveClimbWindowLeft = 8,
+	eMoveClimbWindowRight = 9,
+	eMoveSneakPastWindowToRight = 10,
+	eMoveSneakPastWindowToLeft = 11,
+	eMovePullVictimFromLedge = 12,
+	eMoveUnknown = 13
 };

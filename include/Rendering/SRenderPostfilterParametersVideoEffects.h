@@ -3,13 +3,15 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector2.h"
 
-class SRenderPostfilterParametersVideoEffects : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersVideoEffects : SRenderPostfilterParametersBase
 {
-public:
-    SVector2 m_vVideoScale;
-    SVector2 m_vVideoOffset;
-    float m_fVideoHorizSkew;
-    float m_fVideoHorizBend;
-    float m_fVideoFineShaking;
-    float m_fVideoColorNoise;
+	SVector2 m_vVideoScale;
+	SVector2 m_vVideoOffset;
+	float m_fVideoHorizSkew;
+	float m_fVideoHorizBend;
+	float m_fVideoFineShaking;
+	float m_fVideoColorNoise;
+
+	SRenderPostfilterParametersVideoEffects() = default;
+	~SRenderPostfilterParametersVideoEffects() = default;
 };

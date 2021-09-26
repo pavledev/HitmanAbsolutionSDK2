@@ -1,25 +1,27 @@
 #pragma once
 
 #include "SMatrix43.h"
-#include "ZEvent0.h"
-#include "SCutSequenceData.h"
 
-class IMorphemeCutSequenceAnimatable
+class ISequenceEntity;
+class ZEvent0;
+class ZString;
+struct SCutSequenceData;
+
+class __declspec(novtable) IMorphemeCutSequenceAnimatable
 {
 public:
-    virtual void CutSequenceStarted(ISequenceEntity*, const ZString*, float);
-    virtual void CutSequenceUpdate(ISequenceEntity*, ZString, float);
-    virtual SMatrix43* CutSequenceGetWorldTransform(SMatrix43* result);
-    virtual void CutSequenceSetWorldTransform(const SMatrix43*);
-    virtual SMatrix43* CutSequenceGetParentTransform(SMatrix43* result);
-    virtual void CutSequenceSetParentTransform(const SMatrix43*);
-    virtual void CutSequenceEnded(ISequenceEntity*, ZString);
-    virtual ZEvent0* GetAnimatableChangedEvent();
-    virtual void AbortCutSequence();
-    virtual bool SetCutSequenceData(ISequenceEntity*, const SCutSequenceData*, const ZString*, float);
-    virtual ~IMorphemeCutSequenceAnimatable();
+	virtual void CutSequenceStarted(ISequenceEntity* sequenceEntity, const ZString& string, float param3) = 0;
+	virtual void CutSequenceUpdate(ISequenceEntity* sequenceEntity, ZString string, float param3) = 0;
+	virtual SMatrix43 CutSequenceGetWorldTransform() = 0;
+	virtual void CutSequenceSetWorldTransform(const SMatrix43& matrix43) = 0;
+	virtual SMatrix43 CutSequenceGetParentTransform() = 0;
+	virtual void CutSequenceSetParentTransform(const SMatrix43& matrix43) = 0;
+	virtual void CutSequenceEnded(ISequenceEntity* sequenceEntity, ZString string) = 0;
+	virtual ZEvent0& GetAnimatableChangedEvent() = 0;
+	virtual void AbortCutSequence() = 0;
+	virtual bool SetCutSequenceData(ISequenceEntity* sequenceEntity, const SCutSequenceData& cutSequenceData, const ZString& string, float param4) = 0;
+	virtual ~IMorphemeCutSequenceAnimatable() = default;
 
-    IMorphemeCutSequenceAnimatable();
-    IMorphemeCutSequenceAnimatable(IMorphemeCutSequenceAnimatable const&);
-    IMorphemeCutSequenceAnimatable* operator=(IMorphemeCutSequenceAnimatable const&);
+	static void RegisterType();
+	IMorphemeCutSequenceAnimatable() = default;
 };

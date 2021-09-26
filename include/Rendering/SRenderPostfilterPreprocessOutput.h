@@ -1,11 +1,13 @@
 #pragma once
 
-#include "ZRenderShaderResourceView.h"
-#include "ZRenderTexture2D.h"
+class ZRenderShaderResourceView;
+class ZRenderTexture2D;
 
-class SRenderPostfilterPreprocessOutput
+struct SRenderPostfilterPreprocessOutput
 {
-public:
-    ZRenderShaderResourceView* m_pGlareAccumulationSRV;
-    ZRenderTexture2D* m_pGlareAccumulationTexture;
+	ZRenderShaderResourceView* m_pGlareAccumulationSRV;
+	ZRenderTexture2D* m_pGlareAccumulationTexture;
+
+	SRenderPostfilterPreprocessOutput() = default;
+	~SRenderPostfilterPreprocessOutput() = default;
 };

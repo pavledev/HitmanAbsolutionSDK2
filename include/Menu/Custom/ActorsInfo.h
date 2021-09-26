@@ -1,19 +1,31 @@
 #pragma once
 
 #include <string>
-#include "imgui.h"
+#include <imgui.h>
 #include "ZActorManager.h"
 #include "ZInventorySlot.h"
 #include "ZLevelManager.h"
-#include "Globals.h"
+#include "Singletons.h"
+#include "eWeaponType.h"
+#include "EWeaponAnimationCategory.h"
+#include "EActorCCPreset.h"
+#include "EActorGroup.h"
+#include "EActorDeathType.h"
+#include "EActorType.h"
+#include "EActorRank.h"
+#include "eItemSize.h"
+#include "eItemHands.h"
+#include "eItemType.h"
 
-using namespace std;
+class IHM5ItemWeapon;
+
+//using namespace std;
 
 struct ActorsInfo
 {
 	void DrawWindow(bool* showActorsInfo);
 
-	template<class A, int B>
+	template <class A, int B>
 	void AddActorsInfo(TMaxArray<A, B>& array, ZActorManager* actorManager);
 
 	void AddActorsInfo(TArray<TEntityRef<ZActor>>& array);
@@ -38,7 +50,7 @@ struct ActorsInfo
 	const char* GetItemHandsCoverAnimLayer(eItemHands itemHands);
 	const char* GetItemType(eItemType itemType);
 
-	const char* GetInventorySlotType(EInventorySlotType m_eSlotType);
+	const char* GetInventorySlotType(ZInventorySlot::EInventorySlotType m_eSlotType);
 
 	const char* GetWeaponType(eWeaponType weaponType);
 	const char* GetWeaponAnimationCategory(EWeaponAnimationCategory weaponAnimationCategory);

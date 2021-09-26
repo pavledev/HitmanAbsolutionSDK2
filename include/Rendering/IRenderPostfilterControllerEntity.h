@@ -2,21 +2,28 @@
 
 #include "IComponentInterface.h"
 #include "TEntityRef.h"
-#include "IRenderPostfilterParametersEntity.h"
-#include "SRenderPostfilterPerScreenDecalParametersInternal.h"
+#include "ZEntityRef.h"
 
-class IRenderPostfilterControllerEntity : public IComponentInterface
+class IRenderPostfilterParametersEntity;
+struct SRenderPostfilterParameters;
+struct SRenderPostfilterPerScreenDecalParametersInternal;
+
+class __declspec(novtable) IRenderPostfilterControllerEntity : public IComponentInterface
 {
 public:
-    virtual TEntityRef<IRenderPostfilterParametersEntity>* GetCurrentParametersEntity(TEntityRef<IRenderPostfilterParametersEntity>* result);
-    virtual TEntityRef<IRenderPostfilterParametersEntity>* GetParametersEntity(TEntityRef<IRenderPostfilterParametersEntity>* result);
-    virtual void UpdateParameters(SRenderPostfilterParameters*);
-    virtual void LerpParameters(ZEntityRef);
-    virtual void ReportParametersChanged();
-    virtual void RestartLerp(const float);
-    virtual void SetRoomLerp(const bool);
-    virtual bool GetRoomLerp();
-    virtual float GetLuminance();
-    virtual unsigned int GetScreenDecals(SRenderPostfilterPerScreenDecalParametersInternal**);
-    virtual void ClearScreenDecals();
+	~IRenderPostfilterControllerEntity() override = default;
+	virtual TEntityRef<IRenderPostfilterParametersEntity> GetCurrentParametersEntity() const = 0;
+	virtual TEntityRef<IRenderPostfilterParametersEntity> GetParametersEntity() const = 0;
+	virtual void UpdateParameters(SRenderPostfilterParameters& renderPostfilterParameters) = 0;
+	virtual void LerpParameters(ZEntityRef entityRef) = 0;
+	virtual void ReportParametersChanged() = 0;
+	virtual void RestartLerp(const float param1) = 0;
+	virtual void SetRoomLerp(const bool param1) = 0;
+	virtual bool GetRoomLerp() const = 0;
+	virtual float GetLuminance() const = 0;
+	virtual unsigned int GetScreenDecals(SRenderPostfilterPerScreenDecalParametersInternal** renderPostfilterPerScreenDecalParametersInternal) = 0;
+	virtual void ClearScreenDecals() = 0;
+
+	static void RegisterType();
+	IRenderPostfilterControllerEntity() = default;
 };

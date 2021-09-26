@@ -3,17 +3,19 @@
 #include "ERenderFillMode.h"
 #include "ERenderCullMode.h"
 
-class SRenderRasterizerStateDesc
+struct SRenderRasterizerStateDesc
 {
-public:
-    ERenderFillMode eFillMode;
-    ERenderCullMode eCullMode;
-    bool bFrontCounterClockWise;
-    int nDepthBias;
-    float fDepthBiasClamp;
-    float fSlopeScaledDepthBias;
-    bool bDepthClipEnable;
-    bool bScissorEnable;
-    bool bMultiSampleEnable;
-    bool bAntialiasedLineEnable;
+	ERenderFillMode eFillMode;
+	ERenderCullMode eCullMode;
+	bool bFrontCounterClockWise;
+	int nDepthBias;
+	float fDepthBiasClamp;
+	float fSlopeScaledDepthBias;
+	bool bDepthClipEnable;
+	bool bScissorEnable;
+	bool bMultiSampleEnable;
+	bool bAntialiasedLineEnable;
+
+	SRenderRasterizerStateDesc() = default;
+	~SRenderRasterizerStateDesc() = default;
 };

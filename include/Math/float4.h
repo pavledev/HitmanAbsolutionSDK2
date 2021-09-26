@@ -2,41 +2,44 @@
 
 #include <xmmintrin.h>
 
-class float1;
+struct float1;
 
-struct alignas(16) float4
+struct float4
 {
-    __m128 m;
+	__m128 m;
 
-    float* operator[](int nSubscript);
-    float1* Length3(float1 * result);
-    float1* X(float1 * result);
-    float1* Y(float1 * result);
-    float1* Z(float1 * result);
-    float1* W(float1 * result);
-    float1* Dot2(float1 * result, float4 * v);
-    float1* LengthSq2(float1 * result);
-    float1* Length2(float1 * result);
-    float1* LengthSq3(float1 * result);
-    float4* Cross(float4 * result, float4 * v);
-    float1* Dot3(float1 * result, float4 * v);
-    float4* Normalize3Checked(float4 * result);
-    static float4* Zero(float4 * result);
-    float& z();
-    const float* xConst(); //original name is x
-    const float* yConst(); //original name is y
-    float& x();
-    float& y();
-    const float* zConst(); //original name is z
-    float4* Normalize3(float4 * result);
-    float4* SetX(float4 * result, float1 * s);
-    float4* SetY(float4 * result, float1 * s);
-    float4* Normalize2(float4 * result);
-    static float4* UnitZ(float4 * result);
-    float4* SetZ(float4 * result, float1 * s);
-    float& w();
-    const float* wConst(); //original name is w
+	float4() = default;
+	~float4() = default;
+	float1 X() const;
+	float1 Y() const;
+	float1 Z() const;
+	float1 W() const;
+	float4 SetX(const float1& s) const;
+	float4 SetY(const float1& s) const;
+	float4 SetZ(const float1& s) const;
+	float1 Dot2(const float4& v) const;
+	float1 Dot3(const float4& v) const;
+	float4 Cross(const float4& v) const;
+	float4 Normalize2() const;
+	float4 Normalize3() const;
+	float4 Normalize3Checked() const;
+	float1 Length2() const;
+	float1 Length3() const;
+	float1 LengthSq2() const;
+	float1 LengthSq3() const;
+	static float4 Zero();
+	static float4 UnitZ();
+	const float& x() const;
+	float& x();
+	const float& y() const;
+	float& y();
+	const float& z() const;
+	float& z();
+	const float& w() const;
+	float& w();
+	const float& operator[](int nSubscript) const;
+	float& operator[](int nSubscript);
 
-    float4 operator+(float4 f);
-    float4 operator-(float4 f);
+	float4 operator+(float4 f);
+	float4 operator-(float4 f);
 };

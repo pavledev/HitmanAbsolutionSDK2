@@ -2,11 +2,17 @@
 
 #include "ELevelIndex.h"
 #include "TArray.h"
-#include "SCheckpointSaveData.h"
 
-class SLevelSaveData
+struct SCheckpointSaveData;
+
+struct SLevelSaveData
 {
-public:
-    ELevelIndex m_LevelID;
-    TArray<SCheckpointSaveData> m_CheckpointData;
+	ELevelIndex m_LevelID;
+	TArray<SCheckpointSaveData> m_CheckpointData;
+
+	SLevelSaveData(const SLevelSaveData& __that);
+	SLevelSaveData(ELevelIndex eIndex);
+	SLevelSaveData() = default;
+	~SLevelSaveData() = default;
+	SLevelSaveData& operator=(const SLevelSaveData& __that);
 };

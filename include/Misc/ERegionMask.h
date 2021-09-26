@@ -1,18 +1,18 @@
 #pragma once
 
-enum ERegionMask : __int32
+enum ERegionMask
 {
-    eRM_None = 0x1,
-    eRM_LowCover = 0x2,
-    eRM_HighCover = 0x4,
-    eRM_Stairs = 0x8,
-    eRM_Separator = 0x10,
-    eRM_User_1 = 0x20,
-    eRM_User_2 = 0x40,
-    eRM_User_3 = 0x80,
-    eRM_User_4 = 0x100,
-    eRM_User_5 = 0x200,
-    eRM_User_6 = 0x400,
-    eRM_User_7 = 0x800,
-    eRM_User_8 = 0x1000
+	eRM_None = 1,
+	eRM_LowCover = 2,
+	eRM_HighCover = 4,
+	eRM_Stairs = 8,
+	eRM_Separator = 16,
+	eRM_User_1 = 32,
+	eRM_User_2 = 64,
+	eRM_User_3 = 128,
+	eRM_User_4 = 256,
+	eRM_User_5 = 512,
+	eRM_User_6 = 1024,
+	eRM_User_7 = 2048,
+	eRM_User_8 = 4096
 };

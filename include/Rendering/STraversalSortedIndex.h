@@ -2,6 +2,9 @@
 
 struct STraversalSortedIndex
 {
-    unsigned __int16 nIndex;
-    unsigned __int16 nCount;
+	unsigned short nIndex;
+	unsigned short nCount;
+
+	STraversalSortedIndex() = default;
+	~STraversalSortedIndex() = default;
 };

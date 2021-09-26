@@ -6,23 +6,27 @@
 #include "ZEntityRef.h"
 #include "ZCollisionLayerColorGetter.h"
 
-class ICharacterController
+class IPhysicsObject;
+
+class __declspec(novtable) ICharacterController
 {
 public:
-    virtual ~ICharacterController();
-    virtual void SetEntity(const ZEntityRef*);
-    virtual float4* GetPosition(float4* result);
-    virtual void RelocateTo(const float4*);
-    virtual float4* SweepToPos(float4* result, const float4*, const float4*);
-    virtual void Update(const float4*);
-    virtual bool IsSupported();
-    virtual bool IsSideBlocked();
-    virtual SVector3* GetSideBlockedNormal(SVector3* result);
-    virtual float4* GetSurfaceNormal(float4* result);
-    virtual void ReportSceneChanged();
-    virtual bool CheckOverlapAtPos(const float4*, unsigned int, unsigned int, bool, bool);
-    virtual bool CheckOverlapWithEntityAtPos(const float4*, unsigned int, unsigned int, bool, bool, IPhysicsObject*);
-    virtual void GetCapsulePropertiesInternal(float*, float*, float*);
-    virtual SCapsule* GetG2Capsule(SCapsule* result);
-    virtual void DrawShape(const ZCollisionLayerColorGetter*);
+	virtual ~ICharacterController() = default;
+	virtual void SetEntity(const ZEntityRef& entityRef) = 0;
+	virtual float4 GetPosition() const = 0;
+	virtual void RelocateTo(const float4& param1) = 0;
+	virtual float4 SweepToPos(const float4& param1, const float4& param2) = 0;
+	virtual void Update(const float4& param1) = 0;
+	virtual bool IsSupported() const = 0;
+	virtual bool IsSideBlocked() const = 0;
+	virtual SVector3 GetSideBlockedNormal() const = 0;
+	virtual float4 GetSurfaceNormal() const = 0;
+	virtual void ReportSceneChanged() = 0;
+	virtual bool CheckOverlapAtPos(const float4& param1, unsigned int param2, unsigned int param3, bool param4, bool param5) = 0;
+	virtual bool CheckOverlapWithEntityAtPos(const float4& param1, unsigned int param2, unsigned int param3, bool param4, bool param5, IPhysicsObject* physicsObject) = 0;
+	virtual void GetCapsulePropertiesInternal(float& param1, float& param2, float& param3) const = 0;
+	virtual SCapsule GetG2Capsule() const = 0;
+	virtual void DrawShape(const ZCollisionLayerColorGetter& collisionLayerColorGetter) const = 0;
+
+	ICharacterController() = default;
 };

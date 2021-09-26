@@ -1,18 +1,21 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ZRuntimeResourceID.h"
 
 class ZResourcePending;
+class ZRuntimeResourceID;
 
-class IResourceInstaller : public IComponentInterface
+class __declspec(novtable) IResourceInstaller : public IComponentInterface
 {
 public:
-    virtual void Release(const ZRuntimeResourceID*, void*, unsigned int);
-    virtual void* Allocate(unsigned int);
-    virtual bool Install(ZResourcePending*);
-    virtual bool IsStreamInstaller();
-    virtual bool IsIndirectionInstaller();
-    virtual bool SupportsAllocate();
-    virtual void OnOrphanedResource(const ZRuntimeResourceID*, void*, unsigned int);
+	~IResourceInstaller() override = default;
+	virtual void Release(const ZRuntimeResourceID& runtimeResourceID, void* param2, unsigned int param3) = 0;
+	virtual void* Allocate(unsigned int param1) const = 0;
+	virtual bool Install(ZResourcePending& resourcePending) = 0;
+	virtual bool IsStreamInstaller() const = 0;
+	virtual bool IsIndirectionInstaller() const = 0;
+	virtual bool SupportsAllocate() const = 0;
+	virtual void OnOrphanedResource(const ZRuntimeResourceID& runtimeResourceID, void* param2, unsigned int param3) = 0;
+
+	IResourceInstaller() = default;
 };

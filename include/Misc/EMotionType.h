@@ -1,8 +1,8 @@
 #pragma once
 
-enum EMotionType : __int32
+enum EMotionType
 {
-    MOTION_LOCKED = 0x0,
-    MOTION_LIMITED = 0x1,
-    MOTION_FREE = 0x2
+	MOTION_LOCKED = 0,
+	MOTION_LIMITED = 1,
+	MOTION_FREE = 2
 };

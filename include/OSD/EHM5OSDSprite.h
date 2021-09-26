@@ -1,18 +1,18 @@
 #pragma once
 
-enum EHM5OSDSprite : __int32
+enum EHM5OSDSprite
 {
-    eHM5OSDSprite_CrossHairDefault = 0x0,
-    eHM5OSDSprite_CrossHairRifle = 0x1,
-    eHM5OSDSprite_ShootingBalletBullet = 0x2,
-    eHM5OSDSprite_WhiteDefault = 0x3,
-    eHM5OSDSprite_A = 0x4,
-    eHM5OSDSprite_Cross = 0x5,
-    eHM5OSDSprite_HitIndicator = 0x6,
-    eHM5OSDSprite_SBKillActor = 0x7,
-    eHM5OSDSprite_SBWoundActor = 0x8,
-    eHM5OSDSprite_SBHitExplodable = 0x9,
-    eHM5OSDSprite_SBMiss = 0xA,
-    eHM5OSDSprite_All = 0xB,
-    eHM5OSDSprite_NumSprites = 0xC
+	eHM5OSDSprite_CrossHairDefault = 0,
+	eHM5OSDSprite_CrossHairRifle = 1,
+	eHM5OSDSprite_ShootingBalletBullet = 2,
+	eHM5OSDSprite_WhiteDefault = 3,
+	eHM5OSDSprite_A = 4,
+	eHM5OSDSprite_Cross = 5,
+	eHM5OSDSprite_HitIndicator = 6,
+	eHM5OSDSprite_SBKillActor = 7,
+	eHM5OSDSprite_SBWoundActor = 8,
+	eHM5OSDSprite_SBHitExplodable = 9,
+	eHM5OSDSprite_SBMiss = 10,
+	eHM5OSDSprite_All = 11,
+	eHM5OSDSprite_NumSprites = 12
 };

@@ -2,5 +2,7 @@
 
 class IJobProgram
 {
-
+public:
+	IJobProgram() = default;
+	~IJobProgram() = default;
 };

@@ -2,9 +2,11 @@
 
 #include "SQV.h"
 
-class sFeetInfo
+struct sFeetInfo
 {
-public:
-    bool m_bUpdated;
-    SQV m_FeetMatPos[2];
+	bool m_bUpdated;
+	SQV m_FeetMatPos[2];
+
+	sFeetInfo() = default;
+	~sFeetInfo() = default;
 };

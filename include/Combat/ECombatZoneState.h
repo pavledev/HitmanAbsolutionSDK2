@@ -1,8 +1,8 @@
 #pragma once
 
-enum ECombatZoneState : __int32
+enum ECombatZoneState
 {
-    CZS_Inactive = 0x0,
-    CZS_Triggered = 0x1,
-    CZS_Engaged = 0x2
+	CZS_Inactive = 0,
+	CZS_Triggered = 1,
+	CZS_Engaged = 2
 };

@@ -2,8 +2,11 @@
 
 struct STypeFunctions
 {
-    void placementConstruct(void*);
-    void placementCopyConstruct(void*, const void*);
-    void destruct(void*);
-    void assign(void*, const void*);
+	void (*placementConstruct)(void* param1);
+	void (*placementCopyConstruct)(void* param1, const void* param2);
+	void (*destruct)(void* param1);
+	void (*assign)(void* param1, const void* param2);
+
+	STypeFunctions() = default;
+	~STypeFunctions() = default;
 };

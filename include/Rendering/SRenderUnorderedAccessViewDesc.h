@@ -2,47 +2,54 @@
 
 #include "ERenderFormat.h"
 
-enum EViewDimension : __int32
+struct SRenderUnorderedAccessViewDesc
 {
-    UAV_DIMENSION_BUFFER = 0x1,
-    UAV_DIMENSION_TEXTURE1D = 0x2,
-    UAV_DIMENSION_TEXTURE1DARRAY = 0x3,
-    UAV_DIMENSION_TEXTURE2D = 0x4,
-    UAV_DIMENSION_TEXTURE2DARRAY = 0x5,
-    UAV_DIMENSION_TEXTURE3D = 0x8,
-};
+	enum EViewDimension
+	{
+		UAV_DIMENSION_BUFFER = 1,
+		UAV_DIMENSION_TEXTURE1D = 2,
+		UAV_DIMENSION_TEXTURE1DARRAY = 3,
+		UAV_DIMENSION_TEXTURE2D = 4,
+		UAV_DIMENSION_TEXTURE2DARRAY = 5,
+		UAV_DIMENSION_TEXTURE3D = 8
+	};
 
-class SRenderUnorderedAccessViewDesc
-{
-public:
-    ERenderFormat eFormat;
-    EViewDimension eViewDimension;
+	struct SUAVBuffer
+	{
+		unsigned int nFirstElement;
+		unsigned int nNumElements;
+		unsigned int nFlags;
+	};
 
-    union
-    {
-        struct SUAVBuffer
-        {
-            unsigned int nFirstElement;
-            unsigned int nNumElements;
-            unsigned int nFlags;
-        } UAVBuffer;
+	struct SUAVTexture
+	{
+		unsigned int nMipSlice;
+	};
 
-        struct SUAVTexture
-        {
-            unsigned int nMipSlice;
-        } UAVTexture;
+	struct SUAVTextureArray
+	{
+		unsigned int nMipSlice;
+		unsigned int nFirstArraySlice;
+		unsigned int nArraySize;
+	};
 
-        struct SUAVTextureArray
-        {
-            unsigned int nMipSlice;
-            unsigned int nFirstArraySlice;
-            unsigned int nArraySize;
-        } UAVTextureArray;
+	struct SUAVTexture3D
+	{
+		unsigned int nMostDetailedMip;
+		unsigned int nMipLevels;
+	};
 
-        struct SUAVTexture3D
-        {
-            unsigned int nMostDetailedMip;
-            unsigned int nMipLevels;
-        } UAVTexture3D;
-    };
+	ERenderFormat eFormat;
+	EViewDimension eViewDimension;
+
+	union 
+	{
+		SUAVBuffer UAVBuffer;
+		SUAVTexture UAVTexture;
+		SUAVTextureArray UAVTextureArray;
+		SUAVTexture3D UAVTexture3D;
+	};
+
+	SRenderUnorderedAccessViewDesc() = default;
+	~SRenderUnorderedAccessViewDesc() = default;
 };

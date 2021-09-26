@@ -1,8 +1,12 @@
 #pragma once
 
-class SRoomInfoEntry
+struct SRoomInfoEntry
 {
-public:
-    unsigned __int16 nStart;
-    unsigned __int16 nCount;
+	unsigned short nStart;
+	unsigned short nCount;
+
+	SRoomInfoEntry(const SRoomInfoEntry& copy);
+	SRoomInfoEntry() = default;
+	~SRoomInfoEntry() = default;
+	SRoomInfoEntry operator=(const SRoomInfoEntry& rhs);
 };

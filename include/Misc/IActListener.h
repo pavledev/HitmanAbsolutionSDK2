@@ -2,12 +2,16 @@
 
 #include "IComponentInterface.h"
 
-class IActListener : public IComponentInterface
+class __declspec(novtable) IActListener : public IComponentInterface
 {
 public:
-    virtual void OnActStart();
-    virtual void OnActFinished();
-    virtual void OnActLoopStart();
-    virtual void OnActInFullbody();
-    virtual void OnActBehaviorEvent(unsigned int, float);
+	~IActListener() override = default;
+	virtual void OnActStart() = 0;
+	virtual void OnActFinished() = 0;
+	virtual void OnActLoopStart() = 0;
+	virtual void OnActInFullbody() = 0;
+	virtual void OnActBehaviorEvent(unsigned int param1, float param2) = 0;
+
+	static void RegisterType();
+	IActListener() = default;
 };

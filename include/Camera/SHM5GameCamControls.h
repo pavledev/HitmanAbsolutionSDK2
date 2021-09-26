@@ -1,9 +1,11 @@
 #pragma once
 
-class SHM5GameCamControls
+struct SHM5GameCamControls
 {
-public:
-    bool m_bEnableSmoothing;
-    bool m_bEnableAimAssist;
-    bool m_bEnablePitchLevelOut;
+	bool m_bEnableSmoothing;
+	bool m_bEnableAimAssist;
+	bool m_bEnablePitchLevelOut;
+
+	SHM5GameCamControls() = default;
+	~SHM5GameCamControls() = default;
 };

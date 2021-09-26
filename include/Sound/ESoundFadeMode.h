@@ -1,8 +1,8 @@
 #pragma once
 
-enum ESoundFadeMode : __int32
+enum ESoundFadeMode
 {
-    SOUND_FADEMODE_NONE = 0x0,
-    SOUND_FADEMODE_IN = 0x1,
-    SOUND_FADEMODE_OUT = 0x2
+	SOUND_FADEMODE_NONE = 0,
+	SOUND_FADEMODE_IN = 1,
+	SOUND_FADEMODE_OUT = 2
 };

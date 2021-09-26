@@ -1,10 +1,13 @@
 #pragma once
 
-struct alignas(2) SRoomInsideOutsideInfo
+struct SRoomInsideOutsideInfo
 {
-    unsigned __int16 nRoomId;
-    unsigned __int16 nAreaBoxId;
-    unsigned __int16 nRoomIdInside;
-    unsigned __int16 nRoomIdOutside;
-    bool bOutside;
+	unsigned short nRoomId;
+	unsigned short nAreaBoxId;
+	unsigned short nRoomIdInside;
+	unsigned short nRoomIdOutside;
+	bool bOutside;
+
+	SRoomInsideOutsideInfo() = default;
+	~SRoomInsideOutsideInfo() = default;
 };

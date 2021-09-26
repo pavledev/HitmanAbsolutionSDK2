@@ -1,6 +1,7 @@
 #pragma once
 
-class SCheatData
+struct SCheatData
 {
-
+	SCheatData() = default;
+	~SCheatData() = default;
 };

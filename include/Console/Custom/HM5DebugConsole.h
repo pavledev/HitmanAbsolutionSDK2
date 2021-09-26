@@ -6,7 +6,7 @@
 
 #define HM5_LOG(format, ...) fprintf(stdout, format, __VA_ARGS__)
 
-using namespace std;
+//using namespace std;
 
 class HM5DebugConsole
 {

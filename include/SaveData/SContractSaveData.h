@@ -1,11 +1,16 @@
 #pragma once
 
 #include "TArray.h"
-#include "SContractUnlockStatus.h"
 
-class SContractSaveData
+struct SContractUnlockStatus;
+
+struct SContractSaveData
 {
-public:
-    bool bTutorialPlayed;
-    TArray<SContractUnlockStatus> aLocalContractUnlockStatusData;
+	bool bTutorialPlayed;
+	TArray<SContractUnlockStatus> aLocalContractUnlockStatusData;
+
+	SContractSaveData(const SContractSaveData& __that);
+	SContractSaveData() = default;
+	~SContractSaveData() = default;
+	SContractSaveData& operator=(const SContractSaveData& __that);
 };

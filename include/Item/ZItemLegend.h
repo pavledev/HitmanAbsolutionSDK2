@@ -2,27 +2,31 @@
 
 #include "EUIText.h"
 #include "EControllerButton.h"
-#include "TMap.h"
-#include "ZString.h"
-#include "ZVariant.h"
+
+class ZString;
+class ZVariant;
+template <class A, class B> class TMap;
 
 class ZItemLegend
 {
 public:
-    EUIText m_eTextId;
-    EControllerButton m_eButton;
-    unsigned __int16 m_nItemId;
-    int m_nVisibilityMask;
+	enum EInputDevice
+	{
+		eAllInputDevices = -1,
+		eNone = 0,
+		eMouse = 1,
+		eKeyboard = 2,
+		eGamepad = 4
+	};
 
-    enum EInputDevice : unsigned __int32
-    {
-        eAllInputDevices = 0xFFFFFFFF,
-        eNone = 0x0,
-        eMouse = 0x1,
-        eKeyboard = 0x2,
-        eGamepad = 0x4
-    };
+	EUIText m_eTextId;
+	EControllerButton m_eButton;
+	unsigned short m_nItemId;
+	int m_nVisibilityMask;
 
-    virtual ~ZItemLegend();
-    virtual void GetInfo(TMap<ZString, ZVariant>*);
+	virtual ~ZItemLegend() = default;
+	virtual void GetInfo(TMap<ZString, ZVariant>& pInfo);
+
+	ZItemLegend() = default;
+	ZItemLegend(EUIText eTextId, EControllerButton eButton, int nVisibilityMask);
 };

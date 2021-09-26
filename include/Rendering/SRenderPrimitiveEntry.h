@@ -1,12 +1,22 @@
 #pragma once
 
-#include "ZRenderPrimitiveInstance.h"
+class IRenderPrimitive;
+class ZRenderGraphNode;
+class ZRenderMaterialInstance;
+class ZRenderPrimitiveInstance;
 
-class SRenderPrimitiveEntry
+struct SRenderPrimitiveEntry
 {
-public:
-    ZRenderPrimitiveInstance* m_pPrimitiveInstance;
-    IRenderPrimitive* m_pRenderPrimitive;
-    ZRenderGraphNode* m_pRenderGraphNode;
-    unsigned int nSortValue;
+	ZRenderPrimitiveInstance* m_pPrimitiveInstance;
+	IRenderPrimitive* m_pRenderPrimitive;
+	ZRenderGraphNode* m_pRenderGraphNode;
+	unsigned int nSortValue;
+
+	SRenderPrimitiveEntry() = default;
+	SRenderPrimitiveEntry(ZRenderPrimitiveInstance* pPrimitiveInstance, IRenderPrimitive* pRenderPrimitive, ZRenderGraphNode* pRenderGraphNode, ZRenderMaterialInstance* pMaterialInstance, unsigned char nLODFade, bool bUseFade, bool bSimpleShader);
+	~SRenderPrimitiveEntry() = default;
+	ZRenderGraphNode* GetRenderGraphNode();
+	IRenderPrimitive* GetRenderPrimitive();
+	void GetFadeParams(unsigned char& nLODFade, bool& bUseFade, bool& bSimpleShader);
+	bool operator<(const SRenderPrimitiveEntry& other);
 };

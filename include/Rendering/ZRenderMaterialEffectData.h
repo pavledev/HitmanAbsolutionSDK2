@@ -1,11 +1,15 @@
 #pragma once
 
-#include "ZRenderEffect.h"
+class ZRenderEffect;
 
 class ZRenderMaterialEffectData
 {
 public:
-    ZRenderEffect* m_pRenderEffect;
+	ZRenderEffect* m_pRenderEffect;
 
-    virtual ~ZRenderMaterialEffectData();
+	virtual ~ZRenderMaterialEffectData() = default;
+
+	ZRenderMaterialEffectData() = default;
+	ZRenderMaterialEffectData(ZRenderEffect* pRenderEffect);
+	ZRenderEffect* GetRenderEffect() const;
 };

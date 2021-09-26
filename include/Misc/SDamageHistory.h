@@ -2,9 +2,11 @@
 
 #include "ZGameTime.h"
 
-class SDamageHistory
+struct SDamageHistory
 {
-public:
-    float m_fDamage;
-    ZGameTime m_tTime;
+	float m_fDamage;
+	ZGameTime m_tTime;
+
+	SDamageHistory() = default;
+	~SDamageHistory() = default;
 };

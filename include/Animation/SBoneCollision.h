@@ -1,8 +1,11 @@
 #pragma once
 
-class SBoneCollision
+struct SBoneCollision
 {
-public:
-    unsigned __int8 m_nBoneId;
-    float m_nT;
+	unsigned char m_nBoneId;
+	float m_nT;
+
+	SBoneCollision(unsigned char nBone, float nT);
+	SBoneCollision() = default;
+	~SBoneCollision() = default;
 };

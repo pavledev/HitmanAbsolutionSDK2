@@ -1,23 +1,30 @@
 #pragma once
 
-#include "float4.h"
 #include "ZGameTime.h"
 #include "ZString.h"
 
-class ZSoundGroupTarget
+class ZSoundGroupInternal;
+struct float4;
+
+class __declspec(novtable) ZSoundGroupTarget
 {
 public:
-    struct ZSoundGroupInternal* m_pSoundGroupInternal;
-    bool m_bMutedBySoundGroup;
-    float m_fSoundGroupFadeLevel;
-    float m_fSoundGroupFadeDelta;
+	ZSoundGroupInternal* m_pSoundGroupInternal;
+	bool m_bMutedBySoundGroup;
+	float m_fSoundGroupFadeLevel;
+	float m_fSoundGroupFadeDelta;
 
-    virtual ~ZSoundGroupTarget();
-    virtual int GetPriority();
-    virtual float GetAudibility(bool);
-    virtual float GetSquaredDistanceToListener(const float4*);
-    virtual ZGameTime* GetTimestamp(ZGameTime* result);
-    virtual void StopTarget();
-    virtual ZString* GetSoundGroupTargetName(ZString* result);
-    virtual bool UpdateSoundGroupFade(bool, float, float);
+	virtual ~ZSoundGroupTarget() = default;
+	virtual int GetPriority() = 0;
+	virtual float GetAudibility(bool param1) = 0;
+	virtual float GetSquaredDistanceToListener(const float4& param1) = 0;
+	virtual ZGameTime GetTimestamp() = 0;
+	virtual void StopTarget() = 0;
+	virtual ZString GetSoundGroupTargetName() const = 0;
+	virtual bool UpdateSoundGroupFade(bool bMuted, float fFadeTime, float fDeltaTime);
+
+	ZSoundGroupTarget() = default;
+	void SetInitialSoundGroupFadeState(bool bMuted, float fFadeLevel, float fFadeDelta);
+	void AddToSoundGroup(ZSoundGroupInternal* pInternal);
+	void RemoveFromSoundGroup();
 };

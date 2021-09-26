@@ -1,9 +1,11 @@
 #pragma once
 
-class IRenderRefCount
+class __declspec(novtable) IRenderRefCount
 {
 public:
-    virtual ~IRenderRefCount();
-    virtual void AddRef();
-    virtual unsigned int Release();
+	virtual ~IRenderRefCount() = default;
+	virtual void AddRef() = 0;
+	virtual unsigned int Release() = 0;
+
+	IRenderRefCount() = default;
 };

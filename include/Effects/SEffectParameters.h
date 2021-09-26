@@ -2,11 +2,12 @@
 
 #include "ZRenderContext.h"
 
-class alignas(4) SEffectParameters
+struct __declspec(novtable) SEffectParameters
 {
-public:
-    bool m_bValid;
+	bool m_bValid;
 
-    virtual ~SEffectParameters();
-    virtual void Update(ZRenderEffect*);
+	virtual ~SEffectParameters() = default;
+	virtual void Update(ZRenderEffect* renderEffect) = 0;
+
+	SEffectParameters() = default;
 };

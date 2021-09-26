@@ -1,35 +1,38 @@
 #pragma once
 
 #include "ZVariant.h"
-#include "GFxValue.h"
 #include "TArray.h"
-#include "TMap.h"
 #include "ZVariantRef.h"
-#include "IScaleformExternalInterfaceHandler.h"
-#include "GFxMovieView.h"
+#include "ZString.h"
 
-class IScaleformExternalInterfaceArguments
+class GFxMovieView;
+class GFxValue;
+class IScaleformExternalInterfaceHandler;
+template <class A, class B> class TMap;
+
+class __declspec(novtable) IScaleformExternalInterfaceArguments
 {
 public:
-    virtual ~IScaleformExternalInterfaceArguments();
-    //virtual ZVariant* operator[](ZVariant* result, int); //original
-    virtual ZVariant operator[](int); //??? check
-    virtual int Count();
-    virtual int GetInt(int);
-    virtual float GetFloat(int);
-    virtual bool GetBool(int);
-    virtual ZString* GetString(ZString* result, int);
-    virtual bool IsDefined(int);
-    virtual const GFxValue* GetGFxValuePtr(int);
-    virtual bool HasString(int);
-    virtual TArray<int>* GetIntArray(TArray<int>* result, int);
-    virtual TArray<unsigned int>* GetUIntArray(TArray<unsigned int>* result, int);
-    virtual TArray<ZString>* GetStringArray(TArray<ZString>* result, int);
-    virtual void SetReturnValues(const TArray<ZString>*);
-    virtual void SetReturnValues(const TArray<TMap<ZString, ZVariant> >*);
-    virtual void SetReturnValues(const TArray<ZVariantRef>*);
-    virtual void SetReturnValue(const ZVariantRef);
-    virtual void SetReturnValue(const TMap<ZString, ZVariant>*);
-    virtual IScaleformExternalInterfaceHandler* GetHandler();
-    virtual GFxMovieView* GetMovieView();
+	virtual ~IScaleformExternalInterfaceArguments() = default;
+	virtual ZVariant operator[](int param1) const = 0;
+	virtual int Count() const = 0;
+	virtual int GetInt(int param1) = 0;
+	virtual float GetFloat(int param1) = 0;
+	virtual bool GetBool(int param1) = 0;
+	virtual ZString GetString(int param1) = 0;
+	virtual bool IsDefined(int param1) = 0;
+	virtual const GFxValue* GetGFxValuePtr(int param1) = 0;
+	virtual bool HasString(int param1) = 0;
+	virtual TArray<int> GetIntArray(int param1) = 0;
+	virtual TArray<unsigned int> GetUIntArray(int param1) = 0;
+	virtual TArray<ZString> GetStringArray(int param1) = 0;
+	virtual void SetReturnValues(const TArray<ZString>& array) = 0;
+	virtual void SetReturnValues(const TArray<TMap<ZString, ZVariant>>& array) = 0;
+	virtual void SetReturnValues(const TArray<ZVariantRef>& array) = 0;
+	virtual void SetReturnValue(const ZVariantRef variantRef) = 0;
+	virtual void SetReturnValue(const TMap<ZString, ZVariant>& map) = 0;
+	virtual IScaleformExternalInterfaceHandler* GetHandler() const = 0;
+	virtual GFxMovieView* GetMovieView() const = 0;
+
+	IScaleformExternalInterfaceArguments() = default;
 };

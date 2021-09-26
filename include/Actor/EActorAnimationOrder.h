@@ -1,17 +1,17 @@
 #pragma once
 
-enum EActorAnimationOrder : __int32
+enum EActorAnimationOrder
 {
-    AAO_None = 0x0,
-    AAO_Stand = 0x1,
-    AAO_Move = 0x2,
-    AAO_React = 0x3,
-    AAO_Act = 0x4,
-    AAO_MoveToAct = 0x5,
-    AAO_MoveToCover = 0x6,
-    AAO_ShootFromCover = 0x7,
-    AAO_PeekFromCover = 0x8,
-    AAO_Death = 0x9,
-    AAO_Impact = 0xA,
-    AAO_Controlled = 0xB
+	AAO_None = 0,
+	AAO_Stand = 1,
+	AAO_Move = 2,
+	AAO_React = 3,
+	AAO_Act = 4,
+	AAO_MoveToAct = 5,
+	AAO_MoveToCover = 6,
+	AAO_ShootFromCover = 7,
+	AAO_PeekFromCover = 8,
+	AAO_Death = 9,
+	AAO_Impact = 10,
+	AAO_Controlled = 11
 };

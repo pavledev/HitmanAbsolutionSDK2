@@ -3,9 +3,13 @@
 #include "STokenID.h"
 #include "SPropKitState.h"
 
-class SPropKitSaveData
+struct SPropKitSaveData
 {
-public:
-    STokenID m_ID;
-    SPropKitState m_State;
+	STokenID m_ID;
+	SPropKitState m_State;
+
+	SPropKitSaveData(const SPropKitSaveData& __that);
+	SPropKitSaveData() = default;
+	~SPropKitSaveData() = default;
+	SPropKitSaveData& operator=(const SPropKitSaveData& __that);
 };

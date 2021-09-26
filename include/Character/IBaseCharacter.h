@@ -1,22 +1,24 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "SHitInfo.h"
-#include "TEntityRef.h"
-#include "ZSpatialEntity.h"
+#include "ZEntityRef.h"
 
-class IBaseCharacter : public IComponentInterface
+class ZSpatialEntity;
+struct SHitInfo;
+template <class T> class TEntityRef;
+
+class __declspec(novtable) IBaseCharacter : public IComponentInterface
 {
 public:
-    virtual void YouGotHit(const SHitInfo*);
-    virtual bool CanProjectileHitCharacter(const SHitInfo*);
-    virtual unsigned __int16 GetCollisionLayer();
-    virtual bool RegisterAttachment(unsigned int, TEntityRef<ZSpatialEntity>);
-    virtual void UnregisterAttachment(unsigned int, TEntityRef<ZSpatialEntity>);
-    virtual bool IsRagdoll();
-    virtual ZEntityRef* GetLinkedEntityBase(ZEntityRef* result);
+	~IBaseCharacter() override = default;
+	virtual void YouGotHit(const SHitInfo& hitInfo) = 0;
+	virtual bool CanProjectileHitCharacter(const SHitInfo& hitInfo) = 0;
+	virtual unsigned short GetCollisionLayer() const = 0;
+	virtual bool RegisterAttachment(unsigned int param1, TEntityRef<ZSpatialEntity> entityRef) = 0;
+	virtual void UnregisterAttachment(unsigned int param1, TEntityRef<ZSpatialEntity> entityRef) = 0;
+	virtual bool IsRagdoll() const = 0;
+	virtual ZEntityRef GetLinkedEntityBase() const = 0;
 
-    IBaseCharacter();
-    IBaseCharacter(IBaseCharacter const&);
-    IBaseCharacter* operator=(IBaseCharacter const&);
+	static void RegisterType();
+	IBaseCharacter() = default;
 };

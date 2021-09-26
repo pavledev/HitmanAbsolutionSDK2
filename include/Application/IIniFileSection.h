@@ -3,11 +3,13 @@
 #include "ZString.h"
 #include "TEnumerator.h"
 
-class IIniFileSection
+class __declspec(novtable) IIniFileSection
 {
 public:
-    virtual ~IIniFileSection();
-    virtual ZString* GetName(ZString* result);
-    virtual ZString* GetValue(ZString* result, const ZString*);
-    virtual TEnumerator<ZString>* GetOptions(TEnumerator<ZString>* result);
+	virtual ~IIniFileSection() = default;
+	virtual ZString GetName() = 0;
+	virtual ZString GetValue(const ZString& string) = 0;
+	virtual TEnumerator<ZString> GetOptions() = 0;
+
+	IIniFileSection() = default;
 };

@@ -78,9 +78,6 @@
     <ClInclude Include="include\Camera\ECameraState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Camera\ECamFov.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Sound\ESOUND_3DROLLOFF_TYPE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -114,19 +111,10 @@
     <ClInclude Include="include\Weapon\EWeaponAnimationCategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Weapon\eWeaponAutoReloadState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Weapon\eWeaponOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Weapon\EWeaponSoundSetupSignal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Weapon\eWeaponType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Weapon\EWeaponUpgConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Weapon\EWeaponUpgradeIcon.h">
@@ -135,7 +123,7 @@
     <ClInclude Include="include\Weapon\EWeaponUpgradeUse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Animation\IRenderTextureResource.h">
+    <ClInclude Include="include\Rendering\IRenderTextureResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animation\IAnimatedActorListener.h">
@@ -145,15 +133,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animation\IHM5Animator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\SAnimBufferPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\SAnimCollision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\SAnimEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animation\SAnimNodeHitman.h">
@@ -352,12 +331,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\ERenderGlowTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\ERenderJobFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\ERenderJobFlagShifts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\ERenderLayer.h">
@@ -723,25 +696,16 @@
     <ClInclude Include="include\Sound\SSoundChannelUserData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Sound\SSoundPlayerHandleKey.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Sound\SSoundTriggerPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sound\SSoundVolumetricOcclusionData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Camera\SCameraCollision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Camera\SCameraCollisionVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Camera\SCameraPOI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Camera\SCameraState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Camera\SCameraUpdateEvent.h">
@@ -957,25 +921,13 @@
     <ClInclude Include="include\Animation\SFaceFXAnimationRef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Animation\SFacePoseChannelInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\SFacePoseDescriptor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Animation\SFacePoseFloatChannelCollection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\SFacePoseSectionInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animation\IBoneAnimator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Effects\SEffectConstantHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Effects\SEffectInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Effects\SEffectOverrideBlock.h">
@@ -1173,9 +1125,6 @@
     <ClInclude Include="include\Crowds\SCrowdActorSensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Crowds\SCrowdAnimData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Crowds\SCrowdCells.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1242,13 +1191,7 @@
     <ClInclude Include="include\Resources\SResourceHeaderHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Resources\SResourceHeaderHeaderEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Resources\SResourceLibraryEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Resources\SResourceReference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Morpheme\IMorphemeCutSequenceAnimatable.h">
@@ -1308,19 +1251,10 @@
     <ClInclude Include="include\Animation\ZHM5CCAnimDatabase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Morpheme\AimMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Camera\AutoRotationOnZoom.h">
+    <ClInclude Include="include\Aim\AimMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\ZSubRenderBufferManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Bin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Effects\DownSample2x2MinMaxPassParameters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Aim\EAimAssistMode.h">
@@ -1366,12 +1300,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animation\EAnimBlendMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Movement\EAISharedEventType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\EAttackChoice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Crowds\ECrowdFlowCandidates.h">
@@ -1443,28 +1371,13 @@
     <ClInclude Include="include\Inventory\SInventoryChangeInfoMKB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Inventory\SInventorySlotPref.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Camera\ICameraEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Actor\SActorHSState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Actor\SActorIndex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Actor\SActorSoundDefs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Actor\SActorVisibilityCheck.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Color\SColor3Modifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Color\SColor4Modifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Color\SColorRGB.h">
@@ -1620,9 +1533,6 @@
     <ClInclude Include="include\Entity\IEntityFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Inventory\EInventorySlotType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Item\IHM5Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1636,9 +1546,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Morpheme\SMorphemeData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Morpheme\SMorphemeDataImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Morpheme\MR.h">
@@ -1657,9 +1564,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Textures\STextureDesc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Textures\STextureModifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZSpatialEntity.h">
@@ -1710,9 +1614,6 @@
     <ClInclude Include="include\Aim\ZAimBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Action\ZInputAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Entity\ZSequenceEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1720,9 +1621,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Aim\SHM5AimInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation\EBoneAnimator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\IGateEntity.h">
@@ -1953,15 +1851,6 @@
     <ClInclude Include="include\Map\ZMapStep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Templates\ZFakeListNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Ray\SRayInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Ray\SRayResults.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Ray\ZRayQueryInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1969,12 +1858,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Ray\ZRayQueryOutputBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Templates\SFakeTreeNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Templates\SFakeNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Aim\SAimCandidate.h">
@@ -1998,9 +1881,6 @@
     <ClInclude Include="include\Animation\SSBAnim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Movement\EMovementType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Ray\IAsyncRayHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2008,12 +1888,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Ray\ERayDetailLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Ray\EHandleState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Inventory\SStoredSlotData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Collision\SBaseMovmentCollisionInfo.h">
@@ -2034,16 +1908,10 @@
     <ClInclude Include="include\Input\IHM5InputControlMapping.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Input\SControlSchemeMappings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Input\SGameInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Input\SGameplayInputControlBind.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Input\SGameStateForInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Input\SHM5InputControllerAnalog.h">
@@ -2142,25 +2010,10 @@
     <ClInclude Include="include\Physics\IDynamicPhysics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Ragdoll\SPhysBone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Sound\SItemPair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sequence\ISequenceTrack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Locomotion\SIdleAnimType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\SFloat4Modifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\SFloat2Modifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\SFloat3Modifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Console\ZConfigCommand.h">
@@ -2194,12 +2047,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\SDebugTextBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\EAnchorTypeHorizontal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\EAnchorTypeVertical.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\ZRenderDestination.h">
@@ -2262,9 +2109,6 @@
     <ClInclude Include="include\Rendering\ZRenderGraphNodeMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rendering\SFloatArrayModifer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Rendering\SRenderBinderBlock3Patch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2323,15 +2167,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\ZRenderPrimitiveConstructor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\SPrimTypeData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\ERenderCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\STraversalContextAlloc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\BinkDrawData.h">
@@ -2400,10 +2235,10 @@
     <ClInclude Include="include\Application\IIniFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Application\ZFilePath.h">
+    <ClInclude Include="include\IO\ZFilePath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Application\ZPath.h">
+    <ClInclude Include="include\IO\ZPath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Application\ZStringBuilder.h">
@@ -2436,9 +2271,6 @@
     <ClInclude Include="include\Templates\TScopedPointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Application\SteamInitResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Application\ZEngineAppCommon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2446,9 +2278,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Application\ZLoadingTransitionHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Application\WindowCreationParameters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Application\CCallback.h">
@@ -2460,9 +2289,6 @@
     <ClInclude Include="include\Application\GameOverlayActivated_t.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\DataDesc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\EActionType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2472,34 +2298,16 @@
     <ClInclude Include="include\Misc\EBaseMovementType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EBCAnimSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EBCBodyMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eBCCloseMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EBCState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\EBehaviorReturnCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EBehaviorTreeVariableType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EBlendNodeStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\ECCDUsage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ECCEmitterEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ECCLeeState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ECCNodeSubtype.h">
@@ -2514,16 +2322,7 @@
     <ClInclude Include="include\Misc\ECharacterCollidableLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\eCloseMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EClosetType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\ECollidablesType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ECommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ECompiledBehaviorType.h">
@@ -2541,34 +2340,7 @@
     <ClInclude Include="include\Misc\EControllerButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EControllerDirtyFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EControllerDirtyFlagShifts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EControlSchemes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\eCornerSide.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eCoverMoveType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eCoverOTSMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eCoverSize.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eCoverStance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ECPDoorLockType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ECPDoorMoveType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ECustomFlags.h">
@@ -2577,43 +2349,10 @@
     <ClInclude Include="include\Misc\EDefaultCollidableLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EDoorState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EDoorType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EDragBodyState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\eEdgeEnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\eExtraPlaneProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EFFXMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EFiberState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EFiberType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\EFilterMaskBit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EForceAspectRatioType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EForceDismountBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EForceDropDownDirection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EGait.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EGameEventArgType.h">
@@ -2622,16 +2361,10 @@
     <ClInclude Include="include\Misc\EGameTension.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\eGuideType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\EHitmanGState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EHM5BaseControllerType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EHM5DeadlyThrowType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EHM5GameInputFlag.h">
@@ -2643,12 +2376,6 @@
     <ClInclude Include="include\Misc\EHMAttentionType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EInitialState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eInputRepeaterMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\eItemHands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2658,19 +2385,10 @@
     <ClInclude Include="include\Misc\eItemType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EJointType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eJumpType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\EKnownEntityPoseType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EKnownEntityType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ELocoState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ELogState.h">
@@ -2679,37 +2397,22 @@
     <ClInclude Include="include\Misc\ELookAtConstraintType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EModifierOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\EMotionType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\eMoveDir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EMoveSpeed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EMoveType.h">
+    <ClInclude Include="include\Network\ENetworkControlParam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ENetworkControlParam.h">
+    <ClInclude Include="include\Network\ENetworkMoveStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ENetworkMoveStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ENetworkState.h">
+    <ClInclude Include="include\Network\ENetworkState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\eOnLedgeMoveType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EOpenDir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EOpenMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EOrderCompletionStatus.h">
@@ -2718,25 +2421,10 @@
     <ClInclude Include="include\Misc\EPathRequestStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EProjectionType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EQueryState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ERainPuddleSimulationType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EReadBufferType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\ERegionMask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\EResourceReferenceFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EResultType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ESBCamProfileBone.h">
@@ -2745,13 +2433,7 @@
     <ClInclude Include="include\Misc\ESBCinematicState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ESBHand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\ESBPose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ESBRecoil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ESBTagMode.h">
@@ -2766,31 +2448,7 @@
     <ClInclude Include="include\Misc\ESettingsParam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EShapeType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EShootingBalletState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EShowContent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ESlowDownState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ESpeed.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ESurrenderState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\ESustainPointState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ESyncEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EThrowType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ETrayCatchType.h">
@@ -2814,73 +2472,61 @@
     <ClInclude Include="include\Misc\EWindowStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GAllocDebugInfo.h">
+    <ClInclude Include="include\GFx\GAllocDebugInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GAtomicInt.h">
+    <ClInclude Include="include\GFx\GAtomicInt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GAtomicValueBase.h">
+    <ClInclude Include="include\GFx\GAtomicValueBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GaussBlurSep5PassParameters.h">
+    <ClInclude Include="include\GFx\GList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GList.h">
+    <ClInclude Include="include\GFx\GListNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GListNode.h">
+    <ClInclude Include="include\GFx\GLock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GLock.h">
+    <ClInclude Include="include\GFx\GMemoryHeap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GMemoryHeap.h">
+    <ClInclude Include="include\GFx\GNewOverrideBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GNewOverrideBase.h">
+    <ClInclude Include="include\GFx\GRefCountBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GRefCountBase.h">
+    <ClInclude Include="include\GFx\GRefCountBaseStatImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GRefCountBaseStatImpl.h">
+    <ClInclude Include="include\GFx\GRefCountImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GRefCountImpl.h">
+    <ClInclude Include="include\GFx\GRefCountImplCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GRefCountImplCore.h">
+    <ClInclude Include="include\GFx\GStat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GStat.h">
+    <ClInclude Include="include\GFx\GStatBag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GStatBag.h">
+    <ClInclude Include="include\GFx\GStatInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GStatInfo.h">
+    <ClInclude Include="include\GFx\GString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GString.h">
+    <ClInclude Include="include\GFx\GSysAllocBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\GSysAllocBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\GSysAllocPaged.h">
+    <ClInclude Include="include\GFx\GSysAllocPaged.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\HandReTargetMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\HeapDesc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\HeapInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\HeapTracer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\HM5Utils.h">
@@ -2892,19 +2538,13 @@
     <ClInclude Include="include\Misc\IActorAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IAllocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\IBaseConstraint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\IBoneCollidable.h">
+    <ClInclude Include="include\Physics\IBaseConstraint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\IBoolCondition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IComponentInterface.h">
+    <ClInclude Include="include\Component\IComponentInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\IEnumeratorImpl.h">
@@ -2913,10 +2553,10 @@
     <ClInclude Include="include\Misc\IEventConsumerCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IFixedConstraint.h">
+    <ClInclude Include="include\Physics\IFixedConstraint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IHM5ActionEntityListener.h">
+    <ClInclude Include="include\Action\IHM5ActionEntityListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\IHM5AmmoProperties.h">
@@ -2934,7 +2574,7 @@
     <ClInclude Include="include\Misc\IHM5ForceMovementCallBack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IHM5Outfit.h">
+    <ClInclude Include="include\Outfit\IHM5Outfit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\IJob.h">
@@ -2946,7 +2586,7 @@
     <ClInclude Include="include\Misc\IJobProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IListenerRegistrar.h">
+    <ClInclude Include="include\Sound\IListenerRegistrar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\InputControlNamesp.h">
@@ -2958,7 +2598,7 @@
     <ClInclude Include="include\Misc\ISharedPointerTarget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ISubtitledPlayer.h">
+    <ClInclude Include="include\Sound\ISubtitledPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ITriggerVolume.h">
@@ -2970,16 +2610,7 @@
     <ClInclude Include="include\Misc\IVariationInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IWaveBankData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\KeyInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\KeyType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\LimitHandler.h">
+    <ClInclude Include="include\Sound\IWaveBankData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\NMP.h">
@@ -2991,31 +2622,10 @@
     <ClInclude Include="include\Misc\OC3Ent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\POIType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\RangeAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\RootStats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\RunData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SActionRayResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\sAimFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SArgumentInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SAsyncData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\sAttacherBoneElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\sAutopilotTakedownMarker.h">
@@ -3024,40 +2634,19 @@
     <ClInclude Include="include\Misc\sBack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SBehavior_Waypoint.h">
+    <ClInclude Include="include\Behavior\SBehavior_Waypoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SBehaviorBase.h">
+    <ClInclude Include="include\Behavior\SBehaviorBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SBehaviorTreeContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SBinding.h">
+    <ClInclude Include="include\Behavior\SBehaviorTreeContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SBindPoseQV.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SBlendNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SCCEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SCharacterTagInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SCheckedPos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SChildNetworkInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SCinematicTags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SCollidingParticle.h">
@@ -3096,13 +2685,7 @@
     <ClInclude Include="include\Misc\SEntityStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SESEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SEventNotifyFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\sExitCoverInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SExplodeInfo.h">
@@ -3114,19 +2697,13 @@
     <ClInclude Include="include\Misc\sFeetInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SFiberState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\sFiberWireInfos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SFloat16.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SFloatModifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SFMODRolloffCurve.h">
+    <ClInclude Include="include\Sound\SFMODRolloffCurve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SGameEventArgs.h">
@@ -3192,16 +2769,7 @@
     <ClInclude Include="include\Misc\SInterfaceData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SInterpolatingParameter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SInvocationData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SIOIEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SLayerRepeatCountLimit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SLedgeAimInfo.h">
@@ -3217,21 +2785,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\sLedgeInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SLightCascadeCSMData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SLightPriorityQuery.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SLimits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SLoadingOutfit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SMetricState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\sMuzzleInfo.h">
@@ -3264,9 +2817,6 @@
     <ClInclude Include="include\Misc\sPelvisOffsetElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SPersistentState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SPinData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3274,9 +2824,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SPowerSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SPriorityNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SPropertyData.h">
@@ -3300,9 +2847,6 @@
     <ClInclude Include="include\Misc\SRecoilEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SReleasedItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SRoomInfoEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3312,25 +2856,19 @@
     <ClInclude Include="include\Misc\SRoomInsideOutsideInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SSafeZone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SSBAimInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SSBCExternalParametersData.h">
+    <ClInclude Include="include\Sound\SSBCExternalParametersData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SSBCExternalParametersProperties.h">
+    <ClInclude Include="include\Sound\SSBCExternalParametersProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SSBConfiguration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SSBFocus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SSearchNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SSettingsParamMultiplier.h">
@@ -3345,49 +2883,16 @@
     <ClInclude Include="include\Misc\SShootTargetEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\sSideCToCData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SSkinBlurPtrs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SSoftCollisionCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SSubsetData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SSubtitleRef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\StateFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\StatesBundle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\StateType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\StatInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\STempBufferEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\STempData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SThrowAnimInfo.h">
+    <ClInclude Include="include\Sound\SSubtitleRef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\STokenID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\STossParameters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\STrajectoryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\STurnAnim.h">
@@ -3405,46 +2910,37 @@
     <ClInclude Include="include\Misc\SVolumeBounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SWaveBankFXData.h">
+    <ClInclude Include="include\Sound\SWaveBankFXData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SWaveBankResourceData.h">
+    <ClInclude Include="include\Sound\SWaveBankResourceData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SWeaponControlFlags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SWigglerParams.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SWindowZone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\TeleportActionType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZActionMapTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ZActiveBehavior.h">
+    <ClInclude Include="include\Behavior\ZActiveBehavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZAsyncQueryReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZBehaviorEntityBase.h">
+    <ClInclude Include="include\Behavior\ZBehaviorEntityBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZBehaviorTreeVariable.h">
+    <ClInclude Include="include\Behavior\ZBehaviorTreeVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZCollisionLayerColorGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZCompiledBehaviorTree.h">
+    <ClInclude Include="include\Behavior\ZCompiledBehaviorTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZComponentCreateInfo.h">
+    <ClInclude Include="include\Component\ZComponentCreateInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZCurve.h">
@@ -3456,16 +2952,13 @@
     <ClInclude Include="include\Misc\ZDynamicFlashMovieResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZElementMarker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ZEnumerator.h">
+    <ClInclude Include="include\Path\ZElementMarker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZFiber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZFilterGroupMask.h">
+    <ClInclude Include="include\Physics\ZFilterGroupMask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZFixedArrayData.h">
@@ -3516,7 +3009,7 @@
     <ClInclude Include="include\Misc\ZHM5LooseTargetEncounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZHM5Outfit.h">
+    <ClInclude Include="include\Outfit\ZHM5Outfit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZHM5SBCinematicExecution.h">
@@ -3564,22 +3057,22 @@
     <ClInclude Include="include\Misc\ZParametricCurve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZPathfinder2.h">
+    <ClInclude Include="include\Path\ZPathfinder2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZPathfinderSearchState.h">
+    <ClInclude Include="include\Path\ZPathfinderSearchState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZPF5AsynchPathRequest.h">
+    <ClInclude Include="include\Path\ZPF5AsynchPathRequest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZPF5LineHitInfo.h">
+    <ClInclude Include="include\Path\ZPF5LineHitInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZPF5Location.h">
+    <ClInclude Include="include\Path\ZPF5Location.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZPF5Path.h">
+    <ClInclude Include="include\Path\ZPF5Path.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\ZPinFunctor.h">
@@ -3639,13 +3132,10 @@
     <ClInclude Include="include\Misc\ZVariant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZVariantRef.h">
+    <ClInclude Include="include\Sound\ZWaveBankData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\ZWaveBankData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ZWaveBankFSBData.h">
+    <ClInclude Include="include\Sound\ZWaveBankFSBData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Hooks\ZDebugConsoleHooks.h">
@@ -3655,9 +3145,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Input\ZInputActionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Action\ZActionMapTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Console\ZConfigCommandCB.h">
@@ -3702,33 +3189,6 @@
     <ClInclude Include="include\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Settings\Aspectratio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\DisplaySetting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\EDisplaySetting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\EQualityProfile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\EQualitySetting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\EyefinityInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\QualityOption.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\QualitySetting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Settings\Resolution.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Settings\ZGraphicsSettingsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3742,9 +3202,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Input\ZInputDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Input\CtrlInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\CheckPoint\ZCheckPointManager.h">
@@ -3780,7 +3237,7 @@
     <ClInclude Include="include\Misc\ZHM5ValueReceiver_Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\IMusicComposition.h">
+    <ClInclude Include="include\Sound\IMusicComposition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZActivatableRootEntity.h">
@@ -3808,9 +3265,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZActivationStateEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CheckPoint\SPendingCheckpointData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\CheckPoint\ZCheckPointFlow.h">
@@ -3891,9 +3345,6 @@
     <ClInclude Include="include\Content\ZShadowContentKitList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Content\SEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Content\ZContentKitMenuSetup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3936,9 +3387,6 @@
     <ClInclude Include="include\Content\EContentKitDLCInfoType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Content\SRuntimeItemResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Content\ZGlobalOutfitKit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3946,9 +3394,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Content\ZDLCDescriptor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Content\EWhenToShowDiscoverMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZRuntimeResourceIDEntity.h">
@@ -3981,12 +3426,6 @@
     <ClInclude Include="include\Actor\ECCActorEventDir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Weapon\ZHM5ItemCCWeapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Weapon\EUseTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Weapon\ECCWeaponAnimSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4012,9 +3451,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sensor\ZSharedSensorDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Sensor\SVisibilitySetting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sensor\ZSharedSoundSensor.h">
@@ -4047,19 +3483,10 @@
     <ClInclude Include="include\Grid\ZGridJob.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Grid\EPriority.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Grid\ZGridSearchIterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Grid\SSearchItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\ZBitArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\ZBitRef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Grid\ZGridFloatField.h">
@@ -4068,34 +3495,13 @@
     <ClInclude Include="include\Sensor\ZSharedHitmanSensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Sensor\SShotRecord.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Sensor\ShitmanSensorRadarBlip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Indicator\ZHM5IndicatorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Indicator\SIndicator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Indicator\SInternalIndicator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Indicator\SHudIndicator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Indicator\EIndicatorType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Indicator\EIndicatorHeight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Sensor\ZSharedDeadBodySensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Sensor\SDeadBodyInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sensor\ZSharedCoverSensor.h">
@@ -4113,16 +3519,7 @@
     <ClInclude Include="include\Sensor\ZSocialSensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Sensor\SSocialActorData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Sensor\ZSocialActor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Sensor\ESocialActorState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Sensor\ESocialInteractionType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\SCombatTimer.h">
@@ -4132,9 +3529,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sensor\ZDangerSensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Sensor\SDisturbance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sensor\ZShootTargetSensor.h">
@@ -4158,12 +3552,6 @@
     <ClInclude Include="include\GameStats\ELastSoundTension.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GameStats\EAchievement40State.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GameStats\SForwardSpawnTempData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\AI\ZAIGameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4177,9 +3565,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZGameStatsEntityBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\SActorNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Misc\INodeRatingDebug.h">
@@ -4215,15 +3600,6 @@
     <ClInclude Include="include\Actor\ZActorDialogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Actor\ESpeakStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Actor\SSpeakEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Actor\SVoiceCooldownEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Combat\ZCombatDialogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4231,9 +3607,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Combat\ZCloseCombatDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Combat\ZCombatDialogManagerInternal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Dialog\SDialogDescData.h">
@@ -4249,9 +3622,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Combat\ZCombatSituationMember.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Combat\EFleeRuleState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Combat\ZHandleVentGroup.h">
@@ -4276,9 +3646,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Combat\EHumanShieldSpeechState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Combat\SCombatHazardZone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Combat\ZGuardPointGroup.h">
@@ -4320,12 +3687,6 @@
     <ClInclude Include="include\Combat\ECombatZoneState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Combat\EHumanShieldCombatState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Combat\SCombatInformation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Combat\ZCombatTacticalHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4336,15 +3697,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Dialog\ECombatDialogType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Dialog\EDialogGroupType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Dialog\SDialogGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Dialog\SDialogInformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Dialog\SDialogPendingData.h">
@@ -4368,16 +3720,10 @@
     <ClInclude Include="include\Rendering\SVertexGenericBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rendering\Offsets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Actor\SActorEventEmitterState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Actor\ZActorEventEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Actor\ZActorCompare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Dialog\SDialogEvalParams.h">
@@ -4428,28 +3774,13 @@
     <ClInclude Include="include\GFx\GFxValue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GFx\ObjectInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\GFx\GFxMovieRoot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GFx\ValueType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GFx\ValueUnion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Misc\EScaleMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GFx\GFxEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GFx\GFxFunctionHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GFx\Params.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GFx\GFxMovieView.h">
@@ -4527,9 +3858,6 @@
     <ClInclude Include="include\HUD\HUDButtonDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\HUD\SButtonStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\HUD\EButtonDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4539,46 +3867,16 @@
     <ClInclude Include="include\Misc\SPromptToDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\EPromptState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\HUD\ECrossHairType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\HUD\ZAttentionHUD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\HUD\SAttentionMeterInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\EThreatType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\EAttentionMeterState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\SAttentionHudDataElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\SShootinBalletStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\HUD\ZHM5HUDFadeHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\HUD\SActorInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\SWeaponStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Inventory\UserFBInventoryInfoNamesp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\SIconInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\SPushNotification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\HUD\EPushNotificationType.h">
@@ -4602,15 +3900,6 @@
     <ClInclude Include="include\Entity\EHintMessageSoundType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\HUD\SValueTween.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\State.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HUD\SBreadcrumb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\HUD\ZShowBreadcrumbIcon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4623,28 +3912,10 @@
     <ClInclude Include="include\Input\ZUIButtonMapper_Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Input\ResetStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\UI\ZGameWideUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\ZGameWideUIScaleformHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\SDialogData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\EDialogOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\EDialogIcon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\EDialogContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\EDialogResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\AI\SAISharedEvent.h">
@@ -4713,9 +3984,6 @@
     <ClInclude Include="include\Player\ZSimpleModuleBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Player\ZComponentInfoBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Player\ZConfiguration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4729,15 +3997,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\OSD\IHM5OSDDisplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OSD\SSpriteInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OSD\SSpriteBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OSD\SSpriteData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZEntitySceneContext.h">
@@ -4767,9 +4026,6 @@
     <ClInclude Include="include\Misc\ZHM5IngameIconsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Misc\SIconElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Misc\SGameStateForUserFeedback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4789,15 +4045,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Entity\ZKnownEntityContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Entity\SLink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Entity\SHashNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Entity\ZActorKnownEntitiesEnumerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Templates\TTypeIDHelper.h">
@@ -4822,9 +4069,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\ZUIOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\Values.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\_EUIOptionKey.h">
@@ -4887,9 +4131,6 @@
     <ClInclude Include="include\SaveData\SDLCItemSaveData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SaveData\EDiscoverState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\SaveData\SMiscSaveData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4914,54 +4155,960 @@
     <ClInclude Include="include\Console\Custom\HM5DebugConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Resources\ZResourceHeaderReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\ZAIState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IO\IBaseInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IO\IInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IO\IOutputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IO\ZFileInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IO\ZRefCount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\SHeaderLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\SHeaderLibraryChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Singletons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Serializer\ZBinaryDeserializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Serializer\ICustomDeserializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ZResourceLibraryLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ZResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TMultiHashMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\EResourceLoadStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Weapon\ZHM5ItemCCWeapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Menu\ZMenuGalleryEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Menu\ZMenuGalleryItemEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Action\ZHM5ActionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZAABBTreeNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TSListIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Collision\ZHM5CollisionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Ray\ERayLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZHM5SBTargetPropManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Actor\SPlaybackOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Actor\EActorDialogTrack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TMaxArrayRef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\ZMaxArrayRefData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Weapon\MenuWeaponUpgradeData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Effects\SCCEffectSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Weapon\EWeaponSetLocation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ESoundAmbienceOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SSoundAmbienceDynamicParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundGroupInternal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ESOUND_MAXAUDIBLEBEHAVIOR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundPersistentPlayerChannel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicChannel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZDSPHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZDSPPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZNonCopyable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicSoundHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicSegment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicSegmentData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTimeSignature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTrackData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTrackEntryData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTrackVariationData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\IMusicUpdateable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicPlaylistScheduler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicPlaylistData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicPlaylistNodeData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\EMusicPlaylistPlayType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicStingerData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\EMusicPlayStartType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZRandomIndexSelector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicPlaylistSchedulerItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TTuple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicCrossFader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicSegmentCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicPlayTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\EMusicPlayGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicEventBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZCompositionEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTrackPlayData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicCompositionData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TSparseShortArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTransition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\EMusicTransitionType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\EMusicTransitionFadeType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicPlaylistEndBehavior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicTrackExposingGroupData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\EMusicTrackExposingType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SMusicGameCueData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SSoundPlayingSoundInfoInternal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZDataRecorder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\IFrameCycleUpdateable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundGlobalReverb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SSoundListenerData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundFlyByTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundChannelGroupProxy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundLooper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundWavebankPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZSoundOcclusionInternal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SSoundOcclusionQuad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZListenerDistanceMeasurer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SSoundMasterPlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ESoundLevelCategories.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ZMusicChannelGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\ESoundPlayerPendingResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sound\SSoundPhysicsEventParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Situation\SPropagationInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sensor\SDistanceModifiers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ZBufferBlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\SScratchMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ZDebugRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ZRenderAsyncUpdateRenderPrimitiveProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\IRenderPrimitiveBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Collision\SColiBoxHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderBinderBlock3PatchIndex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ERenderInputElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ERenderInputClassification.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\EMaterialBlendState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\EMaterialRasterizerState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\EMaterialDepthStencilState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ZRenderConstBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderRuntimePrimitiveInstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\IAmdDxExtQuadBufferStereo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\IAmdDxExtInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderRecordedDrawCmdBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderRecordRingBufferHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderRecordRingBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderRecordRingBufferReservation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ETempBufferAllocLockMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZVTablePaddingRemover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ZRenderGraphNodeRainSurfaceSimulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ERenderPrimitiveType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity\ILightEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ZRenderGraphNodeDestination.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SBinderBlockPatchState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity\ZMirrorEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderPostfilterContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderShadowUpdateContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\S_cbSharedPerViewData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\S_cbSharedLightData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ETraversalMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderDrawContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Crowds\SCrowdDrawData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SScatterDrawInstanceSort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SScatterDrawInstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderPrimitiveMeshInit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderPrimitiveMeshData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\ZRenderMaterialBinderBlock3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SBinderBlockTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SBinderBlockDesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SBinderBlockParamDesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SBinderBlockState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZRPropertyReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ZUnsafeResourceReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\SPrimObjectHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SPrims.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\SPrimHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderMappedTexture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SRenderMappedTexture3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player\EHitmanPermissionFlag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player\eHitmanPermissionReason.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Particles\SDeadParticle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Particles\ParticleControllerJobEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Particles\ZParticleContainerEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Combat\SCloseCombatEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\Enumeration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\EActBodyType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\ECoverPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\SCoverActInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\SRepositionCapabilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Math\ERoundOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\EControlledStates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\STransitionParamsRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\STransitionParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Locomotion\ELocomotionTransition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Network\ENetworkEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\EHM5AnalogGameInputValues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\ZInputTokenStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TArrayEnumerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HUD\EHUDElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GRect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxExporterInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GViewport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GMatrix3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GMatrix2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GPoint3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxRenderConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GPtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GRendererEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GRenderTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxLogBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFSCommandHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxExternalInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFileOpenerBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFileConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxImageCreator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontCacheManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontCacheManagerImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontLibImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxFontMapImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxTaskManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxPNGSupportBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GImageBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GArrayDefaultPolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GRefCountBaseNTS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GRefCountNTSImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\SGameStatsWeapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Weapon\EWeaponSpecialSituation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EGSBodyPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EGSKillSituation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EKillType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EActionKillsEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EStealthSituation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EGSExplodingPropType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStats\EGSKillVictim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TListIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\Job.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EJobType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\IClassType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SNamedPropertyInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZConstructorInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SDelegateBaseInvoker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SBaseClassInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SInputPinEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZGenericMemberFunctionTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZConstructorRef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\IArrayType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\IContainerType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SContainerTypeVTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Path\ZChunkAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Path\SPathPointData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Path\SPathCorner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\OSuite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\User\ZUserProfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\User\SUserProfileSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\User\EUserSettingBoolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\User\EControllerSensitivity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\User\EMovementControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\User\ESignInState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SDLCItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EDLCKind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EDLCItemState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Animation\BoneId.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\eCoverEdge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior\ZBehaviorTreeEvaluator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior\SBehaviorTreeEvaluationLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior\SBehaviorTreeEvaluationLogEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior\SReactOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior\SActOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior\SOrderParamsBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\IAABBTreeVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Situation\ZSituationInstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\eNeigbourState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EGameFlagForUserFeedback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EDynamicVariableType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity\SDecalCreationContextInternal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity\EEntityTypeMapFlags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Physics\EFabricColliderTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Collision\ShootColiId.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EObjectiveType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\ZSPUTransitionClip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\ZSPUAnimationClip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\EGait.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\ESpeed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\ESyncEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DirectX\d3dx11effect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Dialog\SDialogInstanceData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Crowds\ZCrowdRagdollManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Crowds\ZCrowdRagdoll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TDCBZArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Crowds\ECrowdActorType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Crowds\CrowdMapImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\ZSPUAnimationLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Content\ZContentKitHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Templates\TMapValueEnumerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Camera\SHM5GameCamTransition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Camera\SCameraUpdate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Animation\SFacePoseChannel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Animation\SPoseBone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SStandOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EBooleanOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EStandRepositionStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SMoveOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SMoveSpeedConfiguration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\EMoveEndState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SMoveToCoverParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SPeekFromCoverParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SShootFromCoverParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SControlledOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Locomotion\ZCCLeeLocomotion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\SBoneScalesList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\STemplatedTypeName1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\STemplatedTypeName2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\SMorphemeNetworkCreationData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SFPSLocalState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Morpheme\SIOIAttribDataTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GFx\GFxLogConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SVertexDecal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SBorderGateInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SVertexW1Decal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\SVertexW4Decal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Physics\IBoneCollidable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\ZActionMapTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\ZInputAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SReactOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\SActOrderParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Crowds\EPushResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Grid\ZEnumerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Inventory\IHM5ItemAmmo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Locomotion\STurnOnSpotAnim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Locomotion\PullToAngle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Network\ENetworkRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\ZVariantRef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\sAttacherBoneElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hooks\MinHookMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Weapon\ZHM5ItemAmmo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Menu\Custom\PropsInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IComponentInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SPropertyInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\STypeFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TrajectoryControlBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\trampoline_hook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BaseAddresses.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IHM5ActionEntityListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\IHM5BaseCharacter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player\ZHitman5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entity\ZSpatialEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\ZHM5BaseCharacter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Console\ZConfigCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Console\ZDebugConsole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Console\ZCyclicBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ImGui\imgui.cpp">
@@ -4991,34 +5138,7 @@
     <ClCompile Include="src\Hooks\ZDebugConsoleHooks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Outfit\ZOutfitManagerEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Actor\ZActor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ZPathFinder2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ZPF5Location.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SSharedEntityKnowledge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Camera\ZHM5MainCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HUD\ZHUDManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Math\float4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entity\ZEntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Menu\Custom\ActorsInfo.cpp">
@@ -5039,37 +5159,13 @@
     <ClCompile Include="src\Menu\Custom\GameStatsInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Resources\ZResourcePtr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Misc\ZUserFeedbackManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Misc\ZHM5TimerToOSDManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Misc\ZHM5IngameMessageBarManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Menu\Custom\NearestActorsInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Camera\ZHM5CameraBaseFunc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Misc\ZKnowledge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entity\ZEntityRef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Menu\Custom\ItemsInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Menu\Custom\Cheats.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\UI\ZUIOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Menu\Custom\UIOptions.cpp">
@@ -5079,6 +5175,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Console\Custom\HM5DebugConsole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Singletons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\TSList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\TSListIterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\TBinaryTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\TBinaryTreeIterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\TTypeIDHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Menu\Custom\PropsInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

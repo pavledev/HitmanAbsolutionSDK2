@@ -2,8 +2,7 @@
 
 #include "imgui.h"
 #include "ZLevelManager.h"
-#include "Globals.h"
-#include "BaseAddresses.h"
+#include "Singletons.h"
 
 struct Cheats
 {

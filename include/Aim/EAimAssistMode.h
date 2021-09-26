@@ -1,8 +1,8 @@
 #pragma once
 
-enum EAimAssistMode : __int32
+enum EAimAssistMode
 {
-    eAimAssistDefault = 0x0,
-    eAimAssistShootingBallet = 0x1,
-    eAimAssistSniper = 0x2
+	eAimAssistDefault = 0,
+	eAimAssistShootingBallet = 1,
+	eAimAssistSniper = 2
 };

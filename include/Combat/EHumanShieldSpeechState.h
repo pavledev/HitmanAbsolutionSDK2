@@ -1,12 +1,12 @@
 #pragma once
 
-enum EHumanShieldSpeechState : __int32
+enum EHumanShieldSpeechState
 {
-    HMSS_FirstWarning = 0x0,
-    HMSS_SecondWarningVictim = 0x1,
-    HMSS_SecondWarning = 0x2,
-    HMSS_ThirdWarning = 0x3,
-    HMSS_FlankTarget = 0x4,
-    HMSS_TakeDown = 0x5,
-    HMSS_Done = 0x6
+	HMSS_FirstWarning = 0,
+	HMSS_SecondWarningVictim = 1,
+	HMSS_SecondWarning = 2,
+	HMSS_ThirdWarning = 3,
+	HMSS_FlankTarget = 4,
+	HMSS_TakeDown = 5,
+	HMSS_Done = 6
 };

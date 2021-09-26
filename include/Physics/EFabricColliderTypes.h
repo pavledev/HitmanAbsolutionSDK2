@@ -1,0 +1,9 @@
+#pragma once
+
+enum EFabricColliderTypes
+{
+	FABRIC_COLLIDER_CAPSULE = 0,
+	FABRIC_COLLIDER_SPHERE = 1,
+	FABRIC_COLLIDER_PLANE = 2,
+	FABRIC_COLLIDER_TYPE_CNT = 3
+};

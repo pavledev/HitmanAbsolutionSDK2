@@ -2,10 +2,13 @@
 
 #include "SVector3.h"
 
-class alignas(4) sLedgeInfo
+struct sLedgeInfo
 {
-public:
-    SVector3 m_vPelvisPushDir;
-    float m_fClavRot;
-    bool m_bRetargetFeet;
+	SVector3 m_vPelvisPushDir;
+	float m_fClavRot;
+	bool m_bRetargetFeet;
+
+	sLedgeInfo() = default;
+	~sLedgeInfo() = default;
+	sLedgeInfo& operator=(sLedgeInfo& other);
 };

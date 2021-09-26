@@ -1,8 +1,11 @@
 #pragma once
 
-template<class A, class B>
+template <class A, class B>
 class TStack
 {
 public:
     B m_container;
+
+    TStack() = default;
+    ~TStack() = default;
 };

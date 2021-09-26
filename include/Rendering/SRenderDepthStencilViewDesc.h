@@ -4,11 +4,21 @@
 
 struct SRenderDepthStencilViewDesc
 {
-    ERenderFormat eFormat;
-    SRenderShaderResourceViewDesc::EViewDimension eViewDimension;
+	enum EViewDimension
+	{
+		VIEW_DIMENSION_TEXTURE2D = 1,
+		VIEW_DIMENSION_TEXTURE2DMS = 2
+	};
 
-    struct SViewTexture2D
-    {
-        unsigned int nMipSlice;
-    } viewTexture2D;
+	struct SViewTexture2D
+	{
+		unsigned int nMipSlice;
+	};
+
+	ERenderFormat eFormat;
+	EViewDimension eViewDimension;
+	SViewTexture2D viewTexture2D;
+
+	SRenderDepthStencilViewDesc() = default;
+	~SRenderDepthStencilViewDesc() = default;
 };

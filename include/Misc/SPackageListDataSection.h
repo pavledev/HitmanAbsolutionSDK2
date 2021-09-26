@@ -1,11 +1,14 @@
 #pragma once
 
 #include "TArray.h"
-#include "ZString.h"
 
-class SPackageListDataSection
+class ZString;
+
+struct SPackageListDataSection
 {
-public:
-    TArray<ZString> sceneResourceIDs;
-    TArray<ZString> resources;
+	TArray<ZString> sceneResourceIDs;
+	TArray<ZString> resources;
+
+	SPackageListDataSection() = default;
+	~SPackageListDataSection() = default;
 };

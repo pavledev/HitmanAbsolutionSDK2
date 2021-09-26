@@ -1,14 +1,20 @@
 #pragma once
 
-#include "ICollisionManager.h"
+class ICollisionManager;
 
-class alignas(4) ZCollisionLayerColorGetter
+class ZCollisionLayerColorGetter
 {
 public:
-    ICollisionManager* m_pColMan;
-    unsigned int m_nColorOverride;
-    __int8 m_bIsInWorld : 1;
-    __int8 m_bIsSleeping : 1;
-    __int8 m_bIsStatic : 1;
-    __int8 m_bStopMode : 1;
+	ICollisionManager* m_pColMan;
+	unsigned int m_nColorOverride;
+	bool m_bIsInWorld : 1;
+	bool m_bIsSleeping : 1;
+	bool m_bIsStatic : 1;
+	bool m_bStopMode : 1;
+
+	static const unsigned int DEFALUT_OVERRIDE_COLOR;
+
+	ZCollisionLayerColorGetter() = default;
+	ZCollisionLayerColorGetter(const unsigned int nColorOverride);
+	~ZCollisionLayerColorGetter() = default;
 };

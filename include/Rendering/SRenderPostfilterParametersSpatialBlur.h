@@ -3,11 +3,13 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector3.h"
 
-class SRenderPostfilterParametersSpatialBlur : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersSpatialBlur : SRenderPostfilterParametersBase
 {
-public:
-    SVector3 m_vCenter;
-    float m_fBlurStart;
-    float m_fBlurFade;
-    float m_fBlurriness;
+	SVector3 m_vCenter;
+	float m_fBlurStart;
+	float m_fBlurFade;
+	float m_fBlurriness;
+
+	SRenderPostfilterParametersSpatialBlur() = default;
+	~SRenderPostfilterParametersSpatialBlur() = default;
 };

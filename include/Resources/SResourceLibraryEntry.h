@@ -1,10 +1,12 @@
 #pragma once
 
-#include "ZResourceStub.h"
+class ZResourceStub;
 
-class SResourceLibraryEntry
+struct SResourceLibraryEntry
 {
-public:
-    ZResourceStub* pStub;
-    unsigned int nDataSize;
+	ZResourceStub* pStub;
+	unsigned int nDataSize;
+
+	SResourceLibraryEntry() = default;
+	~SResourceLibraryEntry() = default;
 };

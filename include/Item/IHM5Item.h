@@ -1,62 +1,76 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ZItemFactoryEntity.h"
 #include "eItemSize.h"
 #include "eItemHands.h"
 #include "eItemType.h"
 #include "TEntityRef.h"
-#include "ZGeomEntity.h"
-#include "ZLinkedEntity.h"
-#include "SCollisionInfo.h"
-#include "ZDynamicFlashMovieResource.h"
-#include "IPhysicsAccessor.h"
-#include "ZContentKitEntity.h"
+#include "SMatrix.h"
+#include "TResourcePtr.h"
+#include "ZEntityRef.h"
+#include "ZString.h"
 
-class IHM5Item : public IComponentInterface
+struct SVector2;
+class IPhysicsAccessor;
+class ZContentKitEntity;
+class ZDynamicFlashMovieResource;
+class ZGeomEntity;
+class ZItemFactoryEntity;
+class ZLinkedEntity;
+class ZPrimitiveContainerEntity;
+class ZSpatialEntity;
+struct SCollisionInfo;
+struct STokenID;
+struct float4;
+
+class __declspec(novtable) IHM5Item : public IComponentInterface
 {
 public:
-    virtual void OnFactoryContructed(TEntityRef<ZItemFactoryEntity>);
-    virtual eItemSize GetItemSize();
-    virtual eItemHands GetItemHands();
-    virtual eItemHands GetItemHandsCoverAnimLayer();
-    virtual eItemType GetItemType();
-    virtual const ZString* GetItemName();
-    virtual ZString* GetItemTypeName(ZString* result);
-    virtual bool IsInventoryItem();
-    virtual bool IsInspectItem();
-    virtual void OnAttachItem(const ZEntityRef*);
-    virtual void OnReleaseItem(bool);
-    virtual void OnThrowItem(const float4*, const float4*);
-    virtual void OnHolsterItem(const ZEntityRef*);
-    virtual void EnablePickup(bool);
-    virtual void ShowItem(bool);
-    virtual bool ItemHidden();
-    virtual TEntityRef<ZSpatialEntity>* GetSpatialEntity(TEntityRef<ZSpatialEntity>* result);
-    virtual TEntityRef<ZGeomEntity>* GetGeomEntity(TEntityRef<ZGeomEntity>* result);
-    virtual ZLinkedEntity* GetLinkedEntity();
-    virtual ZPrimitiveContainerEntity* GetPrimitiveContainerEntity();
-    virtual const ZEntityRef* GetOwner();
-    virtual void SetOwner(ZEntityRef);
-    virtual void RemoveItemFromPhysicsWorld();
-    virtual ZString* GetDebugName(ZString* result);
-    virtual void Reset();
-    virtual TEntityRef<ZSpatialEntity>* GetHandAttacher(TEntityRef<ZSpatialEntity>* result);
-    virtual SMatrix* GetHandAttacherOffset(SMatrix* result);
-    virtual void SetAIPerceptable(bool);
-    virtual void SetThrown();
-    virtual bool IsThrown();
-    virtual void OnCollision(const SCollisionInfo*, bool);
-    virtual SMatrix* GetMirroredGround(SMatrix* result);
-    virtual bool IsPercievedAsWeapon();
-    virtual bool CanBeDualWielded();
-    virtual TResourcePtr<ZDynamicFlashMovieResource>* GetHUDIcon(TResourcePtr<ZDynamicFlashMovieResource>* result);
-    virtual TResourcePtr<ZDynamicFlashMovieResource>* GetHUDSilencerIcon(TResourcePtr<ZDynamicFlashMovieResource>* result);
-    virtual const SVector2* GetSilencerPos();
-    virtual TEntityRef<IPhysicsAccessor>* GetPhysicsAccessor(TEntityRef<IPhysicsAccessor>* result);
-    virtual void SetFactoryResource(const TResourcePtr<IHM5Item>*);
-    virtual const STokenID* GetTokenID();
-    virtual TEntityRef<ZContentKitEntity>* GetContentKitEntity(TEntityRef<ZContentKitEntity>* result);
-    virtual void ContentKitEntityRetrieved();
-    virtual ZEntityRef* GetItemEntity(ZEntityRef* result);
+	~IHM5Item() override = default;
+	virtual void OnFactoryContructed(TEntityRef<ZItemFactoryEntity> entityRef) = 0;
+	virtual eItemSize GetItemSize() const = 0;
+	virtual eItemHands GetItemHands() const = 0;
+	virtual eItemHands GetItemHandsCoverAnimLayer() const = 0;
+	virtual eItemType GetItemType() const = 0;
+	virtual const ZString& GetItemName() const = 0;
+	virtual ZString GetItemTypeName() const = 0;
+	virtual bool IsInventoryItem() const = 0;
+	virtual bool IsInspectItem() const = 0;
+	virtual void OnAttachItem(const ZEntityRef& entityRef) = 0;
+	virtual void OnReleaseItem(bool param1) = 0;
+	virtual void OnThrowItem(const float4& param1, const float4& param2) = 0;
+	virtual void OnHolsterItem(const ZEntityRef& entityRef) = 0;
+	virtual void EnablePickup(bool param1) = 0;
+	virtual void ShowItem(bool param1) = 0;
+	virtual bool ItemHidden() const = 0;
+	virtual TEntityRef<ZSpatialEntity> GetSpatialEntity() const = 0;
+	virtual TEntityRef<ZGeomEntity> GetGeomEntity() const = 0;
+	virtual ZLinkedEntity* GetLinkedEntity() const = 0;
+	virtual ZPrimitiveContainerEntity* GetPrimitiveContainerEntity() const = 0;
+	virtual const ZEntityRef& GetOwner() const = 0;
+	virtual void SetOwner(ZEntityRef entityRef) = 0;
+	virtual void RemoveItemFromPhysicsWorld() = 0;
+	virtual ZString GetDebugName() const = 0;
+	virtual void Reset() = 0;
+	virtual TEntityRef<ZSpatialEntity> GetHandAttacher() const = 0;
+	virtual SMatrix GetHandAttacherOffset() const = 0;
+	virtual void SetAIPerceptable(bool param1) = 0;
+	virtual void SetThrown() = 0;
+	virtual bool IsThrown() const = 0;
+	virtual void OnCollision(const SCollisionInfo& collisionInfo, bool param2) = 0;
+	virtual SMatrix GetMirroredGround() const = 0;
+	virtual bool IsPercievedAsWeapon() const = 0;
+	virtual bool CanBeDualWielded() const = 0;
+	virtual TResourcePtr<ZDynamicFlashMovieResource> GetHUDIcon() const = 0;
+	virtual TResourcePtr<ZDynamicFlashMovieResource> GetHUDSilencerIcon() const = 0;
+	virtual const SVector2& GetSilencerPos() const = 0;
+	virtual TEntityRef<IPhysicsAccessor> GetPhysicsAccessor() const = 0;
+	virtual void SetFactoryResource(const TResourcePtr<IHM5Item>& resourcePtr) = 0;
+	virtual const STokenID& GetTokenID() const = 0;
+	virtual TEntityRef<ZContentKitEntity> GetContentKitEntity() const = 0;
+	virtual void ContentKitEntityRetrieved() = 0;
+	virtual ZEntityRef GetItemEntity() const = 0;
+
+	static void RegisterType();
+	IHM5Item() = default;
 };

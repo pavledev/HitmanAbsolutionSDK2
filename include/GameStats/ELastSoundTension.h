@@ -1,10 +1,10 @@
 #pragma once
 
-enum ELastSoundTension : __int32
+enum ELastSoundTension
 {
-    EST_Unknown = 0x0,
-    EST_Ambient = 0x1,
-    EST_Yellow = 0x2,
-    EST_Orange = 0x3,
-    EST_Red = 0x4
+	EST_Unknown = 0,
+	EST_Ambient = 1,
+	EST_Yellow = 2,
+	EST_Orange = 3,
+	EST_Red = 4
 };

@@ -6,12 +6,14 @@
 
 #include "ZInputActionManager.h"
 #include "ZInputDeviceManager.h"
+#include "ZHM5CollisionManager.h"
 
 #include "DebugConsole.h"
 #include "PlayerInfo.h"
 #include "Globals.h"
 #include "ActorsInfo.h"
 #include "ItemsInfo.h"
+#include "PropsInfo.h"
 #include "HUDInfo.h"
 #include "GameStatsInfo.h"
 #include "Cheats.h"
@@ -25,18 +27,20 @@ public:
 	bool showPlayerInfo = false;
 	bool showActorsInfo = false;
 	bool showItemsInfo = false;
+	bool showPropsInfo = false;
 	bool showHUDInfo = false;
 	bool showGameStatsInfo = false;
 	bool showCheats = false;
 	bool showUIOptions = false;
-	static DebugConsole console;
-	static PlayerInfo playerInfo;
-	static ActorsInfo actorsInfo;
-	static ItemsInfo itemsInfo;
-	static HUDInfo hudInfo;
-	static GameStatsInfo gameStatsInfo;
-	static Cheats cheats;
-	static UIOptions uiOptions;
+	inline static DebugConsole console;
+	inline static PlayerInfo playerInfo;
+	inline static ActorsInfo actorsInfo;
+	inline static ItemsInfo itemsInfo;
+	inline static PropsInfo propsInfo;
+	inline static HUDInfo hudInfo;
+	inline static GameStatsInfo gameStatsInfo;
+	inline static Cheats cheats;
+	inline static UIOptions uiOptions;
 
 	void Render();
 };

@@ -1,13 +1,19 @@
 #pragma once
 
-#include "NxSceneQuery.h"
+#include <NxSceneQuery.h>
+
+class NxShape;
+struct NxRaycastHit;
+struct NxSweepQueryHit;
 
 class ZAsyncQueryReport : public NxSceneQueryReport
 {
 public:
-    virtual NxQueryReportResult onBooleanQuery(void* userData, bool result);
-    virtual NxQueryReportResult onRaycastQuery(void* userData, NxU32 nbHits, const NxRaycastHit* hits);
-    virtual NxQueryReportResult onShapeQuery(void* userData, NxU32 nbHits, NxShape** hits);
-    virtual NxQueryReportResult onSweepQuery(void* userData, NxU32 nbHits, NxSweepQueryHit* hits);
-    virtual ~ZAsyncQueryReport();
+	NxQueryReportResult onBooleanQuery(void* userData, bool result) override;
+	NxQueryReportResult onRaycastQuery(void* userData, unsigned int nbHits, const NxRaycastHit* hits) override;
+	NxQueryReportResult onShapeQuery(void* userData, unsigned int nbHits, NxShape** hits) override;
+	NxQueryReportResult onSweepQuery(void* userData, unsigned int nbHits, NxSweepQueryHit* hits) override;
+	~ZAsyncQueryReport() override = default;
+
+	ZAsyncQueryReport() = default;
 };

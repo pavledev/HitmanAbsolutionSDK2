@@ -1,17 +1,17 @@
 #pragma once
 
-enum ECCWeaponAnimSet : __int32
+enum ECCWeaponAnimSet
 {
-    AS_SLIT_THROAT_1H = 0x0,
-    AS_SWING_1H = 0x1,
-    AS_BASH_1H = 0x2,
-    AS_STAB_1H = 0x3,
-    AS_SYRINGE_1H = 0x4,
-    AS_SMASH_1H = 0x5,
-    AS_STRANGLE = 0x6,
-    AS_SWING_2H = 0x7,
-    AS_BASH_2H = 0x8,
-    AS_STAB_2H = 0x9,
-    AS_STRANGLE_2H = 0xA,
-    AS_AXE = 0xB
+	AS_SLIT_THROAT_1H = 0,
+	AS_SWING_1H = 1,
+	AS_BASH_1H = 2,
+	AS_STAB_1H = 3,
+	AS_SYRINGE_1H = 4,
+	AS_SMASH_1H = 5,
+	AS_STRANGLE = 6,
+	AS_SWING_2H = 7,
+	AS_BASH_2H = 8,
+	AS_STAB_2H = 9,
+	AS_STRANGLE_2H = 10,
+	AS_AXE = 11
 };

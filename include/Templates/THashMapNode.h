@@ -2,10 +2,12 @@
 
 #include "TPair.h"
 
-template<class A, class B>
-class THashMapNode
+template <class A, class B>
+struct THashMapNode
 {
-public:
-    int m_iNext;
-    TPair<A, B> m_data;
+	int m_iNext;
+	TPair<A, B> m_data;
+
+	THashMapNode() = default;
+	~THashMapNode() = default;
 };

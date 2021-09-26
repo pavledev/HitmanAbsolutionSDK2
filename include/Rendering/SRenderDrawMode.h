@@ -1,9 +1,11 @@
 #pragma once
 
-class SRenderDrawMode
+struct SRenderDrawMode
 {
-public:
-    bool m_bDisableShadow;
-    bool m_bWireFrameOverlay;
-    bool m_bOcclusionOverlay;
+	bool m_bDisableShadow;
+	bool m_bWireFrameOverlay;
+	bool m_bOcclusionOverlay;
+
+	SRenderDrawMode() = default;
+	~SRenderDrawMode() = default;
 };

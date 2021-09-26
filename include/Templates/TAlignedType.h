@@ -1,7 +1,11 @@
 #pragma once
 
-template<int T>
-struct __declspec(align(T)) TAlignedType
+template <int T>
+class alignas(T) TAlignedType
 {
+public:
     char dummy;
+
+    TAlignedType() = default;
+    ~TAlignedType() = default;
 };

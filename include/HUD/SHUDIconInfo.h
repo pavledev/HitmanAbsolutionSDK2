@@ -4,14 +4,19 @@
 #include "SVector2.h"
 #include "ZString.h"
 
-class SHUDIconInfo
+struct SHUDIconInfo
 {
-public:
-    EHUDIconType eIconType;
-    SVector2 screenPos;
-    float fScale;
-    float fValue;
-    ZString sText;
-    unsigned __int16 nIconID;
-    unsigned int nDirtyFlags;
+	EHUDIconType eIconType;
+	SVector2 screenPos;
+	float fScale;
+	float fValue;
+	ZString sText;
+	unsigned short nIconID;
+	unsigned int nDirtyFlags;
+
+	void ResetData();
+	SHUDIconInfo(const SHUDIconInfo& __that);
+	SHUDIconInfo() = default;
+	~SHUDIconInfo() = default;
+	SHUDIconInfo& operator=(const SHUDIconInfo& __that);
 };

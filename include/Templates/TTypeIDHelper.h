@@ -3,23 +3,22 @@
 #include "STypeIDStorage.h"
 #include "STypeIDData.h"
 #include "Function.h"
-#include "BaseAddresses.h"
 
-template<class T>
-class TTypeIDHelper
+struct STypeID;
+
+template <class T>
+struct TTypeIDHelper
 {
-public:
-	static STypeIDStorage id;
-	static STypeIDData data;
+	inline static STypeIDStorage id;
+	inline static STypeIDData data;
 
-	static STypeID* GetTypeID(unsigned int offset)
+	TTypeIDHelper() = default;
+	~TTypeIDHelper() = default;
+
+	static unsigned int TypeIDOffset();
+
+	static STypeID* GetTypeID()
 	{
-		return Function::CallAndReturn<STypeID*>(BaseAddresses::hitman5Dll + offset);
+		return Function::CallAndReturn<STypeID*>(TypeIDOffset());
 	}
 };
-
-template<class T>
-STypeIDStorage TTypeIDHelper<T>::id;
-
-template<class T>
-STypeIDData TTypeIDHelper<T>::data;

@@ -4,22 +4,25 @@
 
 struct SVector4
 {
-    union
-    {
-        struct
-        {
-            float x;
-            float y;
-            float z;
-            float w;
-        };
+	union 
+	{
+		struct 
+		{
+			float x;
+			float y;
+			float z;
+			float w;
+		};
 
-        struct
-        {
-            SVector3 n;
-            float d;
-        };
+		struct 
+		{
+			SVector3 n;
+			float d;
+		};
 
-        float v[4];
-    };
+		float v[4];
+	};
+
+	SVector4() = default;
+	~SVector4() = default;
 };

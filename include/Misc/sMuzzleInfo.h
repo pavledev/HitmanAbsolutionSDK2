@@ -2,9 +2,12 @@
 
 #include "SMatrix.h"
 
-class alignas(16) sMuzzleInfo
+struct sMuzzleInfo
 {
-public:
-    SMatrix m_mvMuzzleMatPos;
-    bool m_bValid;
+	SMatrix m_mvMuzzleMatPos;
+	bool m_bValid;
+
+	sMuzzleInfo() = default;
+	~sMuzzleInfo() = default;
+	void Reset();
 };

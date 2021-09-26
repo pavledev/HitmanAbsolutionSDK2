@@ -2,7 +2,9 @@
 
 #include "SEffectConstantHelper.h"
 
-class SEffectParametersPrechainMergeParameters : public SEffectConstantHelper<6, 7, 0>
+struct SEffectParametersPrechainMergeParameters : SEffectConstantHelper<6, 7, 0>
 {
-
+	SEffectParametersPrechainMergeParameters() = default;
+	~SEffectParametersPrechainMergeParameters() = default;
+	void Init(ZRenderShader* pShader);
 };

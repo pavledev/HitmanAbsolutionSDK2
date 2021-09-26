@@ -1,9 +1,12 @@
 #pragma once
 
-class SInventoryChangeInfoMKB
+struct SInventoryChangeInfoMKB
 {
-public:
-    bool m_bCancelledSelection;
-    bool m_bUnholsteredStoredSlot;
-    bool m_DualWieldChange;
+	bool m_bCancelledSelection;
+	bool m_bUnholsteredStoredSlot;
+	bool m_DualWieldChange;
+
+	SInventoryChangeInfoMKB() = default;
+	~SInventoryChangeInfoMKB() = default;
+	void Reset();
 };

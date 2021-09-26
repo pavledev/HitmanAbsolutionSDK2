@@ -1,11 +1,13 @@
 #pragma once
 
 #include "TBlockArrayInfo.h"
-#include "ZResourcePending.h"
 
-template<class T>
+template <class T>
 class TBlockArray
 {
 public:
-    TBlockArrayInfo<ZResourcePending> m_info;
+    TBlockArrayInfo<T> m_info;
+
+    TBlockArray() = default;
+    ~TBlockArray() = default;
 };

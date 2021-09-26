@@ -1,29 +1,24 @@
 #pragma warning(disable : 4005)
+#pragma warning(disable : 26812)
 
 #include <Windows.h>
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include <cstdarg>
-#include <Psapi.h>
-#include <TlHelp32.h>
 #include <mutex>
+
 #include "MinHook.h"
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
 #include "InputHook.h"
-#include "ZRenderManager.h"
 #include "ZRenderDevice.h"
 #include "ApplicationHooks.h"
 #include "ZDebugConsoleHooks.h"
 #include "ZInputActionManager.h"
 #include "Menu.h"
 #include "Globals.h"
+#include "Singletons.h"
 #include "BaseAddresses.h"
 #include "Mods.h"
 #include "HM5DebugConsole.h"
-
-using namespace std;
+#include "imgui.h"
 
 Menu menu;
 InputHook inputHook;
@@ -37,17 +32,17 @@ const int openMenuKey = VK_F9;
 static once_flag isInitialized;
 
 static bool gravityGunEnabled;
-static bool killNearbyActors;
-static bool displayNearbyActorsInfo;
+static bool killNearbyActorsEnabled;
+static bool displayNearbyActorsInfoEnabled;
 
-void __fastcall ZRenderDevicePresentHook(ZRenderDevice* pThis)
+void __fastcall ZRenderDevicePresentHook(ZRenderDevice* renderDevice)
 {
     call_once(isInitialized, [&]()
     {
         ImGui::CreateContext();
 
         ImGui_ImplWin32_Init(ApplicationHooks::hwnd);
-        ImGui_ImplDX11_Init(pThis->m_pDirect3DDevice, pThis->m_pDeviceContextImmediate);
+        ImGui_ImplDX11_Init(renderDevice->m_pDirect3DDevice, renderDevice->m_pDeviceContextImmediate);
 
         inputHook.Init(ApplicationHooks::hwnd);
     });
@@ -56,7 +51,7 @@ void __fastcall ZRenderDevicePresentHook(ZRenderDevice* pThis)
     {
         menu.isOpen = !menu.isOpen;
 
-        static ZInputActionManager* inputActionManager = *reinterpret_cast<ZInputActionManager**>(Globals::g_pInputActionManagerSingleton);
+        static ZInputActionManager* inputActionManager = Singletons::GetInputActionManager();
         
         if (inputActionManager)
         {
@@ -73,23 +68,7 @@ void __fastcall ZRenderDevicePresentHook(ZRenderDevice* pThis)
 
     menu.Render();
 
-    pOriginalZRenderDevicePresent(pThis);
-}
-
-typedef void(__thiscall* InitPatchReader)(void* pThis, ZString* sPatchPath);
-InitPatchReader pOriginalInitPatchReader;
-
-void __fastcall InitPatchReaderHook(void* pThis, int padding, ZString* sPatchPath)
-{
-    pOriginalInitPatchReader(pThis, sPatchPath);
-}
-
-typedef void(__thiscall* ResourceReady)(void* pThis, ZRuntimeResourceID id, ZResourceStub* pStub, int nPriority, ZString sFileName, unsigned int nFileOffset);
-ResourceReady pOriginalResourceReady;
-
-void __fastcall ResourceReadyHook(void* pThis, int padding, ZRuntimeResourceID id, ZResourceStub* pStub, int nPriority, ZString sFileName, unsigned int nFileOffset)
-{
-    pOriginalResourceReady(pThis, id, pStub, nPriority, sFileName, nFileOffset);
+    pOriginalZRenderDevicePresent(renderDevice);
 }
 
 void InitializeGlobalVariables()
@@ -216,19 +195,35 @@ void GetDLLAddresses()
 {
     uintptr_t engine = reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr));
     uintptr_t hitman5Dll = reinterpret_cast<uintptr_t>(GetModuleHandle(L"hitman5Dll.dll"));
-    uintptr_t runtimeRenderDll = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.render.dll"));
+    uintptr_t runtimeRender = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.render.dll"));
+    uintptr_t runtimeAnimation = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.render.dll"));
     uintptr_t runtimeInputDll = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.input.dll"));
-    uintptr_t runtimePathFinder = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.pathfinder.dll"));
+    uintptr_t runtimePathfinder = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.pathfinder.dll"));
     uintptr_t runtimeEntity = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.entity.dll"));
     uintptr_t runtimeResource = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.resource.dll"));
+    uintptr_t runtimePhysics = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.physics.dll"));
+    uintptr_t runtimeFacefx = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.facefx.dll"));
+    uintptr_t runtimeMorpheme = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.morpheme.dll"));
+    uintptr_t runtimePhysicsPhysx = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.physics.physx.dll"));
+    uintptr_t runtimeSound = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.sound.dll"));
+    uintptr_t runtimeCrowds = reinterpret_cast<uintptr_t>(GetModuleHandle(L"runtime.crowds.dll"));
+    uintptr_t systemIO = reinterpret_cast<uintptr_t>(GetModuleHandle(L"system.io.dll"));
 
     BaseAddresses::engine = engine;
     BaseAddresses::hitman5Dll = hitman5Dll;
-    BaseAddresses::runtimeRenderDll = runtimeRenderDll;
+    BaseAddresses::runtimeRender = runtimeRender;
+    BaseAddresses::runtimeAnimation = runtimeAnimation;
     BaseAddresses::runtimeInputDll = runtimeInputDll;
-    BaseAddresses::runtimePathFinder = runtimePathFinder;
+    BaseAddresses::runtimePathfinder = runtimePathfinder;
     BaseAddresses::runtimeEntity = runtimeEntity;
     BaseAddresses::runtimeResource = runtimeResource;
+    BaseAddresses::runtimePhysics = runtimePhysics;
+    BaseAddresses::runtimeFacefx = runtimeFacefx;
+    BaseAddresses::runtimeMorpheme = runtimeMorpheme;
+    BaseAddresses::runtimePhysicsPhysx = runtimePhysicsPhysx;
+    BaseAddresses::runtimeSound = runtimeSound;
+    BaseAddresses::runtimeCrowds = runtimeCrowds;
+    BaseAddresses::systemIO = systemIO;
 }
 
 DWORD WINAPI MainThread(HMODULE hModule)
@@ -245,11 +240,11 @@ DWORD WINAPI MainThread(HMODULE hModule)
     GetDLLAddresses();
     InitializeGlobalVariables();
 
-    ZRenderDevicePresent pZRenderDevicePresent = reinterpret_cast<ZRenderDevicePresent>(BaseAddresses::runtimeRenderDll + 0xBB5A0);
+    ZRenderDevicePresent pZRenderDevicePresent = reinterpret_cast<ZRenderDevicePresent>(BaseAddresses::runtimeRender + 0xBB5A0);
 
     if (MH_CreateHook(reinterpret_cast<LPVOID>(pZRenderDevicePresent), reinterpret_cast<LPVOID>(ZRenderDevicePresentHook), reinterpret_cast<LPVOID*>(&pOriginalZRenderDevicePresent)) != MH_OK)
     {
-        HM5_LOG("IFailed to create ZRenderDevicePresent hook.\n");
+        HM5_LOG("Failed to create ZRenderDevicePresent hook.\n");
 
         return 1;
     }
@@ -257,38 +252,6 @@ DWORD WINAPI MainThread(HMODULE hModule)
     if (MH_EnableHook(reinterpret_cast<LPVOID>(pZRenderDevicePresent)) != MH_OK)
     {
         HM5_LOG("Failed to enable ZRenderDevicePresent hook.\n");
-
-        return 1;
-    }
-
-    InitPatchReader pInitPatchReader = reinterpret_cast<InitPatchReader>(BaseAddresses::runtimeResource + 0x374F0);
-
-    if (MH_CreateHook(reinterpret_cast<LPVOID>(pInitPatchReader), reinterpret_cast<LPVOID>(InitPatchReaderHook), reinterpret_cast<LPVOID*>(&pOriginalInitPatchReader)) != MH_OK)
-    {
-        HM5_LOG("IFailed to create InitPatchReader hook.\n");
-
-        return 1;
-    }
-
-    if (MH_EnableHook(reinterpret_cast<LPVOID>(pInitPatchReader)) != MH_OK)
-    {
-        HM5_LOG("Failed to enable InitPatchReader hook.\n");
-
-        return 1;
-    }
-
-    ResourceReady pResourceReady = reinterpret_cast<ResourceReady>(BaseAddresses::runtimeResource + 0x212B0);
-
-    if (MH_CreateHook(reinterpret_cast<LPVOID>(pResourceReady), reinterpret_cast<LPVOID>(ResourceReadyHook), reinterpret_cast<LPVOID*>(&pOriginalResourceReady)) != MH_OK)
-    {
-        HM5_LOG("IFailed to create ResourceReady hook.\n");
-
-        return 1;
-    }
-
-    if (MH_EnableHook(reinterpret_cast<LPVOID>(pResourceReady)) != MH_OK)
-    {
-        HM5_LOG("Failed to enable ResourceReady hook.\n");
 
         return 1;
     }
@@ -310,12 +273,12 @@ DWORD WINAPI MainThread(HMODULE hModule)
 
         if (GetAsyncKeyState(VK_F5) & 1)
         {
-            killNearbyActors = !killNearbyActors;
+            killNearbyActorsEnabled = !killNearbyActorsEnabled;
         }
 
         if (GetAsyncKeyState(VK_F6) & 1)
         {
-            displayNearbyActorsInfo = !displayNearbyActorsInfo;
+            displayNearbyActorsInfoEnabled = !displayNearbyActorsInfoEnabled;
         }
 
         if (gravityGunEnabled)
@@ -323,12 +286,12 @@ DWORD WINAPI MainThread(HMODULE hModule)
             mods.EnableGravityGun();
         }
 
-        if (killNearbyActors)
+        if (killNearbyActorsEnabled)
         {
             mods.KillNearbyActors();
         }
 
-        if (displayNearbyActorsInfo)
+        if (displayNearbyActorsInfoEnabled)
         {
             mods.DisplayNearbyActorsInfo();
         }

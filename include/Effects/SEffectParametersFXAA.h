@@ -2,12 +2,18 @@
 
 #include "SEffectParameters.h"
 
-class SEffectParametersFXAA : public SEffectParameters
+struct SEffectParametersFXAA : SEffectParameters
 {
-public:
-    ZRenderEffectTechnique* m_pTechniqueFXAA;
-    ZRenderShader* m_pShader_FXAA_PS;
-    unsigned __int64 m_rcpFrame;
-    unsigned int m_TLC0;
-    SEffectResourceLoader m_EffectLoader;
+	ZRenderEffectTechnique* m_pTechniqueFXAA;
+	ZRenderShader* m_pShader_FXAA_PS;
+	unsigned long long m_rcpFrame;
+	unsigned int m_TLC0;
+	SEffectResourceLoader m_EffectLoader;
+
+	~SEffectParametersFXAA() override = default;
+	void Update(ZRenderEffect* pEffect) override;
+
+	SEffectParametersFXAA() = default;
+	void Init();
+	void RebindEffectResource();
 };

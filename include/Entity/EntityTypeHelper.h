@@ -1,8 +1,10 @@
 #pragma once
 
-#include "ZEntityType.h"
 #include "Function.h"
 #include "BaseAddresses.h"
+
+class ZEntityType;
+struct STypeID;
 
 class EntityTypeHelper
 {

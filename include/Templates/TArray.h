@@ -8,6 +8,9 @@ public:
     T* m_pEnd;
     T* m_pLast;
 
+    TArray() = default;
+    ~TArray() = default;
+
     int Size()
     {
         return this->m_pEnd - this->m_pStart;

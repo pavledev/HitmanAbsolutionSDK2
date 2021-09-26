@@ -1,10 +1,10 @@
 #pragma once
 
-enum EActorGroup : __int32
+enum EActorGroup
 {
-    eAG_Group_A = 0x0,
-    eAG_Group_B = 0x1,
-    eAG_Group_C = 0x2,
-    eAG_Group_D = 0x3,
-    eAG_Count = 0x4
+	eAG_Group_A = 0,
+	eAG_Group_B = 1,
+	eAG_Group_C = 2,
+	eAG_Group_D = 3,
+	eAG_Count = 4
 };

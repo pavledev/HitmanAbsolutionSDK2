@@ -2,10 +2,12 @@
 
 #include "ZGridNodeRef.h"
 
-class INodeRatingDebug
+class __declspec(novtable) INodeRatingDebug
 {
 public:
-    virtual ~INodeRatingDebug();
-    virtual float GetNodeDebugRating(const ZGridNodeRef*);
-    virtual float GetNodeDebugTextRatingScale();
+	virtual ~INodeRatingDebug() = default;
+	virtual float GetNodeDebugRating(const ZGridNodeRef& gridNodeRef) = 0;
+	virtual float GetNodeDebugTextRatingScale() = 0;
+
+	INodeRatingDebug() = default;
 };

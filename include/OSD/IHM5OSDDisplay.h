@@ -1,10 +1,12 @@
 #pragma once
 
-#include "IHM5OSD.h"
+class IHM5OSD;
 
-class IHM5OSDDisplay
+class __declspec(novtable) IHM5OSDDisplay
 {
 public:
-	virtual void Update(IHM5OSD*);
-	virtual ~IHM5OSDDisplay();
+	virtual void Update(IHM5OSD* ihmosd) = 0;
+	virtual ~IHM5OSDDisplay() = default;
+
+	IHM5OSDDisplay() = default;
 };

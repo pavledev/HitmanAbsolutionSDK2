@@ -2,28 +2,48 @@
 
 struct CrowdUtil
 {
-    enum ECrowdActorMood : __int32
-    {
-        CM_AMBIENT = 0x0,
-        CM_ALERTED = 0x1,
-        CM_SCARED = 0x2,
-        CM_PANICED = 0x3,
-        CM_DEAD = 0x4,
-        CM_DISABLED = 0x5,
-        NUM_ACTOR_MOOD_TYPES = 0x6
-    };
+	enum ECrowdActorMood
+	{
+		CM_AMBIENT = 0,
+		CM_ALERTED = 1,
+		CM_SCARED = 2,
+		CM_PANICED = 3,
+		CM_DEAD = 4,
+		CM_DISABLED = 5,
+		NUM_ACTOR_MOOD_TYPES = 6
+	};
 
-    enum ECrowdFacing : __int32
-    {
-        FRONT = 0x0,
-        BACK = 0x1
-    };
+	enum ECrowdFacing
+	{
+		FRONT = 0,
+		BACK = 1
+	};
 
-    enum ECrowdDirection : __int32
-    {
-        NORTH = 0x0,
-        EAST = 0x1,
-        SOUTH = 0x2,
-        WEST = 0x3
-    };
+	enum ECrowdSide
+	{
+		LEFT = 0,
+		RIGHT = 1
+	};
+
+	enum EDefaultStateTypes
+	{
+		STATE_IDLE = 0,
+		STATE_WALK = 1,
+		STATE_PENDINGWALK = 2,
+		STATE_DEAD = 3,
+		STATE_SCARED = 4,
+		STATE_PENDINGSCARED = 5,
+		STATE_POSSESSED = 6,
+		STATE_ALERT = 7,
+		STATE_PRONE = 8,
+		NUM_DEFAULT_STATES = 9
+	};
+
+	enum ECrowdDirection
+	{
+		NORTH = 0,
+		EAST = 1,
+		SOUTH = 2,
+		WEST = 3
+	};
 };

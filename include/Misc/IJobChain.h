@@ -1,15 +1,17 @@
 #pragma once
 
-#include "IJob.h"
+class IJob;
 
-class IJobChain
+class __declspec(novtable) IJobChain
 {
 public:
-    virtual ~IJobChain();
-    virtual IJob* CreateJob(unsigned int, unsigned int);
-    virtual IJob* CreateJobInPlace(void*, unsigned int, unsigned int);
-    virtual unsigned __int64 AddJob(IJob*);
-    virtual unsigned __int64 AddJobsBulk(IJob**, unsigned int);
-    virtual unsigned __int64 AddFlush();
-    virtual void WaitAllDone();
+	virtual ~IJobChain() = default;
+	virtual IJob* CreateJob(unsigned int param1, unsigned int param2) = 0;
+	virtual IJob* CreateJobInPlace(void* pPlacement, unsigned int nNumDataBuffers, unsigned int nUserBufferSize);
+	virtual unsigned long long AddJob(IJob* job) = 0;
+	virtual unsigned long long AddJobsBulk(IJob** pJobs, unsigned int nNumJobs);
+	virtual unsigned long long AddFlush() = 0;
+	virtual void WaitAllDone() = 0;
+
+	IJobChain() = default;
 };

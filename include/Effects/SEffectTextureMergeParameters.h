@@ -2,7 +2,9 @@
 
 #include "SEffectConstantHelper.h"
 
-class SEffectTextureMergeParameters : public SEffectConstantHelper<1, 9, 0>
+struct SEffectTextureMergeParameters : SEffectConstantHelper<1, 9, 0>
 {
-
+	SEffectTextureMergeParameters() = default;
+	~SEffectTextureMergeParameters() = default;
+	void Init(ZRenderShader* pShader);
 };

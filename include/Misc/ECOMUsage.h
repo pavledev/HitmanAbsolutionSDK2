@@ -1,7 +1,7 @@
 #pragma once
 
-enum ECOMUsage : __int32
+enum ECOMUsage
 {
-    ECOMUSAGE_AUTOCOMPUTE = 0x0,
-    ECOMUSAGE_PIVOT = 0x1
+	ECOMUSAGE_AUTOCOMPUTE = 0,
+	ECOMUSAGE_PIVOT = 1
 };

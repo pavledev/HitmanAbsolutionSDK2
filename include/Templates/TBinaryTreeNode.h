@@ -1,6 +1,6 @@
 #pragma once
 
-template<class T>
+template <class T>
 class TBinaryTreeNode
 {
 public:
@@ -10,7 +10,10 @@ public:
     TBinaryTreeNode<T>* m_pRight;
     T m_data;
 
-    static TBinaryTreeNode<T>* GetNextNode(TBinaryTreeNode<T>* pNode)
+    TBinaryTreeNode() = default;
+    ~TBinaryTreeNode() = default;
+
+    static TBinaryTreeNode* GetNextNode(TBinaryTreeNode* pNode)
     {
         TBinaryTreeNode<T>* v1;
         TBinaryTreeNode<T>* result;

@@ -1,21 +1,26 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "ZComponentCreateInfo.h"
+#include "ZString.h"
 
-class IModule : public IComponentInterface
+class ZComponentCreateInfo;
+
+class __declspec(novtable) IModule : public IComponentInterface
 {
 public:
-    virtual const ZString* Name();
-    virtual bool Initialize();
-    virtual void Shutdown();
-    virtual void Activate();
-    virtual void Deactivate();
-    virtual ZString* GetOption(ZString* result, const ZString*);
-    virtual bool GetOptionBool(const ZString*);
-    virtual void SetOption(const ZString*, const ZString*);
-    virtual void BeginInitialization();
-    virtual void EndInitialization();
-    virtual void WaitForInitialization();
-    virtual IComponentInterface* CreateComponent(const ZString*, ZComponentCreateInfo*);
+	~IModule() override = default;
+	virtual const ZString& Name() = 0;
+	virtual bool Initialize() = 0;
+	virtual void Shutdown() = 0;
+	virtual void Activate() = 0;
+	virtual void Deactivate() = 0;
+	virtual ZString GetOption(const ZString& string) = 0;
+	virtual bool GetOptionBool(const ZString& string) = 0;
+	virtual void SetOption(const ZString& string, const ZString& string2) = 0;
+	virtual void BeginInitialization() = 0;
+	virtual void EndInitialization() = 0;
+	virtual void WaitForInitialization() = 0;
+	virtual IComponentInterface* CreateComponent(const ZString& string, ZComponentCreateInfo& componentCreateInfo) = 0;
+
+	IModule() = default;
 };

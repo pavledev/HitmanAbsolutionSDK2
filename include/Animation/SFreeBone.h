@@ -2,7 +2,8 @@
 
 #include "sAttacherBoneElement.h"
 
-class SFreeBone : public sAttacherBoneElement
+struct SFreeBone : sAttacherBoneElement
 {
-
+	SFreeBone() = default;
+	~SFreeBone() = default;
 };

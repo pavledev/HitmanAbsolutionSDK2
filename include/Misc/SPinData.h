@@ -1,10 +1,13 @@
 #pragma once
 
-#include "SPinInfo.h"
+struct SPinInfo;
 
 struct SPinData
 {
-    unsigned int m_nPinID;
-    int m_nOffsetToThisPtr;
-    SPinInfo* m_pInfo;
+	unsigned int m_nPinID;
+	int m_nOffsetToThisPtr;
+	const SPinInfo* m_pInfo;
+
+	SPinData() = default;
+	~SPinData() = default;
 };

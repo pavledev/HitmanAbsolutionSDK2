@@ -1,10 +1,10 @@
 #pragma once
 
-enum EOrderCompletionStatus : __int32
+enum EOrderCompletionStatus
 {
-    OCS_Undetermined = 0x0,
-    OCS_Succeeded = 0x1,
-    OCS_Interrupted = 0x2,
-    OCS_Blocked = 0x3,
-    OCS_Failed = 0x4
+	OCS_Undetermined = 0,
+	OCS_Succeeded = 1,
+	OCS_Interrupted = 2,
+	OCS_Blocked = 3,
+	OCS_Failed = 4
 };

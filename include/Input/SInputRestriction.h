@@ -2,14 +2,24 @@
 
 #include "SVector3.h"
 
-class alignas(4) SInputRestriction
+struct SVector2;
+struct float4;
+struct SBaseMovmentCollisionInfo;
+
+struct SInputRestriction
 {
-public:
-    bool m_bBlocked;
-    bool m_bInput;
-    float m_fBlockAngle;
-    float m_fBlockRange;
-    SVector3 m_vBlockingNormal;
-    float m_fInputAngle;
-    bool m_bExplicitNormal;
+	bool m_bBlocked;
+	bool m_bInput;
+	float m_fBlockAngle;
+	float m_fBlockRange;
+	SVector3 m_vBlockingNormal;
+	float m_fInputAngle;
+	bool m_bExplicitNormal;
+
+	SInputRestriction() = default;
+	~SInputRestriction() = default;
+	void Reset();
+	void UpdateInput(SVector2& vInput, const float4& vCamDir);
+	void UpdateWorldInput(SVector2& vWorldInput);
+	void SetRestriction(const SBaseMovmentCollisionInfo& CollisionInfo);
 };

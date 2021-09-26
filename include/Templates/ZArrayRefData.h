@@ -1,9 +1,11 @@
 #pragma once
 
-template<class T>
-class ZArrayRefData
+template <class T>
+struct ZArrayRefData
 {
-public:
     T* m_pStart;
     T* m_pEnd;
+
+    ZArrayRefData() = default;
+    ~ZArrayRefData() = default;
 };

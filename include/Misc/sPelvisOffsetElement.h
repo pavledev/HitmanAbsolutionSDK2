@@ -2,9 +2,12 @@
 
 #include "SMatrix.h"
 
-class alignas(16) sPelvisOffsetElement
+struct sPelvisOffsetElement
 {
-public:
-    SMatrix m_mvOffset;
-    void* m_pClassPtr;
+	SMatrix m_mvOffset;
+	void* m_pClassPtr;
+
+	sPelvisOffsetElement() = default;
+	~sPelvisOffsetElement() = default;
+	bool operator==(const sPelvisOffsetElement& other);
 };

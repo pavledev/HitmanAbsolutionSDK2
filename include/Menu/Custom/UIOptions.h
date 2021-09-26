@@ -2,7 +2,7 @@
 
 #include "imgui.h"
 #include "ZUIOptions.h"
-#include "Globals.h"
+#include "Singletons.h"
 
 struct UIOptions
 {

@@ -1,12 +1,14 @@
 #pragma once
 
-#include "TEntityRef.h"
-
 class ZActor;
+template <class T> class TEntityRef;
 
-class IActorAction
+class __declspec(novtable) IActorAction
 {
 public:
-	virtual ~IActorAction();
-	virtual void SetActor(TEntityRef<ZActor>);
+	virtual ~IActorAction() = default;
+	virtual void SetActor(TEntityRef<ZActor> entityRef) = 0;
+
+	static void RegisterType();
+	IActorAction() = default;
 };

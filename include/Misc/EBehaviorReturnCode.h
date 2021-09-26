@@ -1,8 +1,8 @@
 #pragma once
 
-enum EBehaviorReturnCode : __int32
+enum EBehaviorReturnCode
 {
-    BRC_COMPLETED = 0x0,
-    BRC_FAILED = 0x1,
-    BRC_CONTINUE = 0x2
+	BRC_COMPLETED = 0,
+	BRC_FAILED = 1,
+	BRC_CONTINUE = 2
 };

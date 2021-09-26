@@ -1,15 +1,15 @@
 #pragma once
 
-enum ELogState : __int32
+enum ELogState
 {
-    LS_None = 0x0,
-    LS_MoveToStand = 0x1,
-    LS_StandToMove = 0x2,
-    LS_StandToMoveToStand = 0x3,
-    LS_Move = 0x4,
-    LS_Reposition = 0x5,
-    LS_React = 0x6,
-    LS_Act = 0x7,
-    LS_Death = 0x8,
-    LS_Impact = 0x9
+	LS_None = 0,
+	LS_MoveToStand = 1,
+	LS_StandToMove = 2,
+	LS_StandToMoveToStand = 3,
+	LS_Move = 4,
+	LS_Reposition = 5,
+	LS_React = 6,
+	LS_Act = 7,
+	LS_Death = 8,
+	LS_Impact = 9
 };

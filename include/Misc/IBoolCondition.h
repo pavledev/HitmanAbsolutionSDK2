@@ -4,9 +4,15 @@
 #include "ZEvent.h"
 #include "TEntityRef.h"
 
-class IBoolCondition : IComponentInterface
+class ZEventNull;
+
+class __declspec(novtable) IBoolCondition : public IComponentInterface
 {
 public:
-    virtual bool GetBoolConditionValue();
-    virtual ZEvent<TEntityRef<IBoolCondition> const&, bool, ZEventNull, ZEventNull, ZEventNull>* GetBoolConditionChangedEvent();
+	~IBoolCondition() override = default;
+	virtual bool GetBoolConditionValue() = 0;
+	virtual ZEvent<TEntityRef<IBoolCondition> const&, bool, ZEventNull, ZEventNull, ZEventNull>& GetBoolConditionChangedEvent() = 0;
+
+	static void RegisterType();
+	IBoolCondition() = default;
 };

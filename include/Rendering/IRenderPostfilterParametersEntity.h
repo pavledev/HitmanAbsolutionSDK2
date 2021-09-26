@@ -1,58 +1,65 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "SRenderPostfilterParameters.h"
-#include "TEntityRef.h"
-#include "ZEvent0.h"
+#include "SVector2.h"
+#include "SVector3.h"
 
 class ZRenderPostfilterControllerEntity;
+class ZEvent0;
+struct SRenderPostfilterParameters;
+template <class T> class TEntityRef;
 
-class IRenderPostfilterParametersEntity : public IComponentInterface
+class __declspec(novtable) IRenderPostfilterParametersEntity : public IComponentInterface
 {
 public:
-    virtual void UpdateParameters(SRenderPostfilterParameters*, bool);
-    virtual void SetController(const TEntityRef<ZRenderPostfilterControllerEntity>*);
-    virtual bool GaussianBlurEnabled();
-    virtual bool ColorCorrectionGetEnabled();
-    virtual bool ColorCorrectionGetDepthRemapEnabled();
-    virtual void ColorCorrectionSetDepthRemapEnabled(bool);
-    virtual float ColorCorrectionGetDepthRemapNearRange();
-    virtual void ColorCorrectionSetDepthRemapNearRange(float);
-    virtual float ColorCorrectionGetDepthRemapFarRange();
-    virtual void ColorCorrectionSetDepthRemapFarRange(float);
-    virtual bool DepthOfFieldGetEnabled();
-    virtual void DepthOfFieldSetEnabled(bool);
-    virtual float DepthOfFieldGetBlurriness();
-    virtual void DepthOfFieldSetBlurriness(float);
-    virtual bool RadialBlurGetEnabled();
-    virtual void RadialBlurSetEnabled(bool);
-    virtual float RadialBlurGetBlurriness();
-    virtual void RadialBlurSetBlurriness(float);
-    virtual SVector2 RadialBlurGetCenter();
-    virtual void RadialBlurSetCenter(const SVector2*);
-    virtual float RadialBlurGetStart();
-    virtual void RadialBlurSetStart(float);
-    virtual bool SpatialBlurGetEnabled();
-    virtual void SpatialBlurSetEnabled(bool);
-    virtual float SpatialBlurGetBlurriness();
-    virtual void SpatialBlurSetBlurriness(float);
-    virtual SVector3* SpatialBlurGetCenter(SVector3* result);
-    virtual void SpatialBlurSetCenter(const SVector3*);
-    virtual float SpatialBlurGetStart();
-    virtual void SpatialBlurSetStart(float);
-    virtual float SpatialBlurGetFade();
-    virtual void SpatialBlurSetFade(float);
-    virtual bool DistortionWobbleGetEnabled();
-    virtual void DistortionWobbleSetEnabled(bool);
-    virtual float DistortionWobbleGetScale();
-    virtual void DistortionWobbleSetScale(float);
-    virtual SVector2 DistortionWobbleGetWaveLength();
-    virtual void DistortionWobbleSetWaveLength(const SVector2*);
-    virtual SVector2 DistortionWobbleGetSpeed();
-    virtual void DistortionWobbleSetSpeed(const SVector2*);
-    virtual bool DistortionWobbleGetUseRealTime();
-    virtual void DistortionWobbleSetUseRealTime(bool);
-    virtual void SetModified(unsigned int);
-    virtual unsigned int GetModified();
-    virtual ZEvent0* GetParametersChangedEvent();
+	~IRenderPostfilterParametersEntity() override = default;
+	virtual void UpdateParameters(SRenderPostfilterParameters& renderPostfilterParameters, bool param2) = 0;
+	virtual void SetController(const TEntityRef<ZRenderPostfilterControllerEntity>& entityRef) = 0;
+	virtual bool GaussianBlurEnabled() const = 0;
+	virtual bool ColorCorrectionGetEnabled() const = 0;
+	virtual bool ColorCorrectionGetDepthRemapEnabled() const = 0;
+	virtual void ColorCorrectionSetDepthRemapEnabled(bool param1) = 0;
+	virtual float ColorCorrectionGetDepthRemapNearRange() const = 0;
+	virtual void ColorCorrectionSetDepthRemapNearRange(float param1) = 0;
+	virtual float ColorCorrectionGetDepthRemapFarRange() const = 0;
+	virtual void ColorCorrectionSetDepthRemapFarRange(float param1) = 0;
+	virtual bool DepthOfFieldGetEnabled() const = 0;
+	virtual void DepthOfFieldSetEnabled(bool param1) = 0;
+	virtual float DepthOfFieldGetBlurriness() const = 0;
+	virtual void DepthOfFieldSetBlurriness(float param1) = 0;
+	virtual bool RadialBlurGetEnabled() const = 0;
+	virtual void RadialBlurSetEnabled(bool param1) = 0;
+	virtual float RadialBlurGetBlurriness() const = 0;
+	virtual void RadialBlurSetBlurriness(float param1) = 0;
+	virtual SVector2 RadialBlurGetCenter() const = 0;
+	virtual void RadialBlurSetCenter(const SVector2& vector2) = 0;
+	virtual float RadialBlurGetStart() const = 0;
+	virtual void RadialBlurSetStart(float param1) = 0;
+	virtual bool SpatialBlurGetEnabled() const = 0;
+	virtual void SpatialBlurSetEnabled(bool param1) = 0;
+	virtual float SpatialBlurGetBlurriness() const = 0;
+	virtual void SpatialBlurSetBlurriness(float param1) = 0;
+	virtual SVector3 SpatialBlurGetCenter() const = 0;
+	virtual void SpatialBlurSetCenter(const SVector3& vector3) = 0;
+	virtual float SpatialBlurGetStart() const = 0;
+	virtual void SpatialBlurSetStart(float param1) = 0;
+	virtual float SpatialBlurGetFade() const = 0;
+	virtual void SpatialBlurSetFade(float param1) = 0;
+	virtual bool DistortionWobbleGetEnabled() const = 0;
+	virtual void DistortionWobbleSetEnabled(bool param1) = 0;
+	virtual float DistortionWobbleGetScale() const = 0;
+	virtual void DistortionWobbleSetScale(float param1) = 0;
+	virtual SVector2 DistortionWobbleGetWaveLength() const = 0;
+	virtual void DistortionWobbleSetWaveLength(const SVector2& vector2) = 0;
+	virtual SVector2 DistortionWobbleGetSpeed() const = 0;
+	virtual void DistortionWobbleSetSpeed(const SVector2& vector2) = 0;
+	virtual bool DistortionWobbleGetUseRealTime() const = 0;
+	virtual void DistortionWobbleSetUseRealTime(bool param1) = 0;
+	virtual void SetModified(unsigned int param1) = 0;
+	virtual unsigned int GetModified() const = 0;
+	virtual ZEvent0& GetParametersChangedEvent() = 0;
+
+	IRenderPostfilterParametersEntity(const IRenderPostfilterParametersEntity& __that);
+	IRenderPostfilterParametersEntity() = default;
+	IRenderPostfilterParametersEntity& operator=(const IRenderPostfilterParametersEntity& __that);
 };

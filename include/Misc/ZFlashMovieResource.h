@@ -1,6 +1,10 @@
 #pragma once
 
-struct ZFlashMovieResource
+class ZFlashMovieResource
 {
-    bool m_bStatic;
+public:
+	bool m_bStatic;
+
+	ZFlashMovieResource() = default;
+	~ZFlashMovieResource() = default;
 };

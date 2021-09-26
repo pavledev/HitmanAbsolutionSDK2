@@ -2,9 +2,11 @@
 
 #include "float4.h"
 
-class alignas(16) SSphere
+struct SSphere
 {
-public:
-    float4 m_vCenter;
-    float m_fRadius;
+	float4 m_vCenter;
+	float m_fRadius;
+
+	SSphere() = default;
+	~SSphere() = default;
 };

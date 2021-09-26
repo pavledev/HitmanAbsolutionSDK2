@@ -2,185 +2,199 @@
 
 #include "ZSharedPointerTarget.h"
 #include "TMap.h"
-#include "SCondition_Cooldown.h"
 #include "ZGameTime.h"
 #include "TEntityRef.h"
-#include "SKnownEntity.h"
 #include "ZGridNodeRef.h"
-#include "ZSequenceControllerEntity.h"
-#include "SBehavior_Waypoint.h"
-#include "ZHM5CoverPlane.h"
 #include "EHMAttentionType.h"
 #include "EGameTension.h"
-#include "ZHM5BodyContainer.h"
-#include "ZCrowdActor.h"
 #include "SBehaviorTreeContext.h"
-#include "ZActiveBehavior.h"
-#include "ZFiber.h"
-#include "ZActorKnownEntitiesEnumerator.h"
+#include "ZKnownEntityContainer.h"
 #include "EAIEventType.h"
-#include "ZPF5Location.h"
+#include "EAISharedEventType.h"
+#include "EActorPerceptionSensitivity.h"
+#include "TMaxArray.h"
+#include "TRefCountPtr.h"
+#include "TRefCountPtrArg.h"
+#include "ZEntityRef.h"
+#include "ZSharedKnowledgeRef.h"
+#include "float4.h"
 
 class ZActor;
+class IHM5Outfit;
+class ZActiveBehavior;
+class ZCrowdActor;
+class ZFiber;
+class ZHM5BodyContainer;
+class ZHM5CoverPlane;
+class ZPF5Location;
+class ZSequenceControllerEntity;
+class ZSpatialEntity;
+class ZWaypointEntity;
+struct SBehaviorBase;
+struct SBehavior_Waypoint;
+struct SCondition_Cooldown;
+struct SKnownEntity;
+struct SMatrix;
 
 class ZKnowledge : public ZSharedPointerTarget
 {
 public:
-    TMap<SCondition_Cooldown const*, ZGameTime> m_cooldowns;
-    char m_nHitmanVisibilityBoneIndex;
-    char m_nHitmanVisibilityRayCount;
-    TEntityRef<ZActor> m_pSelf;
-    TRefCountPtr<SKnownEntity> m_pSelfKnown;
-    ZSharedKnowledgeRef m_pSelfSharedKnowledge;
-    ZGridNodeRef m_actorGridNode;
-    TRefCountPtr<SKnownEntity> m_pHitmanKnown;
-    TEntityRef<ZSequenceControllerEntity> m_pSequence;
-    bool m_bAllowCutSequence;
-    bool m_bInSequenceBehavior;
-    SBehavior_Waypoint* m_pWaypointBehavior;
-    int m_nWaypointIndex;
-    TEntityRef<ZWaypointEntity> m_pLastReachedWaypoint;
-    TEntityRef<ZSpatialEntity> m_pHelpPoint;
-    ZHM5CoverPlane* m_pCurrentCover;
-    __int8 m_bHasWeapon : 1;
-    __int8 m_bIsControlled : 1;
-    __int8 m_bAllowRagdollHitReactions : 1;
-    __int8 bHMAttentionOutOfSight : 1;
-    float m_fHMSoundDistance;
-    float m_fHMAttention;
-    EHMAttentionType m_eAttentionType;
-    EGameTension m_eGameTension;
-    ZGameTime m_tAmbientStartTime;
-    EActorPerceptionSensitivity m_ePerceptionSensitivityAct;
-    EActorPerceptionSensitivity m_ePerceptionSensitivitySequence;
-    ZEntityRef m_pBloodPoolEntity;
-    ZSharedKnowledgeRef m_pBloodPoolKnownEntity;
-    TEntityRef<ZHM5BodyContainer> m_pBodyContainer;
-    __int8 m_bInBehaviorSequence : 1;
-    float m_fForceMinHP;
-    float m_fCurrentHitPoints;
-    unsigned __int16 m_nCrowdActorReleaseTimer;
-    TEntityRef<ZCrowdActor> m_pCrowdActor;
-    float m_fAimingStartTime;
-    float m_fShootTime;
-    float m_fBodyHitTimer;
-    unsigned __int8 m_nKnownDeadBodies;
-    TMaxArray<SBehaviorBase*, 2> m_pendingBehaviors;
-    SBehaviorBase* m_pPendingBehavior;
-    TMaxArray<SBehaviorBase*, 2> m_currentBehaviors;
-    bool m_bAbortCurrentBehavior;
-    SBehaviorBase* m_pCurrentBehavior;
-    SBehaviorTreeContext m_savedBehaviorContext;
-    SBehaviorBase* m_pLastSelected;
-    ZActiveBehavior* m_pCurrentActiveBehavior;
-    ZFiber* m_pCurrentBehaviorFiber;
-    float4 m_vCameFromPosition;
+	TMap<SCondition_Cooldown const*, ZGameTime> m_cooldowns;
+	char m_nHitmanVisibilityBoneIndex;
+	char m_nHitmanVisibilityRayCount;
+	TEntityRef<ZActor> m_pSelf;
+	TRefCountPtr<SKnownEntity> m_pSelfKnown;
+	ZSharedKnowledgeRef m_pSelfSharedKnowledge;
+	ZGridNodeRef m_actorGridNode;
+	TRefCountPtr<SKnownEntity> m_pHitmanKnown;
+	TEntityRef<ZSequenceControllerEntity> m_pSequence;
+	bool m_bAllowCutSequence;
+	bool m_bInSequenceBehavior;
+	SBehavior_Waypoint* m_pWaypointBehavior;
+	int m_nWaypointIndex;
+	TEntityRef<ZWaypointEntity> m_pLastReachedWaypoint;
+	TEntityRef<ZSpatialEntity> m_pHelpPoint;
+	ZHM5CoverPlane* m_pCurrentCover;
+	bool m_bHasWeapon : 1;
+	bool m_bIsControlled : 1;
+	bool m_bAllowRagdollHitReactions : 1;
+	bool bHMAttentionOutOfSight : 1;
+	float m_fHMSoundDistance;
+	float m_fHMAttention;
+	EHMAttentionType m_eAttentionType;
+	EGameTension m_eGameTension;
+	ZGameTime m_tAmbientStartTime;
+	EActorPerceptionSensitivity m_ePerceptionSensitivityAct;
+	EActorPerceptionSensitivity m_ePerceptionSensitivitySequence;
+	ZEntityRef m_pBloodPoolEntity;
+	ZSharedKnowledgeRef m_pBloodPoolKnownEntity;
+	TEntityRef<ZHM5BodyContainer> m_pBodyContainer;
+	bool m_bInBehaviorSequence : 1;
+	float m_fForceMinHP;
+	float m_fCurrentHitPoints;
+	unsigned short m_nCrowdActorReleaseTimer;
+	TEntityRef<ZCrowdActor> m_pCrowdActor;
+	float m_fAimingStartTime;
+	float m_fShootTime;
+	float m_fBodyHitTimer;
+	unsigned char m_nKnownDeadBodies;
+	TMaxArray<SBehaviorBase*, 2> m_pendingBehaviors;
+	SBehaviorBase* m_pPendingBehavior;
+	TMaxArray<SBehaviorBase*, 2> m_currentBehaviors;
+	bool m_bAbortCurrentBehavior;
+	SBehaviorBase* m_pCurrentBehavior;
+	SBehaviorTreeContext m_savedBehaviorContext;
+	SBehaviorBase* m_pLastSelected;
+	ZActiveBehavior* m_pCurrentActiveBehavior;
+	ZFiber* m_pCurrentBehaviorFiber;
+	float4 m_vCameFromPosition;
 
-    virtual ~ZKnowledge();
-    ZActiveBehavior* GetCurrentActiveBehavior();
-    TRefCountPtrArg<SKnownEntity>* GetSelf(TRefCountPtrArg<SKnownEntity>* result);
-    EGameTension GetGameTension();
-    const ZSharedKnowledgeRef* GetShared();
-    float GetHMAttention();
-    ZGridNodeRef* GetActorGridNode(ZGridNodeRef* result);
-    unsigned __int8 GetNumKnownDeadBodies();
-    void IncreaseKnownDeadBodies();
-    TEntityRef<ZActor>* Self();
-    ZSharedKnowledgeRef* GetBloodPool(ZSharedKnowledgeRef* result);
-    EActorPerceptionSensitivity GetPerceptionSensitivity();
-    TEntityRef<ZCrowdActor>* GetCrowdActor(TEntityRef<ZCrowdActor>* result);
-    float DistanceTo(float4* pos);
-    ZActorKnownEntitiesEnumerator GetKnownEntityEnumerator();
-    float4* GetCameFromPosition(float4* result);
-    bool HasCameFromPosition();
-    float GetHitPoints();
-    void SetCrowdActorReleaseTimer(unsigned __int16 nFrames);
-    unsigned __int16 GetCrowdActorReleaseTimer();
-    TEntityRef<ZHM5BodyContainer>* GetBodyContainer(TEntityRef<ZHM5BodyContainer>* result);
-    void SetBodyHitTimer(float time);
-    void SetForceMinHP(float fForceMinHP);
-    void SetBodyContainer(TEntityRef<ZHM5BodyContainer> pContainer);
-    bool IsControlled();
-    float GetBodyHitTimer();
-    ZHM5CoverPlane* GetCurrentCover();
-    void SetCurrentCover(ZHM5CoverPlane* pCover);
-    bool IsBloodPoolPlaced();
-    bool GetAllowRagdollDamageReactions();
-    void SetCurrentHitpoints(float fHitpoints);
-    const SMatrix* GetTransform();
-    void ReleaseControlled();
-    void AdjustHitpoint(float fDeltaHitpoints);
-    void SetHMAttention(float fAttention);
-    void SetHMAttentionType(EHMAttentionType eType);
-    void SetHMAttentionGainOutOfSight(bool bVal);
-    bool GetHMAttentionGainOutOfSight();
-    float GetAmbientTime();
-    static int GetSharedKnowledgeCount();
-    static ZSharedKnowledgeRef* GetSharedKnowledgeByIndex(ZSharedKnowledgeRef* result, int nIndex);
-    void SetHelpPoint(TEntityRef<ZSpatialEntity>* pHelpPoint);
-    TEntityRef<ZSpatialEntity>* GetHelpPoint(TEntityRef<ZSpatialEntity>* result);
-    void DeleteBloodPool();
-    void RemoveKnownEntity(TRefCountPtr<SKnownEntity>* knownEntity);
-    TRefCountPtrArg<SKnownEntity>* AddKnownEntity(TRefCountPtrArg<SKnownEntity>* result, ZSharedKnowledgeRef* pShared);
-    TRefCountPtrArg<SKnownEntity>* GetKnownLocation(TRefCountPtrArg<SKnownEntity>* result, float4* vPosition, unsigned __int16 room);
-    TRefCountPtr<SKnownEntity>* FindUnhandled(TRefCountPtr<SKnownEntity>* result, EAIEventType type);
-    TRefCountPtr<SKnownEntity>* FindCurrent(TRefCountPtr<SKnownEntity>* result, EAIEventType type);
-    TRefCountPtr<SKnownEntity>* FindCurrent(TRefCountPtr<SKnownEntity>* result, EAIEventType type, float maxAge);
-    void MarkAllHandled(EAIEventType type);
-    bool HasUnhandledEvent(EAIEventType eEventType);
-    unsigned int HasEvent(EAIEventType eEventType);
-    TRefCountPtrArg<SKnownEntity>* GetKnownEntity(TRefCountPtrArg<SKnownEntity>* result, ZSharedKnowledgeRef* pShared);
-    void SetHasWeapon(bool bHasWeapon);
-    bool UpdateCrowdReleaseTimer();
-    void SetGameTension(EGameTension tension);
-    void SetTransform(SMatrix* mTransform, ZPF5Location* location);
-    void RemoveAllKnownEntities(bool bKeepSelf);
-    static ZSharedKnowledgeRef* FindSharedKnowledge(ZSharedKnowledgeRef* result, ZEntityRef* pEntity);
-    static ZSharedKnowledgeRef* FindSharedKnowledgeWithOutfit(ZSharedKnowledgeRef* result, ZEntityRef* rEntity, TEntityRef<IHM5Outfit> rOutfit);
-    TRefCountPtrArg<SKnownEntity>* FindOrAddKnownEntity(TRefCountPtrArg<SKnownEntity>* result, ZSharedKnowledgeRef pShared);
-    TRefCountPtr<SKnownEntity>* FindEvent(TRefCountPtr<SKnownEntity>* result, EAIEventType type);
-    void ExpireAllEvents(EAIEventType type);
-    TRefCountPtrArg<SKnownEntity>* GetKnownEntity(TRefCountPtrArg<SKnownEntity>* result, ZEntityRef* ref);
-    TRefCountPtrArg<SKnownEntity>* GetHitman(TRefCountPtrArg<SKnownEntity>* result);
-    void CleanupCurrentBehavior();
-    void TerminateCurrentBehavior();
-    void OnBehaviorTreeChanged();
-    void TerminateBehavior();
-    bool ProcessSuggestedBehavior(SBehaviorBase** pSelected, SBehaviorTreeContext* context, SBehaviorBase* pLastSelected);
-    void InitializeCurrentBehavior(SBehaviorBase* pBehavior);
-    void EnterControlled();
-    void RemoveReferencesToEntity(ZEntityRef* ref);
-    TRefCountPtr<SKnownEntity>* FindCurrentSharedEvent(TRefCountPtr<SKnownEntity>* result, EAISharedEventType type);
-    void UpdateBehaviorSelection();
-    void SelectCompiledBehavior();
-    ZKnowledge();
-    static ZSharedKnowledgeRef* AddSharedKnowledge(ZSharedKnowledgeRef* result, ZEntityRef* pEntity);
-    static ZSharedKnowledgeRef* FindOrAddSharedKnowledge(ZSharedKnowledgeRef* result, ZEntityRef* pEntity);
-    TRefCountPtrArg<SKnownEntity>* AddKnownEntity(TRefCountPtrArg<SKnownEntity>* result, ZEntityRef* ref);
-    TRefCountPtrArg<SKnownEntity>* FindOrAddKnownEntity(TRefCountPtrArg<SKnownEntity>* result, ZEntityRef* ref);
-    TRefCountPtrArg<SKnownEntity>* AddKnownLocation(TRefCountPtrArg<SKnownEntity>* result, float4* vPosition, float fRadius, unsigned __int16 room);
-    TRefCountPtrArg<SKnownEntity>* SetKnownLocation(TRefCountPtrArg<SKnownEntity>* result, EAIEventType nEvent, float4* vPosition, float fRadius, unsigned __int16 nRoom);
-    void PlaceBloodPool();
-    void SetSelfEntity(TEntityRef<ZActor>* pSelf);
-    void SetAllowCutSequence(bool bAllow);
-    void SetWaypointBehavior(SBehavior_Waypoint* pWaypointBehavior);
-    SBehavior_Waypoint* GetWaypointBehavior();
-    void SetWaypointIndex(int nWaypointIndex);
-    int GetWaypointIndex();
-    TEntityRef<ZSequenceControllerEntity>* GetSequenceController(TEntityRef<ZSequenceControllerEntity>* result);
-    void SetLastReachedWaypoint(TEntityRef<ZWaypointEntity> pWaypoint);
-    TEntityRef<ZWaypointEntity>* GetLastReachedWaypoint(TEntityRef<ZWaypointEntity>* result);
-    void SetPerceptionSensitivitySequence(EActorPerceptionSensitivity sensitivity);
-    float GetHMSoundDistance();
-    void SetHMSoundDistance(float fWalkDistance);
-    void ResetCameFromPosition();
-    bool HasWeapon();
-    void SetCameFromPosition(float4* v);
-    void SetPerceptionSensitivityAct(EActorPerceptionSensitivity sensitivity);
-    void SetAllowRagdollDamageReactions(bool bAllow);
-    SBehaviorBase* GetCurrentCompiledBehavior();
-    bool GetAllowCutSequence();
-    void SetSequenceController(TEntityRef<ZSequenceControllerEntity> pSequenceCtrl);
-    void SetCrowdActor(TEntityRef<ZCrowdActor> pCrowdActor);
-    void AbortCurrentBehavior();
+	~ZKnowledge() override = default;
+
+	ZKnowledge() = default;
+	void SetSelfEntity(const TEntityRef<ZActor>& pSelf);
+	TEntityRef<ZActor>& Self();
+	const SMatrix& GetTransform() const;
+	ZGridNodeRef GetActorGridNode() const;
+	void SetTransform(const SMatrix& mTransform, const ZPF5Location& location);
+	void SetSequenceController(TEntityRef<ZSequenceControllerEntity> pSequenceCtrl);
+	TEntityRef<ZSequenceControllerEntity> GetSequenceController() const;
+	void SetAllowCutSequence(bool bAllow);
+	bool GetAllowCutSequence() const;
+	void SetPerceptionSensitivityAct(EActorPerceptionSensitivity sensitivity);
+	void SetPerceptionSensitivitySequence(EActorPerceptionSensitivity sensitivity);
+	EActorPerceptionSensitivity GetPerceptionSensitivity() const;
+	void SetAllowRagdollDamageReactions(bool bAllow);
+	bool GetAllowRagdollDamageReactions();
+	TEntityRef<ZSpatialEntity> GetHelpPoint() const;
+	void SetHelpPoint(const TEntityRef<ZSpatialEntity>& pHelpPoint);
+	float DistanceTo(const float4& pos) const;
+	bool HasWeapon() const;
+	void SetHasWeapon(bool bHasWeapon);
+	void SetWaypointBehavior(SBehavior_Waypoint* pWaypointBehavior);
+	SBehavior_Waypoint* GetWaypointBehavior() const;
+	void SetWaypointIndex(int nWaypointIndex);
+	int GetWaypointIndex() const;
+	void SetLastReachedWaypoint(TEntityRef<ZWaypointEntity> pWaypoint);
+	TEntityRef<ZWaypointEntity> GetLastReachedWaypoint();
+	void RemoveReferencesToEntity(const ZEntityRef& ref);
+	TRefCountPtrArg<SKnownEntity> GetSelf() const;
+	TRefCountPtrArg<SKnownEntity> GetHitman();
+	TRefCountPtrArg<SKnownEntity> GetKnownEntity(const ZSharedKnowledgeRef& pShared) const;
+	TRefCountPtrArg<SKnownEntity> GetKnownEntity(const ZEntityRef& ref) const;
+	TRefCountPtrArg<SKnownEntity> AddKnownEntity(const ZEntityRef& ref);
+	TRefCountPtrArg<SKnownEntity> AddKnownEntity(const ZSharedKnowledgeRef& pShared);
+	TRefCountPtrArg<SKnownEntity> FindOrAddKnownEntity(const ZSharedKnowledgeRef pShared);
+	TRefCountPtrArg<SKnownEntity> FindOrAddKnownEntity(const ZEntityRef& ref);
+	TRefCountPtrArg<SKnownEntity> GetKnownLocation(const float4& vPosition, unsigned short room);
+	TRefCountPtrArg<SKnownEntity> AddKnownLocation(const float4& vPosition, float fRadius, unsigned short room);
+	TRefCountPtrArg<SKnownEntity> SetKnownLocation(EAIEventType nEvent, const float4& vPosition, float fRadius, unsigned short nRoom);
+	ZKnownEntityContainer::ZActorKnownEntitiesEnumerator GetKnownEntityEnumerator() const;
+	void RemoveKnownEntity(const TRefCountPtr<SKnownEntity>& knownEntity);
+	void RemoveAllKnownEntities(bool bKeepSelf);
+	bool HasUnhandledEvent(EAIEventType eEventType) const;
+	unsigned int HasEvent(const EAIEventType eEventType) const;
+	TRefCountPtr<SKnownEntity> FindEvent(EAIEventType type) const;
+	TRefCountPtr<SKnownEntity> FindUnhandled(EAIEventType type) const;
+	TRefCountPtr<SKnownEntity> FindCurrent(EAIEventType type, float maxAge) const;
+	TRefCountPtr<SKnownEntity> FindCurrent(EAIEventType type) const;
+	TRefCountPtr<SKnownEntity> FindCurrentSharedEvent(EAISharedEventType type) const;
+	void MarkAllHandled(EAIEventType type);
+	void ExpireAllEvents(EAIEventType type);
+	static ZSharedKnowledgeRef FindSharedKnowledge(const ZEntityRef& pEntity);
+	static ZSharedKnowledgeRef FindSharedKnowledgeWithOutfit(const ZEntityRef& rEntity, TEntityRef<IHM5Outfit> rOutfit);
+	static int GetSharedKnowledgeCount();
+	static ZSharedKnowledgeRef GetSharedKnowledgeByIndex(int nIndex);
+	static ZSharedKnowledgeRef AddSharedKnowledge(const ZEntityRef& pEntity);
+	static ZSharedKnowledgeRef FindOrAddSharedKnowledge(const ZEntityRef& pEntity);
+	ZHM5CoverPlane* GetCurrentCover() const;
+	void SetCurrentCover(ZHM5CoverPlane* pCover);
+	float GetHMAttention() const;
+	void SetHMAttention(float fAttention);
+	void SetHMAttentionType(EHMAttentionType eType);
+	void SetHMAttentionGainOutOfSight(bool bVal);
+	bool GetHMAttentionGainOutOfSight();
+	float GetHMSoundDistance() const;
+	void SetHMSoundDistance(float fWalkDistance);
+	EGameTension GetGameTension() const;
+	void SetGameTension(EGameTension tension);
+	float GetAmbientTime();
+	const ZSharedKnowledgeRef& GetShared() const;
+	void DeleteBloodPool();
+	void PlaceBloodPool();
+	bool IsBloodPoolPlaced();
+	ZSharedKnowledgeRef GetBloodPool();
+	void SetBodyContainer(TEntityRef<ZHM5BodyContainer> pContainer);
+	TEntityRef<ZHM5BodyContainer> GetBodyContainer() const;
+	void AdjustHitpoint(float fDeltaHitpoints);
+	float GetHitPoints() const;
+	void SetForceMinHP(float fForceMinHP);
+	void SetCurrentHitpoints(float fHitpoints);
+	void SetCrowdActorReleaseTimer(unsigned short nFrames);
+	unsigned short GetCrowdActorReleaseTimer();
+	TEntityRef<ZCrowdActor> GetCrowdActor() const;
+	void SetCrowdActor(TEntityRef<ZCrowdActor> pCrowdActor);
+	bool UpdateCrowdReleaseTimer();
+	void SetBodyHitTimer(float time);
+	float GetBodyHitTimer() const;
+	void UpdateBehaviorSelection();
+	void SelectCompiledBehavior();
+	void EnterControlled();
+	void ReleaseControlled();
+	bool IsControlled() const;
+	void AbortCurrentBehavior();
+	ZActiveBehavior* GetCurrentActiveBehavior() const;
+	SBehaviorBase* GetCurrentCompiledBehavior() const;
+	void TerminateBehavior();
+	void OnBehaviorTreeChanged();
+	unsigned char GetNumKnownDeadBodies() const;
+	void IncreaseKnownDeadBodies();
+	void SetCameFromPosition(const float4& v);
+	float4 GetCameFromPosition() const;
+	bool HasCameFromPosition() const;
+	void ResetCameFromPosition();
+	void TerminateCurrentBehavior();
+	void CleanupCurrentBehavior();
+	bool ProcessSuggestedBehavior(SBehaviorBase*& pSelected, const SBehaviorTreeContext& context, SBehaviorBase* pLastSelected);
+	void InitializeCurrentBehavior(SBehaviorBase* pBehavior);
 };

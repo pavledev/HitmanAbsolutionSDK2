@@ -1,12 +1,22 @@
 #pragma once
 
-#include "SQV.h"
+struct SPoseBone;
+struct SQV;
 
 struct SRawFacePose
 {
-    SQV* m_pBones;
-    int* m_pBoneToMeshIDs;
-    char* m_pName;
-    __int16 m_nCount;
-    __int16 m_nBlockCount;
+	SQV* m_pBones;
+	int* m_pBoneToMeshIDs;
+	char* m_pName;
+	short m_nCount;
+	short m_nBlockCount;
+
+	SRawFacePose() = default;
+	~SRawFacePose() = default;
+	static SRawFacePose* Create(const char* pName, const SPoseBone* pFirst, const int* pMeshIDs, int nCount);
+	static SRawFacePose* Create(const SRawFacePose& rhs);
+	static void Destroy(SRawFacePose* pRawFacePose);
+	unsigned int GetMemoryRequirements() const;
+	static unsigned int GetBlockSize();
+	void Relocate();
 };

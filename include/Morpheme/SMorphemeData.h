@@ -1,29 +1,37 @@
 #pragma once
 
-#include "ZAnimationBoneData.h"
-#include "TMap.h"
-#include "ZChildNetworkEntry.h"
-#include "SCutSequenceData.h"
 #include "BoneIdSystem.h"
+#include "TArrayRef.h"
 
-class SMorphemeData
+class ZAnimationBoneData;
+class ZMorphemeNetworkInstance;
+struct SBoneConstraintsHeader;
+struct SBoneDefinition;
+struct SCutSequenceData;
+struct SQV;
+struct ZChildNetworkEntry;
+template <class A, class B> class TMap;
+template <class T> class TArray;
+
+struct __declspec(novtable) SMorphemeData
 {
-public:
-    ZAnimationBoneData* m_pBoneData;
-    TArray<int>* m_pMeshIDToRigID;
-    TMap<unsigned int, ZChildNetworkEntry>* m_pChildNetworks;
-    ZMorphemeNetworkInstance* m_pParentNetwork;
-    unsigned __int16* m_pGlobalToMeshId;
-    unsigned int m_nGlobalToMeshIdSize;
-    const SBoneConstraintsHeader* m_pBoneConstraintsHeader;
-    unsigned int m_nBoneConstraintsBytes;
-    BoneIdSystem m_BoneIdData;
+	ZAnimationBoneData* m_pBoneData;
+	TArray<int>* m_pMeshIDToRigID;
+	TMap<unsigned int, ZChildNetworkEntry>* m_pChildNetworks;
+	ZMorphemeNetworkInstance* m_pParentNetwork;
+	unsigned short* m_pGlobalToMeshId;
+	unsigned int m_nGlobalToMeshIdSize;
+	const SBoneConstraintsHeader* m_pBoneConstraintsHeader;
+	unsigned int m_nBoneConstraintsBytes;
+	BoneIdSystem m_BoneIdData;
 
-    virtual ~SMorphemeData();
-    virtual const SCutSequenceData* GetCutSequenceData(const char*);
-    virtual unsigned int GetNumberOfDeformBones();
-    virtual const TArrayRef<SQV>* GetMeshBindPose(const TArrayRef<SQV>* result);
-    virtual int* GetMeshIDToRigIDMap();
-    virtual int* GetMeshHierarchy();
-    virtual const SBoneDefinition* GetBoneDefinitions();
+	virtual ~SMorphemeData() = default;
+	virtual const SCutSequenceData* GetCutSequenceData(const char* param1) const = 0;
+	virtual unsigned int GetNumberOfDeformBones() const = 0;
+	virtual const TArrayRef<SQV> GetMeshBindPose() const = 0;
+	virtual int* GetMeshIDToRigIDMap() const = 0;
+	virtual int* GetMeshHierarchy() const = 0;
+	virtual const SBoneDefinition* GetBoneDefinitions() const = 0;
+
+	SMorphemeData() = default;
 };

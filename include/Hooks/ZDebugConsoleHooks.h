@@ -6,7 +6,7 @@
 #include "ZDebugConsole.h"
 #include "Menu.h"
 
-using namespace std;
+//using namespace std;
 
 namespace ZDebugConsoleHooks
 {

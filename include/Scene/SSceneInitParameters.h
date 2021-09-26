@@ -2,9 +2,13 @@
 
 #include "ZString.h"
 
-class SSceneInitParameters
+struct SSceneInitParameters
 {
-public:
-    ZString m_SceneResource;
-    ZString m_StreamingState;
+	ZString m_SceneResource;
+	ZString m_StreamingState;
+
+	SSceneInitParameters(const ZString& sceneResource, ZString streamingState);
+	SSceneInitParameters() = default;
+	~SSceneInitParameters() = default;
+	SSceneInitParameters& operator=(const SSceneInitParameters& __that);
 };

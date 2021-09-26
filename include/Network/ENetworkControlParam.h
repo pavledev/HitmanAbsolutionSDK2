@@ -1,0 +1,38 @@
+#pragma once
+
+enum ENetworkControlParam
+{
+	eNetworkControlParam_StandWalkSelect = 0,
+	eNetworkControlParam_WalkRunSelect = 1,
+	eNetworkControlParam_TurnSelect = 2,
+	eNetworkControlParam_LeftRightSelect = 3,
+	eNetworkControlParam_StopMatchEventsSelect = 4,
+	eNetworkControlParam_TranslationSelect = 5,
+	eNetworkControlParam_DestinationEventSelect = 6,
+	eNetworkControlParam_SmallStepBlend = 7,
+	eNetworkControlParam_WalkRunBlend = 8,
+	eNetworkControlParam_MoveFastBlend = 9,
+	eNetworkControlParam_SneakBlend = 10,
+	eNetworkControlParam_MoveTrajectoryScale = 11,
+	eNetworkControlParam_StandTurnLeftRight = 12,
+	eNetworkControlParam_StandTurnFraction = 13,
+	eNetworkControlParam_StandTurn = 14,
+	eNetworkControlParam_StandTurnAngle = 15,
+	eNetworkControlParam_Bank = 16,
+	eNetworkControlParam_HeadDirection = 17,
+	eNetworkControlParam_TorsoDirection = 18,
+	eNetworkControlParam_HipsDirection = 19,
+	eNetworkControlParam_MoveTurnAngle = 20,
+	eNetworkControlParam_SneakTranslation = 21,
+	eNetworkControlParam_FootStepTriggered = 22,
+	eNetworkControlParam_StrafeTrajectory = 23,
+	eNetworkControlParam_StrafeForwardSelect = 24,
+	eNetworkControlParam_StrafeBackwardSelect = 25,
+	eNetworkControlParam_StrafeSpeed = 26,
+	eNetworkControlParam_AssaultRifle = 27,
+	eNetworkControlParam_SingleWeapon = 28,
+	eNetworkControlParam_CarryFireArm = 29,
+	eNetworkControlParam_IdleAnimIndex = 30,
+	eNetworkControlParam_Random = 31,
+	eNetworkControlParam_Count = 32
+};

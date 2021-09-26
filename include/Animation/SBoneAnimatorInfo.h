@@ -1,11 +1,16 @@
 #pragma once
 
-#include "ZAnimationBoneData.h"
 #include "ZDelegate.h"
 
-class SBoneAnimatorInfo
+class ZAnimationBoneData;
+
+struct SBoneAnimatorInfo
 {
-    ZAnimationBoneData* m_pBoneData;
-    ZDelegate<void __cdecl(void)> m_NotifyBonesChanged;
-    ZDelegate<void __cdecl(void)> m_ResendInfo;
+	ZAnimationBoneData* m_pBoneData;
+	ZDelegate<void __cdecl(void)> m_NotifyBonesChanged;
+	ZDelegate<void __cdecl(void)> m_ResendInfo;
+
+	SBoneAnimatorInfo() = default;
+	~SBoneAnimatorInfo() = default;
+	static void DoNothing();
 };

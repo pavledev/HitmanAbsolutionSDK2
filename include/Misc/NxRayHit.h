@@ -1,12 +1,16 @@
 #pragma once
 
-#include "NxScene.h"
+#include <NxScene.h>
 
-class NxRayHit
+struct NxRayHit
 {
-public:
-    NxShape* m_pShape;
-    float m_nT;
-    NxVec3 m_vPosition;
-    NxVec3 m_vNormal;
+	NxShape* m_pShape;
+	float m_nT;
+	NxVec3 m_vPosition;
+	NxVec3 m_vNormal;
+
+	NxRayHit() = default;
+	~NxRayHit() = default;
+	NxRayHit(const NxRayHit& __that);
+	static int SortCompare(const void* pA, const void* pB);
 };

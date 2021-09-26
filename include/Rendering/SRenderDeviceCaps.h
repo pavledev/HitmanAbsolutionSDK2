@@ -4,20 +4,24 @@
 #include "SVector2.h"
 #include "ERenderFormat.h"
 
-class alignas(4) SRenderDeviceCaps
+struct SRenderDeviceCaps
 {
-public:
-    ZString sPlatform;
-    ZString sEffectProfile;
-    ZString sVertexShaderProfile;
-    ZString sMaterialPlatform;
-    SVector2 vSafeZoneScale;
-    SVector2 vDebugTextOffset;
-    unsigned int nMaxGPUMemoryAvailable;
-    unsigned int nMaxCPUMemoryAvailable;
-    ERenderFormat eDepthTextureFormat;
-    __int8 bDepthBufferReadable : 1;
-    __int8 bSupportsTimeStampQueries : 1;
-    __int8 bSupportsQuadLists : 1;
-    __int8 bSupportsRectLists : 1;
+	ZString sPlatform;
+	ZString sEffectProfile;
+	ZString sVertexShaderProfile;
+	ZString sMaterialPlatform;
+	SVector2 vSafeZoneScale;
+	SVector2 vDebugTextOffset;
+	unsigned int nMaxGPUMemoryAvailable;
+	unsigned int nMaxCPUMemoryAvailable;
+	ERenderFormat eDepthTextureFormat;
+	bool bDepthBufferReadable : 1;
+	bool bSupportsTimeStampQueries : 1;
+	bool bSupportsQuadLists : 1;
+	bool bSupportsRectLists : 1;
+
+	SRenderDeviceCaps(const SRenderDeviceCaps& __that);
+	SRenderDeviceCaps() = default;
+	~SRenderDeviceCaps() = default;
+	SRenderDeviceCaps& operator=(const SRenderDeviceCaps& __that);
 };

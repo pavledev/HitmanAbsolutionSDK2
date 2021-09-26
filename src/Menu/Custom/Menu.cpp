@@ -2,15 +2,6 @@
 
 using namespace ImGui;
 
-DebugConsole Menu::console;
-PlayerInfo Menu::playerInfo;
-ActorsInfo Menu::actorsInfo;
-ItemsInfo Menu::itemsInfo;
-HUDInfo Menu::hudInfo;
-GameStatsInfo Menu::gameStatsInfo;
-Cheats Menu::cheats;
-UIOptions Menu::uiOptions;
-
 void Menu::Render()
 {
 	ImGui_ImplDX11_NewFrame();
@@ -39,6 +30,11 @@ void Menu::Render()
     if (showItemsInfo)
     {
         itemsInfo.DrawWindow(&showItemsInfo);
+    }
+
+    if (showPropsInfo)
+    {
+        propsInfo.DrawWindow(&showPropsInfo);
     }
 
     if (showHUDInfo)
@@ -72,7 +68,8 @@ void Menu::Render()
                 ImGui::MenuItem("Debug Console", nullptr, &showDebugConsole);
                 ImGui::MenuItem("Player Info", nullptr, &showPlayerInfo);
                 ImGui::MenuItem("Actors Info", nullptr, &showActorsInfo);
-                //ImGui::MenuItem("Items Info", nullptr, &showItemsInfo);
+                ImGui::MenuItem("Items Info", nullptr, &showItemsInfo);
+                ImGui::MenuItem("Props Info", nullptr, &showPropsInfo);
                 ImGui::MenuItem("HUD Info", nullptr, &showHUDInfo);
                 ImGui::MenuItem("Game Stats", nullptr, &showGameStatsInfo);
                 ImGui::MenuItem("Cheats", nullptr, &showCheats);
@@ -83,8 +80,8 @@ void Menu::Render()
             ImGui::EndMenuBar();
         }
 
-        static ZInputActionManager* inputActionManager = *reinterpret_cast<ZInputActionManager**>(Globals::g_pInputActionManagerSingleton);
-        static ZInputDeviceManager* inputDeviceManager = *reinterpret_cast<ZInputDeviceManager**>(Globals::g_pInputDeviceManagerSingleton);
+        static ZInputActionManager* inputActionManager = Singletons::GetInputActionManager();
+        static ZInputDeviceManager* inputDeviceManager = static_cast<ZInputDeviceManager*>(Singletons::GetInputDeviceManager());
 
         ImGui::Checkbox("Enable Input", &inputActionManager->m_bEnabled);
         ImGui::Checkbox("Enable Debug Keys", &inputDeviceManager->m_bDebugKeysEnabled);

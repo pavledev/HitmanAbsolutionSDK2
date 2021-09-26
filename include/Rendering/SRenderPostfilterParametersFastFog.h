@@ -3,8 +3,11 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector4.h"
 
-class SRenderPostfilterParametersFastFog : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersFastFog : SRenderPostfilterParametersBase
 {
-public:
-    SVector4 m_vParams;
+	SVector4 m_vParams;
+
+	SRenderPostfilterParametersFastFog() = default;
+	~SRenderPostfilterParametersFastFog() = default;
+	void Lerp(const SRenderPostfilterParametersFastFog& source, const SRenderPostfilterParametersFastFog& target, float fLerp, unsigned int nLerpState);
 };

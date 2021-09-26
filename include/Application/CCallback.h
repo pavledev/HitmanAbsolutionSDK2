@@ -2,17 +2,20 @@
 
 #include "CCallbackBase.h"
 
-template<class A, class B, int C>
-class CCallback : CCallbackBase
+template <class A, class B, int C>
+class CCallback : public CCallbackBase
 {
 public:
-    A* m_pObj;
-    void* m_Func;
+	A* m_pObj;
+	void (*m_Func)(B* param1);
 
-    /*void(__thiscall* m_Func)(A* this, B*);
+	void Run(void* pvParam, bool __formal, unsigned long long __formal2) override;
+	void Run(void* pvParam) override;
+	int GetCallbackSizeBytes() override;
+	virtual ~CCallback() = default;
 
-    virtual void Run(void*, bool, unsigned __int64);
-    virtual void Run(void*);
-    virtual int GetCallbackSizeBytes();
-    virtual void ~CCallback();*/
+	CCallback() = default;
+	CCallback(A* pObj, void (*func)(B* param1));
+	void Register(A* pObj, void (*func)(B* param1));
+	void Unregister();
 };

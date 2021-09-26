@@ -4,11 +4,16 @@
 #include "TArrayRef.h"
 #include "ZVariantRef.h"
 
-template<class T>
+template <class T>
 struct TDelegateBaseInvoker
 {
-    unsigned int argCount;
-    ZVariant* (__cdecl* pfInvoke)(ZVariant* result, void*, const TArrayRef<ZVariantRef>*);
-    STypeID* retType;
-    STypeID* a0Type;
+	unsigned int argCount;
+	ZVariant(*pfInvoke)(void* param1, const TArrayRef<ZVariantRef>& arrayRef);
+	STypeID* retType;
+	STypeID* a0Type;
+
+	static const TDelegateBaseInvoker ms_invokeData;
+
+	TDelegateBaseInvoker() = default;
+	~TDelegateBaseInvoker() = default;
 };

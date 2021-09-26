@@ -4,6 +4,9 @@
 
 struct SRenderQueryDesc
 {
-    ERenderQueryType eQueryType;
-    unsigned int nMiscFlags;
+	ERenderQueryType eQueryType;
+	unsigned int nMiscFlags;
+
+	SRenderQueryDesc() = default;
+	~SRenderQueryDesc() = default;
 };

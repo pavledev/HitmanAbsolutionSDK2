@@ -2,9 +2,11 @@
 
 #include "SMatrix.h"
 
-class alignas(16) sQueuedReset
+struct sQueuedReset
 {
-public:
-    bool m_bResetQueued;
-    SMatrix m_mvResetPoint;
+	bool m_bResetQueued;
+	SMatrix m_mvResetPoint;
+
+	sQueuedReset() = default;
+	~sQueuedReset() = default;
 };

@@ -1,3 +1,5 @@
+#pragma warning(disable : 26812)
+
 #include "GameStatsInfo.h"
 
 void GameStatsInfo::DrawWindow(bool* showHUDInfo)
@@ -10,7 +12,7 @@ void GameStatsInfo::DrawWindow(bool* showHUDInfo)
 		return;
 	}
 
-	static ZGameStatsManager* gameStatsManager = reinterpret_cast<ZGameStatsManager*>(Globals::g_pGameStatsManagerSingleton);
+	static ZGameStatsManager* gameStatsManager = Singletons::GetGameStatsManager();
 
 	ImGui::Text("Picked Up Disguise On CP: %s", FormatArrayData(gameStatsManager->m_bPickedUpDisguiseOnCP).c_str());
 
@@ -384,6 +386,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Max Facing Alertable Actor"))
 	{
 		TEntityRef<ZActor> maxFacingAlertableActor = gameState->m_ActorInfo.m_pMaxFacingAlertableActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&maxFacingAlertableActor, flags, color, 0);
 		ImGui::TreePop();
 	}
@@ -391,6 +394,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Closest Alertable Actor"))
 	{
 		TEntityRef<ZActor> closestAlertableActor = gameState->m_ActorInfo.m_pClosestAlertableActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&closestAlertableActor, flags, color, 1);
 		ImGui::TreePop();
 	}
@@ -398,6 +402,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Closest Alertable Guard"))
 	{
 		TEntityRef<ZActor> closestAlertableGuard = gameState->m_ActorInfo.m_pClosestAlertableGuard;
+
 		nearestActorsInfo.AddNearestActorInfo(&closestAlertableGuard, flags, color, 2);
 		ImGui::TreePop();
 	}
@@ -405,6 +410,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Closest Engaged Actor"))
 	{
 		TEntityRef<ZActor> closestEngagedActor = gameState->m_ActorInfo.m_pClosestEngagedActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&closestEngagedActor, flags, color, 3);
 		ImGui::TreePop();
 	}
@@ -444,6 +450,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Attention Max Actor"))
 	{
 		TEntityRef<ZActor> attentionMaxActor = gameState->m_pAttentionMaxActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&attentionMaxActor, flags, color, 4);
 		ImGui::TreePop();
 	}
@@ -451,6 +458,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Trespassing Attention Max Actor"))
 	{
 		TEntityRef<ZActor> trespassingAttentionMaxActor = gameState->m_pTrespassingAttentionMaxActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&trespassingAttentionMaxActor, flags, color, 5);
 		ImGui::TreePop();
 	}
@@ -458,6 +466,7 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Disguise Attention Max Actor"))
 	{
 		TEntityRef<ZActor> disguiseAttentionMaxActor = gameState->m_pDisguiseAttentionMaxActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&disguiseAttentionMaxActor, flags, color, 6);
 		ImGui::TreePop();
 	}
@@ -465,99 +474,67 @@ void GameStatsInfo::AddAIGameStateInfo(ZAIGameState* gameState, ImGuiInputTextFl
 	if (ImGui::TreeNode("Disguise Heat Actor"))
 	{
 		TEntityRef<ZActor> disguiseHeatActor = gameState->m_pDisguiseHeatActor;
+
 		nearestActorsInfo.AddNearestActorInfo(&disguiseHeatActor, flags, color, 7);
 		ImGui::TreePop();
 	}
 
 	ImGui::Text("");
 
-	bool outfitBroken = static_cast<bool>(gameState->m_bOutfitBroken);
+	bool outfitBroken = gameState->m_bOutfitBroken;
+	bool outfitSuspicious = gameState->m_bOutfitSuspicious;
+	bool inDisguise = gameState->m_bInDisguise;
+	bool hitmanInCombat = gameState->m_bHitmanInCombat;
+	bool bulletFlyBy = gameState->m_bBulletFlyBy;
+	bool isHitmanStealthKilling = gameState->m_bIsHitmanStealthKilling;
+	bool hitmanTrespassing = gameState->m_bHitmanTrespassing;
+	bool hitmanDeepTrespassing = gameState->m_bHitmanDeepTrespassing;
+	bool hitmanNearDeadBody = gameState->m_bHitmanNearDeadBody;
+	bool hitmanIllegalWeapon = gameState->m_bHitmanIllegalWeapon;
+	bool hitmanChangingOutfit = gameState->m_bHitmanChangingOutfit;
+	bool attentionOSDVisible = gameState->m_bAttentionOSDVisible;
+	bool bodyFound = gameState->m_bBodyFound;
+	bool bloodPoolFound = gameState->m_bBloodPoolFound;
+	bool canOpenCPDoor = gameState->m_bCanOpenCPDoor;
+	bool isHitmanHunted = gameState->m_bIsHitmanHunted;
+	bool spottedEnteringCloset = gameState->m_bSpottedEnteringCloset;
+	bool anyGuardsAlive = gameState->m_bAnyGuardsAlive;
+
 	ImGui::Checkbox("Outfit Broken", &outfitBroken);
-
-	gameState->m_bOutfitBroken = outfitBroken;
-
-	bool outfitSuspicious = static_cast<bool>(gameState->m_bOutfitSuspicious);
 	ImGui::Checkbox("Outfit Suspicious", &outfitSuspicious);
-
-	gameState->m_bOutfitSuspicious = outfitSuspicious;
-
-	bool inDisguise = static_cast<bool>(gameState->m_bInDisguise);
 	ImGui::Checkbox("In Disguise", &inDisguise);
-
-	gameState->m_bInDisguise = inDisguise;
-
-	bool hitmanInCombat = static_cast<bool>(gameState->m_bHitmanInCombat);
 	ImGui::Checkbox("Hitman In Combat", &hitmanInCombat);
-
-	gameState->m_bHitmanInCombat = hitmanInCombat;
-
-	bool bulletFlyBy = static_cast<bool>(gameState->m_bBulletFlyBy);
 	ImGui::Checkbox("Bullet Fly By", &bulletFlyBy);
-
-	gameState->m_bBulletFlyBy = bulletFlyBy;
-
-	bool isHitmanStealthKilling = static_cast<bool>(gameState->m_bIsHitmanStealthKilling);
 	ImGui::Checkbox("Is Hitman Stealth Killing", &isHitmanStealthKilling);
-
-	gameState->m_bIsHitmanStealthKilling = isHitmanStealthKilling;
-
-	bool hitmanTrespassing = static_cast<bool>(gameState->m_bHitmanTrespassing);
 	ImGui::Checkbox("Hitman Trespassing", &hitmanTrespassing);
-
-	gameState->m_bHitmanTrespassing = hitmanTrespassing;
-
-	bool hitmanDeepTrespassing = static_cast<bool>(gameState->m_bHitmanDeepTrespassing);
 	ImGui::Checkbox("Hitman Deep Trespassing", &hitmanDeepTrespassing);
-
-	gameState->m_bHitmanDeepTrespassing = hitmanDeepTrespassing;
-
-	bool hitmanNearDeadBody = static_cast<bool>(gameState->m_bHitmanNearDeadBody);
 	ImGui::Checkbox("Hitman Near Dead Body", &hitmanNearDeadBody);
-
-	gameState->m_bHitmanNearDeadBody = hitmanNearDeadBody;
-
-	bool hitmanIllegalWeapon = static_cast<bool>(gameState->m_bHitmanIllegalWeapon);
 	ImGui::Checkbox("Hitman Illegal Weapon", &hitmanIllegalWeapon);
-
-	gameState->m_bHitmanIllegalWeapon = hitmanIllegalWeapon;
-
-	bool hitmanChangingOutfit = static_cast<bool>(gameState->m_bHitmanChangingOutfit);
 	ImGui::Checkbox("Hitman Changing Outfit", &hitmanChangingOutfit);
-
-	gameState->m_bHitmanChangingOutfit = hitmanChangingOutfit;
-
-	bool attentionOSDVisible = static_cast<bool>(gameState->m_bAttentionOSDVisible);
 	ImGui::Checkbox("Attention OSD Visible", &attentionOSDVisible);
-
-	gameState->m_bAttentionOSDVisible = attentionOSDVisible;
-
-	bool bodyFound = static_cast<bool>(gameState->m_bBodyFound);
 	ImGui::Checkbox("Body Found", &bodyFound);
-
-	gameState->m_bBodyFound = bodyFound;
-
-	bool bloodPoolFound = static_cast<bool>(gameState->m_bBloodPoolFound);
 	ImGui::Checkbox("Blood Pool Found", &bloodPoolFound);
-
-	gameState->m_bBloodPoolFound = bloodPoolFound;
-
-	bool canOpenCPDoor = static_cast<bool>(gameState->m_bCanOpenCPDoor);
 	ImGui::Checkbox("Can Open CP Door", &canOpenCPDoor);
-
-	gameState->m_bCanOpenCPDoor = canOpenCPDoor;
-
-	bool isHitmanHunted = static_cast<bool>(gameState->m_bIsHitmanHunted);
 	ImGui::Checkbox("Is Hitman Hunted", &isHitmanHunted);
-
-	gameState->m_bIsHitmanHunted = isHitmanHunted;
-
-	bool spottedEnteringCloset = static_cast<bool>(gameState->m_bSpottedEnteringCloset);
 	ImGui::Checkbox("Spotted Entering Closet", &spottedEnteringCloset);
-
-	gameState->m_bSpottedEnteringCloset = spottedEnteringCloset;
-
-	bool anyGuardsAlive = static_cast<bool>(gameState->m_bAnyGuardsAlive);
 	ImGui::Checkbox("Any Guards Alive", &anyGuardsAlive);
 
+	gameState->m_bOutfitBroken = outfitBroken;
+	gameState->m_bOutfitSuspicious = outfitSuspicious;
+	gameState->m_bInDisguise = inDisguise;
+	gameState->m_bHitmanInCombat = hitmanInCombat;
+	gameState->m_bBulletFlyBy = bulletFlyBy;
+	gameState->m_bIsHitmanStealthKilling = isHitmanStealthKilling;
+	gameState->m_bHitmanTrespassing = hitmanTrespassing;
+	gameState->m_bHitmanDeepTrespassing = hitmanDeepTrespassing;
+	gameState->m_bHitmanNearDeadBody = hitmanNearDeadBody;
+	gameState->m_bHitmanIllegalWeapon = hitmanIllegalWeapon;
+	gameState->m_bHitmanChangingOutfit = hitmanChangingOutfit;
+	gameState->m_bAttentionOSDVisible = attentionOSDVisible;
+	gameState->m_bBodyFound = bodyFound;
+	gameState->m_bBloodPoolFound = bloodPoolFound;
+	gameState->m_bCanOpenCPDoor = canOpenCPDoor;
+	gameState->m_bIsHitmanHunted = isHitmanHunted;
+	gameState->m_bSpottedEnteringCloset = spottedEnteringCloset;
 	gameState->m_bAnyGuardsAlive = anyGuardsAlive;
 }

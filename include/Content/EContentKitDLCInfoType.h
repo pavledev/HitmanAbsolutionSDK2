@@ -1,7 +1,7 @@
 #pragma once
 
-enum EContentKitDLCInfoType : __int32
+enum EContentKitDLCInfoType
 {
-    ECKDLCIT_FireArm = 0x0,
-    ECKDLCIT_Disguise = 0x1
+	ECKDLCIT_FireArm = 0,
+	ECKDLCIT_Disguise = 1
 };

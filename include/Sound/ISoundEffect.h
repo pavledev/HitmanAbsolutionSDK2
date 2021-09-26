@@ -4,12 +4,16 @@
 #include "ISoundEffectAttachable.h"
 #include "ZGameTime.h"
 
-class ISoundEffect : public IComponentInterface
+class __declspec(novtable) ISoundEffect : public IComponentInterface
 {
 public:
-    virtual FMOD::DSP* CreateEffectInstance(ISoundEffectAttachable*, void*);
-    virtual void DestroyEffectInstance(void*);
-    virtual void UpdateAll();
-    virtual void SetActive(const bool);
-    virtual void Update(ZGameTime, bool);
+	~ISoundEffect() override = default;
+	virtual FMOD::DSP* CreateEffectInstance(ISoundEffectAttachable* soundEffectAttachable, void* param2) = 0;
+	virtual void DestroyEffectInstance(void* param1) = 0;
+	virtual void UpdateAll() = 0;
+	virtual void SetActive(const bool param1) = 0;
+	virtual void Update(ZGameTime gameTime, bool param2) = 0;
+
+	static void RegisterType();
+	ISoundEffect() = default;
 };

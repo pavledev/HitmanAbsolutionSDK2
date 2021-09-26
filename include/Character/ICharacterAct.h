@@ -4,5 +4,9 @@
 
 class ICharacterAct : public IComponentInterface
 {
+public:
+	~ICharacterAct() override = default;
 
+	static void RegisterType();
+	ICharacterAct() = default;
 };

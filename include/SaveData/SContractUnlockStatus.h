@@ -2,10 +2,12 @@
 
 #include "ELevelIndex.h"
 
-class SContractUnlockStatus
+struct SContractUnlockStatus
 {
-public:
-    bool bUnlocked;
-    ELevelIndex eLevelIndex;
-    int iContractIndex;
+	bool bUnlocked;
+	ELevelIndex eLevelIndex;
+	int iContractIndex;
+
+	SContractUnlockStatus() = default;
+	~SContractUnlockStatus() = default;
 };

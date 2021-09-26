@@ -2,8 +2,13 @@
 
 #include "SConditionBase.h"
 
-class SCondition_Cooldown : public SConditionBase
+struct SBehaviorTreeContext;
+
+struct SCondition_Cooldown : SConditionBase
 {
-public:
-    float fCooldown;
+	float fCooldown;
+
+	bool Eval(SBehaviorTreeContext& context) const;
+	SCondition_Cooldown() = default;
+	~SCondition_Cooldown() = default;
 };

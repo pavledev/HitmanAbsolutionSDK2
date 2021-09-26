@@ -1,11 +1,11 @@
 #pragma once
 
-enum ESoundCollisionType : __int32
+enum ESoundCollisionType
 {
-    ESCT_IMPACT = 0x0,
-    ESCT_ROLLING = 0x1,
-    ESCT_SLIDING = 0x2,
-    ESCT_ENDED = 0x3,
-    ESCT_SHATTER = 0x4,
-    ESCT_NUMCOLLISIONTYPES = 0x5
+	ESCT_IMPACT = 0,
+	ESCT_ROLLING = 1,
+	ESCT_SLIDING = 2,
+	ESCT_ENDED = 3,
+	ESCT_SHATTER = 4,
+	ESCT_NUMCOLLISIONTYPES = 5
 };

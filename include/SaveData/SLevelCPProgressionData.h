@@ -2,11 +2,16 @@
 
 #include "ELevelIndex.h"
 #include "TArray.h"
-#include "SCPProgressionState.h"
 
-class SLevelCPProgressionData
+struct SCPProgressionState;
+
+struct SLevelCPProgressionData
 {
-public:
-    ELevelIndex m_eLevelIndex;
-    TArray<SCPProgressionState> m_aCPStates;
+	ELevelIndex m_eLevelIndex;
+	TArray<SCPProgressionState> m_aCPStates;
+
+	SLevelCPProgressionData(const SLevelCPProgressionData& __that);
+	SLevelCPProgressionData() = default;
+	~SLevelCPProgressionData() = default;
+	SLevelCPProgressionData& operator=(const SLevelCPProgressionData& __that);
 };

@@ -1,38 +1,54 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "IEntitySceneContext.h"
-#include "SComponentMapEntry.h"
+#include "ZEntityRef.h"
+#include "ZResourcePtr.h"
+#include "ZVariantRef.h"
+
+class IEntityBlueprintFactory;
+class IEntityFactory;
+class IEntitySceneContext;
+class ZEntityType;
+class ZString;
+struct SComponentMapEntry;
+struct STypeID;
+template <class T> class TArrayRef;
 
 class ZEntityManager : public IComponentInterface
 {
 public:
-    IEntitySceneContext* m_pSceneContext;
-    unsigned int m_nTransformParentPropertyID;
-    unsigned int m_nObjectToParentID;
+	enum
+	{
+		COPYABLE = 0,
+		ASSIGNABLE = 0
+	};
 
-    virtual ~ZEntityManager();
-    virtual ZVariantRef* GetVariantRef(ZVariantRef* result);
-    virtual int AddRef();
-    virtual int Release();
-    virtual void* QueryInterface(STypeID* iid);
+	IEntitySceneContext* m_pSceneContext;
+	unsigned int m_nTransformParentPropertyID;
+	unsigned int m_nObjectToParentID;
 
-    SComponentMapEntry* GetComponentInterfacesInternal();
-    ZEntityType** AllocateEntity(ZString* sDebugName, IEntityFactory* pEntityFactory);
-    void DeleteEntities(TArrayRef<ZEntityRef> aEntities);
-    void DestructEntity(IEntityBlueprintFactory* pBlueprint, ZEntityRef entityRef);
-    void FreeEntity(ZEntityType** pEntity);
-    ZEntityRef* ConstructEntity(ZEntityRef* result, ZString* sDebugName, ZResourcePtr* pEntityFactory, char* pMemBlock, ZEntityRef* transformParent);
-    ZEntityRef* NewUninitializedEntity(ZEntityRef* result, ZString* sDebugName, IEntityFactory* pEntityFactory);
-    IEntitySceneContext* GetSceneContext();
-    unsigned int GetAdditionalMemoryForCreatedEntity(IEntityBlueprintFactory* pBlueprint);
-    ZEntityRef* NewEntity(ZEntityRef* result, ZString* sDebugName, ZResourcePtr* pEntityFactory, ZEntityRef* transformParent);
-    ZEntityRef* ConstructEntity(ZEntityRef* result, ZString* sDebugName, IEntityFactory* pEntityFactory, char* pMemBlock, ZEntityRef* transformParent);
-    void SetSceneContext(IEntitySceneContext* pContext);
-    ZEntityRef* NewEntity(ZEntityRef* result, ZString* sDebugName, IEntityFactory* pEntityFactory, ZEntityRef* transformParent);
-    ZEntityManager();
-    void DeleteEntity(ZEntityRef entityRef);
-    ZEntityType** ConstructUninitializedEntity(ZString* sDebugName, IEntityFactory* pEntityFactory, char* pMemBlock);
-    char* GetAllocationPointerFromCreatedEntity(ZEntityType** pEntity);
-    IEntityBlueprintFactory* GetBlueprintFromCreatedEntity(ZEntityType** pEntity);
+	~ZEntityManager() override = default;
+	ZVariantRef GetVariantRef() const override;
+	int AddRef() override;
+	int Release() override;
+	void* QueryInterface(STypeID* iid) override;
+
+	ZEntityManager() = default;
+	const SComponentMapEntry* GetComponentInterfacesInternal() const;
+	ZEntityRef NewEntity(const ZString& sDebugName, IEntityFactory* pEntityFactory, const ZEntityRef& transformParent);
+	ZEntityRef NewEntity(const ZString& sDebugName, const ZResourcePtr& pEntityFactory, const ZEntityRef& transformParent);
+	ZEntityRef NewUninitializedEntity(const ZString& sDebugName, IEntityFactory* pEntityFactory);
+	void DeleteEntity(const ZEntityRef entityRef);
+	void DeleteEntities(const TArrayRef<ZEntityRef> aEntities);
+	const IEntityBlueprintFactory* GetBlueprintFromCreatedEntity(ZEntityType** pEntity) const;
+	ZEntityRef ConstructEntity(const ZString& sDebugName, IEntityFactory* pEntityFactory, unsigned char* pMemBlock, const ZEntityRef& transformParent);
+	ZEntityRef ConstructEntity(const ZString& sDebugName, const ZResourcePtr& pEntityFactory, unsigned char* pMemBlock, const ZEntityRef& transformParent);
+	ZEntityType** ConstructUninitializedEntity(const ZString& sDebugName, IEntityFactory* pEntityFactory, unsigned char* pMemBlock);
+	void DestructEntity(IEntityBlueprintFactory* pBlueprint, ZEntityRef entityRef);
+	void SetSceneContext(IEntitySceneContext* pContext);
+	IEntitySceneContext* GetSceneContext();
+	ZEntityType** AllocateEntity(const ZString& sDebugName, IEntityFactory* pEntityFactory);
+	void FreeEntity(ZEntityType** pEntity);
+	unsigned int GetAdditionalMemoryForCreatedEntity(const IEntityBlueprintFactory* pBlueprint) const;
+	unsigned char* GetAllocationPointerFromCreatedEntity(ZEntityType** pEntity) const;
 };

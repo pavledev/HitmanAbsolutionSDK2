@@ -1,12 +1,12 @@
 #pragma once
 
-enum EActorDeathType : __int32
+enum EActorDeathType
 {
-    eADT_UNDEFINED = 0x0,
-    eADT_INVISIBLE = 0x1,
-    eADT_ACCIDENT = 0x2,
-    eADT_PACIFIED = 0x3,
-    eADT_PACIFIEDACCIDENT = 0x4,
-    eADT_MURDER = 0x5,
-    eADT_BLOODY_MURDER = 0x6
+	eADT_UNDEFINED = 0,
+	eADT_INVISIBLE = 1,
+	eADT_ACCIDENT = 2,
+	eADT_PACIFIED = 3,
+	eADT_PACIFIEDACCIDENT = 4,
+	eADT_MURDER = 5,
+	eADT_BLOODY_MURDER = 6
 };

@@ -1,7 +1,7 @@
 #pragma once
 
-enum ERenderDestinationType : __int32
+enum ERenderDestinationType
 {
-    RENDER_DESTINATION_TYPE_SCREEN = 0x0,
-    RENDER_DESTINATION_TYPE_OFFSCREEN = 0x1
+	RENDER_DESTINATION_TYPE_SCREEN = 0,
+	RENDER_DESTINATION_TYPE_OFFSCREEN = 1
 };

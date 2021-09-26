@@ -1,11 +1,16 @@
 #pragma once
 
 #include "TEntityRef.h"
-#include "IHM5Item.h"
 
-class sAttacherBoneElement
+class IHM5Item;
+
+struct sAttacherBoneElement
 {
-public:
-    TEntityRef<IHM5Item> rItem;
-    int m_nBoneId;
+	TEntityRef<IHM5Item> rItem;
+	int m_nBoneId;
+
+	sAttacherBoneElement() = default;
+	bool IsInitialized();
+	void Empty();
+	~sAttacherBoneElement() = default;
 };

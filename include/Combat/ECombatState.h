@@ -1,7 +1,7 @@
 #pragma once
 
-enum ECombatState : __int32
+enum ECombatState
 {
-    CS_Combat = 0x0,
-    CS_CheckLastPosition = 0x1
+	CS_Combat = 0,
+	CS_CheckLastPosition = 1
 };

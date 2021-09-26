@@ -2,56 +2,97 @@
 
 #include "GFxResource.h"
 #include "GFxStateBag.h"
-#include "HeapDesc.h"
-#include "GFxResourceId.h"
+#include "GRect.h"
+#include "GMemoryHeap.h"
+#include "GFxFileConstants.h"
+#include "GRefCountBase.h"
 
-class GFxMovieDef : public GFxResource, public GFxStateBag
+struct GFxExporterInfo;
+class GFxMovieView;
+class GFxResourceId;
+
+class __declspec(novtable) GFxMovieDef : public GFxResource, public GFxStateBag
 {
 public:
-    enum VisitResourceMask : __int32
-    {
-        ResVisit_NestedMovies = 0x8000,
-        ResVisit_Fonts = 0x1,
-        ResVisit_Bitmaps = 0x2,
-        ResVisit_GradientImages = 0x4,
-        ResVisit_EditTextFields = 0x8,
-        ResVisit_Sounds = 0x10,
-        ResVisit_Sprite = 0x20,
-        ResVisit_AllLocalImages = 0x6,
-        ResVisit_AllImages = 0x8006
-    };
+	enum FileAttrFlags
+	{
+		FileAttr_UseNetwork = 1,
+		FileAttr_HasMetadata = 16
+	};
 
-    enum FileAttrFlags : __int32
-    {
-        FileAttr_UseNetwork = 0x1,
-        FileAttr_HasMetadata = 0x10,
-    };
+	enum VisitResourceMask
+	{
+		ResVisit_NestedMovies = 32768,
+		ResVisit_Fonts = 1,
+		ResVisit_Bitmaps = 2,
+		ResVisit_GradientImages = 4,
+		ResVisit_EditTextFields = 8,
+		ResVisit_Sounds = 16,
+		ResVisit_Sprite = 32,
+		ResVisit_AllLocalImages = 6,
+		ResVisit_AllImages = 32774
+	};
 
-    class MemoryContext : public GRefCountBase<GFxMovieDef::MemoryContext, 2>
-    {
+	struct MemoryParams
+	{
+		GMemoryHeap::HeapDesc Desc;
+		float HeapLimitMultiplier;
+		unsigned int MaxCollectionRoots;
+		unsigned int FramesBetweenCollections;
 
-    };
+		MemoryParams(unsigned int memoryArena);
+	};
 
-    class MemoryParams
-    {
-    public:
-        HeapDesc Desc;
-        float HeapLimitMultiplier;
-        unsigned int MaxCollectionRoots;
-        unsigned int FramesBetweenCollections;
-    };
+	class MemoryContext : public GRefCountBase<MemoryContext, 2>
+	{
+	public:
+		~MemoryContext() override = default;
 
-    class ImportVisitor
-    {
-    public:
-        virtual ~ImportVisitor();
-        virtual void Visit(GFxMovieDef*, GFxMovieDef*, const char*);
-    };
+		MemoryContext() = default;
+	};
 
-    class ResourceVisitor : public GFxFileConstants
-    {
-    public:
-        virtual ~ResourceVisitor();
-        virtual void Visit(GFxMovieDef*, GFxResource*, GFxResourceId, const char*);
-    };
+	struct __declspec(novtable) ImportVisitor
+	{
+		virtual ~ImportVisitor() = default;
+		virtual void Visit(GFxMovieDef* fxMovieDef, GFxMovieDef* fxMovieDef2, const char* param3) = 0;
+
+		ImportVisitor() = default;
+	};
+
+	struct __declspec(novtable) ResourceVisitor : GFxFileConstants
+	{
+		virtual ~ResourceVisitor() = default;
+		virtual void Visit(GFxMovieDef* fxMovieDef, GFxResource* fxResource, GFxResourceId fxResourceId, const char* param4) = 0;
+
+		ResourceVisitor() = default;
+	};
+
+	~GFxMovieDef() override = default;
+	virtual unsigned int GetVersion() const = 0;
+	virtual unsigned int GetLoadingFrame() const = 0;
+	virtual float GetWidth() const = 0;
+	virtual float GetHeight() const = 0;
+	virtual unsigned int GetFrameCount() const = 0;
+	virtual float GetFrameRate() const = 0;
+	virtual GRect<float> GetFrameRect() const = 0;
+	virtual unsigned int GetSWFFlags() const = 0;
+	virtual const char* GetFileURL() const = 0;
+	virtual void WaitForLoadFinish(bool param1) const = 0;
+	virtual void WaitForFrame(unsigned int param1) const = 0;
+	virtual unsigned int GetFileAttributesW() const = 0;
+	virtual unsigned int GetMetadata(char* param1, unsigned int param2) const = 0;
+	virtual GMemoryHeap* GetLoadDataHeap() const = 0;
+	virtual GMemoryHeap* GetBindDataHeap() const = 0;
+	virtual GMemoryHeap* GetImageHeap() const = 0;
+	virtual GFxResource* GetMovieDataResource() const = 0;
+	virtual const GFxExporterInfo* GetExporterInfo() const = 0;
+	virtual MemoryContext* CreateMemoryContext(const char* param1, const MemoryParams& memoryParams, bool param3) = 0;
+	virtual GFxMovieView* CreateInstance(MemoryContext* memoryContext, bool param2) = 0;
+	virtual GFxMovieView* CreateInstance(const MemoryParams& memoryParams, bool param2) = 0;
+	virtual void VisitImportedMovies(ImportVisitor* importVisitor) = 0;
+	virtual void VisitResources(ResourceVisitor* resourceVisitor, unsigned int param2) = 0;
+	virtual GFxResource* GetResource(const char* param1) const = 0;
+
+	GFxMovieView* CreateInstance(bool initFirstFrame, unsigned int memoryArena);
+	GFxMovieDef() = default;
 };

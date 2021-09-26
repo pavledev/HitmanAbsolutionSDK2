@@ -1,7 +1,7 @@
 #pragma once
 
-enum ERenderResourcePriority : __int32
+enum ERenderResourcePriority
 {
-    eRENDER_RESOURCE_PRIORITY_NORMAL = 0x0,
-    eRENDER_RESOURCE_PRIORITY_CRUCIAL = 0x1
+	eRENDER_RESOURCE_PRIORITY_NORMAL = 0,
+	eRENDER_RESOURCE_PRIORITY_CRUCIAL = 1
 };

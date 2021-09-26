@@ -1,8 +1,8 @@
 #pragma once
 
-struct OC3Ent
+namespace OC3Ent
 {
-	struct Face
+	namespace Face
 	{
 		class FxClass;
 		class FxArchive;
@@ -10,6 +10,7 @@ struct OC3Ent
 		class FxFaceGraphNodeLink;
 		class FxAnimSet;
 		class FxActorInstance;
+		class FxNameTableInternalData;
 		
 		template<class T>
 		class FxTreeBase;
@@ -18,50 +19,58 @@ struct OC3Ent
 
 		class FxUseAllocator
 		{
-
+		public:
+			FxUseAllocator() = default;
+			~FxUseAllocator() = default;
+			static void* operator new(unsigned int size);
+			static void operator delete(void* ptr, unsigned int size);
 		};
 
-		class FxObject : FxUseAllocator
+		class FxObject : public FxUseAllocator
 		{
 		public:
-			virtual FxClass* GetClassDesc();
-			virtual unsigned __int16 GetCurrentVersion();
-			virtual ~FxObject();
-			virtual void Serialize(FxArchive*);
+			static FxClass* _pClassDesc;
+
+			virtual const FxClass* GetClassDesc() const;
+			virtual unsigned short GetCurrentVersion() const;
+			virtual ~FxObject() = default;
+			virtual void Serialize(FxArchive & arc);
 		};
 
-		class FxArchiveStore : FxUseAllocator
+		class __declspec(novtable) FxArchiveStore : public FxUseAllocator
 		{
 		public:
-			virtual bool OpenRead();
-			char gap4[4];
-			virtual bool Close();
-			virtual bool Read(char*, unsigned int);
-			virtual bool Write(const char*, unsigned int);
-			virtual int Tell();
-			virtual void Seek(const int);
-			virtual int Length();
-			virtual ~FxArchiveStore();
-			virtual void Destroy();
-			virtual unsigned int GetClassSize();
+			virtual bool OpenRead() = 0;
+			virtual bool OpenWrite() = 0;
+			virtual bool Close() = 0;
+			virtual bool Read(unsigned char* param1, unsigned int param2) = 0;
+			virtual bool Write(const unsigned char* param1, unsigned int param2) = 0;
+			virtual int Tell() const = 0;
+			virtual void Seek(const int param1) = 0;
+			virtual int Length() const = 0;
+			virtual ~FxArchiveStore() = default;
+			virtual void Destroy() = 0;
+			virtual unsigned int GetClassSize() = 0;
+
+			FxArchiveStore() = default;
 		};
 
-		struct PrivateImpl
+		namespace PrivateImpl
 		{
-			template<class T>
+			template <class T>
 			class FxNoBase
 			{
 
 			};
 		};
 
-		template<class T>
+		template <class T>
 		class FxSafeBool : public PrivateImpl::FxNoBase<T>
 		{
 
 		};
 
-		template<class A, class B, class C>
+		template <class A, class B, class C>
 		class FxTreeNodeBase : public FxObject
 		{
 		public:
@@ -72,48 +81,74 @@ struct OC3Ent
 			C* children[2];
 		};
 
-		template<class A, class B>
+		template <class A, class B>
 		class FxAVLNode : public FxTreeNodeBase<A, B, FxAVLNode<A, B>>
 		{
 		public:
-			__int16 balance;
+			short balance;
 		};
 
-		template<class A, class B>
+		template <class A, class B>
 		class FxAVLTree : public FxTreeBase<FxAVLNode<A, B>>
 		{
 
 		};
 
-		template<class T>
+		template <class T>
 		class FxTreeBase
 		{
 		public:
-			T* _root;
-			unsigned int _numNodes;
-
-			template<class T>
-			class IteratorBase : public FxSafeBool<T>
+			class IteratorBase : public FxSafeBool<IteratorBase>
 			{
 			public:
-				FxTreeBase<T>* _tree;
+				FxTreeBase* _tree;
 				T* _node;
 			};
 
-			template<class T>
-			class Iterator : public IteratorBase<T>
+			class ConstIteratorBase : public FxSafeBool<ConstIteratorBase>
+			{
+			public:
+				FxTreeBase* _tree;
+				T* _node;
+			};
+
+			class Iterator : public IteratorBase
 			{
 
 			};
 
-			virtual ~FxTreeBase();
-			virtual void Clear();
-			virtual void _copy(FxTreeBase*);
-			virtual Iterator<T>* _insert(Iterator<T>* result, T**, const unsigned int*, FxObject* const*);
-			virtual bool _remove(FxAVLNode<unsigned int, FxObject*>**);
+			class ConstIterator : public ConstIteratorBase
+			{
+
+			};
+
+			class ReverseIterator
+			{
+			};
+
+			class ConstReverseIterator
+			{
+			};
+
+			/*class Item
+			{
+			public:
+				const FxStringBase<char>& key;
+				unsigned int& item;
+			};
+
+			class ConstItem
+			{
+			public:
+				const FxStringBase<char>& key;
+				const unsigned int& item;
+			};*/
+
+			T* _root;
+			unsigned int _numNodes;
 		};
 
-		template<class T>
+		template <class T>
 		class FxArrayBase
 		{
 		public:
@@ -122,14 +157,14 @@ struct OC3Ent
 			unsigned int _usedCount;
 		};
 
-		template<class T>
+		template <class T>
 		class FxArray
 		{
 		public:
 			FxArrayBase<T> _container;
 		};
 
-		template<class T>
+		template <class T>
 		class FxShortStringOptimizationBase
 		{
 		public:
@@ -139,29 +174,36 @@ struct OC3Ent
 			unsigned int _usedCount;
 		};
 
-		template<class T>
+		template <class T>
 		class FxStringBase
 		{
 		public:
 			FxShortStringOptimizationBase<T> _container;
 		};
 
-		class FxRefObject : FxObject
+		class FxRefObject : public FxObject
 		{
 		public:
 			unsigned int _referenceCount;
+
+			static FxClass* _pClassDesc;
 		};
 
-		class alignas(4) FxNameEntry : FxRefObject
+		class FxNameEntry : public FxRefObject
 		{
 		public:
 			const FxStringBase<char>* _pString;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxName
 		{
 		public:
 			FxNameEntry* _pNameEntry;
+
+			static FxName NullName;
+			static FxNameTableInternalData* _internal;
 		};
 
 		class FxArchiveNameEntry
@@ -171,23 +213,43 @@ struct OC3Ent
 			FxName Name;
 		};
 
-		template<class A, class B, int C, class D>
-		class HashBinType : OC3Ent::Face::FxAVLTree<A, B>
-		{
-		public:
-			void _computeHeightAndBalance(OC3Ent::Face::FxAVLNode<A, B>*);
-		};
-
-		template<class A, class B, int C, class D>
+		template <class A, class B, int C, class D>
 		class FxHashTable
 		{
 		public:
+			class HashBinType : public FxAVLTree<A, B>
+			{
+
+			};
+
+			class ConstIterator : public FxSafeBool<ConstIterator>
+			{
+			public:
+				FxHashTable* _table;
+				unsigned int _numBins;
+				unsigned int _binIndex;
+				typename FxTreeBase<FxAVLNode<A, B>>::Iterator _binIter;
+			};
+
+			class ConstItem
+			{
+			public:
+				const A& key;
+				const B& item;
+			};
+
 			unsigned int _numItems;
 			unsigned int _numInsertions;
 			unsigned int _numRemovals;
 			unsigned int _numCollisions;
 			unsigned int _numProbes;
-			HashBinType<A, B, C, D> _hashBins[1 << C];
+			HashBinType _hashBins[1 << C];
+		};
+
+		class FxNameTableInternalData
+		{
+		public:
+			FxHashTable<FxStringBase<char>, FxNameEntry*, 12, char const*> NameHash;
 		};
 
 		class FxArchiveDirectory
@@ -205,30 +267,31 @@ struct OC3Ent
 			FxAVLTree<unsigned int, FxObject*> IdToObjectMap;
 			FxAVLTree<FxObject*, unsigned int> ObjectToIdMap;
 			FxArray<FxLazyLoader*> LazyLoaders;
-			OC3Ent::Face::FxArchiveDirectory Directory;
+			FxArchiveDirectory Directory;
 		};
 
-		class FxArchive : FxUseAllocator
+		class FxArchive : public FxUseAllocator
 		{
 		public:
-			FxArchiveStore* _store;
-
 			enum FxArchiveMode
 			{
-				AM_LinearLoad = 0x0,
-				AM_LazyLoad = 0x1,
-				AM_CreateDirectory = 0x2,
-				AM_ApproximateMemoryUsage = 0x3,
-				AM_Save = 0x4,
-				AM_Load = 0x0
-			} _mode;
+				AM_LinearLoad = 0,
+				AM_LazyLoad = 1,
+				AM_CreateDirectory = 2,
+				AM_ApproximateMemoryUsage = 3,
+				AM_Save = 4,
+				AM_Load = 0
+			};
 
 			enum FxArchiveByteOrder
 			{
-				ABO_LittleEndian = 0x0,
-				ABO_BigEndian = 0x1,
-			} _byteOrder;
+				ABO_LittleEndian = 0,
+				ABO_BigEndian = 1
+			};
 
+			FxArchiveStore* _store;
+			FxArchiveMode _mode;
+			FxArchiveByteOrder _byteOrder;
 			unsigned int _fileFormatVersion;
 			unsigned int _sdkVersion;
 			char* _sdkVersionString;
@@ -239,7 +302,7 @@ struct OC3Ent
 			unsigned int _licenseeProjectNameSize;
 			unsigned int _licenseeVersion;
 			FxArchiveInternalData* _pInternalData;
-			void(__cdecl* _progressCallback)(float);
+			void (*_progressCallback)(float param1);
 			float _updateFrequency;
 			int _numBytesProcessed;
 			float _numBytesTotal;
@@ -247,33 +310,33 @@ struct OC3Ent
 			float _lastProgress;
 		};
 
-		class alignas(4) FxLazyLoader
+		class __declspec(novtable) FxLazyLoader
 		{
 		public:
 			FxArchive* _archive;
 			int _pos;
 			bool _isLoaded;
-
-			virtual ~FxLazyLoader();
-			virtual void Load();
-			virtual void Unload();
 		};
 
 		class FxNamedObject : public FxObject
 		{
 		public:
 			FxName _name;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxClass : public FxUseAllocator
 		{
 		public:
 			FxName _name;
-			unsigned __int16 _currentVersion;
+			unsigned short _currentVersion;
 			const FxClass* _pBaseClassDesc;
 			unsigned int _numChildren;
 			unsigned int _size;
-			FxObject* (__cdecl* _constructObjectFn)();
+			FxObject* (*_constructObjectFn)();
+
+			static FxArray<FxClass*>* _classTable;
 		};
 
 		class FxDataContainer
@@ -301,6 +364,8 @@ struct OC3Ent
 			float _firstKeyValue;
 			float _lastKeyTime;
 			float _lastKeyValue;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxCompressedAnimCurve : public FxNamedObject
@@ -309,7 +374,7 @@ struct OC3Ent
 			float _min_value;
 			float _max_value;
 			int _start_frame;
-			unsigned __int8* _keys;
+			unsigned char* _keys;
 			int _cached_segment_start_key_frame;
 			float _cached_segment_start_key_time;
 			float _cached_segment_start_key_value;
@@ -319,21 +384,22 @@ struct OC3Ent
 			float _cached_segment_end_key_slope_in;
 			float _cached_segment_delta_time;
 			float _cached_segment_one_over_delta_time;
-			unsigned __int8* _cached_segment_end_key_control_byte;
+			unsigned char* _cached_segment_end_key_control_byte;
+
+			static FxClass* _pClassDesc;
 		};
 
-		class FxRange
+		struct FxRange
 		{
-		public:
 			float rangeMin;
 			float rangeMax;
 		};
 
-		enum FxEventSubclassType : __int32
+		enum FxEventSubclassType
 		{
-			EST_None = 0x0,
-			EST_FxChildEvent = 0x1,
-			EST_FxEvent = 0x2
+			EST_None = 0,
+			EST_FxChildEvent = 1,
+			EST_FxEvent = 2
 		};
 
 		class FxVec3
@@ -353,9 +419,8 @@ struct OC3Ent
 			float z;
 		};
 
-		class FxBoneTransform
+		struct FxBoneTransform
 		{
-		public:
 			FxVec3 position;
 			FxQuat rotation;
 			FxVec3 scale;
@@ -365,6 +430,8 @@ struct OC3Ent
 		{
 		public:
 			FxBoneTransform _transform;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxMasterBoneList
@@ -378,6 +445,10 @@ struct OC3Ent
 				public:
 					unsigned int nodeIndex;
 					FxBoneTransform optimizedBone;
+
+					FxBoneLink(unsigned int iNodeIndex, FxBoneTransform transform);
+					FxBoneLink() = default;
+					~FxBoneLink() = default;
 				};
 
 				unsigned int weightNodeIndex;
@@ -392,26 +463,24 @@ struct OC3Ent
 			FxArray<float> _refBoneWeights;
 			FxArray<float> _currentBoneWeights;
 			FxArray<int> _clientIndexes;
-
-			virtual ~FxMasterBoneList();
 		};
 
-		enum FxInputOp : unsigned __int32
+		enum FxInputOp
 		{
-			IO_Invalid = 0xFFFFFFFF,
-			IO_Sum = 0x0,
-			IO_Multiply = 0x1,
-			IO_Max = 0x2,
-			IO_Min = 0x3
+			IO_Invalid = -1,
+			IO_Sum = 0,
+			IO_Multiply = 1,
+			IO_Max = 2,
+			IO_Min = 3
 		};
 
-		enum FxFaceGraphNodeUserPropertyType : __int32
+		enum FxFaceGraphNodeUserPropertyType
 		{
-			UPT_Integer = 0x0,
-			UPT_Bool = 0x1,
-			UPT_Real = 0x2,
-			UPT_String = 0x3,
-			UPT_Choice = 0x4
+			UPT_Integer = 0,
+			UPT_Bool = 1,
+			UPT_Real = 2,
+			UPT_String = 3,
+			UPT_Choice = 4
 		};
 
 		class FxFaceGraphNodeUserProperty : public FxNamedObject
@@ -421,50 +490,43 @@ struct OC3Ent
 			int _integerProperty;
 			float _realProperty;
 			FxArray<FxStringBase<char>> _choices;
+
+			static FxClass* _pClassDesc;
 		};
 
-		enum FxLinkFnType : unsigned __int32
+		enum FxLinkFnType
 		{
-			LFT_Invalid = 0xFFFFFFFF,
-			LFT_Null = 0x0,
-			LFT_Linear = 0x1,
-			LFT_Quadratic = 0x2,
-			LFT_Cubic = 0x3,
-			LFT_Sqrt = 0x4,
-			LFT_Negate = 0x5,
-			LFT_Inverse = 0x6,
-			LFT_OneClamp = 0x7,
-			LFT_Constant = 0x8,
-			LFT_Corrective = 0x9,
-			LFT_ClampedLinear = 0xA,
-			LFT_TrueQuadratic = 0xB,
-			LFT_First = 0x0,
-			LFT_Last = 0xB,
-			LFT_NumLinkFnTypes = 0xC
+			LFT_Invalid = -1,
+			LFT_Null = 0,
+			LFT_Linear = 1,
+			LFT_Quadratic = 2,
+			LFT_Cubic = 3,
+			LFT_Sqrt = 4,
+			LFT_Negate = 5,
+			LFT_Inverse = 6,
+			LFT_OneClamp = 7,
+			LFT_Constant = 8,
+			LFT_Corrective = 9,
+			LFT_ClampedLinear = 10,
+			LFT_TrueQuadratic = 11,
+			LFT_First = 0,
+			LFT_Last = 11,
+			LFT_NumLinkFnTypes = 12
 		};
 
-		class FxLinkFnParameters
+		struct FxLinkFnParameters
 		{
-		public:
 			FxArray<float> parameters;
+
+			FxLinkFnParameters(const FxLinkFnParameters& __that);
+			FxLinkFnParameters() = default;
+			~FxLinkFnParameters() = default;
+			FxLinkFnParameters& operator=(const FxLinkFnParameters& __that);
 		};
 
-		class FxFaceGraphNode : public FxNamedObject, public FxDataContainer
+		class __declspec(novtable) FxFaceGraphNode : public FxNamedObject, public FxDataContainer
 		{
 		public:
-			class FxFaceGraphNodeJumpList
-			{
-			public:
-				const FxClass* _nodeType;
-				FxArray<FxFaceGraphNode*> _jumpList;
-			};
-
-			class Iterator
-			{
-			public:
-				FxFaceGraphNode* const* _fgNodeListIter;
-			};
-
 			bool _hasBeenVisited;
 			float _min;
 			float _max;
@@ -473,15 +535,7 @@ struct OC3Ent
 			FxArray<FxFaceGraphNode*> _outputs;
 			FxArray<FxFaceGraphNodeUserProperty> _userProperties;
 
-			virtual FxFaceGraphNode* Clone();
-			virtual void CopyData(FxFaceGraphNode*);
-			virtual bool SetMin(float);
-			virtual bool HasFixedMin();
-			virtual bool SetMax(float);
-			virtual bool HasFixedMax();
-			virtual void SetNodeOperation(FxInputOp);
-			virtual bool HasFixedNodeOperation();
-			virtual bool AddInputLink(const FxFaceGraphNodeLink*);
+			static FxClass* _pClassDesc;
 		};
 
 		class FxFaceGraphNodeLink : public FxObject, public FxDataContainer
@@ -492,46 +546,80 @@ struct OC3Ent
 			FxName _linkFnName;
 			FxLinkFnType _linkFnType;
 			FxLinkFnParameters _linkFnParams;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxFaceGraph : public FxObject
 		{
 		public:
+			class Iterator
+			{
+			public:
+				FxFaceGraphNode** _fgNodeListIter;
+
+				Iterator(FxFaceGraphNode** fgNodeListIter);
+				Iterator& operator++();
+				FxFaceGraphNode* GetNode();
+				bool operator!=(const Iterator& other);
+			};
+
+			class FxFaceGraphNodeJumpList
+			{
+			public:
+				const FxClass* _nodeType;
+				FxArray<FxFaceGraphNode*> _jumpList;
+
+				FxFaceGraphNodeJumpList(const FxFaceGraphNodeJumpList& __that);
+				FxFaceGraphNodeJumpList(const FxClass* nodeType, FxFaceGraphNode* pNode);
+				~FxFaceGraphNodeJumpList() = default;
+				const FxClass* GetNodeType() const;
+				void SetNodeType(const FxClass* nodeType);
+				unsigned int GetNumNodes() const;
+				bool FindNode(FxFaceGraphNode* pNode) const;
+				bool AddNode(FxFaceGraphNode* pNode);
+				bool RemoveNode(FxFaceGraphNode* pNode);
+				FxFaceGraphNode** Begin() const;
+				FxFaceGraphNode** End() const;
+				void Reserve(unsigned int numNodes);
+				FxFaceGraphNodeJumpList& operator=(const FxFaceGraphNodeJumpList& __that);
+			};
+
 			FxArray<FxFaceGraphNode*> _nodes;
 			FxHashTable<FxStringBase<char>, FxFaceGraphNode*, 11, char const*>* _pNodeHash;
-			FxArray<FxFaceGraphNode::FxFaceGraphNodeJumpList> _jumpLists;
+			FxArray<FxFaceGraphNodeJumpList> _jumpLists;
+
+			static FxClass* _pClassDesc;
 		};
 
-		enum FxCompiledFaceGraphNodeType : unsigned __int32
+		enum FxCompiledFaceGraphNodeType
 		{
-			NT_Invalid = 0xFFFFFFFF,
-			NT_Combiner = 0x0,
-			NT_Delta = 0x1,
-			NT_CurrentTime = 0x2,
-			NT_GenericTarget = 0x3,
-			NT_BonePose = 0x4,
-			NT_MorphTarget = 0x5,
-			NT_MaterialParameter = 0x6,
-			NT_MaterialParameterUE3 = 0x7,
-			NT_MorphTargetUE3 = 0x8,
-			NT_BoneWeight = 0x9,
-			NT_First = 0x0,
-			NT_Last = 0x9,
-			NT_NumNodeTypes = 0xA
+			NT_Invalid = -1,
+			NT_Combiner = 0,
+			NT_Delta = 1,
+			NT_CurrentTime = 2,
+			NT_GenericTarget = 3,
+			NT_BonePose = 4,
+			NT_MorphTarget = 5,
+			NT_MaterialParameter = 6,
+			NT_MaterialParameterUE3 = 7,
+			NT_MorphTargetUE3 = 8,
+			NT_BoneWeight = 9,
+			NT_First = 0,
+			NT_Last = 9,
+			NT_NumNodeTypes = 10
 		};
 
-		class FxCompiledFaceGraphLink
+		struct FxCompiledFaceGraphLink
 		{
-		public:
 			unsigned int nodeIndex;
 			float defaultValue;
-			OC3Ent::Face::FxLinkFnType linkFnType;
+			FxLinkFnType linkFnType;
 			float linkFnParams[4];
 		};
 
-		class FxCompiledFaceGraphNode
+		struct FxCompiledFaceGraphNode
 		{
-		public:
 			FxCompiledFaceGraphNodeType nodeType;
 			float nodeMin;
 			float oneOverNodeMin;
@@ -547,13 +635,16 @@ struct OC3Ent
 			unsigned int _length;
 			unsigned int _numSetBits;
 			FxArrayBase<unsigned int> _container;
+
+			static const unsigned int kNumBitsInStorageType;
+			static const unsigned int kStorageTypePowerOfTwo;
 		};
 
-		class alignas(4) FxCompiledFaceGraph
+		struct FxCompiledFaceGraph
 		{
 			FxArray<FxCompiledFaceGraphNode> nodes;
 			FxArray<FxName> nodeNames;
-			FxArray<FxArray<FxFaceGraphNodeUserProperty> > nodeUserProperties;
+			FxArray<FxArray<FxFaceGraphNodeUserProperty>> nodeUserProperties;
 			FxBitset activeBits;
 			FxBitset initialActiveBits;
 			FxArray<FxBitset> pvs;
@@ -568,96 +659,133 @@ struct OC3Ent
 		public:
 			FxAVLTree<FxName, FxAnim*> _animations;
 			FxAVLTree<FxName, FxAnimGroup*> _subgroups;
+
+			static FxClass* _pClassDesc;
+			static FxName Default;
+			static bool _logErrorOnAnimationNotFound;
 		};
 
-		template<class T>
-		class FxListNode
-		{
-		public:
-			T element;
-			FxListNode<T>* next;
-			FxListNode<T>* prev;
-		};
-
-		template<class T>
+		template <class T>
 		class FxList
 		{
 		public:
-			FxListNode<T>* _head;
+			class FxListNode
+			{
+			public:
+				T element;
+				FxListNode* next;
+				FxListNode* prev;
+
+				FxListNode(const FxListNode& __that);
+				FxListNode(const T& iElement, FxListNode* iNext, FxListNode* iPrev);
+				FxListNode() = default;
+				~FxListNode() = default;
+			};
+
+			class Iterator
+			{
+			public:
+				FxListNode* _pNode;
+
+				Iterator(FxListNode* pNode);
+				Iterator& operator++();
+				T& operator*();
+				T* operator->();
+				bool operator==(const Iterator& other);
+				bool operator!=(const Iterator& other);
+				FxListNode* GetNode();
+			};
+
+			class ConstIterator
+			{
+			public:
+				const FxListNode* _pNode;
+
+				ConstIterator(FxListNode* pNode);
+				ConstIterator& operator++();
+				T& operator*();
+				bool operator!=(const ConstIterator& other);
+			};
+
+			class ReverseIterator
+			{
+			};
+
+			FxListNode* _head;
 			unsigned int _size;
 		};
 
-		enum FxPhoneme : unsigned __int32
+		enum FxPhoneme
 		{
-			PHON_INVALID = 0xFFFFFFFF,
-			PHON_FIRST = 0x0,
-			PHON_SIL = 0x0,
-			PHON_P = 0x1,
-			PHON_B = 0x2,
-			PHON_T = 0x3,
-			PHON_D = 0x4,
-			PHON_K = 0x5,
-			PHON_G = 0x6,
-			PHON_M = 0x7,
-			PHON_N = 0x8,
-			PHON_NG = 0x9,
-			PHON_RA = 0xA,
-			PHON_RU = 0xB,
-			PHON_FLAP = 0xC,
-			PHON_PH = 0xD,
-			PHON_F = 0xE,
-			PHON_V = 0xF,
-			PHON_TH = 0x10,
-			PHON_DH = 0x11,
-			PHON_S = 0x12,
-			PHON_Z = 0x13,
-			PHON_SH = 0x14,
-			PHON_ZH = 0x15,
-			PHON_CX = 0x16,
-			PHON_X = 0x17,
-			PHON_GH = 0x18,
-			PHON_HH = 0x19,
-			PHON_R = 0x1A,
-			PHON_Y = 0x1B,
-			PHON_L = 0x1C,
-			PHON_W = 0x1D,
-			PHON_H = 0x1E,
-			PHON_TS = 0x1F,
-			PHON_CH = 0x20,
-			PHON_JH = 0x21,
-			PHON_IY = 0x22,
-			PHON_E = 0x23,
-			PHON_EN = 0x24,
-			PHON_EH = 0x25,
-			PHON_A = 0x26,
-			PHON_AA = 0x27,
-			PHON_AAN = 0x28,
-			PHON_AO = 0x29,
-			PHON_AON = 0x2A,
-			PHON_O = 0x2B,
-			PHON_ON = 0x2C,
-			PHON_UW = 0x2D,
-			PHON_UY = 0x2E,
-			PHON_EU = 0x2F,
-			PHON_OE = 0x30,
-			PHON_OEN = 0x31,
-			PHON_AH = 0x32,
-			PHON_IH = 0x33,
-			PHON_UU = 0x34,
-			PHON_UH = 0x35,
-			PHON_AX = 0x36,
-			PHON_UX = 0x37,
-			PHON_AE = 0x38,
-			PHON_ER = 0x39,
-			PHON_AXR = 0x3A,
-			PHON_EXR = 0x3B,
-			PHON_EY = 0x3C,
-			PHON_AW = 0x3D,
-			PHON_AY = 0x3E,
-			PHON_OY = 0x3F,
-			PHON_OW = 0x40,
-			PHON_LAST = 0x40,
-			NUM_PHONS = 0x41
+			PHON_INVALID = -1,
+			PHON_FIRST = 0,
+			PHON_SIL = 0,
+			PHON_P = 1,
+			PHON_B = 2,
+			PHON_T = 3,
+			PHON_D = 4,
+			PHON_K = 5,
+			PHON_G = 6,
+			PHON_M = 7,
+			PHON_N = 8,
+			PHON_NG = 9,
+			PHON_RA = 10,
+			PHON_RU = 11,
+			PHON_FLAP = 12,
+			PHON_PH = 13,
+			PHON_F = 14,
+			PHON_V = 15,
+			PHON_TH = 16,
+			PHON_DH = 17,
+			PHON_S = 18,
+			PHON_Z = 19,
+			PHON_SH = 20,
+			PHON_ZH = 21,
+			PHON_CX = 22,
+			PHON_X = 23,
+			PHON_GH = 24,
+			PHON_HH = 25,
+			PHON_R = 26,
+			PHON_Y = 27,
+			PHON_L = 28,
+			PHON_W = 29,
+			PHON_H = 30,
+			PHON_TS = 31,
+			PHON_CH = 32,
+			PHON_JH = 33,
+			PHON_IY = 34,
+			PHON_E = 35,
+			PHON_EN = 36,
+			PHON_EH = 37,
+			PHON_A = 38,
+			PHON_AA = 39,
+			PHON_AAN = 40,
+			PHON_AO = 41,
+			PHON_AON = 42,
+			PHON_O = 43,
+			PHON_ON = 44,
+			PHON_UW = 45,
+			PHON_UY = 46,
+			PHON_EU = 47,
+			PHON_OE = 48,
+			PHON_OEN = 49,
+			PHON_AH = 50,
+			PHON_IH = 51,
+			PHON_UU = 52,
+			PHON_UH = 53,
+			PHON_AX = 54,
+			PHON_UX = 55,
+			PHON_AE = 56,
+			PHON_ER = 57,
+			PHON_AXR = 58,
+			PHON_EXR = 59,
+			PHON_EY = 60,
+			PHON_AW = 61,
+			PHON_AY = 62,
+			PHON_OY = 63,
+			PHON_OW = 64,
+			PHON_LAST = 64,
+			NUM_PHONS = 65
 		};
 
 		class FxPhonToNameMap
@@ -668,16 +796,15 @@ struct OC3Ent
 			float amount;
 		};
 
-		enum FxTargetType : __int32
+		enum FxTargetType
 		{
-			TargetBasic = 0x0,
-			TargetJawOnly = 0x1,
-			TargetTongueOnly = 0x2,
+			TargetBasic = 0,
+			TargetJawOnly = 1,
+			TargetTongueOnly = 2
 		};
 
-		class FxMappingTarget
+		struct FxMappingTarget
 		{
-		public:
 			FxName name;
 			FxTargetType type;
 		};
@@ -687,6 +814,8 @@ struct OC3Ent
 		public:
 			FxArray<FxPhonToNameMap> _mapping;
 			FxArray<FxMappingTarget> _targets;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxActor : public FxNamedObject
@@ -704,38 +833,49 @@ struct OC3Ent
 			FxList<FxActorInstance*> _instanceList;
 			FxPhonemeMap _phonemeMap;
 			FxArray<unsigned char> _editorOnlyData;
+
+			static FxClass* _pClassDesc;
+			static FxName NewActor;
 		};
 
-		class FxNodeChannelData
+		struct FxNodeChannelData
 		{
-		public:
 			float persistentValue;
 			float accumulatedTrackValue;
 			unsigned int flags;
+
+			FxNodeChannelData() = default;
+			~FxNodeChannelData() = default;
 		};
 
-		class FxNodeChannelBlendData
+		struct FxNodeChannelBlendData
 		{
-		public:
 			float persistentValueTarget;
 			float blendStartTime;
 			float inverseBlendDuration;
 			float defaultValue;
+
+			FxNodeChannelBlendData() = default;
+			~FxNodeChannelBlendData() = default;
 		};
 
-		class FxChannelWeight
+		struct FxChannelWeight
 		{
-		public:
 			float weight;
 			unsigned int flags;
+
+			FxChannelWeight() = default;
+			~FxChannelWeight() = default;
 		};
 
-		class FxChannelWeightBlendData
+		struct FxChannelWeightBlendData
 		{
-		public:
 			float weightTarget;
 			float blendStartTime;
 			float inverseBlendDuration;
+
+			FxChannelWeightBlendData() = default;
+			~FxChannelWeightBlendData() = default;
 		};
 
 		class FxChannelBank
@@ -755,7 +895,7 @@ struct OC3Ent
 			FxBitset _activeBits;
 		};
 
-		class FxGenericEvent
+		class __declspec(novtable) FxGenericEvent
 		{
 		public:
 			FxName _animGroupName;
@@ -764,40 +904,40 @@ struct OC3Ent
 			float _animStartTime;
 			float _animEndTime;
 
-			virtual ~FxGenericEvent();
-			virtual const FxName* GetAnimGroupName();
-			virtual const FxName* GetAnimationName();
-			virtual FxRange* GetStartTimeRange(FxRange* result);
-			virtual FxRange* GetMagnitudeRange(FxRange* result);
-			virtual FxRange* GetDurationRange(FxRange* result);
-			virtual FxRange* GetBlendInRange(FxRange* result);
-			virtual FxRange* GetBlendOutRange(FxRange* result);
-			virtual const FxName* GetCustomPayload();
-			virtual float GetProbability();
-			virtual FxRange* GetSpawnConditionDurationScale(FxRange* result);
-			virtual FxRange* GetSpawnConditionMagnitudeScale(FxRange* result);
-			virtual unsigned int GetEventID();
-			virtual void SetEventID(unsigned int);
-			virtual bool IsDurationScaledByParent();
-			virtual bool IsMagnitudeScaledByParent();
-			virtual bool IsBlendUnscaled();
-			virtual bool UseParentBlendTimes();
-			virtual bool ShouldPersistValues();
-			virtual FxEventSubclassType GetType();
-			virtual bool LinkToAnim(FxActor*);
+			virtual ~FxGenericEvent() = default;
+			virtual const FxName& GetAnimGroupName() const;
+			virtual const FxName& GetAnimationName() const;
+			virtual FxRange GetStartTimeRange() const = 0;
+			virtual FxRange GetMagnitudeRange() const = 0;
+			virtual FxRange GetDurationRange() const = 0;
+			virtual FxRange GetBlendInRange() const = 0;
+			virtual FxRange GetBlendOutRange() const = 0;
+			virtual const FxName& GetCustomPayload() const = 0;
+			virtual float GetProbability() const = 0;
+			virtual FxRange GetSpawnConditionDurationScale() const = 0;
+			virtual FxRange GetSpawnConditionMagnitudeScale() const = 0;
+			virtual unsigned int GetEventID() const = 0;
+			virtual void SetEventID(unsigned int param1) = 0;
+			virtual bool IsDurationScaledByParent() const = 0;
+			virtual bool IsMagnitudeScaledByParent() const = 0;
+			virtual bool IsBlendUnscaled() const = 0;
+			virtual bool UseParentBlendTimes() const = 0;
+			virtual bool ShouldPersistValues() const = 0;
+			virtual FxEventSubclassType GetType() const;
+			virtual bool LinkToAnim(FxActor * pActor) const;
 		};
 
 		class FxEvent : public FxGenericEvent
 		{
 		public:
-			struct alignas(4) BoneWeightControl
+			struct BoneWeightControl
 			{
 				unsigned int nodeIndex;
 				unsigned int curveIndex;
 				bool compressed;
 			};
 
-			struct alignas(4) AnimationCurveControl
+			struct AnimationCurveControl
 			{
 				unsigned int nodeIndex;
 				unsigned int curveIndex;
@@ -823,65 +963,101 @@ struct OC3Ent
 			unsigned int _templateParentID;
 			FxArray<BoneWeightControl> _boneWeightControls;
 			FxArray<AnimationCurveControl> _animationCurveControls;
+
+			~FxEvent() override = default;
+			FxRange GetStartTimeRange() const override;
+			FxRange GetMagnitudeRange() const override;
+			FxRange GetDurationRange() const override;
+			FxRange GetBlendInRange() const override;
+			FxRange GetBlendOutRange() const override;
+			const FxName& GetCustomPayload() const override;
+			float GetProbability() const override;
+			FxRange GetSpawnConditionDurationScale() const override;
+			FxRange GetSpawnConditionMagnitudeScale() const override;
+			unsigned int GetEventID() const override;
+			void SetEventID(unsigned int eventID) override;
+			bool IsDurationScaledByParent() const override;
+			bool IsMagnitudeScaledByParent() const override;
+			bool IsBlendUnscaled() const override;
+			bool UseParentBlendTimes() const override;
+			bool ShouldPersistValues() const override;
+			FxEventSubclassType GetType() const override;
+			bool LinkToAnim(FxActor * pActor) const override;
 		};
 
-		enum FxClientEventState : unsigned __int32
+		enum FxClientEventState
 		{
-			CES_Invalid = 0xFFFFFFFF,
-			CES_OneShot = 0x0,
-			CES_FirstLoop = 0x1,
-			CES_SubsequentLoop = 0x2
+			CES_Invalid = -1,
+			CES_OneShot = 0,
+			CES_FirstLoop = 1,
+			CES_SubsequentLoop = 2
 		};
 
-		//OC3Ent::Face::FxEventManager::FxManagedEvent
-		class FxManagedEvent
-		{
-		public:
-			FxEvent event;
-			float startTime;
-			float lastTickTime;
-			float eventStartOffset;
-			bool loop;
-			unsigned int channel;
-			bool hasStartedAudio;
-			FxClientEventState state;
-			float forceBlendOutInvDuration;
-			float forceBlendOutStartTime;
-		};
-
-		//OC3Ent::Face::FxEventList::FxTickControlInfo
-		class alignas(4) FxTickControlInfo
-		{
-		public:
-			unsigned int eventIndex;
-			float time;
-			bool shouldIngress;
-		};
-
-		class alignas(4) FxEventManager
+		class FxEventList
 		{
 		public:
+			struct FxTickControlInfo
+			{
+				unsigned int eventIndex;
+				float time;
+				bool shouldIngress;
+
+				FxTickControlInfo(unsigned int index, float t, bool ingress);
+				FxTickControlInfo() = default;
+				bool operator==(const FxTickControlInfo& other) const;
+				bool operator!=(const FxTickControlInfo& other) const;
+				bool operator<(const FxTickControlInfo& other) const;
+				void Reset();
+			};
+
+			FxArray<FxEvent> _events;
+			FxList<FxTickControlInfo> _tickControl;
+			FxArray<FxName> _referencedAnimGroups;
+			bool _metadataOutOfDate;
+		};
+
+		class FxEventManager
+		{
+		public:
+			struct FxManagedEvent
+			{
+				FxEvent event;
+				float startTime;
+				float lastTickTime;
+				float eventStartOffset;
+				bool loop;
+				unsigned int channel;
+				bool hasStartedAudio;
+				FxClientEventState state;
+				float forceBlendOutInvDuration;
+				float forceBlendOutStartTime;
+
+				FxManagedEvent(const FxManagedEvent& __that);
+				FxManagedEvent() = default;
+				~FxManagedEvent() = default;
+			};
+
 			bool _paused;
 			float _pauseTime;
 			unsigned int _uniqueID;
 			unsigned int _numActive;
 			FxArray<FxManagedEvent> _clientEvents;
 			FxArray<bool> _clientEventActive;
-			FxArray<FxTickControlInfo> _clientEventTickControl;
+			FxArray<FxEventList::FxTickControlInfo> _clientEventTickControl;
 			bool _tickControlOutOfDate;
 		};
 
 		class FxActorInstance : public FxNamedObject
 		{
-			OC3Ent::Face::FxActor* _pActor;
+		public:
+			FxActor* _pActor;
 			bool _isNoWorkFrame;
 			bool _isOpenInStudio;
-			OC3Ent::Face::FxChannelBank _channelBank;
-			OC3Ent::Face::FxEventManager _eventManager;
-			OC3Ent::Face::FxArray<float> _accumulatedBaseChannelTrackValues;
+			FxChannelBank _channelBank;
+			FxEventManager _eventManager;
+			FxArray<float> _accumulatedBaseChannelTrackValues;
 
-			virtual void BeginFrame();
-			virtual void EndFrame();
+			static FxClass* _pClassDesc;
 		};
 
 		class FxAnimSet : public FxNamedObject
@@ -890,21 +1066,24 @@ struct OC3Ent
 			bool _isPublished;
 			FxName _owningActorName;
 			FxAnimGroup _animGroup;
-			FxList<OC3Ent::Face::FxActor*> _references;
-		};
+			FxList<FxActor*> _references;
 
-		class alignas(4) FxEventList
-		{
-		public:
-			FxArray<FxEvent> _events;
-			FxList<FxTickControlInfo> _tickControl;
-			FxArray<FxName> _referencedAnimGroups;
-			bool _metadataOutOfDate;
+			static FxClass* _pClassDesc;
 		};
 
 		class FxChildEvent : public FxGenericEvent
 		{
 		public:
+			enum FxEventFlags
+			{
+				EF_None = 0,
+				EF_DurationScaledByParent = 1,
+				EF_MagnitudeScaledByParent = 2,
+				EF_ShouldPersistValues = 4,
+				EF_BlendUnscaled = 8,
+				EF_UseParentBlend = 16
+			};
+
 			unsigned int _uniqueID;
 			FxRange _startTimeOffset;
 			FxRange _magnitudeScale;
@@ -912,7 +1091,7 @@ struct OC3Ent
 			FxRange _blendInTime;
 			FxRange _blendOutTime;
 			FxName _customEventPayload;
-			unsigned __int8 _eventFlags;
+			unsigned char _eventFlags;
 			float _spawnConditionProbability;
 			FxRange _spawnConditionDurationScale;
 			FxRange _spawnConditionMagnitudeScale;
@@ -935,48 +1114,53 @@ struct OC3Ent
 			int _recursionDepth;
 		};
 
-		class alignas(4) FxPhonInfo
+		struct FxPhonInfo
 		{
-		public:
 			FxPhoneme phoneme;
 			float start;
 			float end;
 			bool selected;
 		};
 
-		class FxWordInfo
+		struct FxWordInfo
 		{
-		public:
 			FxStringBase<wchar_t> text;
 			unsigned int first;
 			unsigned int last;
 		};
 
-		class alignas(4) FxPhonWordList : public FxObject
+		class FxPhonWordList : public FxObject
 		{
 		public:
+			enum InsertionMethod
+			{
+				SPLIT_TIME = 1,
+				PUSH_OUT = 2
+			};
+
 			FxArray<FxPhonInfo> _phonemes;
 			FxArray<FxWordInfo> _words;
 			unsigned int _startWord;
 			unsigned int _startPhon;
 			float _minPhonLen;
 			bool _isDirty;
+
+			static FxClass* _pClassDesc;
 		};
 
-		class alignas(4) FxEditorOnlyCurveOwnerData
+		struct FxEditorOnlyCurveOwnerData
 		{
-		public:
 			FxName curveName;
 			bool ownedByAnalysis;
 		};
 
-		enum FxPreviewAnimationBlendMode : __int32
+		enum FxPreviewAnimationBlendMode
 		{
-			BM_FaceFX = 0x0,
-			BM_Normal = 0x1
+			BM_FaceFX = 0,
+			BM_Normal = 1
 		};
 
-		class alignas(4) FxPreviewAnimationSettings : public FxObject
+		class FxPreviewAnimationSettings : public FxObject
 		{
 		public:
 			FxPreviewAnimationBlendMode _blendMode;
@@ -993,6 +1177,8 @@ struct OC3Ent
 			bool _lengthIsSet;
 			bool _loop;
 			bool _loopIsSet;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxAnimEditorOnlyData : public FxObject
@@ -1009,6 +1195,8 @@ struct OC3Ent
 			FxArray<unsigned char> _pythonDictionary;
 			FxPreviewAnimationSettings _previewAnimationSettings;
 			unsigned int _audioHandle;
+
+			static FxClass* _pClassDesc;
 		};
 
 		class FxAnim : public FxNamedObject, public FxDataContainer
@@ -1029,6 +1217,11 @@ struct OC3Ent
 			unsigned int _audioAssetIndex;
 			void* _audioAssetPointer;
 			float _frameRate;
+
+			static FxClass* _pClassDesc;
+			static const float MINIMUM_FRAME_RATE;
+			static const float MAXIMUM_FRAME_RATE;
+			static const float DEFAULT_FRAME_RATE;
 		};
 	};
 };

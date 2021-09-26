@@ -5,22 +5,28 @@
 class GFxEvent : public GNewOverrideBase<2>
 {
 public:
-    enum EventType : __int32
-    {
-        None = 0x0,
-        MouseMove = 0x1,
-        MouseDown = 0x2,
-        MouseUp = 0x3,
-        MouseWheel = 0x4,
-        KeyDown = 0x5,
-        KeyUp = 0x6,
-        SceneResize = 0x7,
-        SetFocus = 0x8,
-        KillFocus = 0x9,
-        DoShowMouse = 0xA,
-        DoHideMouse = 0xB,
-        DoSetMouseCursor = 0xC,
-        CharEvent = 0xD,
-        IMEEvent = 0xE
-    } Type;
+	enum EventType
+	{
+		None = 0,
+		MouseMove = 1,
+		MouseDown = 2,
+		MouseUp = 3,
+		MouseWheel = 4,
+		KeyDown = 5,
+		KeyUp = 6,
+		SceneResize = 7,
+		SetFocus = 8,
+		KillFocus = 9,
+		DoShowMouse = 10,
+		DoHideMouse = 11,
+		DoSetMouseCursor = 12,
+		CharEvent = 13,
+		IMEEvent = 14
+	};
+
+	EventType Type;
+
+	GFxEvent() = default;
+	GFxEvent(EventType eventType);
+	~GFxEvent() = default;
 };

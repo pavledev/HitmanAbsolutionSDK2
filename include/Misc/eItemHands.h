@@ -1,8 +1,8 @@
 #pragma once
 
-enum eItemHands : __int32
+enum eItemHands
 {
-    IH_NONE = 0x0,
-    IH_ONEHANDED = 0x1,
-    IH_TWOHANDED = 0x2
+	IH_NONE = 0,
+	IH_ONEHANDED = 1,
+	IH_TWOHANDED = 2
 };

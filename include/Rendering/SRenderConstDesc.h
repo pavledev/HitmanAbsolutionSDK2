@@ -2,11 +2,14 @@
 
 #include "ZString.h"
 
-class SRenderConstDesc
+struct SRenderConstDesc
 {
-public:
-    unsigned int nType;
-    unsigned int nOffset;
-    unsigned int nSize;
-    ZString Name;
+	unsigned int nType;
+	unsigned int nOffset;
+	unsigned int nSize;
+	ZString Name;
+
+	SRenderConstDesc(const SRenderConstDesc& __that);
+	SRenderConstDesc() = default;
+	~SRenderConstDesc() = default;
 };

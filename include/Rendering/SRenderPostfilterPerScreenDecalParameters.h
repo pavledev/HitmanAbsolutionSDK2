@@ -2,11 +2,13 @@
 
 #include "SVector2.h"
 
-class SRenderPostfilterPerScreenDecalParameters
+struct SRenderPostfilterPerScreenDecalParameters
 {
-public:
-    SVector2 m_vPosition;
-    float m_fRotation;
-    float m_fSizeMult;
-    float m_fOpacityMult;
+	SVector2 m_vPosition;
+	float m_fRotation;
+	float m_fSizeMult;
+	float m_fOpacityMult;
+
+	SRenderPostfilterPerScreenDecalParameters() = default;
+	~SRenderPostfilterPerScreenDecalParameters() = default;
 };

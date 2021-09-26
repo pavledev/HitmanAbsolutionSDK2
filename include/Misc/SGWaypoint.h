@@ -2,24 +2,27 @@
 
 #include "float4.h"
 
-const struct SGWaypoint
+struct SGWaypoint
 {
-    union
-    {
-        struct
-        {
-            __int16 nNeighbor0;
-            __int16 nNeighbor1;
-            __int16 nNeighbor2;
-            __int16 nNeighbor3;
-            __int16 nNeighbor4;
-            __int16 nNeighbor5;
-            __int16 nNeighbor6;
-            __int16 nNeighbor7;
-        };
+	union 
+	{
+		struct 
+		{
+			short nNeighbor0;
+			short nNeighbor1;
+			short nNeighbor2;
+			short nNeighbor3;
+			short nNeighbor4;
+			short nNeighbor5;
+			short nNeighbor6;
+			short nNeighbor7;
+		};
 
-        __int16 Neighbors[8];
-    };
+		short Neighbors[8];
+	};
 
-    float4 vPos;
+	float4 vPos;
+
+	SGWaypoint() = default;
+	~SGWaypoint() = default;
 };

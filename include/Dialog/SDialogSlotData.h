@@ -1,12 +1,19 @@
 #pragma once
 
-#include "SDialogInstanceData.h"
+#include "TEntityRef.h"
 
-class SDialogSlotData
+class ZActor;
+struct SDialogInstanceData;
+
+struct SDialogSlotData
 {
-public:
-    SDialogInstanceData* m_pDialog;
-    SDialogInstanceData* m_pResponseDialog;
-    TEntityRef<ZActor> m_pSpeaker;
-    TEntityRef<ZActor> m_pResponseSpeaker;
+	SDialogInstanceData* m_pDialog;
+	SDialogInstanceData* m_pResponseDialog;
+	TEntityRef<ZActor> m_pSpeaker;
+	TEntityRef<ZActor> m_pResponseSpeaker;
+
+	SDialogSlotData(const SDialogSlotData& __that);
+	SDialogSlotData() = default;
+	~SDialogSlotData() = default;
+	SDialogSlotData& operator=(const SDialogSlotData& __that);
 };

@@ -2,8 +2,13 @@
 
 #include "SRenderTexture2DAccess.h"
 
-class alignas(4) SRenderTempTexture2DAccess : public SRenderTexture2DAccess
+struct SRenderTempTexture2DAccess : SRenderTexture2DAccess
 {
-public:
-    bool m_bTempAllocated;
+	bool m_bTempAllocated;
+
+	SRenderTempTexture2DAccess() = default;
+	~SRenderTempTexture2DAccess() = default;
+	void Allocate();
+	void Free();
+	bool GetIsTempAllocated() const;
 };

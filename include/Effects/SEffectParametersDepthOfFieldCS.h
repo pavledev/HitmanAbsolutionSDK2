@@ -2,10 +2,16 @@
 
 #include "SGBufferUsingEffectParametersBase.h"
 
-class SEffectParametersDepthOfFieldCS : public SGBufferUsingEffectParametersBase
+struct SEffectParametersDepthOfFieldCS : SGBufferUsingEffectParametersBase
 {
-public:
-    ZRenderShader* m_pDepthOfFieldH_CS;
-    ZRenderShader* m_pDepthOfFieldV_CS;
-    SEffectResourceLoader m_EffectLoader;
+	ZRenderShader* m_pDepthOfFieldH_CS;
+	ZRenderShader* m_pDepthOfFieldV_CS;
+	SEffectResourceLoader m_EffectLoader;
+
+	~SEffectParametersDepthOfFieldCS() override = default;
+	void Update(ZRenderEffect* pEffect) override;
+
+	SEffectParametersDepthOfFieldCS() = default;
+	void Init();
+	void RebindEffectResource();
 };

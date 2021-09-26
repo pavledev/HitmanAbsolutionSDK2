@@ -2,8 +2,11 @@
 
 #include "STokenID.h"
 
-class SItemSaveData
+struct SItemSaveData
 {
-public:
-    STokenID m_ID;
+	STokenID m_ID;
+
+	SItemSaveData(const STokenID& id);
+	SItemSaveData() = default;
+	~SItemSaveData() = default;
 };

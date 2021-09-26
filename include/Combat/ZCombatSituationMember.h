@@ -2,15 +2,21 @@
 
 #include "ZSituationMember.h"
 
-class alignas(8) ZCombatSituationMember : public ZSituationMember
+class ZCombatSituationMember : public ZSituationMember
 {
 public:
-    float m_fDistanceToTarget;
-    float m_fDistanceFieldValue;
-    bool m_bIsPreferredToFire;
-    bool m_bIsReinforcing;
-    bool m_bCanRequestCoverFire;
-    bool m_bDialogPreventShooting;
-    bool m_bCanFlee;
-    bool m_bCantFleeNoPath;
+	float m_fDistanceToTarget;
+	float m_fDistanceFieldValue;
+	bool m_bIsPreferredToFire;
+	bool m_bIsReinforcing;
+	bool m_bCanRequestCoverFire;
+	bool m_bDialogPreventShooting;
+	bool m_bCanFlee;
+	bool m_bCantFleeNoPath;
+
+	~ZCombatSituationMember() override = default;
+	void OnOrderAssigned() override;
+
+	ZCombatSituationMember() = default;
+	ZCombatSituationMember(const TEntityRef<ZSituationBase>& rSituation, const TEntityRef<ZActor>& rActor);
 };

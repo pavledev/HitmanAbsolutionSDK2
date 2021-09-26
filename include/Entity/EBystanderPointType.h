@@ -1,7 +1,7 @@
 #pragma once
 
-enum EBystanderPointType : __int32
+enum EBystanderPointType
 {
-    BPT_Scared = 0x0,
-    BPT_Alerted = 0x1
+	BPT_Scared = 0,
+	BPT_Alerted = 1
 };

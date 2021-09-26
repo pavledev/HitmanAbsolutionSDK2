@@ -3,12 +3,12 @@
 #include "IComponentInterface.h"
 #include "SMatrix.h"
 
-class ICharacterCollision : public IComponentInterface
+class __declspec(novtable) ICharacterCollision : public IComponentInterface
 {
 public:
-	virtual SMatrix* GetCollisionCheckedMatPos(SMatrix* result, const SMatrix*);
+	~ICharacterCollision() override = default;
+	virtual SMatrix GetCollisionCheckedMatPos(const SMatrix& matrix) = 0;
 
-	ICharacterCollision();
-	ICharacterCollision(ICharacterCollision const&);
-	ICharacterCollision* operator=(ICharacterCollision const&);
+	static void RegisterType();
+	ICharacterCollision() = default;
 };

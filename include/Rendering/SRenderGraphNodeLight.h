@@ -1,10 +1,14 @@
 #pragma once
 
-#include "ZRenderGraphNodeLight.h"
+class ZRenderGraphNodeLight;
 
-class SRenderGraphNodeLight
+struct SRenderGraphNodeLight
 {
-public:
-    float m_fPriority;
-    ZRenderGraphNodeLight* m_pLight;
+	float m_fPriority;
+	ZRenderGraphNodeLight* m_pLight;
+
+	SRenderGraphNodeLight() = default;
+	SRenderGraphNodeLight(float fPriority, ZRenderGraphNodeLight* pLight);
+	~SRenderGraphNodeLight() = default;
+	bool operator<(const SRenderGraphNodeLight& lhs) const;
 };

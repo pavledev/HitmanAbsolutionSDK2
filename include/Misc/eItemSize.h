@@ -1,8 +1,8 @@
 #pragma once
 
-enum eItemSize : __int32
+enum eItemSize
 {
-    ITEMSIZE_SMALL = 0x0,
-    ITEMSIZE_LARGE = 0x1,
-    ITEMSIZE_HUGE = 0x2
+	ITEMSIZE_SMALL = 0,
+	ITEMSIZE_LARGE = 1,
+	ITEMSIZE_HUGE = 2
 };

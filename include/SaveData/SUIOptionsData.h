@@ -1,10 +1,15 @@
 #pragma once
 
 #include "TArray.h"
-#include "SUIOptionValue.h"
 
-class SUIOptionsData
+struct SUIOptionValue;
+
+struct SUIOptionsData
 {
-public:
-    TArray<SUIOptionValue> data;
+	TArray<SUIOptionValue> data;
+
+	SUIOptionsData(const SUIOptionsData& __that);
+	SUIOptionsData() = default;
+	~SUIOptionsData() = default;
+	SUIOptionsData& operator=(const SUIOptionsData& __that);
 };

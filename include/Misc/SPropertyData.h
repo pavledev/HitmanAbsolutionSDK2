@@ -1,11 +1,16 @@
 #pragma once
 
-#include "SPropertyInfo.h"
+struct SPropertyInfo;
 
-class SPropertyData
+struct SPropertyData
 {
-public:
-    unsigned int m_nPropertyID;
-    int m_nPropertyOffset;
-    SPropertyInfo* m_pInfo;
+	unsigned int m_nPropertyID;
+	int m_nPropertyOffset;
+	const SPropertyInfo* m_pInfo;
+
+	SPropertyData() = default;
+	~SPropertyData() = default;
+	bool IsRuntimeEditableOrConstAfterStart() const;
+	bool IsStreamable() const;
+	bool ShouldCallSetter(bool bPostInit) const;
 };

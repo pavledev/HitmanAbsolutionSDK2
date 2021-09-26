@@ -1,0 +1,9 @@
+#pragma once
+
+enum ECoverPosition
+{
+	COVER_POSITION_NONE = 0,
+	COVER_POSITION_LEFT = 1,
+	COVER_POSITION_RIGHT = 2,
+	COVER_POSITION_MIDDLE = 3
+};

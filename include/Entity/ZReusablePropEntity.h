@@ -3,8 +3,21 @@
 #include "ZEntityImpl.h"
 #include "IReusableProp.h"
 
-class alignas(4) ZReusablePropEntity : public ZEntityImpl, public IReusableProp
+class ZComponentCreateInfo;
+
+class ZReusablePropEntity : public ZEntityImpl, public IReusableProp
 {
 public:
-    bool m_bUsedOnce;
+	bool m_bUsedOnce;
+
+	~ZReusablePropEntity() override = default;
+	void Init() override;
+
+	void UseOnce() override;
+	void ResetUsedFlag() override;
+	bool IsUsed() const override;
+
+	ZReusablePropEntity() = default;
+	static void RegisterType();
+	ZReusablePropEntity(ZComponentCreateInfo& info);
 };

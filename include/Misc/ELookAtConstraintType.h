@@ -1,8 +1,8 @@
 #pragma once
 
-enum ELookAtConstraintType : __int32
+enum ELookAtConstraintType
 {
-    LOOKAT_CONSTRAINT_NONE = 0x0,
-    LOOKAT_CONSTRAINT_ANGLE = 0x1,
-    LOOKAT_CONSTRAINT_ELLIPSE = 0x2
+	LOOKAT_CONSTRAINT_NONE = 0,
+	LOOKAT_CONSTRAINT_ANGLE = 1,
+	LOOKAT_CONSTRAINT_ELLIPSE = 2
 };

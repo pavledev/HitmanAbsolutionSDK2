@@ -2,20 +2,20 @@
 
 #include "IPhysicsAccessor.h"
 
-class IDynamicPhysics : public IPhysicsAccessor
+struct float4;
+
+class __declspec(novtable) IDynamicPhysics : public IPhysicsAccessor
 {
 public:
-    virtual TEntityRef<ZSpatialEntity>* GetSpatialOwner(TEntityRef<ZSpatialEntity>* result);
-    virtual bool IsPhysicsObject();
-    virtual IPhysicsObject* GetPhysicsObject();
-    virtual bool IsRegisteredForPhysicsObjectListening(const ZDelegate<void __cdecl(IPhysicsAccessor const*, IPhysicsObject const*, IPhysicsObject const*)>*);
-    virtual void RegisterForPhysicsObjectListening(const ZDelegate<void __cdecl(IPhysicsAccessor const*, IPhysicsObject const*, IPhysicsObject const*)>*);
-    virtual void UnregisterForPhysicsObjectListening(const ZDelegate<void __cdecl(IPhysicsAccessor const*, IPhysicsObject const*, IPhysicsObject const*)>*);
-    virtual void SetKinematic(bool);
-    virtual bool GetKinematic();
-    virtual void SetInPhysicsWorld(bool);
-    virtual void ApplyImpulse(const float4*);
-    virtual void ApplyTorque(const float4*);
-    virtual void ApplyPointImpulse(const float4*, const float4*);
-    virtual void UpdateSpatialTransformFromPhysicsObject();
+	~IDynamicPhysics() override = default;
+	virtual void SetKinematic(bool param1) = 0;
+	virtual bool GetKinematic() const = 0;
+	virtual void SetInPhysicsWorld(bool param1) = 0;
+	virtual void ApplyImpulse(const float4& param1) = 0;
+	virtual void ApplyTorque(const float4& param1) = 0;
+	virtual void ApplyPointImpulse(const float4& param1, const float4& param2) = 0;
+	virtual void UpdateSpatialTransformFromPhysicsObject() = 0;
+
+	static void RegisterType();
+	IDynamicPhysics() = default;
 };

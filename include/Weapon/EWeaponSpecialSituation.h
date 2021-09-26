@@ -1,0 +1,14 @@
+#pragma once
+
+enum EWeaponSpecialSituation
+{
+	WSS_NORMAL = 0,
+	WSS_BAREHANDS = 1,
+	WSS_EXPLOSION = 2,
+	WSS_ACCIDENT = 3,
+	WSS_NPC_FRIENDLY_FIRE = 4,
+	WSS_EXECUTE_PISTOL = 5,
+	WSS_ANY_WEAPON = 6,
+	WSS_INVISIBLE = 7,
+	WSS_COUNT = 8
+};

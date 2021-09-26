@@ -1,8 +1,10 @@
 #pragma once
 
-class SCPProgressionState
+struct SCPProgressionState
 {
-public:
-    int m_iCPIndex;
-    unsigned int m_iDifficulties;
+	int m_iCPIndex;
+	unsigned int m_iDifficulties;
+
+	SCPProgressionState() = default;
+	~SCPProgressionState() = default;
 };

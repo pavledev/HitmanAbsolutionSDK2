@@ -2,11 +2,15 @@
 
 #include "IComponentInterface.h"
 
-class ISoundModifiable : public IComponentInterface
+class __declspec(novtable) ISoundModifiable : public IComponentInterface
 {
 public:
-    virtual float GetAttenuation();
-    virtual void SetAttenuationGain(float);
-    virtual float GetPitchShift();
-    virtual void SetPitchShift(float);
+	~ISoundModifiable() override = default;
+	virtual float GetAttenuation() const = 0;
+	virtual void SetAttenuationGain(float param1) = 0;
+	virtual float GetPitchShift() const = 0;
+	virtual void SetPitchShift(float param1) = 0;
+
+	static void RegisterType();
+	ISoundModifiable() = default;
 };

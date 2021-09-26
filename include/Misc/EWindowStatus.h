@@ -1,8 +1,8 @@
 #pragma once
 
-enum EWindowStatus : __int32
+enum EWindowStatus
 {
-    eWindowNone = 0x0,
-    eAtWindowLeft = 0x1,
-    eAtWindowRight = 0x2
+	eWindowNone = 0,
+	eAtWindowLeft = 1,
+	eAtWindowRight = 2
 };

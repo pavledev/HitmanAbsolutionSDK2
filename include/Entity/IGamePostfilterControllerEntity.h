@@ -1,16 +1,21 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "SRenderPostfilterParameters.h"
 #include "ZEntityRef.h"
-#include "SRenderPostfilterPerScreenDecalParametersInternal.h"
 
-class IGamePostfilterControllerEntity : public IComponentInterface
+struct SRenderPostfilterParameters;
+struct SRenderPostfilterPerScreenDecalParametersInternal;
+
+class __declspec(novtable) IGamePostfilterControllerEntity : public IComponentInterface
 {
 public:
-    virtual void UpdateParameters(SRenderPostfilterParameters*);
-    virtual void SetDefaultParameters(const SRenderPostfilterParameters*, float);
-    virtual void SetRenderPostfilterControllerEntity(ZEntityRef);
-    virtual unsigned int GetGameLerpMask();
-    virtual unsigned int UpdateScreenDecals(SRenderPostfilterPerScreenDecalParametersInternal*, unsigned int);
+	~IGamePostfilterControllerEntity() override = default;
+	virtual void UpdateParameters(SRenderPostfilterParameters& renderPostfilterParameters) = 0;
+	virtual void SetDefaultParameters(const SRenderPostfilterParameters& renderPostfilterParameters, float param2) = 0;
+	virtual void SetRenderPostfilterControllerEntity(ZEntityRef entityRef) = 0;
+	virtual unsigned int GetGameLerpMask() = 0;
+	virtual unsigned int UpdateScreenDecals(SRenderPostfilterPerScreenDecalParametersInternal* renderPostfilterPerScreenDecalParametersInternal, unsigned int param2) = 0;
+
+	static void RegisterType();
+	IGamePostfilterControllerEntity() = default;
 };

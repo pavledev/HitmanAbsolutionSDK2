@@ -2,10 +2,13 @@
 
 #include "ELevelIndex.h"
 
-class SLevelProgressionData
+struct SLevelProgressionData
 {
-public:
-    ELevelIndex m_eLevelIndex;
-    int m_nCheckpointIndex;
-    int m_nDifficulty;
+	ELevelIndex m_eLevelIndex;
+	int m_nCheckpointIndex;
+	int m_nDifficulty;
+
+	SLevelProgressionData() = default;
+	~SLevelProgressionData() = default;
+	bool HaveProgress() const;
 };

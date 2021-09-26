@@ -2,8 +2,11 @@
 
 #include "TFixedArray.h"
 
-class SCrowdCells
+struct SCrowdCells
 {
-public:
-    TFixedArray<unsigned char, 128> m_cells;
+	TFixedArray<unsigned char, 128> m_cells;
+
+	SCrowdCells(const SCrowdCells& __that);
+	SCrowdCells() = default;
+	~SCrowdCells() = default;
 };

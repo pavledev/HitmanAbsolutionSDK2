@@ -3,9 +3,16 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector4.h"
 
-class SRenderPostfilterParametersVignette : public SRenderPostfilterParametersBase
+struct float4;
+
+struct SRenderPostfilterParametersVignette : SRenderPostfilterParametersBase
 {
-public:
-    SVector4 m_vParams;
-    SVector4 m_vGradientLightParams;
+	SVector4 m_vParams;
+	SVector4 m_vGradientLightParams;
+
+	static const float4 s_vDefaultVignette;
+
+	SRenderPostfilterParametersVignette() = default;
+	~SRenderPostfilterParametersVignette() = default;
+	void Lerp(const SRenderPostfilterParametersVignette& source, const SRenderPostfilterParametersVignette& target, const float4& vLerp, unsigned int nLerpState);
 };

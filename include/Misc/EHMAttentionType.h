@@ -1,15 +1,15 @@
 #pragma once
 
-enum EHMAttentionType : __int32
+enum EHMAttentionType
 {
-    eHMA_UNKNOWN = 0x0,
-    eHMA_TRESSPASSING = 0x1,
-    eHMA_ILLEGALACTION = 0x2,
-    eHMA_FORCEDILLEGAL = 0x3,
-    eHMA_COMBAT = 0x4,
-    eHMA_HUNTING = 0x5,
-    eHMA_DISGUISE = 0x6,
-    eHMA_DEADBODY = 0x7,
-    eHMA_FORCEDFULL = 0x8,
-    eHMA_MAX = 0x9
+	eHMA_UNKNOWN = 0,
+	eHMA_TRESSPASSING = 1,
+	eHMA_ILLEGALACTION = 2,
+	eHMA_FORCEDILLEGAL = 3,
+	eHMA_COMBAT = 4,
+	eHMA_HUNTING = 5,
+	eHMA_DISGUISE = 6,
+	eHMA_DEADBODY = 7,
+	eHMA_FORCEDFULL = 8,
+	eHMA_MAX = 9
 };

@@ -3,29 +3,22 @@
 #include "IProjectile.h"
 #include "ZHM5ProjectileDamageProperties.h"
 #include "ZHM5SBTag.h"
+#include "eAmmoType.h"
 
-class IHM5Projectile : public IProjectile
+class __declspec(novtable) IHM5Projectile : public IProjectile
 {
 public:
-    virtual float CalcDamageByProjectile(const float4*);
-    virtual const ZEntityRef* GetProjectileOwner(const ZEntityRef* result);
-    virtual SMatrix* GetProjectileStartMatPos(SMatrix* result);
-    virtual float4* GetTrajectoryDir(float4* result);
-    virtual unsigned int GetProjectileId();
-    virtual float GetImpactForce();
-    virtual void SetImpactForce(float);
-    virtual float GetRagdollImpactForce();
-    virtual void SetRagdollImpactForce(float);
-    virtual float GetRagdollImpactUpKick();
-    virtual void SetRagdollImpactUpKick(float);
-    virtual bool IsNPCProjectile();
-    virtual bool IsActive();
-    virtual void Activate(const ZHM5ProjectileDamageProperties*, const SMatrix43*, const float4*, bool, unsigned int, bool, bool);
-    virtual eWeaponType GetWeaponType();
-    virtual void SetSBTag(const ZHM5SBTag*);
-    virtual eItemType GetItemType();
-    virtual const STokenID* GetItemTypeToken();
-    virtual eAmmoType GetAmmoType();
-    virtual bool IsSBProjectile();
-    virtual const ZHM5SBTag* GetSBTag();
+	~IHM5Projectile() override = default;
+	virtual bool IsActive() = 0;
+	virtual void Activate(const ZHM5ProjectileDamageProperties& projectileDamageProperties, const SMatrix43& matrix43, const float4& param3, bool param4, unsigned int param5, bool param6, bool param7) = 0;
+	virtual eWeaponType GetWeaponType() const = 0;
+	virtual void SetSBTag(const ZHM5SBTag* tag) = 0;
+	virtual eItemType GetItemType() const = 0;
+	virtual const STokenID& GetItemTypeToken() const = 0;
+	virtual eAmmoType GetAmmoType() const = 0;
+	virtual bool IsSBProjectile() const = 0;
+	virtual const ZHM5SBTag* GetSBTag() const = 0;
+
+	static void RegisterType();
+	IHM5Projectile() = default;
 };

@@ -1,17 +1,17 @@
 #pragma once
 
-enum ECCDecalEffect : __int32
+enum ECCDecalEffect
 {
-    eCCDecalEffect_None = 0x0,
-    eCCDecalEffect_Stab = 0x1,
-    eCCDecalEffect_Blunt1H = 0x2,
-    eCCDecalEffect_Blunt2H = 0x3,
-    eCCDecalEffect_Slash1H = 0x4,
-    eCCDecalEffect_Shatter = 0x5,
-    eCCDecalEffect_AxeCleave = 0x6,
-    eCCDecalEffect_AxePull = 0x7,
-    eCCDecalEffect_AxeSlitThroat = 0x8,
-    eCCDecalEffect_SlitThroat = 0x9,
-    eCCDecalEffect_FacePunch = 0xA,
-    eCCDecalEffect_Bruise = 0xB
+	eCCDecalEffect_None = 0,
+	eCCDecalEffect_Stab = 1,
+	eCCDecalEffect_Blunt1H = 2,
+	eCCDecalEffect_Blunt2H = 3,
+	eCCDecalEffect_Slash1H = 4,
+	eCCDecalEffect_Shatter = 5,
+	eCCDecalEffect_AxeCleave = 6,
+	eCCDecalEffect_AxePull = 7,
+	eCCDecalEffect_AxeSlitThroat = 8,
+	eCCDecalEffect_SlitThroat = 9,
+	eCCDecalEffect_FacePunch = 10,
+	eCCDecalEffect_Bruise = 11
 };

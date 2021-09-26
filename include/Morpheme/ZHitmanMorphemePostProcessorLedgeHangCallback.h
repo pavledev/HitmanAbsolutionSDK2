@@ -1,10 +1,13 @@
 #pragma once
 
-#include "sLedgeHangInfos.h"
+struct sLedgeHangInfos;
 
-class ZHitmanMorphemePostProcessorLedgeHangCallback
+class __declspec(novtable) ZHitmanMorphemePostProcessorLedgeHangCallback
 {
 public:
-	virtual void LedgeHangCallBack(sLedgeHangInfos*);
-	virtual ~ZHitmanMorphemePostProcessorLedgeHangCallback();
+	virtual void LedgeHangCallBack(sLedgeHangInfos* param1) = 0;
+	virtual ~ZHitmanMorphemePostProcessorLedgeHangCallback() = default;
+
+	static void RegisterType();
+	ZHitmanMorphemePostProcessorLedgeHangCallback() = default;
 };

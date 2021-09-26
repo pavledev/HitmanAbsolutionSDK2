@@ -1,0 +1,7 @@
+#pragma once
+
+enum ERenderInputClassification
+{
+	RENDER_INPUT_CLASSIFICATION_PER_VERTEX = 0,
+	RENDER_INPUT_CLASSIFICATION_PER_INSTANCE = 1
+};

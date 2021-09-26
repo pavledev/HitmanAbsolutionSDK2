@@ -1,17 +1,31 @@
 #pragma once
 
-class alignas(4) ZPresenceState
+class __declspec(novtable) ZPresenceState
 {
 public:
-    unsigned __int8 m_nEntityState;
+	enum EntityStateFlags
+	{
+		ESF_STREAMED = 1,
+		ESF_ACTIVATED = 2,
+		ESF_EDITMODE = 4
+	};
 
-    enum EntityStateFlags : __int32
-    {
-        ESF_STREAMED = 0x1,
-        ESF_ACTIVATED = 0x2,
-        ESF_EDITMODE = 0x4,
-    };
+	unsigned char m_nEntityState;
 
-    virtual ~ZPresenceState();
-    virtual void OnStreamActivateStateChanged();
+	virtual ~ZPresenceState() = default;
+	virtual void OnStreamActivateStateChanged() = 0;
+
+	ZPresenceState(const ZPresenceState& __that);
+	ZPresenceState() = default;
+	void StreamInHelper();
+	void StreamOutHelper();
+	bool IsStreamedInHelper();
+	void OnEnterEditModeHelper();
+	void OnExitEditModeHelper();
+	void ActivateHelper();
+	void DeactivatHelper();
+	bool GetStreamedFlag() const;
+	bool GetActivatedFlag() const;
+	bool GetEditModeFlag() const;
+	ZPresenceState& operator=(const ZPresenceState& __that);
 };

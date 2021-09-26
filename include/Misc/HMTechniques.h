@@ -1,21 +1,20 @@
 #pragma once
 
-class HMTechniques
+namespace HMTechniques
 {
-public:
-    enum ETechnique : __int32
+    enum ETechnique
     {
-        eTEC_Focus = 0x0,
-        eTEC_Gunman = 0x1,
-        eTEC_Breathing = 0x2,
-        eTEC_Chameleon = 0x3,
-        eTEC_PainSupression = 0x4,
-        eTEC_InstictiveShot = 0x5,
-        eTEC_HandToHand = 0x6,
-        eTEC_DualWield = 0x7,
-        eTEC_RunSpeed = 0x8,
-        eTEC_ThrowingForce = 0x9,
-        eTEC_NUM = 0xA
+        eTEC_Focus = 0,
+        eTEC_Gunman = 1,
+        eTEC_Breathing = 2,
+        eTEC_Chameleon = 3,
+        eTEC_PainSupression = 4,
+        eTEC_InstictiveShot = 5,
+        eTEC_HandToHand = 6,
+        eTEC_DualWield = 7,
+        eTEC_RunSpeed = 8,
+        eTEC_ThrowingForce = 9,
+        eTEC_NUM = 10
     };
 
     enum
@@ -24,28 +23,28 @@ public:
         eTECHNIQUELEVELSTOTAL = 0x1E
     };
 
-    enum ETechniquesAttribute : __int32
-    {
-        eTAT_FocusGain = 0x0,
-        eTAT_FocusMax = 0x1,
-        eTAT_GunmanRecoil = 0x2,
-        eTAT_GunmanReload = 0x3,
-        eTAT_BreathingBobbing = 0x4,
-        eTAT_BreathingHairTrigger = 0x5,
-        eTAT_ChameleonHideInPlainSightRate = 0x6,
-        eTAT_ChameleonBlendInBurnRate = 0x7,
-        eTAT_PainSuppressionRegenDelay = 0x8,
-        eTAT_PainSuppressionMaxHP = 0x9,
-        eTAT_InstictiveTagMode = 0xA,
-        eTAT_InstictiveTaggingCost = 0xB,
-        eTAT_HandToHandWindow = 0xC,
-        eTAT_HandToHandChoke = 0xD,
-        eTAT_DualWieldPrecision = 0xE,
-        eTAT_DualWieldAutoFireRate = 0xF,
-        eTAT_RunSpeedFactor = 0x10,
-        eTAT_RunSpeed_Dummy = 0x11,
-        eTAT_ThrowingForceHeavy = 0x12,
-        eTAT_ThrowingForceLight = 0x13,
-        eTAT_NUM = 0x14
-    };
+	enum ETechniquesAttribute
+	{
+		eTAT_FocusGain = 0,
+		eTAT_FocusMax = 1,
+		eTAT_GunmanRecoil = 2,
+		eTAT_GunmanReload = 3,
+		eTAT_BreathingBobbing = 4,
+		eTAT_BreathingHairTrigger = 5,
+		eTAT_ChameleonHideInPlainSightRate = 6,
+		eTAT_ChameleonBlendInBurnRate = 7,
+		eTAT_PainSuppressionRegenDelay = 8,
+		eTAT_PainSuppressionMaxHP = 9,
+		eTAT_InstictiveTagMode = 10,
+		eTAT_InstictiveTaggingCost = 11,
+		eTAT_HandToHandWindow = 12,
+		eTAT_HandToHandChoke = 13,
+		eTAT_DualWieldPrecision = 14,
+		eTAT_DualWieldAutoFireRate = 15,
+		eTAT_RunSpeedFactor = 16,
+		eTAT_RunSpeed_Dummy = 17,
+		eTAT_ThrowingForceHeavy = 18,
+		eTAT_ThrowingForceLight = 19,
+		eTAT_NUM = 20
+	};
 };

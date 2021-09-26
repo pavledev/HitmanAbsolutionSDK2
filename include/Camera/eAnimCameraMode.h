@@ -1,7 +1,7 @@
 #pragma once
 
-enum eAnimCameraMode : __int32
+enum eAnimCameraMode
 {
-    eACM_AnimNode = 0x0,
-    eACM_Network = 0x1
+	eACM_AnimNode = 0,
+	eACM_Network = 1
 };

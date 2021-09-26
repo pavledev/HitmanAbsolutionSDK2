@@ -3,12 +3,14 @@
 #include "STokenID.h"
 #include "SActorSoundDefs.h"
 
-class SOutfitData
+struct SOutfitData
 {
-public:
-    STokenID m_eTokenId;
-    int m_nArmorRating;
-    int m_nOutfitRatingAgainstSame;
-    int m_nOutfitRatingAgainstOther;
-    SActorSoundDefs::EDefinition m_eRespondHitmanDialog;
+	STokenID m_eTokenId;
+	int m_nArmorRating;
+	int m_nOutfitRatingAgainstSame;
+	int m_nOutfitRatingAgainstOther;
+	SActorSoundDefs::EDefinition m_eRespondHitmanDialog;
+
+	SOutfitData() = default;
+	~SOutfitData() = default;
 };

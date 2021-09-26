@@ -1,8 +1,8 @@
 #pragma once
 
-enum eEdgeEnd : __int32
+enum eEdgeEnd
 {
-    eEndNone = 0x0,
-    eEndLeft = 0x1,
-    eEndRight = 0x2
+	eEndNone = 0,
+	eEndLeft = 1,
+	eEndRight = 2
 };

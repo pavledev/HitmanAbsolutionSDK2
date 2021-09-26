@@ -1,7 +1,7 @@
 #pragma once
 
-enum ECameraPOI : __int32
+enum ECameraPOI
 {
-    eCameraPOI_AimAssist = 0x0,
-    eCameraPOI_POI = 0x1
+	eCameraPOI_AimAssist = 0,
+	eCameraPOI_POI = 1
 };

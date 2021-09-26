@@ -1,12 +1,17 @@
 #pragma once
 
 #include "TArray.h"
-#include "SFullGoalData.h"
 
-class SChallengeData
+struct SFullGoalData;
+
+struct SChallengeData
 {
-public:
-    TArray<SFullGoalData> m_FullGoalProgess;
-    int m_iLastUnlockedChallenge;
-    int m_iNumChallengesCompleted;
+	TArray<SFullGoalData> m_FullGoalProgess;
+	int m_iLastUnlockedChallenge;
+	int m_iNumChallengesCompleted;
+
+	SChallengeData(const SChallengeData& __that);
+	SChallengeData() = default;
+	~SChallengeData() = default;
+	SChallengeData& operator=(const SChallengeData& __that);
 };

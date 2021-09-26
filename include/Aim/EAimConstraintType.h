@@ -1,7 +1,7 @@
 #pragma once
 
-enum EAimConstraintType : __int32
+enum EAimConstraintType
 {
-    AIM_CONSTRAINT_NONE = 0x0,
-    AIM_CONSTRAINT_ELLIPSE = 0x1
+	AIM_CONSTRAINT_NONE = 0,
+	AIM_CONSTRAINT_ELLIPSE = 1
 };

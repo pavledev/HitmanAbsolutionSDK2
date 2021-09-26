@@ -1,12 +1,12 @@
 #pragma once
 
-enum EKnownEntityType : __int32
+enum EKnownEntityType
 {
-    KET_UNKNOWN = 0x0,
-    KET_HITMAN = 0x1,
-    KET_ACTOR = 0x2,
-    KET_ITEM = 0x3,
-    KET_LOCATION = 0x4,
-    KET_OBJECT = 0x5,
-    KET_COVER = 0x6
+	KET_UNKNOWN = 0,
+	KET_HITMAN = 1,
+	KET_ACTOR = 2,
+	KET_ITEM = 3,
+	KET_LOCATION = 4,
+	KET_OBJECT = 5,
+	KET_COVER = 6
 };

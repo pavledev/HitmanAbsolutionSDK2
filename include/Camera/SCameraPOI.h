@@ -2,11 +2,13 @@
 
 #include "ECameraPOI.h"
 
-class SCameraPOI
+struct SCameraPOI
 {
-public:
-    bool m_bAllowInterrupt;
-    float m_fTimeOnPOI;
-    float m_fBlendInTime;
-    ECameraPOI m_ePOIType;
+	bool m_bAllowInterrupt;
+	float m_fTimeOnPOI;
+	float m_fBlendInTime;
+	ECameraPOI m_ePOIType;
+
+	SCameraPOI() = default;
+	~SCameraPOI() = default;
 };

@@ -1,15 +1,15 @@
 #pragma once
 
-enum EContractCheckpointId : unsigned __int32
+enum EContractCheckpointId
 {
-    eINVALID = 0xFFFFFFFF,
-    eID01 = 0xA,
-    eID02 = 0x14,
-    eID03 = 0x1E,
-    eID04 = 0x28,
-    eID05 = 0x32,
-    eID06 = 0x3C,
-    eID07 = 0x46,
-    eID08 = 0x50,
-    eID09 = 0x5A
+	eINVALID = -1,
+	eID01 = 10,
+	eID02 = 20,
+	eID03 = 30,
+	eID04 = 40,
+	eID05 = 50,
+	eID06 = 60,
+	eID07 = 70,
+	eID08 = 80,
+	eID09 = 90
 };

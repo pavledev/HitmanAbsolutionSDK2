@@ -2,9 +2,12 @@
 
 #include "ZVariant.h"
 
-class IValueEntity
+class __declspec(novtable) IValueEntity
 {
 public:
-	virtual ~IValueEntity();
-	virtual ZVariant* GetValue(ZVariant* result);
+	virtual ~IValueEntity() = default;
+	virtual ZVariant GetValue() = 0;
+
+	static void RegisterType();
+	IValueEntity() = default;
 };

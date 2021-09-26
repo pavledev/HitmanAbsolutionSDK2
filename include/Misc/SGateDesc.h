@@ -2,8 +2,11 @@
 
 #include "SVector3.h"
 
-class alignas(4) SGateDesc
+struct SGateDesc
 {
-    SVector3 vPortalOS[4];
-    unsigned __int8 nFlags;
+	SVector3 vPortalOS[4];
+	unsigned char nFlags;
+
+	SGateDesc() = default;
+	~SGateDesc() = default;
 };

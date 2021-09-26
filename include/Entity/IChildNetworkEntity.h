@@ -1,12 +1,19 @@
 #pragma once
 
 #include "IComponentInterface.h"
-#include "IVariationInstance.h"
+#include "ZRuntimeResourceID.h"
+#include "ZString.h"
 
-class IChildNetworkEntity : public IComponentInterface
+class IVariationInstance;
+
+class __declspec(novtable) IChildNetworkEntity : public IComponentInterface
 {
 public:
-    virtual unsigned int CreateNetworkInstance(IVariationInstance*);
-    virtual ZString* GetDebugName(ZString* result);
-    virtual ZRuntimeResourceID* GetNetworkRuntimeResourceID(ZRuntimeResourceID* result);
+	~IChildNetworkEntity() override = default;
+	virtual unsigned int CreateNetworkInstance(IVariationInstance* variationInstance) const = 0;
+	virtual ZString GetDebugName() const = 0;
+	virtual ZRuntimeResourceID GetNetworkRuntimeResourceID() const = 0;
+
+	static void RegisterType();
+	IChildNetworkEntity() = default;
 };

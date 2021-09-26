@@ -1,9 +1,13 @@
 #pragma once
 
-#include "SPackageListDataFolder.h"
+#include "TArray.h"
 
-class SPackageListData
+struct SPackageListDataFolder;
+
+struct SPackageListData
 {
-public:
-    TArray<SPackageListDataFolder> folders;
+	TArray<SPackageListDataFolder> folders;
+
+	SPackageListData() = default;
+	~SPackageListData() = default;
 };

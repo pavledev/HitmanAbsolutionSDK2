@@ -2,7 +2,10 @@
 
 #include "TIterator.h"
 
-template<class T>
+template <class T>
 class TArrayIterator : public TIterator<T>
 {
+public:
+	TArrayIterator() = default;
+	~TArrayIterator() = default;
 };

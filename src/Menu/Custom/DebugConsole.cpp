@@ -100,6 +100,7 @@ int DebugConsole::TextEditCallback(ImGuiInputTextCallbackData* data)
     switch (data->EventFlag)
     {
     case ImGuiInputTextFlags_CallbackAlways:
+    {
         if (state.activeIndex != -1)
         {
             data->DeleteChars(0, data->BufTextLen);
@@ -109,6 +110,7 @@ int DebugConsole::TextEditCallback(ImGuiInputTextCallbackData* data)
         }
 
         break;
+    }
     }
 
     return 0;
@@ -140,6 +142,7 @@ void DebugConsole::DrawWindow(bool* showDebugConsole)
     }
 
     ImGui::SameLine();
+
     bool copyToClipboard = ImGui::SmallButton("Copy");
     //static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLog("Spam %f", t); }
 
@@ -147,11 +150,9 @@ void DebugConsole::DrawWindow(bool* showDebugConsole)
 
     /// Draw any window content here
     {
-        const float footer_height_to_reserve = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
+        const float footerHeightToReserve = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
 
-        ImGui::BeginChild("scrollRegion", ImVec2(0, -footer_height_to_reserve),
-            true, ImGuiWindowFlags_HorizontalScrollbar
-        );
+        ImGui::BeginChild("scrollRegion", ImVec2(0, -footerHeightToReserve), true, ImGuiWindowFlags_HorizontalScrollbar);
 
         if (copyToClipboard)
         {
@@ -210,6 +211,7 @@ void DebugConsole::DrawWindow(bool* showDebugConsole)
     if (ImGui::InputText("Command", inputBuffer, IM_ARRAYSIZE(inputBuffer), flags, &TextEditCallbackStub, &state))
     {
         char* s = inputBuffer;
+
         Strtrim(s);
 
         if (s[0])
@@ -242,7 +244,7 @@ void DebugConsole::DrawWindow(bool* showDebugConsole)
                     continue;
                 }
 
-                if (ImGui::Selectable(commands[i]) || (ImGui::IsItemFocused() && ImGui::IsKeyPressedMap(ImGuiKey_Enter)))
+                if (ImGui::Selectable(commands[i]) || ImGui::IsItemFocused() && ImGui::IsKeyPressedMap(ImGuiKey_Enter))
                 {
                     state.isPopupOpen = false;
                     state.activeIndex = i;
@@ -287,7 +289,7 @@ void DebugConsole::ExecuteCommand(const char* command)
     }
     else
     {
-        ZDebugConsole* debugConsole = (ZDebugConsole*)(BaseAddresses::hitman5Dll + 0xCA54F0);
+        ZDebugConsole* debugConsole = Singletons::GetDebugConsole();
 
         if (debugConsole)
         {
@@ -298,14 +300,14 @@ void DebugConsole::ExecuteCommand(const char* command)
 
 void DebugConsole::GetCommands()
 {
-    ZConfigFloat* zConfigCommand = reinterpret_cast<ZConfigFloat*>(ZConfigCommand::First());
+    ZConfigFloat* configCommand = reinterpret_cast<ZConfigFloat*>(ZConfigCommand::First());
 
-    if (zConfigCommand)
+    if (configCommand)
     {
-        string name = zConfigCommand->m_pszName;
+        string name = configCommand->m_pszName;
 
         ostringstream ss;
-        ss << zConfigCommand->m_Value;
+        ss << configCommand->m_Value;
         string value(ss.str());
 
         value.insert(0, " ");
@@ -314,12 +316,12 @@ void DebugConsole::GetCommands()
 
         commands.push_back(Strdup(command.c_str()));
 
-        while ((zConfigCommand = reinterpret_cast<ZConfigFloat*>(zConfigCommand->Next())) != nullptr)
+        while ((configCommand = reinterpret_cast<ZConfigFloat*>(configCommand->Next())) != nullptr)
         {
-            string name = zConfigCommand->m_pszName;
+            string name = configCommand->m_pszName;
 
             ostringstream ss;
-            ss << zConfigCommand->m_Value;
+            ss << configCommand->m_Value;
             string value(ss.str());
 
             value.insert(0, " ");

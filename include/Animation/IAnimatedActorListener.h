@@ -1,18 +1,20 @@
 #pragma once
 
-class IAnimatedActorListener
+class __declspec(novtable) IAnimatedActorListener
 {
 public:
-    virtual ~IAnimatedActorListener();
-    virtual void OnMoveStart();
-    virtual void OnMove();
-    virtual void OnMoveStopping();
-    virtual void OnStanding();
-    virtual void OnActStart();
-    virtual void OnActInFullbody();
-    virtual void OnActEnteredLoop();
-    virtual void OnActStopping();
-    virtual void OnReactionStart();
-    virtual void OnReactionStopping();
-    virtual void OnOrderCompleted();
+	virtual ~IAnimatedActorListener() = default;
+	virtual void OnMoveStart() = 0;
+	virtual void OnMove() = 0;
+	virtual void OnMoveStopping() = 0;
+	virtual void OnStanding() = 0;
+	virtual void OnActStart() = 0;
+	virtual void OnActInFullbody() = 0;
+	virtual void OnActEnteredLoop() = 0;
+	virtual void OnActStopping() = 0;
+	virtual void OnReactionStart() = 0;
+	virtual void OnReactionStopping() = 0;
+	virtual void OnOrderCompleted() = 0;
+
+	IAnimatedActorListener() = default;
 };

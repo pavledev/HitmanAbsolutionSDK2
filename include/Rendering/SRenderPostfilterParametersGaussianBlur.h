@@ -2,8 +2,11 @@
 
 #include "SRenderPostfilterParametersBase.h"
 
-class SRenderPostfilterParametersGaussianBlur : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersGaussianBlur : SRenderPostfilterParametersBase
 {
-public:
-    float m_fBlurriness;
+	float m_fBlurriness;
+
+	SRenderPostfilterParametersGaussianBlur() = default;
+	~SRenderPostfilterParametersGaussianBlur() = default;
+	void Lerp(const SRenderPostfilterParametersGaussianBlur& source, const SRenderPostfilterParametersGaussianBlur& target, float fLerp);
 };

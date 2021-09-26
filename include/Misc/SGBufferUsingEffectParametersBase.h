@@ -2,7 +2,11 @@
 
 #include "SEffectParameters.h"
 
-class SGBufferUsingEffectParametersBase : public SEffectParameters
+struct SGBufferUsingEffectParametersBase : SEffectParameters
 {
+	~SGBufferUsingEffectParametersBase() override = default;
+	void Update(ZRenderEffect* pEffect) override;
 
+	SGBufferUsingEffectParametersBase() = default;
+	void Update(SGBufferUsingTechniqueParameters& params, ZRenderShader* pVShader, ZRenderShader* pFShader);
 };

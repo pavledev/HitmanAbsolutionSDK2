@@ -1,6 +1,8 @@
 #pragma once
 
-struct ITraceListener
+class ITraceListener
 {
-
+public:
+	ITraceListener() = default;
+	~ITraceListener() = default;
 };

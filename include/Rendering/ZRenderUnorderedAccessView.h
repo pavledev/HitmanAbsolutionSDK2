@@ -1,15 +1,23 @@
 #pragma once
-#pragma warning(disable : 4005)
 
 #include "TRenderReferencedCountedImpl.h"
-#include "RenderReferencedCountedBaseStub.h"
 #include "SRenderUnorderedAccessViewDesc.h"
-#include "IRenderResource.h"
-#include <D3D11.h>
+#include "d3d11.h"
 
-class ZRenderUnorderedAccessView : TRenderReferencedCountedImpl<RenderReferencedCountedBaseStub, 0>
+class ZRenderDevice;
+class IRenderResource;
+class RenderReferencedCountedBaseStub;
+
+class ZRenderUnorderedAccessView : public TRenderReferencedCountedImpl<RenderReferencedCountedBaseStub, 0>
 {
-    SRenderUnorderedAccessViewDesc m_Description;
-    IRenderResource* m_pResource;
-    ID3D11UnorderedAccessView* m_pUAV;
+public:
+	SRenderUnorderedAccessViewDesc m_Description;
+	IRenderResource* m_pResource;
+	ID3D11UnorderedAccessView* m_pUAV;
+
+	~ZRenderUnorderedAccessView() override = default;
+
+	ZRenderUnorderedAccessView() = default;
+	ZRenderUnorderedAccessView(const SRenderUnorderedAccessViewDesc* pDescription, IRenderResource* pResource, ZRenderDevice* pRenderDevice);
+	ID3D11UnorderedAccessView* GetUnorderedAccessView() const;
 };

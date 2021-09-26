@@ -2,11 +2,14 @@
 
 #include "ZParticleEmitterBaseEntity.h"
 
-class SParticleEmitterEntry
+struct SParticleEmitterEntry
 {
-public:
-    ZParticleEmitterBaseEntity* ptr;
-    bool bEnabled;
-    SParticleBlockHeader* pBlockList;
-    unsigned int nContsSize;
+	ZParticleEmitterBaseEntity* ptr;
+	bool bEnabled;
+	SParticleBlockHeader* pBlockList;
+	unsigned int nContsSize;
+
+	SParticleEmitterEntry(ZParticleEmitterBaseEntity* emitter, bool enabled, SParticleBlockHeader* blockList);
+	SParticleEmitterEntry() = default;
+	~SParticleEmitterEntry() = default;
 };

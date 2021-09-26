@@ -5,7 +5,7 @@
 #include "BaseAddresses.h"
 #include "ZApplicationEngineWin32.h"
 
-using namespace std;
+//using namespace std;
 
 namespace ApplicationHooks
 {

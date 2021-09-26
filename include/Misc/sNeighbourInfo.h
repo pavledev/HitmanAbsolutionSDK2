@@ -1,14 +1,17 @@
 #pragma once
 
-#include "ZItemLegend.h"
+#include "eNeigbourState.h"
 
 class ZHM5CoverPlane;
 
-class alignas(4) sNeighbourInfo
+struct sNeighbourInfo
 {
-public:
-    ZHM5CoverPlane* m_pNPlane;
-    float m_fAngle;
-    ZItemLegend::EInputDevice m_NState;
-    __int8 m_bConvex : 1;
+	ZHM5CoverPlane* m_pNPlane;
+	float m_fAngle;
+	eNeigbourState m_NState;
+	bool m_bConvex : 1;
+
+	sNeighbourInfo() = default;
+	~sNeighbourInfo() = default;
+	void Reset();
 };

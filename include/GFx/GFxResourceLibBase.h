@@ -3,10 +3,13 @@
 #include "GRefCountBase.h"
 #include "GFxResource.h"
 
-class GFxResourceLibBase : public GRefCountBase<GFxResourceLibBase, 2>
+class __declspec(novtable) GFxResourceLibBase : public GRefCountBase<GFxResourceLibBase, 2>
 {
 public:
-    virtual void RemoveResourceOnRelease(GFxResource*);
-    virtual void PinResource(GFxResource*);
-    virtual void UnpinResource(GFxResource*);
+	~GFxResourceLibBase() override = default;
+	virtual void RemoveResourceOnRelease(GFxResource* fxResource) = 0;
+	virtual void PinResource(GFxResource* fxResource) = 0;
+	virtual void UnpinResource(GFxResource* fxResource) = 0;
+
+	GFxResourceLibBase() = default;
 };

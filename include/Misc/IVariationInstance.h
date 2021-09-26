@@ -2,9 +2,13 @@
 
 #include "MR.h"
 
-class IVariationInstance
+class ZString;
+
+class __declspec(novtable) IVariationInstance
 {
 public:
-	virtual ~IVariationInstance();
-	virtual MR::IAnimSource* GetAnimSource(const ZString*);
+	virtual ~IVariationInstance() = default;
+	virtual MR::IAnimSource* GetAnimSource(const ZString& string) = 0;
+
+	IVariationInstance() = default;
 };

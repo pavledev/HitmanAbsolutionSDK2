@@ -5,5 +5,14 @@
 class ZSharedPointerTarget : public ISharedPointerTarget
 {
 public:
-    int m_iRefCount;
+	long m_iRefCount;
+
+	~ZSharedPointerTarget() override = default;
+	void AddReference() const override;
+	void RemoveReference() const override;
+	unsigned int GetRefCount() const override;
+
+	ZSharedPointerTarget(const ZSharedPointerTarget& __that);
+	ZSharedPointerTarget() = default;
+	ZSharedPointerTarget& operator=(const ZSharedPointerTarget& __that);
 };

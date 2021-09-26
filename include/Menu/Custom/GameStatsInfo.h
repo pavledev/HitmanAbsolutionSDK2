@@ -4,8 +4,8 @@
 #include <string>
 #include "imgui.h"
 #include "ZGameStatsManager.h"
-#include "Globals.h"
 #include "NearestActorsInfo.h"
+#include "Singletons.h"
 
 using namespace std;
 

@@ -2,9 +2,11 @@
 
 #include "SFloat16.h"
 
-class SBindPoseQV
+struct SBindPoseQV
 {
-public:
-    SFloat16 rotation[4];
-    SFloat16 translation[3];
+	SFloat16 rotation[4];
+	SFloat16 translation[3];
+
+	SBindPoseQV() = default;
+	~SBindPoseQV() = default;
 };

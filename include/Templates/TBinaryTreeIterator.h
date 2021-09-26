@@ -1,15 +1,27 @@
 #pragma once
 
 #include "TIterator.h"
+#include "Function.h"
 
-template<class T>
+template <class T> class TBinaryTreeNode;
+
+template <class T>
 class TBinaryTreeIterator : public TIterator<T>
 {
 public:
-    TBinaryTreeNode<T>* Node()
-    {
-        T* val = this->m_pCurrent - 1;
+    TBinaryTreeIterator() = default;
+    ~TBinaryTreeIterator() = default;
 
-        return reinterpret_cast<TBinaryTreeNode<T>*>(val);
+    unsigned int NodeOffset();
+    unsigned int IncrementOperatorOffset();
+
+    TBinaryTreeNode<T>& Node()
+    {
+        return Function::CallMethodAndReturn<TBinaryTreeNode<T>&, TBinaryTreeIterator*>(NodeOffset(), this);
+    }
+
+    TBinaryTreeIterator& operator++()
+    {
+        return Function::CallMethodAndReturn<TBinaryTreeIterator&, TBinaryTreeIterator*>(IncrementOperatorOffset(), this);
     }
 };

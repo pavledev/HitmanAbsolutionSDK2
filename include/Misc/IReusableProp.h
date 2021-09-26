@@ -1,10 +1,12 @@
 #pragma once
 
-class IReusableProp
+class __declspec(novtable) IReusableProp
 {
 public:
-    virtual ~IReusableProp();
-    virtual void UseOnce();
-    virtual void ResetUsedFlag();
-    virtual bool IsUsed();
+	virtual ~IReusableProp() = default;
+	virtual void UseOnce() = 0;
+	virtual void ResetUsedFlag() = 0;
+	virtual bool IsUsed() const = 0;
+
+	IReusableProp() = default;
 };

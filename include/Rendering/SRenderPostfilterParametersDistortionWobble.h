@@ -3,11 +3,14 @@
 #include "SRenderPostfilterParametersBase.h"
 #include "SVector2.h"
 
-class alignas(4) SRenderPostfilterParametersDistortionWobble : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersDistortionWobble : SRenderPostfilterParametersBase
 {
-public:
-    float m_fScale;
-    SVector2 m_vWobbleWaveLength;
-    SVector2 m_vWobbleSpeed;
-    bool m_bUseRealTime;
+	float m_fScale;
+	SVector2 m_vWobbleWaveLength;
+	SVector2 m_vWobbleSpeed;
+	bool m_bUseRealTime;
+
+	SRenderPostfilterParametersDistortionWobble() = default;
+	~SRenderPostfilterParametersDistortionWobble() = default;
+	void Lerp(const SRenderPostfilterParametersDistortionWobble& source, const SRenderPostfilterParametersDistortionWobble& target, float fLerp, unsigned int nLerpState);
 };

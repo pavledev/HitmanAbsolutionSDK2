@@ -2,9 +2,13 @@
 
 #include "SGameStatsData.h"
 
-class alignas(8) SGameStatsSaveData
+struct SGameStatsSaveData
 {
-public:
-    SGameStatsData m_Data;
-    int m_iPreciseSniperKillCount;
+	SGameStatsData m_Data;
+	int m_iPreciseSniperKillCount;
+
+	SGameStatsSaveData(const SGameStatsSaveData& __that);
+	SGameStatsSaveData() = default;
+	~SGameStatsSaveData() = default;
+	SGameStatsSaveData& operator=(const SGameStatsSaveData& __that);
 };

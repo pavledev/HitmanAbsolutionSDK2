@@ -2,14 +2,15 @@
 
 #include "ZVariantRef.h"
 
-struct ZPinFunctor
+class ZGenericMemberFunctionTarget;
+
+class ZPinFunctor
 {
-    void* pfInvoke;
-    void* func;
+public:
+	void (*pfInvoke)(void (*param1)(), ZGenericMemberFunctionTarget* genericMemberFunctionTarget, const ZVariantRef& variantRef, unsigned int param4);
+	void (*func)();
 
-    //void(__cdecl* pfInvoke)(void(__thiscall*)(void), void*, ZVariantRef*, unsigned int);
-    //void(__thiscall* func)();
-
-    //void(__cdecl* pfInvoke)(void(__thiscall*)(ZGenericMemberFunctionTarget* this), ZGenericMemberFunctionTarget*, ZVariantRef*, unsigned int);
-    //void(__thiscall* func)(ZGenericMemberFunctionTarget* this);
+	ZPinFunctor() = default;
+	~ZPinFunctor() = default;
+	void Invoke(void* pObj, const ZVariantRef& a1, unsigned int nExtraData) const;
 };

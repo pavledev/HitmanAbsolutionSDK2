@@ -10,29 +10,86 @@ void UIOptions::DrawWindow(bool* showUIOptions)
 		return;
 	}
 
-	static ZUIOptions* uiOptions = reinterpret_cast<ZUIOptions*>(Globals::g_pUIOptionsSingleton);
+	static ZUIOptions* uiOptions = Singletons::GetUIOptions();
 
-	static bool uiOptionGameVibration, uiOptionGameAimAssist, uiOptionGameAimCausal, uiOptionGameInvertX, uiOptionGameInvertMouseX,
-		uiOptionGameInvertMouseY, uiOptionGameInvertY, uiOptionGameControlScheme, uiOptionGameFastTarget,
-		uiOptionGameTriggerShoot, uiOptionGameShootingBalletAuto, uiOptionGameSwitchSneakAndCamera, uiOptionGameLeftHandedControls,
-		uiOptionGameInstinctPaths, uiOptionGameInstinctNpcglow, uiOptionGameHintsTutorial, uiOptionGameHintsInstinct,
-		uiOptionGameCoverToggle, uiOptionGraphicsSubtitles, uiOptionDisplayFullscreen, uiOptionDisplayExclusive,
-		uiOptionDisplayVsync, uiOptionDisplayStereoscopic, uiOptionGraphicsSsgi, uiOptionGraphicsLpv,
-		uiOptionCheatGod, uiOptionCheatInvisible, uiOptionCheatInfAmmo, uiOptionCheatInfClip, uiOptionCheatInfFocus,
-		uiOptionCheatAlwaysShowCrosshair, uiOptionCheatCameraAutocorrection, uiOptionCheatInvertCamVer, uiOptionCheatActionCamera,
-		uiOptionDebugShowDebug, uiOptionDebugPrintLowFps, uiOptionDebugUiDisableHud, uiOptionDebugUiThreatRadar,
-		uiOptionDebugHudInventory, uiOptionDebugScreenshot, uiOptionDebugDisableRooms;
+	static bool uiOptionGameVibration = uiOptions->Bool(100);
+	static bool uiOptionGameAimAssist = uiOptions->Bool(200);
+	static bool uiOptionGameAimCausal = uiOptions->Bool(210);
+	static bool uiOptionGameInvertX = uiOptions->Bool(300);
+	static bool uiOptionGameInvertMouseX = uiOptions->Bool(301);
+	static bool uiOptionGameInvertMouseY = uiOptions->Bool(302);
+	static bool uiOptionGameInvertY = uiOptions->Bool(310);
+	static bool uiOptionGameControlScheme = uiOptions->Bool(311);
+	static bool uiOptionGameFastTarget = uiOptions->Bool(312);
+	static bool uiOptionGameTriggerShoot = uiOptions->Bool(330);
+	static bool uiOptionGameShootingBalletAuto = uiOptions->Bool(331);
+	static bool uiOptionGameSwitchSneakAndCamera = uiOptions->Bool(332);
+	static bool uiOptionGameLeftHandedControls = uiOptions->Bool(333);
+	static bool uiOptionGameInstinctPaths = uiOptions->Bool(340);
+	static bool uiOptionGameInstinctNpcglow = uiOptions->Bool(342);
+	static bool uiOptionGameHintsTutorial = uiOptions->Bool(346);
+	static bool uiOptionGameHintsInstinct = uiOptions->Bool(348);
+	static bool uiOptionGameCoverToggle = uiOptions->Bool(352);
+	static bool uiOptionGraphicsSubtitles = uiOptions->Bool(2000);
+	static bool uiOptionDisplayFullscreen = uiOptions->Bool(2250);
+	static bool uiOptionDisplayExclusive = uiOptions->Bool(2260);
+	static bool uiOptionDisplayVsync = uiOptions->Bool(2270);
+	static bool uiOptionDisplayStereoscopic = uiOptions->Bool(2310);
+	static bool uiOptionGraphicsSsgi = uiOptions->Bool(2660);
+	static bool uiOptionGraphicsLpv = uiOptions->Bool(2670);
+	static bool uiOptionCheatGod = uiOptions->Bool(6000);
+	static bool uiOptionCheatInvisible = uiOptions->Bool(6100);
+	static bool uiOptionCheatInfAmmo = uiOptions->Bool(6210);
+	static bool uiOptionCheatInfClip = uiOptions->Bool(6220);
+	static bool uiOptionCheatInfFocus = uiOptions->Bool(6230);
+	static bool uiOptionCheatAlwaysShowCrosshair = uiOptions->Bool(6330);
+	static bool uiOptionCheatCameraAutocorrection = uiOptions->Bool(6410);
+	static bool uiOptionCheatInvertCamVer = uiOptions->Bool(6420);
+	static bool uiOptionCheatActionCamera = uiOptions->Bool(6430);
+	static bool uiOptionDebugShowDebug = uiOptions->Bool(7000);
+	static bool uiOptionDebugPrintLowFps = uiOptions->Bool(7010);
+	static bool uiOptionDebugUiDisableHud = uiOptions->Bool(7700);
+	static bool uiOptionDebugUiThreatRadar = uiOptions->Bool(7771);
+	static bool uiOptionDebugHudInventory = uiOptions->Bool(7800);
+	static bool uiOptionDebugScreenshot = uiOptions->Bool(7910);
+	static bool uiOptionDebugDisableRooms = uiOptions->Bool(7920);
 
-	static int uiOptionGameDifficulty, uiOptionGameLangAudio, uiOptionGameLangText, uiOptionGameWeaponSelector,
-		uiOptionDisplayResolution, uiOptionDisplayRefreshrate, uiOptionDisplayMonitor, uiOptionDisplayQuality,
-		uiOptionDisplayAspect, uiOptionDisplayMsaa, uiOptionGraphicsQuality, uiOptionGraphicsShadowQuality,
-		uiOptionGraphicsShadowResolution, uiOptionGraphicsTextureQuality, uiOptionGraphicsTextureFilter, uiOptionGraphicsSsao,
-		uiOptionGraphicsTessellation, uiOptionGraphicsMirrors, uiOptionGraphicsAntiAliasing, uiOptionGraphicsLod,
-		uiOptionGraphicsBokeh, uiOptionGraphicsBloom;
-	static float uiOptionGameCameraSensitivityHorz, uiOptionGameCameraSensitivityVert, uiOptionGameMouseSensitivity,
-		uiOptionSoundVolumeMaster, uiOptionSoundVolumeEffects, uiOptionSoundVolumeMusic, uiOptionSoundVolumeVoice,
-		uiOptionGraphicsGamma, uiOptionGraphicsSafeAreaX, uiOptionGraphicsSafeAreaY, uiOptionDisplayStereoDepth,
-		uiOptionDisplayStereoStrength, uiOptionDebugForceLodIndex;
+	static int uiOptionGameDifficulty = uiOptions->Int(321);
+	static int uiOptionGameLangAudio = uiOptions->Int(350);
+	static int uiOptionGameLangText = uiOptions->Int(351);
+	static int uiOptionGameWeaponSelector = uiOptions->Int(353);
+	static int uiOptionDisplayResolution = uiOptions->Int(2230);
+	static int uiOptionDisplayRefreshrate = uiOptions->Int(2240);
+	static int uiOptionDisplayMonitor = uiOptions->Int(2280);
+	static int uiOptionDisplayQuality = uiOptions->Int(2290);
+	static int uiOptionDisplayAspect = uiOptions->Int(2300);
+	static int uiOptionDisplayMsaa = uiOptions->Int(2340);
+	static int uiOptionGraphicsQuality = uiOptions->Int(2600);
+	static int uiOptionGraphicsShadowQuality = uiOptions->Int(2610);
+	static int uiOptionGraphicsShadowResolution = uiOptions->Int(2620);
+	static int uiOptionGraphicsTextureQuality = uiOptions->Int(2630);
+	static int uiOptionGraphicsTextureFilter = uiOptions->Int(2640);
+	static int uiOptionGraphicsSsao = uiOptions->Int(2650);
+	static int uiOptionGraphicsTessellation = uiOptions->Int(2680);
+	static int uiOptionGraphicsMirrors = uiOptions->Int(2690);
+	static int uiOptionGraphicsAntiAliasing = uiOptions->Int(2700);
+	static int uiOptionGraphicsLod = uiOptions->Int(2710);
+	static int uiOptionGraphicsBokeh = uiOptions->Int(2740);
+	static int uiOptionGraphicsBloom = uiOptions->Int(2750);
+
+	static float uiOptionGameCameraSensitivityHorz = uiOptions->Float(334);
+	static float uiOptionGameCameraSensitivityVert = uiOptions->Float(335);
+	static float uiOptionGameMouseSensitivity = uiOptions->Float(336);
+	static float uiOptionSoundVolumeMaster = uiOptions->Float(1010);
+	static float uiOptionSoundVolumeEffects = uiOptions->Float(1020);
+	static float uiOptionSoundVolumeMusic = uiOptions->Float(1030);
+	static float uiOptionSoundVolumeVoice = uiOptions->Float(1040);
+	static float uiOptionGraphicsGamma = uiOptions->Float(2110);
+	static float uiOptionGraphicsSafeAreaX = uiOptions->Float(2210);
+	static float uiOptionGraphicsSafeAreaY = uiOptions->Float(2220);
+	static float uiOptionDisplayStereoDepth = uiOptions->Float(2320);
+	static float uiOptionDisplayStereoStrength = uiOptions->Float(2330);
+	static float uiOptionDebugForceLodIndex = uiOptions->Float(7900);
 
 	ImGui::PushItemWidth(200);
 

@@ -1,9 +1,9 @@
 #pragma once
 
-enum EActorAnimationStatusUpdate : __int32
+enum EActorAnimationStatusUpdate
 {
-    ASU_NONE = 0x0,
-    ASU_FAILED = 0x1,
-    ASU_RUNNING = 0x2,
-    ASU_FINISHED = 0x3
+	ASU_NONE = 0,
+	ASU_FAILED = 1,
+	ASU_RUNNING = 2,
+	ASU_FINISHED = 3
 };

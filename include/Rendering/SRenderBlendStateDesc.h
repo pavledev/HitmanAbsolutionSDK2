@@ -3,16 +3,18 @@
 #include "ERenderBlendMode.h"
 #include "ERenderBlendOp.h"
 
-class SRenderBlendStateDesc
+struct SRenderBlendStateDesc
 {
-public:
-    bool bAlphaToCoverageEnable;
-    bool bBlendEnable[8];
-    ERenderBlendMode eSrcBlend;
-    ERenderBlendMode eDestBlend;
-    ERenderBlendOp eBlendOp;
-    ERenderBlendMode eSrcBlendAlpha;
-    ERenderBlendMode eDestBlendAlpha;
-    ERenderBlendOp eBlendOpAlpha;
-    unsigned __int8 nRenderTargetWriteMask[8];
+	bool bAlphaToCoverageEnable;
+	bool bBlendEnable[8];
+	ERenderBlendMode eSrcBlend;
+	ERenderBlendMode eDestBlend;
+	ERenderBlendOp eBlendOp;
+	ERenderBlendMode eSrcBlendAlpha;
+	ERenderBlendMode eDestBlendAlpha;
+	ERenderBlendOp eBlendOpAlpha;
+	unsigned char nRenderTargetWriteMask[8];
+
+	SRenderBlendStateDesc() = default;
+	~SRenderBlendStateDesc() = default;
 };

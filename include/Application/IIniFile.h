@@ -2,16 +2,22 @@
 
 #include "IComponentInterface.h"
 #include "ZFilePath.h"
-#include "IIniFileSection.h"
+#include "TEnumerator.h"
+#include "ZString.h"
 
-class IIniFile : public IComponentInterface
+class IIniFileSection;
+
+class __declspec(novtable) IIniFile : public IComponentInterface
 {
 public:
-    virtual bool Load(const ZFilePath*);
-    virtual bool LoadFromString(const ZString*);
-    virtual IIniFileSection* GetSection(const ZString*);
-    virtual TEnumerator<IIniFileSection*>* GetSections(TEnumerator<IIniFileSection*>* result);
-    virtual ZString* GetValue(ZString* result, const ZString*, const ZString*);
-    virtual void SetValue(const ZString*, const ZString*, const ZString*);
-    virtual TEnumerator<ZString>* GetConsoleCmds(TEnumerator<ZString>* result);
+	~IIniFile() override = default;
+	virtual bool Load(const ZFilePath& filePath) = 0;
+	virtual bool LoadFromString(const ZString& string) = 0;
+	virtual IIniFileSection* GetSection(const ZString& string) = 0;
+	virtual TEnumerator<IIniFileSection*> GetSections() = 0;
+	virtual ZString GetValue(const ZString& string, const ZString& string2) = 0;
+	virtual void SetValue(const ZString& string, const ZString& string2, const ZString& string3) = 0;
+	virtual TEnumerator<ZString> GetConsoleCmds() = 0;
+
+	IIniFile() = default;
 };

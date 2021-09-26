@@ -1,6 +1,8 @@
 #pragma once
 
-struct ZTraceListenerWin32
+class ZTraceListenerWin32
 {
-
+public:
+	ZTraceListenerWin32() = default;
+	~ZTraceListenerWin32() = default;
 };

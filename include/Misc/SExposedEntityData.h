@@ -2,9 +2,12 @@
 
 #include "ZString.h"
 
-class SExposedEntityData
+struct SExposedEntityData
 {
-public:
-    ZString m_sExposedEntityName;
-    int m_nEntityOffset;
+	ZString m_sExposedEntityName;
+	int m_nEntityOffset;
+
+	SExposedEntityData(const SExposedEntityData& __that);
+	SExposedEntityData() = default;
+	~SExposedEntityData() = default;
 };

@@ -2,8 +2,10 @@
 
 #include "SRenderPostfilterParametersBase.h"
 
-class SRenderPostfilterParametersMotionBlur : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersMotionBlur : SRenderPostfilterParametersBase
 {
-public:
-    float m_fBlurriness;
+	float m_fBlurriness;
+
+	SRenderPostfilterParametersMotionBlur() = default;
+	~SRenderPostfilterParametersMotionBlur() = default;
 };

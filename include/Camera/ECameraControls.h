@@ -1,7 +1,7 @@
 #pragma once
 
-enum ECameraControls : __int32
+enum ECameraControls
 {
-    eCameraControlsNormal = 0x0,
-    eCameraControlsOTS = 0x1
+	eCameraControlsNormal = 0,
+	eCameraControlsOTS = 1
 };

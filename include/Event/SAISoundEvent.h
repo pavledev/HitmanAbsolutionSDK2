@@ -2,16 +2,22 @@
 
 #include "ZEntityRef.h"
 #include "TEntityRef.h"
-#include "ZSpatialEntity.h"
 #include "EAIEventType.h"
+#include "float4.h"
 
-class alignas(16) SAISoundEvent
+class ZSpatialEntity;
+
+struct SAISoundEvent
 {
-public:
-    ZEntityRef m_pSender;
-    TEntityRef<ZSpatialEntity> m_pSpatial;
-    float4 m_vPosition;
-    unsigned __int16 m_nRoomID;
-    EAIEventType m_eType;
-    float m_fRange;
+	ZEntityRef m_pSender;
+	TEntityRef<ZSpatialEntity> m_pSpatial;
+	float4 m_vPosition;
+	unsigned short m_nRoomID;
+	EAIEventType m_eType;
+	float m_fRange;
+
+	SAISoundEvent(const SAISoundEvent& __that);
+	SAISoundEvent() = default;
+	~SAISoundEvent() = default;
+	SAISoundEvent& operator=(const SAISoundEvent& __that);
 };

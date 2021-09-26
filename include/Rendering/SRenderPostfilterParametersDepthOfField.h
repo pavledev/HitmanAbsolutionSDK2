@@ -4,12 +4,19 @@
 #include "SVector4.h"
 #include "EPostFilterDofBlurType.h"
 
-class alignas(4) SRenderPostfilterParametersDepthOfField : public SRenderPostfilterParametersBase
+struct SRenderPostfilterParametersDepthOfField : SRenderPostfilterParametersBase
 {
-public:
-    SVector4 m_vFocalData;
-    float m_fBlurriness;
-    float m_fLensBlur;
-    EPostFilterDofBlurType m_eBlurQuality;
-    bool m_bForegroundBlur;
+	SVector4 m_vFocalData;
+	float m_fBlurriness;
+	float m_fLensBlur;
+	EPostFilterDofBlurType m_eBlurQuality;
+	bool m_bForegroundBlur;
+
+	SRenderPostfilterParametersDepthOfField() = default;
+	~SRenderPostfilterParametersDepthOfField() = default;
+	void Lerp(const SRenderPostfilterParametersDepthOfField& source, const SRenderPostfilterParametersDepthOfField& target, float fLerp, unsigned int nLerpState);
+	float* DOFFocalDistance();
+	float* DOFFieldFocalRange();
+	float* DOFFocalFadeNear();
+	float* DOFFocalFadeFar();
 };

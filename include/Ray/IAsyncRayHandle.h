@@ -1,14 +1,16 @@
 #pragma once
 
-#include "ZRayQueryInput.h"
-#include "ZRayQueryOutput.h"
+class ZRayQueryInput;
+class ZRayQueryOutput;
 
-class IAsyncRayHandle
+class __declspec(novtable) IAsyncRayHandle
 {
 public:
-    virtual bool IsReady();
-    virtual void Release();
-    virtual ZRayQueryInput* GetRayCastInput();
-    virtual ZRayQueryOutput* GetRayCastOutput();
-    virtual ~IAsyncRayHandle();
+	virtual bool IsReady() const = 0;
+	virtual void Release() = 0;
+	virtual const ZRayQueryInput& GetRayCastInput() const = 0;
+	virtual const ZRayQueryOutput& GetRayCastOutput() const = 0;
+	virtual ~IAsyncRayHandle() = default;
+
+	IAsyncRayHandle() = default;
 };

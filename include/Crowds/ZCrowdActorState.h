@@ -1,22 +1,27 @@
 #pragma once
 
-#include "TEntityRef.h"
-#include "SMatrix.h"
+#include "CrowdUtil.h"
 
 class ZCrowdActor;
+class ZDebugRender;
+struct SMatrix;
+struct float4;
+template <class T> class TEntityRef;
 
-class ZCrowdActorState
+class __declspec(novtable) ZCrowdActorState
 {
 public:
-    virtual ~ZCrowdActorState();
-    virtual void UpdateActor(TEntityRef<ZCrowdActor>, float);
-    virtual void UpdateState(float);
-    virtual bool EnterState(TEntityRef<ZCrowdActor>, ZCrowdActorState*);
-    virtual bool WantExitState(TEntityRef<ZCrowdActor>, int*);
-    virtual CrowdUtil::ECrowdActorMood GetStateMood();
-    virtual bool CanRandomStopHere(TEntityRef<ZCrowdActor>);
-    virtual bool CollidesWithHitman(const TEntityRef<ZCrowdActor>);
-    virtual int GetStateIndex();
-    virtual unsigned int GetDebugColor();
-    virtual void DrawDebug(TEntityRef<ZCrowdActor>, struct ZDebugRender*, const SMatrix*, const float4*, const float4*);
+	virtual ~ZCrowdActorState() = default;
+	virtual void UpdateActor(TEntityRef<ZCrowdActor> entityRef, float param2) = 0;
+	virtual void UpdateState(float nDt);
+	virtual bool EnterState(TEntityRef<ZCrowdActor> entityRef, ZCrowdActorState* crowdActorState) = 0;
+	virtual bool WantExitState(TEntityRef<ZCrowdActor> pActor, int* pNextStateIndex);
+	virtual CrowdUtil::ECrowdActorMood GetStateMood() const = 0;
+	virtual bool CanRandomStopHere(TEntityRef<ZCrowdActor> pActor);
+	virtual bool CollidesWithHitman(const TEntityRef<ZCrowdActor> pActor);
+	virtual int GetStateIndex() const;
+	virtual unsigned int GetDebugColor() const;
+	virtual void DrawDebug(TEntityRef<ZCrowdActor> pActor, ZDebugRender* pDebugRender, const SMatrix& mWorldMatrix, const float4& vLocalPosOffset, const float4& vDebugGfxOffset);
+
+	ZCrowdActorState() = default;
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-enum EGuardPointType : __int32
+enum EGuardPointType
 {
-    GPT_Hold = 0x0,
-    GPT_Combat = 0x1,
-    GPT_CombatAndHold = 0x2
+	GPT_Hold = 0,
+	GPT_Combat = 1,
+	GPT_CombatAndHold = 2
 };

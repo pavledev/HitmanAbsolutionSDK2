@@ -1,11 +1,31 @@
 #pragma once
 
-#include "SGWaypoint.h"
+#include "float4.h"
 
-class alignas(4) ZGridNodeRef
+struct SGWaypoint;
+
+class ZGridNodeRef
 {
 public:
-    unsigned __int16 m_nNodeIndex;
-    const SGWaypoint* m_pNode;
-    unsigned __int16 m_nRoomID;
+	class ZEnumerator;
+
+	unsigned short m_nNodeIndex;
+	const SGWaypoint* m_pNode;
+	unsigned short m_nRoomID;
+
+	ZGridNodeRef(unsigned short nNodeIndex);
+	~ZGridNodeRef() = default;
+	ZGridNodeRef(const ZGridNodeRef& other) = default;
+	ZGridNodeRef() = default;
+	ZGridNodeRef& operator=(const ZGridNodeRef& other);
+	float4 GetWorldPosition() const;
+	bool CheckVisibility(const ZGridNodeRef& pOther, bool bLow, bool bCheckDoors) const;
+	const SGWaypoint* GetNode() const;
+	bool IsValid() const;
+	bool operator==(const ZGridNodeRef& other) const;
+	bool operator!=(const ZGridNodeRef& other) const;
+	operator unsigned int() const;
+	ZEnumerator GetNeighborEnumerator() const;
+	bool IsNeighbor(const ZGridNodeRef& node) const;
+	unsigned int GetNeighborCount() const;
 };

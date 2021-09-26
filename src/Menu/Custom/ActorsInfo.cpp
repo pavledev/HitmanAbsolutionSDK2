@@ -1,4 +1,9 @@
 #include "ActorsInfo.h"
+#include "ZHM5CCProfile.h"
+#include "ZActor.h"
+#include "IHM5ItemWeapon.h"
+#include "ZHitman5.h"
+#include "IHM5Item.h"
 
 void ActorsInfo::DrawWindow(bool* showActorsInfo)
 {
@@ -7,21 +12,31 @@ void ActorsInfo::DrawWindow(bool* showActorsInfo)
 	if (!ImGui::Begin("Actors Info", showActorsInfo))
 	{
 		ImGui::End();
+
 		return;
 	}
 
-	static ZActorManager* actorManager = reinterpret_cast<ZActorManager*>(Globals::g_pActorManagerSingleton);
+	static ZActorManager* actorManager = Singletons::GetActorManager();
+
+	if (actorManager->m_sceneActors.Size() == 0)
+	{
+		ImGui::End();
+
+		return;
+	}
 
     if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None))
     {
         if (ImGui::BeginTabItem("Scene Actors (Max: 512)"))
         {
 			static int selected = 0;
+
 			ImGui::BeginChild("left pane", ImVec2(150, 0), true);
 
 			for (unsigned int i = 0; i < actorManager->m_sceneActors.Size(); i++)
 			{
 				char label[128];
+
 				sprintf_s(label, "Actor %d", i);
 
 				if (ImGui::Selectable(label, selected == i))
@@ -47,11 +62,12 @@ void ActorsInfo::DrawWindow(bool* showActorsInfo)
 			ImGui::Separator();
 
 			TEntityRef<ZActor>* entityRef = actorManager->m_sceneActors[selected];
+			ZActor* actor = entityRef->GetRawPointer();
 
-			ImGui::Text("Actor Name: %s", entityRef->m_pInterfaceRef->m_sActorName.m_chars);
-			ImGui::Text("Actor Type: %s", GetActorType(entityRef->m_pInterfaceRef->m_eActorType));
-			ImGui::Text("Actor Rank: %s", GetActorRank(entityRef->m_pInterfaceRef->m_eActorRank));
-			ImGui::Text("Actor Group: %s", GetActorGroup(entityRef->m_pInterfaceRef->m_eActorGroup));
+			ImGui::Text("Actor Name: %s", actor->GetActorName().ToCString());
+			ImGui::Text("Actor Type: %s", GetActorType(actor->GetActorType()));
+			ImGui::Text("Actor Rank: %s", GetActorRank(actor->GetActorRank()));
+			ImGui::Text("Actor Group: %s", GetActorGroup(actor->GetActorGroup()));
 
 			ImGui::EndChild();
 			ImGui::EndGroup();
@@ -89,7 +105,12 @@ void ActorsInfo::DrawWindow(bool* showActorsInfo)
 
 		if (ImGui::BeginTabItem("Target Actors"))
 		{
-			AddActorsInfo(actorManager->m_aTargetList);
+			//AddActorsInfo(actorManager->m_aTargetList);
+
+			/*for (unsigned int i = 0; i < actorManager->m_aliveActors.Size(); i++)
+			{
+				ZActor* actor = actorManager->m_aliveActors[i]->m_pInterfaceRef;
+			}*/
 
 			ImGui::EndTabItem();
 		}
@@ -100,15 +121,17 @@ void ActorsInfo::DrawWindow(bool* showActorsInfo)
 	ImGui::End();
 }
 
-template<class A, int B>
+template <class A, int B>
 void ActorsInfo::AddActorsInfo(TMaxArray<A, B>& array, ZActorManager* actorManager)
 {
     static int selected = 0;
+
     ImGui::BeginChild("left pane", ImVec2(150, 0), true);
 
     for (unsigned int i = 0; i < array.Size(); i++)
     {
         char label[128];
+
         sprintf_s(label, "Actor %d", i);
 
         if (ImGui::Selectable(label, selected == i))
@@ -136,6 +159,7 @@ void ActorsInfo::AddActorsInfo(TMaxArray<A, B>& array, ZActorManager* actorManag
 	ImGui::PushItemWidth(350);
 
 	TEntityRef<ZActor>* entityRef = array[selected];
+
 	AddActorInfo(entityRef, flags, color, selected);
 
 	ImGui::PopItemWidth();
@@ -147,11 +171,13 @@ void ActorsInfo::AddActorsInfo(TMaxArray<A, B>& array, ZActorManager* actorManag
 void ActorsInfo::AddActorsInfo(TArray<TEntityRef<ZActor>>& array)
 {
 	static int selected = 0;
+
 	ImGui::BeginChild("left pane", ImVec2(150, 0), true);
 
 	for (int i = 0; i < array.Size(); i++)
 	{
 		char label[128];
+
 		sprintf_s(label, "Actor %d", i);
 
 		if (ImGui::Selectable(label, selected == i))
@@ -169,6 +195,7 @@ void ActorsInfo::AddActorsInfo(TArray<TEntityRef<ZActor>>& array)
 	static ImVec4 color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f);
 
 	TEntityRef<ZActor>* entityRef = array[selected];
+
 	AddActorInfo(entityRef, flags, color, selected);
 
 	ImGui::EndChild();
@@ -179,50 +206,49 @@ void ActorsInfo::AddLocalPositionInputs(ZActor* actor, ImGuiInputTextFlags& flag
 {
 	ImGui::TextColored(color, "Local Position");
 
-	float4 localPosition = {};
-	actor->GetSpatialEntityPtr()->GetLocalPosition(&localPosition);
+	float4 localPosition = actor->GetSpatialEntityPtr()->GetLocalPosition();
 
 	ImGui::Text("X");
 	ImGui::SameLine();
 
-	string label1 = "##localPositionX" + to_string(actorIndex);
+	static std::string label1 = "##localPositionX" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label1.c_str(), &localPosition.x(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetLocalPosition(&localPosition);
+		actor->GetSpatialEntityPtr()->SetLocalPosition(localPosition);
 	}
 
 	ImGui::SameLine();
 	ImGui::Text("Y");
 	ImGui::SameLine();
 
-	string label2 = "##localPositionY" + to_string(actorIndex);
+	static std::string label2 = "##localPositionY" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label2.c_str(), &localPosition.y(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetLocalPosition(&localPosition);
+		actor->GetSpatialEntityPtr()->SetLocalPosition(localPosition);
 	}
 
 	ImGui::SameLine();
 	ImGui::Text("Z");
 	ImGui::SameLine();
 
-	string label3 = "##localPositionZ" + to_string(actorIndex);
+	static std::string label3 = "##localPositionZ" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label3.c_str(), &localPosition.z(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetLocalPosition(&localPosition);
+		actor->GetSpatialEntityPtr()->SetLocalPosition(localPosition);
 	}
 
 	ImGui::SameLine();
 	ImGui::Text("W");
 	ImGui::SameLine();
 
-	string label4 = "##localPositionW" + to_string(actorIndex);
+	static std::string label4 = "##localPositionW" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label4.c_str(), &localPosition.w(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetLocalPosition(&localPosition);
+		actor->GetSpatialEntityPtr()->SetLocalPosition(localPosition);
 	}
 }
 
@@ -230,50 +256,49 @@ void ActorsInfo::AddWorldPositionInputs(ZActor* actor, ImGuiInputTextFlags& flag
 {
 	ImGui::TextColored(color, "World Position");
 
-	float4 worldPosition = {};
-	actor->GetSpatialEntityPtr()->GetWorldPosition(&worldPosition);
+	float4 worldPosition = actor->GetSpatialEntityPtr()->GetWorldPosition();
 
 	ImGui::Text("X");
 	ImGui::SameLine();
 
-	string label1 = "##wordPositionX" + to_string(actorIndex);
+	static std::string label1 = "##wordPositionX" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label1.c_str(), &worldPosition.x(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetWorldPosition(&worldPosition);
+		actor->GetSpatialEntityPtr()->SetWorldPosition(worldPosition);
 	}
 
 	ImGui::SameLine();
 	ImGui::Text("Y");
 	ImGui::SameLine();
 
-	string label2 = "##wordPositionY" + to_string(actorIndex);
+	static std::string label2 = "##wordPositionY" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label2.c_str(), &worldPosition.y(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetWorldPosition(&worldPosition);
+		actor->GetSpatialEntityPtr()->SetWorldPosition(worldPosition);
 	}
 
 	ImGui::SameLine();
 	ImGui::Text("Z");
 	ImGui::SameLine();
 
-	string label3 = "##wordPositionZ" + to_string(actorIndex);
+	static std::string label3 = "##wordPositionZ" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label3.c_str(), &worldPosition.z(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetWorldPosition(&worldPosition);
+		actor->GetSpatialEntityPtr()->SetWorldPosition(worldPosition);
 	}
 
 	ImGui::SameLine();
 	ImGui::Text("W");
 	ImGui::SameLine();
 
-	string label4 = "##wordPositionW" + to_string(actorIndex);
+	static std::string label4 = "##wordPositionW" + std::to_string(actorIndex);
 
 	if (ImGui::InputFloat(label4.c_str(), &worldPosition.w(), 0, 0, "%.3f", flags))
 	{
-		actor->GetSpatialEntityPtr()->SetWorldPosition(&worldPosition);
+		actor->GetSpatialEntityPtr()->SetWorldPosition(worldPosition);
 	}
 }
 
@@ -781,10 +806,9 @@ void ActorsInfo::AddIHM5ItemInfo(IHM5Item* item)
 	ImGui::Text("Item Hands Cover Anim Layer: %s", GetItemHandsCoverAnimLayer(item->GetItemHandsCoverAnimLayer()));
 	ImGui::Text("Item Type: %s", GetItemType(item->GetItemType()));
 
-	ZString itemTypeName = {};
-	item->GetItemTypeName(&itemTypeName);
+	ZString itemTypeName = item->GetItemTypeName();
 
-	ImGui::Text("Item Type Name: %s", itemTypeName.m_chars);
+	ImGui::Text("Item Type Name: %s", itemTypeName.ToCString());
 
 	if (item->IsInventoryItem())
 	{
@@ -813,10 +837,9 @@ void ActorsInfo::AddIHM5ItemInfo(IHM5Item* item)
 		ImGui::Text("Item Hidden: No");
 	}
 
-	ZString debugName = {};
-	item->GetDebugName(&debugName);
+	ZString debugName = item->GetDebugName();
 
-	ImGui::Text("Debug Name: %s", debugName.m_chars);
+	ImGui::Text("Debug Name: %s", debugName.ToCString());
 
 	if (item->IsThrown())
 	{
@@ -848,43 +871,43 @@ void ActorsInfo::AddIHM5ItemInfo(IHM5Item* item)
 	ImGui::Text("");
 }
 
-const char* ActorsInfo::GetInventorySlotType(EInventorySlotType m_eSlotType)
+const char* ActorsInfo::GetInventorySlotType(ZInventorySlot::EInventorySlotType m_eSlotType)
 {
 	const char* type{};
 
 	switch (m_eSlotType)
 	{
-	case eSilverBallerSlot:
+	case ZInventorySlot::EInventorySlotType::eSilverBallerSlot:
 		type = "Silver Baller Slot";
 		break;
-	case eHandgunSlot:
+	case ZInventorySlot::EInventorySlotType::eHandgunSlot:
 		type = "Handgun Slot";
 		break;
-	case eRevolverSlot:
+	case ZInventorySlot::EInventorySlotType::eRevolverSlot:
 		type = "Revolver Slot";
 		break;
-	case eRifleSlot:
+	case ZInventorySlot::EInventorySlotType::eRifleSlot:
 		type = "Rifle Slot";
 		break;
-	case eSniperSlot:
+	case ZInventorySlot::EInventorySlotType::eSniperSlot:
 		type = "Sniper Slot";
 		break;
-	case eSmgSlot:
+	case ZInventorySlot::EInventorySlotType::eSmgSlot:
 		type = "Smg Slot";
 		break;
-	case eShotgunSlot:
+	case ZInventorySlot::EInventorySlotType::eShotgunSlot:
 		type = "Shotgun Slot";
 		break;
-	case eFiberwireSlot:
+	case ZInventorySlot::EInventorySlotType::eFiberwireSlot:
 		type = "Fiberwire Slot";
 		break;
-	case eCCPropSlot:
+	case ZInventorySlot::EInventorySlotType::eCCPropSlot:
 		type = "CC Prop Slot";
 		break;
-	case eRemoteControlled:
+	case ZInventorySlot::EInventorySlotType::eRemoteControlled:
 		type = "Remote Controlled";
 		break;
-	case eOther:
+	case ZInventorySlot::EInventorySlotType::eOther:
 		type = "Other";
 		break;
 	}
@@ -986,19 +1009,18 @@ void ActorsInfo::AddInvetorySlotInfo(ZInventorySlot* inventorySlot)
 
 	for (int i = 0; i < itemsSize; i++)
 	{
-		AddIHM5ItemInfo(inventorySlot->m_WeaponSet.m_rItems[i].m_pInterfaceRef);
+		AddIHM5ItemInfo(inventorySlot->m_WeaponSet.m_rItems[i].GetRawPointer());
 	}
 
 	ZHM5WeaponSet weaponSet = inventorySlot->m_WeaponSet;
 
-	static bool canDualWield = static_cast<bool>(weaponSet.m_bCanDualWield);
+	static bool canDualWield = weaponSet.m_bCanDualWield;
+	static bool dualWieldMode = weaponSet.m_bDualWieldMode;
+
 	ImGui::Checkbox("Can Dual Wield", &canDualWield);
-
-	weaponSet.m_bCanDualWield = canDualWield;
-
-	static bool dualWieldMode = static_cast<bool>(weaponSet.m_bDualWieldMode);
 	ImGui::Checkbox("Dual Wield Mode", &dualWieldMode);
 
+	weaponSet.m_bCanDualWield = canDualWield;
 	weaponSet.m_bDualWieldMode = dualWieldMode;
 }
 
@@ -1006,12 +1028,14 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 {
 	ImGui::TextColored(color, "Current Weapon");
 
-	if (!currentWeapon.m_pInterfaceRef)
+	IHM5ItemWeapon* weapon = currentWeapon.GetRawPointer();
+
+	if (!weapon)
 	{
 		return;
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsFiring())
+	if (weapon->IsFiring())
 	{
 		ImGui::Text("Is Firing: Yes");
 	}
@@ -1022,12 +1046,12 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 
 	ImGui::Separator();
 
-	static bool semiAutomatic, fullAutomatic;
+	static bool semiAutomatic = false, fullAutomatic = false;
 
 	ImGui::RadioButton("Semi-Automatic", &semiAutomatic);
 	ImGui::RadioButton("Full-Automatic", &fullAutomatic);
 
-	eWeaponOperation weaponOperation;
+	static eWeaponOperation weaponOperation;
 
 	if (semiAutomatic)
 	{
@@ -1040,23 +1064,23 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 
 	if (ImGui::Button("Set Weapon Operation"))
 	{
-		currentWeapon.m_pInterfaceRef->SetWeaponOperation(weaponOperation, true);
+		weapon->SetWeaponOperation(weaponOperation, true);
 	}
 
-	ImGui::Text("AI Near Combat Range: %f", currentWeapon.m_pInterfaceRef->GetAINearCombatRange());
-	ImGui::Text("AI Far Combat Range: %f", currentWeapon.m_pInterfaceRef->GetAIFarCombatRange());
+	ImGui::Text("AI Near Combat Range: %f", weapon->GetAINearCombatRange());
+	ImGui::Text("AI Far Combat Range: %f", weapon->GetAIFarCombatRange());
 
 	ImGui::Text("Bullets In Magazine");
 	ImGui::SameLine();
 
-	string label = "##BulletsInMagazine" + to_string(actorIndex);
+	static std::string label = "##BulletsInMagazine" + std::to_string(actorIndex);
+	static unsigned short bulletsInMagazine = weapon->GetBulletsInMagazine();
 
-	static unsigned __int16 bulletsInMagazine = currentWeapon.m_pInterfaceRef->GetBulletsInMagazine();
 	ImGui::InputScalar(label.c_str(), ImGuiDataType_U16, &bulletsInMagazine);
 
-	currentWeapon.m_pInterfaceRef->SetBulletsInMagazine(bulletsInMagazine);
+	weapon->SetBulletsInMagazine(bulletsInMagazine);
 
-	if (currentWeapon.m_pInterfaceRef->IsCurrentClipLowOnAmmo())
+	if (weapon->IsCurrentClipLowOnAmmo())
 	{
 		ImGui::Text("Is Current Clip Low On Ammo: Yes");
 	}
@@ -1065,7 +1089,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Current Clip Low On Ammo: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->GetFiringStarted())
+	if (weapon->GetFiringStarted())
 	{
 		ImGui::Text("Firing Started: Yes");
 	}
@@ -1074,7 +1098,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Firing Started: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsHandGun())
+	if (weapon->IsHandGun())
 	{
 		ImGui::Text("Is HandGun: Yes");
 	}
@@ -1083,7 +1107,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is HandGun: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsRevolver())
+	if (weapon->IsRevolver())
 	{
 		ImGui::Text("Is Revolver: Yes");
 	}
@@ -1092,7 +1116,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Revolver: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsSmg())
+	if (weapon->IsSmg())
 	{
 		ImGui::Text("Is Smg: Yes");
 	}
@@ -1101,7 +1125,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Smg: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsRifle())
+	if (weapon->IsRifle())
 	{
 		ImGui::Text("Is Rifle: Yes");
 	}
@@ -1110,7 +1134,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Rifle: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsRPG())
+	if (weapon->IsRPG())
 	{
 		ImGui::Text("Is RPG: Yes");
 	}
@@ -1119,7 +1143,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is RPG: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsSniper())
+	if (weapon->IsSniper())
 	{
 		ImGui::Text("Is Sniper: Yes");
 	}
@@ -1128,7 +1152,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Sniper: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsShotgun())
+	if (weapon->IsShotgun())
 	{
 		ImGui::Text("Is Shotgun: Yes");
 	}
@@ -1137,7 +1161,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Shotgun: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsFireArm())
+	if (weapon->IsFireArm())
 	{
 		ImGui::Text("Is FireArm: Yes");
 	}
@@ -1146,7 +1170,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is FireArm: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsProjectileWeapon())
+	if (weapon->IsProjectileWeapon())
 	{
 		ImGui::Text("Is Projectile Weapon: Yes");
 	}
@@ -1155,7 +1179,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Projectile Weapon: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsCloseCombatWeapon())
+	if (weapon->IsCloseCombatWeapon())
 	{
 		ImGui::Text("Is Close Combat Weapon: Yes");
 	}
@@ -1164,7 +1188,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Close Combat Weapon: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsFiberwire())
+	if (weapon->IsFiberwire())
 	{
 		ImGui::Text("Is Fiberwire: Yes");
 	}
@@ -1173,16 +1197,15 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Is Fiberwire: No");
 	}
 
-	eWeaponType weaponType = currentWeapon.m_pInterfaceRef->GetWeaponType();
+	eWeaponType weaponType = weapon->GetWeaponType();
+	eItemType itemType = weapon->GetItemType();
+	EWeaponAnimationCategory weaponAnimationCategory = weapon->GetAnimationCategory();
+
 	ImGui::Text("Weapon Type: %s", GetWeaponType(weaponType));
-
-	eItemType itemType = currentWeapon.m_pInterfaceRef->GetItemType();
 	ImGui::Text("Weapon Type: %s", GetItemType(itemType));
-
-	EWeaponAnimationCategory weaponAnimationCategory = currentWeapon.m_pInterfaceRef->GetAnimationCategory();
 	ImGui::Text("Weapon Animation Category: %s", GetWeaponAnimationCategory(weaponAnimationCategory));
 
-	if (currentWeapon.m_pInterfaceRef->NeedReloading())
+	if (weapon->NeedReloading())
 	{
 		ImGui::Text("Need Reloading: Yes");
 	}
@@ -1191,7 +1214,7 @@ void ActorsInfo::AddCurrentWeaponInfo(TEntityRef<IHM5ItemWeapon> currentWeapon, 
 		ImGui::Text("Need Reloading: No");
 	}
 
-	if (currentWeapon.m_pInterfaceRef->IsAutoreloadEnabled())
+	if (weapon->IsAutoreloadEnabled())
 	{
 		ImGui::Text("Is Autoreload Enabled: Yes");
 	}
@@ -1216,7 +1239,8 @@ void ActorsInfo::AddActorInvetoryInfo(TArray<TEntityRef<IHM5Item>> m_inventory)
 
 	while (current != end)
 	{
-		IHM5Item* item = current->m_pInterfaceRef;
+		IHM5Item* item = current->GetRawPointer();
+
 		AddIHM5ItemInfo(item);
 
 		current++;
@@ -1230,7 +1254,7 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 		return;
 	}
 
-	ZActor* actor = entityRef->m_pInterfaceRef;
+	ZActor* actor = entityRef->GetRawPointer();
 
 	if (!actor)
 	{
@@ -1242,38 +1266,39 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 
 	if (ImGui::Button("Teleport Actor To Player"))
 	{
-		static ZLevelManager* levelManager = reinterpret_cast<ZLevelManager*>(Globals::g_pLevelManagerSingleton);
-		ZHitman5* player = levelManager->m_rHitman.m_pInterfaceRef;
+		static ZLevelManager* levelManager = Singletons::GetLevelManager();
+		ZHitman5* player = levelManager->GetHitman().GetRawPointer();
 
 		if (player)
 		{
-			float4 playerLocalPosition = {};
-			player->GetSpatialEntityPtr()->GetLocalPosition(&playerLocalPosition);
+			float4 playerLocalPosition = player->GetSpatialEntityPtr()->GetLocalPosition();
 
-			actor->GetSpatialEntityPtr()->SetLocalPosition(&playerLocalPosition);
+			actor->GetSpatialEntityPtr()->SetLocalPosition(playerLocalPosition);
 		}
 	}
 
 	ImGui::TextColored(color, "CC Profile");
 
-	if (actor->m_rCCProfile.m_pInterfaceRef)
+	ZHM5CCProfile* profile = actor->m_rCCProfile.GetRawPointer();
+
+	if (profile)
 	{
 		ImGui::Text("Attacks For TakeDown");
 		ImGui::SameLine();
 
-		string label1 = "##AttacksForTakeDown" + to_string(actorIndex);
+		static std::string label1 = "##AttacksForTakeDown" + std::to_string(actorIndex);
 
-		ImGui::InputInt(label1.c_str(), &actor->m_rCCProfile.m_pInterfaceRef->m_nAttacksForTakeDown);
+		ImGui::InputInt(label1.c_str(), &profile->m_nAttacksForTakeDown);
 
 		ImGui::Text("Hitman Damage");
 		ImGui::SameLine();
 
-		string label2 = "##HitmanDamage" + to_string(actorIndex);
+		static std::string label2 = "##HitmanDamage" + std::to_string(actorIndex);
 
-		ImGui::InputFloat(label2.c_str(), &actor->m_rCCProfile.m_pInterfaceRef->m_fHitmanDamage);
+		ImGui::InputFloat(label2.c_str(), &profile->m_fHitmanDamage);
 
-		ImGui::Checkbox("Allow Attacking Hitman", &actor->m_rCCProfile.m_pInterfaceRef->m_bAllowAttackingHitman);
-		ImGui::Text("Actor Preset: %s", GetActorCCPreset(actor->m_rCCProfile.m_pInterfaceRef->m_eActorCCPreset));
+		ImGui::Checkbox("Allow Attacking Hitman", &profile->m_bAllowAttackingHitman);
+		ImGui::Text("Actor Preset: %s", GetActorCCPreset(profile->m_eActorCCPreset));
 	}
 	else
 	{
@@ -1315,7 +1340,7 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 	{
 		static bool undefined = true, invisible = false, accident = false, pacified = false, pacifiedAccident = false, murder = false, bloodyMurder = false;
 		static bool deathVisible = true;
-		EActorDeathType actorDeathType;
+		static EActorDeathType actorDeathType;
 
 		ImGui::RadioButton("Undefined", &undefined);
 		ImGui::RadioButton("Invisiable", &invisible);
@@ -1396,7 +1421,8 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 
 	ImGui::Separator();
 
-	static bool dropWeapon;
+	static bool dropWeapon = false;
+
 	ImGui::Checkbox("Drop Weapon", &dropWeapon);
 
 	if (ImGui::Button("Drop Attached Items"))
@@ -1437,14 +1463,13 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 	{
 		ImGui::Separator();
 
-		TEntityRef<IHM5ItemWeapon> currentWeapon = {};
-		actor->GetCurrentWeapon(&currentWeapon);
+		TEntityRef<IHM5ItemWeapon> currentWeapon = actor->GetCurrentWeapon();
 
 		AddCurrentWeaponInfo(currentWeapon, color, actorIndex);
 
 		ImGui::Separator();
 
-		if (currentWeapon.m_pInterfaceRef)
+		if (currentWeapon.GetRawPointer())
 		{
 			if (actor->IsWeaponFiring())
 			{
@@ -1464,7 +1489,8 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 
 	ImGui::Separator();
 
-	static bool switchToLeftHand;
+	static bool switchToLeftHand = false;
+
 	ImGui::Checkbox("Switch To Left Hand", &switchToLeftHand);
 
 	if (ImGui::Button("Switch Weapon Hand"))
@@ -1523,7 +1549,8 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 
 	ImGui::Separator();
 
-	static bool tagged;
+	static bool tagged = false;
+
 	ImGui::Checkbox("Tagged", &tagged);
 
 	if (ImGui::Button("Set SB Kill Tagged"))
@@ -1552,6 +1579,7 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 	}
 
 	EActorDeathType actorDeathType = actor->GetDeathType();
+
 	ImGui::Text("Actor Death Type: %s", GetActorDeathType(actorDeathType));
 
 	if (ImGui::Button("Flag Death As Accident"))
@@ -1571,11 +1599,11 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 		actor->ReleaseHumanShield();
 	}
 
-	bool haveTargets = false;
+	static bool haveTargets = false;
 
 	if (ImGui::Button("Test All Targets Killed"))
 	{
-		actor->TestAllTargetsKilled(&haveTargets);
+		//actor->TestAllTargetsKilled(&haveTargets);
 	}
 
 	if (haveTargets)
@@ -1639,10 +1667,9 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 		ImGui::Text("Is Boss: No");
 	}
 
-	ZString weaponName = {};
-	actor->GetWeaponName(&weaponName);
+	ZString weaponName = actor->GetWeaponName();
 
-	ImGui::Text("Weapon Name: %s", weaponName.m_chars);
+	ImGui::Text("Weapon Name: %s", weaponName.ToCString());
 
 	if (ImGui::Button("Unholster Weapon"))
 	{
@@ -1687,22 +1714,22 @@ void ActorsInfo::AddActorInfo(TEntityRef<ZActor>* entityRef, ImGuiInputTextFlags
 
 void ActorsInfo::AddBaseCharacterInfo(ZActor* actor)
 {
-	bool bodyColiEnabled = static_cast<bool>(actor->m_bBodyColiEnabled);
+	static bool bodyColiEnabled = actor->m_bBodyColiEnabled;
+	static bool bodyColiInitialized = actor->m_bBodyColiInitialized;
+	static bool ignoreOnePositionChange = actor->m_bIgnoreOnePositionChange;
+	static bool bBaseCharInitialized = actor->m_bBaseCharInitialized;
+	static bool shootColiPrimitiveActive = actor->m_bShootColiPrimitiveActive;
+	static bool shootColiSystemActive = actor->m_bShootColiSystemActive;
+	static bool initialized = static_cast<ZHM5BaseCharacter*>(actor)->m_bInitialized;
+	static bool initializingBaseCharacter = actor->m_bInitializingBaseCharacter;
+	static bool isInCrowd = actor->m_bIsInCrowd;
+	static bool isInLimitVisionAreaZone = actor->m_bIsInLimitVisionAreaZone;
+	static bool isInsideLimitVisionArea = actor->m_bIsInsideLimitVisionArea;
+	static bool isBlockedByLimitVisionArea = actor->m_bIsBlockedByLimitVisionArea;
+
 	ImGui::Checkbox("Body Coli Enabled", &bodyColiEnabled);
-
-	actor->m_bBodyColiEnabled = bodyColiEnabled;
-
-	bool bodyColiInitialized = static_cast<bool>(actor->m_bBodyColiInitialized);
 	ImGui::Checkbox("Body Coli Initialized", &bodyColiInitialized);
-
-	actor->m_bBodyColiInitialized = bodyColiInitialized;
-
-	bool ignoreOnePositionChange = static_cast<bool>(actor->m_bIgnoreOnePositionChange);
 	ImGui::Checkbox("Ignore One Position Change", &ignoreOnePositionChange);
-
-	actor->m_bIgnoreOnePositionChange = ignoreOnePositionChange;
-
-	bool bBaseCharInitialized = static_cast<bool>(actor->m_bBaseCharInitialized);
 
 	if (bBaseCharInitialized)
 	{
@@ -1713,17 +1740,8 @@ void ActorsInfo::AddBaseCharacterInfo(ZActor* actor)
 		ImGui::Text("Base Char Initialized: No");
 	}
 
-	bool shootColiPrimitiveActive = static_cast<bool>(actor->m_bShootColiPrimitiveActive);
 	ImGui::Checkbox("Shoot Coli Primitive Active", &shootColiPrimitiveActive);
-
-	actor->m_bShootColiPrimitiveActive = shootColiPrimitiveActive;
-
-	bool shootColiSystemActive = static_cast<bool>(actor->m_bShootColiSystemActive);
 	ImGui::Checkbox("Shoot Coli System Active", &shootColiSystemActive);
-
-	actor->m_bShootColiSystemActive = shootColiSystemActive;
-
-	bool initialized = static_cast<bool>(static_cast<ZHM5BaseCharacter*>(actor)->m_bInitialized);
 
 	if (initialized)
 	{
@@ -1734,8 +1752,6 @@ void ActorsInfo::AddBaseCharacterInfo(ZActor* actor)
 		ImGui::Text("Initialized: No");
 	}
 
-	bool initializingBaseCharacter = static_cast<bool>(actor->m_bInitializingBaseCharacter);
-
 	if (initializingBaseCharacter)
 	{
 		ImGui::Text("Initializing Base Character: Yes");
@@ -1744,8 +1760,6 @@ void ActorsInfo::AddBaseCharacterInfo(ZActor* actor)
 	{
 		ImGui::Text("Initializing Base Character: No");
 	}
-
-	bool isInCrowd = static_cast<bool>(actor->m_bIsInCrowd);
 
 	if (isInCrowd)
 	{
@@ -1756,19 +1770,17 @@ void ActorsInfo::AddBaseCharacterInfo(ZActor* actor)
 		ImGui::Text("Is In Crowd");
 	}
 
-	bool isInLimitVisionAreaZone = static_cast<bool>(actor->m_bIsInLimitVisionAreaZone);
 	ImGui::Checkbox("Is In Limit Vision Area Zone", &isInLimitVisionAreaZone);
-
-	actor->m_bIsInLimitVisionAreaZone = isInLimitVisionAreaZone;
-
-	bool isInsideLimitVisionArea = static_cast<bool>(actor->m_bIsInsideLimitVisionArea);
 	ImGui::Checkbox("Is Inside Limit Vision Area", &isInsideLimitVisionArea);
-
-	actor->m_bIsInsideLimitVisionArea = isInsideLimitVisionArea;
-
-	bool isBlockedByLimitVisionArea = static_cast<bool>(actor->m_bIsBlockedByLimitVisionArea);
 	ImGui::Checkbox("Is Blocked By Limit Vision Area", &isBlockedByLimitVisionArea);
 
+	actor->m_bBodyColiEnabled = bodyColiEnabled;
+	actor->m_bBodyColiInitialized = bodyColiInitialized;
+	actor->m_bIgnoreOnePositionChange = ignoreOnePositionChange;
+	actor->m_bShootColiPrimitiveActive = shootColiPrimitiveActive;
+	actor->m_bShootColiSystemActive = shootColiSystemActive;
+	actor->m_bIsInLimitVisionAreaZone = isInLimitVisionAreaZone;
+	actor->m_bIsInsideLimitVisionArea = isInsideLimitVisionArea;
 	actor->m_bIsBlockedByLimitVisionArea = isBlockedByLimitVisionArea;
 
 	if (actor->IsHandsEmpty())
@@ -1798,7 +1810,8 @@ void ActorsInfo::AddBaseCharacterInfo(ZActor* actor)
 		ImGui::Text("Is Armed: No");
 	}
 
-	bool showCharacter = !actor->IsCharacterHidden();
+	static bool showCharacter = !actor->IsCharacterHidden();
+
 	ImGui::Checkbox("ShowCharacter", &showCharacter);
 
 	if (showCharacter == actor->IsCharacterHidden())
@@ -1888,7 +1901,7 @@ void ActorsInfo::KillAllActors(ZActorManager* actorManager)
 {
 	for (unsigned int i = 0; i < actorManager->m_aliveActors.Size(); i++)
 	{
-		actorManager->m_aliveActors[i]->m_pInterfaceRef->KillActor(EActorDeathType::eADT_ACCIDENT, true);
+		actorManager->m_aliveActors[i]->GetRawPointer()->KillActor(EActorDeathType::eADT_ACCIDENT, true);
 	}
 }
 

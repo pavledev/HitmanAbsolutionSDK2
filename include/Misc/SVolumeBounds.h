@@ -3,10 +3,12 @@
 #include "SQV.h"
 #include "SVector3.h"
 
-class alignas(16) SVolumeBounds
+struct SVolumeBounds
 {
-public:
-    SQV mTransform;
-    SVector3 vCenter;
-    SVector3 vHalfSize;
+	SQV mTransform;
+	SVector3 vCenter;
+	SVector3 vHalfSize;
+
+	SVolumeBounds() = default;
+	~SVolumeBounds() = default;
 };

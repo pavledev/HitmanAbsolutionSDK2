@@ -3,26 +3,60 @@
 #include "ZSpatialEntity.h"
 #include "SVector2.h"
 #include "ZResourcePtr.h"
-#include "ZHM5GuideVentilatorShaft.h"
+#include "SComponentMapEntry.h"
+#include "TEntityRef.h"
+#include "ZEntityRef.h"
+#include "ZVariantRef.h"
 
-enum EType : __int32
-{
-    TypeNode = 0x0,
-    TypeEventHole = 0x1,
-    TypeEntranceHigh = 0x2,
-    TypeEntranceLow = 0x3
-};
+class ZHM5GuideVentilatorShaft;
+class ZComponentCreateInfo;
+struct SMatrix43;
+struct STypeID;
 
 class ZHM5VentilatorShaftNodeEntity : public ZSpatialEntity
 {
 public:
-    SVector2 m_vArmMovementHorizontal;
-    SVector2 m_vArmMovementVertical;
-    ZResourcePtr m_pHelper;
-    TEntityRef<ZHM5GuideVentilatorShaft> m_rMasterGuide;
-    unsigned int m_iSplineIdx;
+	enum
+	{
+		COPYABLE = 0,
+		ASSIGNABLE = 0
+	};
 
-    virtual void ResetNode();
-    virtual EType GetType();
-    virtual void GeomTransformChangeCallback(const ZEntityRef*, const SMatrix43*);
+	enum EType
+	{
+		TypeNode = 0,
+		TypeEventHole = 1,
+		TypeEntranceHigh = 2,
+		TypeEntranceLow = 3
+	};
+
+	SVector2 m_vArmMovementHorizontal;
+	SVector2 m_vArmMovementVertical;
+	ZResourcePtr m_pHelper;
+	TEntityRef<ZHM5GuideVentilatorShaft> m_rMasterGuide;
+	unsigned int m_iSplineIdx;
+
+	static SComponentMapEntry s_componentMap[0];
+
+	~ZHM5VentilatorShaftNodeEntity() override = default;
+	ZVariantRef GetVariantRef() const override;
+	int AddRef() override;
+	int Release() override;
+	void* QueryInterface(STypeID* iid) override;
+	void Init() override;
+	virtual void ResetNode();
+	virtual EType GetType() const;
+	virtual void GeomTransformChangeCallback(const ZEntityRef& entity, const SMatrix43& mNewValue);
+
+	ZHM5VentilatorShaftNodeEntity() = default;
+	static void RegisterType();
+	void OnHelperChanged();
+	ZHM5VentilatorShaftNodeEntity(ZComponentCreateInfo& Info);
+	void SetMasterGuide(TEntityRef<ZHM5GuideVentilatorShaft>& Ref);
+	void SetSplineIdx(unsigned int iValue);
+	unsigned int GetSplineIdx() const;
+	const SVector2& GetArmMovementHorizontal() const;
+	const SVector2& GetArmMovementVertical() const;
+	void OnArmMovementHorizontalChanged();
+	void OnArmMovementVerticalChanged();
 };

@@ -1,11 +1,14 @@
 #pragma once
 
-struct alignas(4) SRenderPostfilterStarDefinition
+struct SRenderPostfilterStarDefinition
 {
-    unsigned int nNumStarLines;
-    unsigned int nPasses;
-    float fSampleLength;
-    float fAttenuation;
-    float fInclination;
-    bool bRotation;
+	unsigned int nNumStarLines;
+	unsigned int nPasses;
+	float fSampleLength;
+	float fAttenuation;
+	float fInclination;
+	bool bRotation;
+
+	SRenderPostfilterStarDefinition() = default;
+	~SRenderPostfilterStarDefinition() = default;
 };

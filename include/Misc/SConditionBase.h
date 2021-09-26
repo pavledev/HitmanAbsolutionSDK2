@@ -3,10 +3,12 @@
 #include "ECompiledConditionType.h"
 #include "ZBehaviorTreeVariable.h"
 
-class SConditionBase
+struct SConditionBase
 {
-public:
-    ECompiledConditionType eConditionType;
-    unsigned int nConditionModifiers;
-    ZBehaviorTreeVariable assignTo;
+	ECompiledConditionType eConditionType;
+	unsigned int nConditionModifiers;
+	ZBehaviorTreeVariable assignTo;
+
+	SConditionBase() = default;
+	~SConditionBase() = default;
 };
