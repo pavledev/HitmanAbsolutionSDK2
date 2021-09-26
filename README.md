@@ -15,6 +15,8 @@ While aiming use . and , keys to move actor back and forth
   - Debug Console
   - Actors Info (Change actors positions, kill actors, teleport to player, ...)
   - Player Info (Modify health, modify ammo, change outfit, teleport, ...)
+  - Items Info (Modify ammo, change position, teleport items, add items to inventory)
+  - Props Info (Modify position)
   - HUD Info (Modify weapons ammo, create text)
   - Game Stats Info (Kill count, ...)
   - Cheats (Infinite health, infinite ammo, invisibility, refill instinct bar)
