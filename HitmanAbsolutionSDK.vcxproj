@@ -403,6 +403,7 @@
     <ClInclude Include="include\GFx\GRenderTarget.h" />
     <ClInclude Include="include\GFx\GTexture.h" />
     <ClInclude Include="include\GFx\GViewport.h" />
+    <ClInclude Include="include\Projectile\ZHM5Projectile.h" />
     <ClInclude Include="include\Singletons.h" />
     <ClInclude Include="include\Grid\ZGridByteField.h" />
     <ClInclude Include="include\Grid\ZGridFloatField.h" />
@@ -1865,6 +1866,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="src\Console\Custom\HM5DebugConsole.cpp" />
+    <ClCompile Include="src\Math\Vector\SVector3.cpp" />
     <ClCompile Include="src\Menu\Custom\PropsInfo.cpp" />
     <ClCompile Include="src\Singletons.cpp" />
     <ClCompile Include="src\Hooks\ApplicationHooks.cpp" />

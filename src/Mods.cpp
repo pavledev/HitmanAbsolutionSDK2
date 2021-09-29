@@ -12,6 +12,76 @@
 #include "ZHM5Action.h"
 #include "ZActor.h"
 #include "IType.h"
+#include "MinHook.h"
+#include "BaseAddresses.h"
+#include "HM5DebugConsole.h"
+
+bool isProjectileFired;
+bool freeCameraEnabled;
+float4 endPosition;
+float4 direction;
+bool freeCameraCreated = false;
+
+typedef void(__thiscall* OnWeaponFireProjectile)(ZHitman5* pThis, const TEntityRef<ZHM5ItemWeapon>& rWeapon);
+typedef void(__thiscall* ZEngineAppCommonCtor)(ZEngineAppCommon* pThis, IApplication* pApplication, const ZString* sInstanceName);
+typedef void(__thiscall* CreateFreeCameraAndControl)(ZEngineAppCommon* pThis);
+typedef void(__thiscall* ToggleFreeCamera)(ZEngineAppCommon* pThis);
+typedef bool(__thiscall* LoadScene)(ZEngineAppCommon* pThis, const SSceneInitParameters* parameters);
+
+OnWeaponFireProjectile pOriginalOnWeaponFireProjectile;
+ZEngineAppCommonCtor pOriginalZEngineAppCommonCtor;
+CreateFreeCameraAndControl pOriginalCreateFreeCameraAndControl;
+ToggleFreeCamera pOriginalToggleFreeCamera;
+ZEngineAppCommon* engineAppCommon;
+LoadScene pOriginalLoadScene;
+
+//void __fastcall OnWeaponFireProjectileHook(ZHitman5* pThis, int padding, const TEntityRef<ZHM5ItemWeapon>& rWeapon);
+//void __fastcall CreateFreeCameraAndControlHook(ZEngineAppCommon* pThis);
+//void __fastcall ToggleFreeCameraHook(ZEngineAppCommon* pThis);
+
+void __fastcall OnWeaponFireProjectileHook(ZHitman5* pThis, int padding, const TEntityRef<ZHM5ItemWeapon>& rWeapon)
+{
+	isProjectileFired = true;
+
+	ZHM5ItemWeapon* weapon = rWeapon.GetRawPointer();
+	ZHM5ProjectilePool pool = weapon->m_ProjectilePool;
+
+	ZHM5Projectile* projectile = static_cast<ZHM5Projectile*>(pool.m_nProjectiles[0]->GetRawPointer());
+
+	endPosition = projectile->m_coliin.m_vTo;
+    direction = projectile->m_vTrajectoryDir * 0.05f;
+
+	pOriginalOnWeaponFireProjectile(pThis, rWeapon);
+}
+
+void __fastcall ZEngineAppCommonCtorHook(ZEngineAppCommon* pThis, int padding, IApplication* pApplication, const ZString* sInstanceName)
+{
+    pOriginalZEngineAppCommonCtor(pThis, pApplication, sInstanceName);
+
+	engineAppCommon = pThis;
+}
+
+void __fastcall CreateFreeCameraAndControlHook(ZEngineAppCommon* pThis)
+{
+	pOriginalCreateFreeCameraAndControl(pThis);
+
+	engineAppCommon = pThis;
+}
+
+void __fastcall ToggleFreeCameraHook(ZEngineAppCommon* pThis)
+{
+	pOriginalToggleFreeCamera(pThis);
+
+	engineAppCommon = pThis;
+	freeCameraEnabled = !freeCameraEnabled;
+}
+
+bool __fastcall LoadSceneHook(ZEngineAppCommon* pThis, int padding, const SSceneInitParameters* parameters)
+{
+    engineAppCommon = pThis;
+
+    return pOriginalLoadScene(pThis, parameters);
+}
 
 void Mods::EnableGravityGun()
 {
@@ -345,6 +415,18 @@ bool Mods::ProcessProps(TEntityRef<ZSpatialEntity>& spatialEntity, ZHitman5* pla
     return isPropAimed;
 }
 
+float Mods::ATan2_0To2Pi(float y, float x)
+{
+	float answer = atan2(y, x);
+
+	if (answer < 0.0)
+	{
+		return answer + 2.0f * static_cast<float>(M_PI);
+	}
+
+	return answer;
+}
+
 void Mods::UpdateGravityGun(TEntityRef<ZSpatialEntity> spatialEntityRef, ZHitman5* player, bool firstRun)
 {
     static float radius;
@@ -562,14 +644,133 @@ void Mods::DisplayNearbyActorsInfo()
     }
 }
 
-float Mods::ATan2_0To2Pi(float y, float x)
+void Mods::ProcessGrapplingHook()
 {
-    float answer = atan2(y, x);
-
-    if (answer < 0.0)
+    if (isProjectileFired)
     {
-        return answer + 2.0f * (float)M_PI;
-    }
+		static ZLevelManager* levelManager = reinterpret_cast<ZLevelManager*>(Globals::g_pLevelManagerSingleton);
+		ZHitman5* player = levelManager->m_rHitman.m_pInterfaceRef;
 
-    return answer;
+		if (player)
+		{
+            if (engineAppCommon && !freeCameraCreated)
+            {
+                engineAppCommon->CreateFreeCameraAndControl();
+                engineAppCommon->ToggleFreeCamera();
+
+                freeCameraCreated = true;
+            }
+
+            //player->GetSpatialEntityPtr()->SetWorldPosition(endPosition);
+
+            ZSpatialEntity* spatialEntity = player->GetSpatialEntityPtr();
+			float4 temp = endPosition - spatialEntity->GetWorldPosition();
+			float distance = sqrt(temp.x() * temp.x() + temp.y() * temp.y() + temp.z() * temp.z());
+
+			if (distance > 0.1)
+			{
+				float4 newPosition = spatialEntity->GetWorldPosition() + direction;
+
+				spatialEntity->SetWorldPosition(newPosition);
+
+				ZCameraEntity* cameraEntity = engineAppCommon->m_pFreeCamera.GetRawPointer();
+
+				if (cameraEntity)
+				{
+					cameraEntity->SetWorldPosition(newPosition);
+				}
+
+				temp = endPosition - newPosition;
+				distance = sqrt(temp.x() * temp.x() + temp.y() * temp.y() + temp.z() * temp.z());
+			}
+			else
+			{
+                engineAppCommon->ToggleFreeCamera();
+
+                isProjectileFired = false;
+                //freeCameraCreated = false;
+			}
+		}
+    }
+}
+
+void Mods::Fly()
+{
+	if (freeCameraEnabled && engineAppCommon)
+	{
+		ZCameraEntity* cameraEntity = engineAppCommon->m_pFreeCamera.GetRawPointer();
+
+		if (cameraEntity)
+		{
+			float4 cameraPosition = cameraEntity->GetWorldPosition();
+			float4 correct = { -2.0f, 0, -2.0f, 0 };
+
+			static ZLevelManager* levelManager = reinterpret_cast<ZLevelManager*>(Globals::g_pLevelManagerSingleton);
+			ZHitman5* player = levelManager->m_rHitman.m_pInterfaceRef;
+
+			if (player)
+			{
+				player->GetSpatialEntity()->SetWorldPosition(cameraPosition + correct);
+			}
+		}
+	}
+}
+
+void Mods::CreateAndEnableHooks()
+{
+	OnWeaponFireProjectile pOnWeaponFireProjectile = reinterpret_cast<OnWeaponFireProjectile>(BaseAddresses::hitman5Dll + 0x29AE00);
+    ZEngineAppCommonCtor pZEngineAppCommonCtor = reinterpret_cast<ZEngineAppCommonCtor>(BaseAddresses::engine + 0x4FC0);
+	CreateFreeCameraAndControl pCreateFreeCameraAndControl = reinterpret_cast<CreateFreeCameraAndControl>(BaseAddresses::engine + 0x59C0);
+	ToggleFreeCamera pToggleFreeCamera = reinterpret_cast<ToggleFreeCamera>(BaseAddresses::engine + 0x5B80);
+    LoadScene pLoadScene = reinterpret_cast<LoadScene>(BaseAddresses::engine + 0x5D20);
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pOnWeaponFireProjectile), reinterpret_cast<LPVOID>(OnWeaponFireProjectileHook), reinterpret_cast<LPVOID*>(&pOriginalOnWeaponFireProjectile)) != MH_OK)
+	{
+		HM5_LOG("Failed to create OnWeaponFireProjectile hook.\n");
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pOnWeaponFireProjectile)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable OnWeaponFireProjectile hook.\n");
+	}
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pZEngineAppCommonCtor), reinterpret_cast<LPVOID>(ZEngineAppCommonCtorHook), reinterpret_cast<LPVOID*>(&pOriginalZEngineAppCommonCtor)) != MH_OK)
+	{
+		HM5_LOG("Failed to create ZEngineAppCommonCtor hook.\n");
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pZEngineAppCommonCtor)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable ZEngineAppCommonCtor hook.\n");
+	}
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pCreateFreeCameraAndControl), reinterpret_cast<LPVOID>(CreateFreeCameraAndControlHook), reinterpret_cast<LPVOID*>(&pOriginalCreateFreeCameraAndControl)) != MH_OK)
+	{
+		HM5_LOG("Failed to create pCreateFreeCameraAndControl hook.\n");
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pCreateFreeCameraAndControl)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable pCreateFreeCameraAndControl hook.\n");
+	}
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pToggleFreeCamera), reinterpret_cast<LPVOID>(ToggleFreeCameraHook), reinterpret_cast<LPVOID*>(&pOriginalToggleFreeCamera)) != MH_OK)
+	{
+		HM5_LOG("Failed to create ToggleFreeCamera hook.\n");
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pToggleFreeCamera)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable ToggleFreeCamera hook.\n");
+	}
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pLoadScene), reinterpret_cast<LPVOID>(LoadSceneHook), reinterpret_cast<LPVOID*>(&pOriginalLoadScene)) != MH_OK)
+	{
+		HM5_LOG("Failed to create LoadScene hook.\n");
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pLoadScene)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable LoadScene hook.\n");
+	}
 }

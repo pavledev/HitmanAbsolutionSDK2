@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Windows.h>
 #include <iostream>
 #include <map>
 #include <corecrt_math_defines.h>
@@ -11,7 +12,13 @@
 #include "ZHM5SBTargetPropManager.h"
 #include "TTypeIDHelper.h"
 #include "Singletons.h"
-#include <Windows.h>
+#include "ZEngineAppCommon.h"
+#include "ZHM5ItemWeapon.h"
+#include "ZHM5ProjectilePool.h"
+#include "ZHM5Projectile.h"
+#include "ZHitman5.h"
+#include "ZHM5MainCamera.h"
+#include "Globals.h"
 
 #define VK_OEM_PLUS 0xBB
 #define VK_OEM_COMMA 0xBC
@@ -50,6 +57,9 @@ public:
 	void EnableGravityGun();
 	void KillNearbyActors();
 	void DisplayNearbyActorsInfo();
+	void ProcessGrapplingHook();
+	void Fly();
+	void CreateAndEnableHooks();
 
 	const char* GetActorType(EActorType m_eActorType);
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <xmmintrin.h>
+#include "SVector3.h"
 
 struct float1;
 
@@ -42,4 +43,6 @@ struct float4
 
 	float4 operator+(float4 f);
 	float4 operator-(float4 f);
+	float4(float x, float y, float z, float w);
+	float4(SVector3 vector);
 };

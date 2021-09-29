@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <mutex>
 
+#include "imgui.h"
 #include "MinHook.h"
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
@@ -18,7 +19,6 @@
 #include "BaseAddresses.h"
 #include "Mods.h"
 #include "HM5DebugConsole.h"
-#include "imgui.h"
 
 Menu menu;
 InputHook inputHook;
@@ -31,9 +31,11 @@ ZRenderDevicePresent pOriginalZRenderDevicePresent;
 const int openMenuKey = VK_F9;
 static once_flag isInitialized;
 
-static bool gravityGunEnabled;
-static bool killNearbyActorsEnabled;
-static bool displayNearbyActorsInfoEnabled;
+static bool isGravityGunEnabled;
+static bool isKillNearbyActorsEnabled;
+static bool isDisplayNearbyActorsInfoEnabled;
+static bool isGrapplingHookEnabled;
+static bool isFreeCameraEnabled;
 
 void __fastcall ZRenderDevicePresentHook(ZRenderDevice* renderDevice)
 {
@@ -69,6 +71,30 @@ void __fastcall ZRenderDevicePresentHook(ZRenderDevice* renderDevice)
     menu.Render();
 
     pOriginalZRenderDevicePresent(renderDevice);
+}
+
+typedef ZInventorySlot* (__thiscall* AddItemToInventory)(ZHM5BaseInventory* pThis, const TEntityRef<IHM5Item>* rItem, bool bAddInitialBullets, bool bDisableHUD);
+AddItemToInventory pOriginalAddItemToInventory;
+
+ZInventorySlot* __fastcall AddItemToInventoryHook(ZHM5BaseInventory* pThis, int padding, const TEntityRef<IHM5Item>* rItem, bool bAddInitialBullets, bool bDisableHUD)
+{
+    eItemType type = rItem->GetRawPointer()->GetItemType();
+    string name = rItem->GetRawPointer()->GetItemName().ToCString();
+    string typeName = rItem->GetRawPointer()->GetItemTypeName().ToCString();
+
+    return pOriginalAddItemToInventory(pThis, rItem, bAddInitialBullets, bDisableHUD);
+}
+
+typedef void(__thiscall* AddItemToInventorySlot)(ZHM5BaseInventory* pThis, const TEntityRef<IHM5Item>* rItem, ZInventorySlot::EInventorySlotType eSlot);
+AddItemToInventorySlot pOriginalAddItemToInventorySlot;
+
+void __fastcall AddItemToInventorySlotHook(ZHM5BaseInventory* pThis, int padding, const TEntityRef<IHM5Item>* rItem, ZInventorySlot::EInventorySlotType eSlot)
+{
+	eItemType type = rItem->GetRawPointer()->GetItemType();
+	string name = rItem->GetRawPointer()->GetItemName().ToCString();
+	string typeName = rItem->GetRawPointer()->GetItemTypeName().ToCString();
+
+    pOriginalAddItemToInventorySlot(pThis, rItem, eSlot);
 }
 
 void InitializeGlobalVariables()
@@ -256,8 +282,42 @@ DWORD WINAPI MainThread(HMODULE hModule)
         return 1;
     }
 
+	AddItemToInventory pAddItemToInventory = reinterpret_cast<AddItemToInventory>(BaseAddresses::hitman5Dll + 0x1F9D00);
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pAddItemToInventory), reinterpret_cast<LPVOID>(AddItemToInventoryHook), reinterpret_cast<LPVOID*>(&pOriginalAddItemToInventory)) != MH_OK)
+	{
+		HM5_LOG("Failed to create AddItemToInventory hook.\n");
+
+		return 1;
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pAddItemToInventory)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable AddItemToInventory hook.\n");
+
+		return 1;
+	}
+
+    AddItemToInventorySlot pAddItemToInventorySlot = reinterpret_cast<AddItemToInventorySlot>(BaseAddresses::hitman5Dll + 0x1F6CD0);
+
+	if (MH_CreateHook(reinterpret_cast<LPVOID>(pAddItemToInventorySlot), reinterpret_cast<LPVOID>(AddItemToInventorySlotHook), reinterpret_cast<LPVOID*>(&pOriginalAddItemToInventorySlot)) != MH_OK)
+	{
+		HM5_LOG("Failed to create AddItemToInventorySlot hook.\n");
+
+		return 1;
+	}
+
+	if (MH_EnableHook(reinterpret_cast<LPVOID>(pAddItemToInventorySlot)) != MH_OK)
+	{
+		HM5_LOG("Failed to enable AddItemToInventorySlot hook.\n");
+
+		return 1;
+	}
+
     ApplicationHooks::CreateAndEnableHooks();
     ZDebugConsoleHooks::CreateAndEnableHooks();
+
+    mods.CreateAndEnableHooks();
 
     while (true)
     {
@@ -268,32 +328,52 @@ DWORD WINAPI MainThread(HMODULE hModule)
 
         if (GetAsyncKeyState(VK_F4) & 1)
         {
-            gravityGunEnabled = !gravityGunEnabled;
+            isGravityGunEnabled = !isGravityGunEnabled;
         }
 
         if (GetAsyncKeyState(VK_F5) & 1)
         {
-            killNearbyActorsEnabled = !killNearbyActorsEnabled;
+            isKillNearbyActorsEnabled = !isKillNearbyActorsEnabled;
         }
 
         if (GetAsyncKeyState(VK_F6) & 1)
         {
-            displayNearbyActorsInfoEnabled = !displayNearbyActorsInfoEnabled;
+            isDisplayNearbyActorsInfoEnabled = !isDisplayNearbyActorsInfoEnabled;
         }
 
-        if (gravityGunEnabled)
+		if (GetAsyncKeyState(VK_F7) & 1)
+		{
+            isGrapplingHookEnabled = !isGrapplingHookEnabled;
+		}
+
+		if (GetAsyncKeyState(VK_F8) & 1)
+		{
+            isFreeCameraEnabled = !isFreeCameraEnabled;
+		}
+
+        if (isGravityGunEnabled)
         {
             mods.EnableGravityGun();
         }
 
-        if (killNearbyActorsEnabled)
+        if (isKillNearbyActorsEnabled)
         {
             mods.KillNearbyActors();
         }
 
-        if (displayNearbyActorsInfoEnabled)
+        if (isDisplayNearbyActorsInfoEnabled)
         {
             mods.DisplayNearbyActorsInfo();
+        }
+
+        if (isGrapplingHookEnabled)
+        {
+            mods.ProcessGrapplingHook();
+        }
+
+        if (isFreeCameraEnabled)
+        {
+            mods.Fly();
         }
 
         Sleep(5);

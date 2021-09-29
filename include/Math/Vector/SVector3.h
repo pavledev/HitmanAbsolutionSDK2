@@ -16,4 +16,6 @@ struct SVector3
 
 	SVector3() = default;
 	~SVector3() = default;
+
+	SVector3 operator*(const float value);
 };

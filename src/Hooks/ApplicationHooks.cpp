@@ -21,16 +21,18 @@ namespace ApplicationHooks
         MH_STATUS createStatus = MH_CreateHook(reinterpret_cast<LPVOID>(pCreateMainWindow), reinterpret_cast<LPVOID>(CreateMainWindowHook),
             reinterpret_cast<LPVOID*>(&pOriginalCreateMainWindow));
 
-        if (createStatus != MH_OK)
+        if (createStatus == MH_OK)
+        {
+			MH_STATUS enableStatus = MH_EnableHook(reinterpret_cast<LPVOID>(pCreateMainWindow));
+
+			if (enableStatus != MH_OK)
+			{
+				HM5_LOG("Failed to enable CreateMainWindow hook. %s\n", MinHookMessage::GetMessageFromStatus(enableStatus).c_str());
+			}
+        }
+        else
         {
             HM5_LOG("Failed to create CreateMainWindow hook. %s\n", MinHookMessage::GetMessageFromStatus(createStatus).c_str());
-        }
-
-        MH_STATUS enableStatus = MH_EnableHook(reinterpret_cast<LPVOID>(pCreateMainWindow));
-
-        if (enableStatus != MH_OK)
-        {
-            HM5_LOG("Failed to enable CreateMainWindow hook. %s\n", MinHookMessage::GetMessageFromStatus(enableStatus).c_str());
         }
     }
 }

@@ -3126,7 +3126,7 @@ void PlayerInfo::AddTeleportInfo(ZHitman5* player)
 				ImGui::SetItemDefaultFocus();
 
 				string teleportLocation = teleportLocations[i];
-				float4 localPosition = { 0 };
+				float4 localPosition;
 
 				size_t start = teleportLocation.find("X: ") + 3;
 				size_t count = teleportLocation.find(" Y:") - start - 1;
