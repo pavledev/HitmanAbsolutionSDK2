@@ -19,6 +19,8 @@
 While aiming use . and , keys to move actor, item, or prop back and forth
 - F5 - Kill Nearby Actors - kill actors by walking near them
 - F6 - Display Nearby Actors Info - displays actor's name and type
+- F7 - Grappling Hook
+- F8 - Fly
 - F9 - Menu
   - Debug Console
   - Actors Info (Change actors positions, kill actors, teleport to player, ...)
