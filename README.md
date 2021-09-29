@@ -1,16 +1,26 @@
 # Hitman Absolution SDK
 
+## Requirements
+ 1. DirectX SDK
+ 2. NVIDIA PhysX SDK
+ 3. FMOD SDK
+ 4. MinHook
+
 ## Usage
  1. Copy Debug folder from this link https://drive.google.com/file/d/1copy8NUyPMNecgfMSc4mMtTHYP3I04db/view to main directory of Hitman Absolution
  2. Copy HitmanAbsolutionSDK.dll to Debug folder
- 3. For injecting DLL copy dinput8.dll https://github.com/pavledev/DInput8Proxy to Debug folder or use any DLL injector
- 4. Run engine.exe
+ 3. For injecting DLL copy dinput8.dll (https://github.com/pavledev/DInput8Proxy) to Debug folder or use any DLL injector
+ 4. Run RelocateExportTable.exe (https://github.com/pavledev/RelocateExportTable) and export classes listed here https://github.com/pavledev/HitmanAbsolutionSDK/wiki
+ 5. Convert dll files to lib files
+ 6. Run engine.exe
 
 ## Mods
 - F4 - Gravity Gun - move actors, items and props while aiming at them (they can be launched with arbitrary force and direction)\
 While aiming use . and , keys to move actor, item, or prop back and forth
 - F5 - Kill Nearby Actors - kill actors by walking near them
 - F6 - Display Nearby Actors Info - displays actor's name and type
+- F7 - Grappling Hook
+- F8 - Fly
 - F9 - Menu
   - Debug Console
   - Actors Info (Change actors positions, kill actors, teleport to player, ...)
