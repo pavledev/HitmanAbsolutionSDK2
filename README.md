@@ -9,7 +9,7 @@
 ## Usage
  1. Copy Debug folder from this link https://drive.google.com/file/d/1copy8NUyPMNecgfMSc4mMtTHYP3I04db/view to main directory of Hitman Absolution
  2. Copy HitmanAbsolutionSDK.dll to Debug folder
- 3. For injecting DLL copy dinput8.dll https://github.com/pavledev/DInput8Proxy to Debug folder or use any DLL injector
+ 3. For injecting DLL copy dinput8.dll (https://github.com/pavledev/DInput8Proxy) to Debug folder or use any DLL injector
  4. Run RelocateExportTable.exe (https://github.com/pavledev/RelocateExportTable) and export classes listed here https://github.com/pavledev/HitmanAbsolutionSDK/wiki
  5. Convert dll files to lib files
  6. Run engine.exe
